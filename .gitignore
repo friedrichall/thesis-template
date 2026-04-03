@@ -11,3 +11,17 @@
 *.out
 *.fdb_latexmk
 *.fls
+
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.synctex.gz
+*.acn
+*.acr
+*.alg
+*.ist
+*.xdy
+*.gz

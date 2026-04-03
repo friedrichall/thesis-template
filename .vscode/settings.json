@@ -1,0 +1,25 @@
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.bcf",
+    "*.blg",
+    "*.fdb_latexmk",
+    "*.fls",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.idx",
+    "*.ilg",
+    "*.ind",
+    "*.lof",
+    "*.log",
+    "*.lot",
+    "*.out",
+    "*.run.xml",
+    "*.synctex.gz",
+    "*.toc"
+  ]
+}
