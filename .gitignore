@@ -25,3 +25,5 @@
 *.ist
 *.xdy
 *.gz
+.SynologyWorkingDirectory
+desktop.ini
