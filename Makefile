@@ -24,7 +24,7 @@ SB_0050_FO:
 	}
 
 $(THESIS).bbl: $(THESIS).aux
-	bibtex $(THESIS).aux
+	biber $(THESIS) 
 
 $(THESIS).aux: refs.bib
 	pdflatex $(THESIS).tex -draftmode

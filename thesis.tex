@@ -60,6 +60,9 @@
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
 
+\usepackage[backend=biber, style=ieee, url=true, doi=true]{biblatex}
+\addbibresource{refs.bib}
+
 % table setup
 \usepackage{longtable}
 \usepackage{array}
@@ -173,8 +176,7 @@
 \lstlistoflistings
 \cleardoublepage
 
-\bibliographystyle{IEEEtran} % wmaainf
-\bibliography{refs}
+\printbibliography
 
 \printnoidxglossaries
 
