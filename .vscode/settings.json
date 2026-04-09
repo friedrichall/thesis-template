@@ -21,5 +21,77 @@
     "*.run.xml",
     "*.synctex.gz",
     "*.toc"
-  ]
+  ],
+  // Treat new files (before first save) as LaTeX files.
+  "files.defaultLanguage": "latex",
+  // Treat LaTeX package (.sty) and class (.cls) files as LaTeX files.
+  "files.associations": {
+    "*.sty": "latex",
+    "*.cls": "latex"
+  },
+  // Hide the following file types from the VS Code folder list.
+  "files.exclude": {
+    "**/*.4ct": true,
+    "**/*.4tc": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.idv": true,
+    "**/*.lg": true,
+    "**/*.lof": true,
+    "**/*.synctex.gz": true,
+    "**/*.synctex(busy)": true,
+    "**/*.tmp": true,
+    "**/*.xref": true,
+    "**/*.fls": true,
+    "**/*.loc": true,
+    "**/*.run.xml": true,
+    "**/*.soc": true,
+    "**/*.snm": true,
+    "**/*.blg": true,
+    "**/*-SAVE-ERROR": true
+  },
+  "latex-workshop.intellisense.update.aggressive.enabled": true,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  // LaTeX Workshop configuration
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": [
+        "latexmk"
+      ]
+    }
+  ],
+  // LaTeX formatting configuration
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.formatting.latexindent.path": "latexindent",
+  "latex-workshop.formatting.latexindent.args": [
+    "-c",
+    "%DIR%/",
+    "%TMPFILE%",
+    "-y=defaultIndent: '%INDENT%'"
+  ],
+  // Language-specific formatting settings
+  "[latex]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
