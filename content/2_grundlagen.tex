@@ -8,21 +8,51 @@ Im Folgenden werden statische sowie interaktive 3D-Objekte definiert und erklär
 In dieser Arbeit werden statische 3D-Objekte als Basisform digitaler Modelle betrachtet.
 Sie sind die fundamentale Basis, auf denen komplexere Verhaltensweisen aufbauen können, jedoch wohnt ihnen mit diesen Informationen noch kein Eigenleben inne.
 Statische 3D-Objekt lassen sich meist rein geometrisch beschreiben.
-Die Mesh-Geometrie besteht aus Dreiecksnetzen oder Polyeder-Darstellungen, welche die Oberfläche durch Eckpunkte (Vertices) und deren Verbindungen definieren \cite{baranAutomaticRiggingAnimation2007a}.
-Weiterhin besitzen sie grafische Attribute wie Materialeigenschaften, Texturen, Transparenz und Sichtbarkeit sowie eine hierarchische Anordnung im Szenengraph, welcher ihre Position, Rotation und Skalierung organisiert \cite{GabrielZachmannsDissertation}.
+Die Mesh-Geometrie besteht aus Dreiecksnetzen oder Polyeder-Darstellungen, welche die Oberfläche durch Eckpunkte (Vertices) und deren Verbindungen definieren~\cite{baranAutomaticRiggingAnimation2007a}.
+Weiterhin besitzen sie grafische Attribute wie Materialeigenschaften, Texturen, Transparenz und Sichtbarkeit sowie eine hierarchische Anordnung im Szenengraph, welcher ihre Position, Rotation und Skalierung organisiert~\cite{GabrielZachmannsDissertation}.
 
 \subsection*{Interaktive 3D-Objekte}
-Während statische 3D-Objekte als unbelebte geometrische Körper betrachtet werden können, zeichnen sich interaktive 3D-Objekte durch Wissen über ihre Funktionalität und die Möglichkeit zur Interaktion mit ihnen aus \cite{kallmannModelingBehaviorsInteractive2002}.
-Auf diese 3D-Objekte kann durch Eingaben (Input) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen \cite[S.~73--93]{steuerDefiningVirtualReality1992}.
+
+Während statische 3D-Objekte als unbelebte geometrische Körper betrachtet werden können, zeichnen sich interaktive 3D-Objekte durch Wissen über ihre Funktionalität und die Möglichkeit zur Interaktion mit ihnen aus~\cite{kallmannModelingBehaviorsInteractive2002}.
+Auf diese 3D-Objekte kann durch Eingaben (Input) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen~\cite[S.~73--93]{steuerDefiningVirtualReality1992}.
 Diese Reaktion verleiht der unbelebten Hülle ein ``Leben``.
 Es ist somit in der Lage, auf durch Benutzereingaben ausgelöste Ereignisse (Events) zu reagieren und wird zu einem handlungsoffenen Teil der virtuellen Welt.
 
 \section{Transformation statischer in interaktive 3D-Objekte}
 
-\section{Large Language Models und Agentische Systeme}
+Die in der vorliegenden Arbeit untersuchte Transformation von statisch zu interaktiv ist keine rein geometrische oder visuelle Modifikation, sondern eine semantisch-verhaltensbezogene.
+Sie macht aus einem visuellen und geometrischen Asset ein interaktives Modell, welches Informationen über sein eigenes Verhalten und die möglichen Interaktionen mit diesem beinhaltet. Mit dem Konzept dieser ``Smart Objects'' wird Logik direkt im Objekt gespeichert, was wiederum Dezantralisierung und Wiederverwendbarkeit ermöglicht~\cite{kallmannModelingBehaviorsInteractive2002}. Dieser Prozess umfasst verschiedene Ebenen.
 
-Large Language Models (LLMs) sind vortrainierte Sprachmodelle, die typischerweise zehn oder hunderte Milliarden von Parametern enthalten.
-Sie sind in der Lage menschenähnlichen Text zu generieren sowie komplexe Aufgaben zu verstehen und zu lösen \cite{bommasaniOpportunitiesRisksFoundation2022}.
+Zunächst wird das statische 3D-Modell segmentiert sowie semantisch etikettiert, was sich mit dem Begriff ``Labeling'' zusammenfassen lässt.
+Dabei werden rohe Mesh-Geometrien in bedeutungsvolle Teile mit bestimmten Rollen zerlegt (\zB ``Griff'' einer Tasse oder ``Sitzfläche'' eines Stuhls), sodass ein System später ``versteht'', welches Teil eines 3D-Objekts für welche Interaktion relevant ist und eine Zuordnung stattfinden kann~\cite{moPartNetLargescaleBenchmark2018}\cite{hassaninVisualAffordanceFunction2021}.
+
+Im nächsten Schritt erfolgt der Übergang von der Semnatik zum Verhalten mittels Zuweisung spezifischer Interaktionsmerkmale (Interaction Features) zu den im ersten Schritt analysierten semantischen Etiketten. Diese Merkmale beinhalten eine Beschreibung der Funktionalität sowie eine Verknüpfung mit Verhaltensplänen oder Zustandsautomaten. Diese Pläne können Zustände überprüfen oder ändern und legen das erwartete Verhalten von beteiligten Akteuren fest~\cite{kallmannModelingBehaviorsInteractive2002}.
+
+
+\section{Large Language Models und Agenten}
+
+\subsection{Definition}
+
+Large Language Models (LLMs) sind tiefe neuronale Netzwerke, welche die Verarbeitung von natürlicher Sprache ermöglichen und durch die Analyse riesiger Textmengen entwickelt wurden~\cite{lazerSurveyAgenticAI2026}.
+Sie enthalten typischerweise Milliarden von Parametern und sind in der Lage komplexe Aufgaben zu verstehen und zu lösen oder in Teilaufgaben zu zerlegen~\cite{bommasaniOpportunitiesRisksFoundation2022}.
+Ihre Skalierbarkeit ist ein zentrales Merkmal von LLM's, denn sie zeigen mit zunehmender Modellgröße und Datenmenge qualitative Leistungssteigerungen und sogenannte emergente Fähigkeiten, wie \zB \textit{In-Context Learning}.
+Somit lassen sich LLMs als vortrainierte, generalisierte Modelle verstehen, welche als Grundlage für eine Vielzahl von Aufgaben dienen.
+Während solche LLMs als Modelle zur passiven Sprachverarbeitung und -generierung verstanden werden können, besitzen sie ohne zusätzliche Werkzeuge keine eigene Handlungsfähigkeit.
+Hier greift das Konzept eines LLM-basierten Agenten weiter.
+Ein Agent ist eine autonome Einheit, welche in einer Umgebung agiert, Entscheidungen trifft und auch mit anderen Agenten interagieren kann\cite{shohamAgentorientedProgramming1993}.
+LLM-basierte Agenten verbinden diese klassische Idee mit den Fähigkeiten von LLMs.
+Ein LLM kann hier als kognitive Kernkomponente verstanden werden und verleiht dem Agent die Fähigkeit eigenständig und unabhängig zu analysieren, zu planen sowie Probleme zu lösen~\cite[S.~25]{xiRisePotentialLarge2023}.
+So entsteht ein System, welches nicht nur natürliche Sprache verarbeiten kann, sondern eine eigene zielgerichtete Handlungsfähigkeit besitzt und in einer Umgebung agieren kann.
+Ebenso kann es zusätzliche Komponenten wie Sensorik, API-Aufrufe oder Werkzeuge nutzen\cite{xiRisePotentialLarge2023}.
+Die universelle Schnittstelle für solche agentischen Systeme, über die formutliert, geplant und koordiniert wird, ist die Sprache\cite{shenHuggingGPTSolvingAI2023}
+
+\subsection{Multimodale LLMs}
+
 \subsection{Verwendung in der vorliegenden Arbeit}
 
+In dieser Arbeit werden LLM-basierte Agenten als Steuerungseinheiten in einer Pipeline zur Spezifikationsgeneration für das Vivian Framework verwendet.
+Sie übernehmen eine zentrale Rolle in der Übersetzung von natürlicher Sprache in strukturierte, maschinenlesbare Spezifikationen.
+Sie analysieren 3D-Szenen, planen mögliche Interaktionen mit einem 3D-Objekt, Erzeugen Spezifikationen zur Realisierung dieser Interaktionen und validieren semantische Korrektheit der erzeugten Artefakte.
+
 \section{Das Vivian Framework}
+
