@@ -14,7 +14,7 @@ Weiterhin besitzen sie grafische Attribute wie Materialeigenschaften, Texturen, 
 \subsection*{Interaktive 3D-Objekte}
 
 Während statische 3D-Objekte als unbelebte geometrische Körper betrachtet werden können, zeichnen sich interaktive 3D-Objekte durch Wissen über ihre Funktionalität und die Möglichkeit zur Interaktion mit ihnen aus~\cite{kallmannModelingBehaviorsInteractive2002}.
-Auf diese 3D-Objekte kann durch Eingaben (Input) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen~\cite[S.~73--93]{steuerDefiningVirtualReality1992}.
+Auf diese 3D-Objekte kann durch Eingaben (Input) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen~\cite{steuerDefiningVirtualReality1992}.
 Diese Reaktion verleiht der unbelebten Hülle ein ``Leben``.
 Es ist somit in der Lage, auf durch Benutzereingaben ausgelöste Ereignisse (Events) zu reagieren und wird zu einem handlungsoffenen Teil der virtuellen Welt.
 
@@ -28,31 +28,6 @@ Dabei werden rohe Mesh-Geometrien in bedeutungsvolle Teile mit bestimmten Rollen
 
 Im nächsten Schritt erfolgt der Übergang von der Semnatik zum Verhalten mittels Zuweisung spezifischer Interaktionsmerkmale (Interaction Features) zu den im ersten Schritt analysierten semantischen Etiketten. Diese Merkmale beinhalten eine Beschreibung der Funktionalität sowie eine Verknüpfung mit Verhaltensplänen oder Zustandsautomaten. Diese Pläne können Zustände überprüfen oder ändern und legen das erwartete Verhalten von beteiligten Akteuren fest~\cite{kallmannModelingBehaviorsInteractive2002}.
 
-
-\section{Large Language Models und Agentische Systeme}
-
-\subsection*{Definition}
-
-Large Language Models (LLMs) sind tiefe neuronale Netzwerke, welche die Verarbeitung von natürlicher Sprache ermöglichen~\cite{lazerSurveyAgenticAI2026}.
-Sie enthalten typischerweise Milliarden von Parametern und sind in der Lage komplexe Aufgaben zu verstehen und zu lösen oder in Teilaufgaben zu zerlegen~\cite{bommasaniOpportunitiesRisksFoundation2022}.
-Ihre Skalierbarkeit ist ein zentrales Merkmal von LLM's, denn sie zeigen mit zunehmender Modellgröße und Datenmenge qualitative Leistungssteigerungen und sogenannte emergente Fähigkeiten, wie \zB \textit{In-Context Learning}.
-Während solche LLMs als Modelle zur passiven Sprachverarbeitung und -generierung verstanden werden können, besitzen sie ohne zusätzliche Werkzeuge keine eigene Handlungsfähigkeit.
-Hier greift das Konzept eines LLM-basierten Agenten weiter.
-Ein Agent ist eine autonome Einheit, welche in einer Umgebung agiert, Entscheidungen trifft und auch mit anderen Agenten interagieren kann\cite{shohamAgentorientedProgramming1993}.
-LLM-basierte Agenten verbinden diese klassische Idee mit den Fähigkeiten von LLMs.
-Ein LLM kann hier als kognitive Kernkomponente verstanden werden und verleiht dem Agent die Fähigkeit eigenständig und unabhängig zu analysieren, zu planen sowie Probleme zu lösen~\cite[S.~25]{xiRisePotentialLarge2023}.
-So entsteht ein System, welches nicht nur natürliche Sprache verarbeiten kann, sondern eine eigene zielgerichtete Handlungsfähigkeit besitzt und in einer Umgebung agieren kann.
-Ebenso kann es zusätzliche Komponenten wie Sensorik, API-Aufrufe oder Werkzeuge nutzen\cite{xiRisePotentialLarge2023}.
-Die universelle Schnittstelle für solche agentischen Systeme, über die formuliert, geplant und koordiniert wird, ist die natürliche Sprache\cite{shenHuggingGPTSolvingAI2023}
-
-\subsection*{Multimodale LLMs}
-
-\subsection*{Verwendung in der vorliegenden Arbeit}
-
-In dieser Arbeit werden LLM-basierte Agenten als Steuerungseinheiten in einer Pipeline zur Spezifikationsgenerierung für das Vivian Framework verwendet.
-Sie übernehmen eine zentrale Rolle in der Übersetzung von natürlicher Sprache in strukturierte, maschinenlesbare Spezifikationen.
-Sie analysieren 3D-Szenen, planen mögliche Interaktionen mit einem 3D-Objekt, Erzeugen Spezifikationen zur Realisierung dieser Interaktionen und validieren semantische Korrektheit der erzeugten Artefakte.
-
 \section{Das Vivian Framework}
 
 Das Vivian Framework ist ein virtual prototyping framework.
@@ -65,21 +40,54 @@ So kann das Verhalten eines Produktes bereits frühzeitig und iterativ getestet 
 Ein weiteres mögliches Einsatzgebiet ist das Usability Engineering, mit dem interaktive Systeme so gestaltet und geprüft werden, dass sie für die jeweilige Zielgruppe möglichst effektiv, effizient sowie zufriedenstellend nutzbar sind.
 Dafür werden Systeme nicht erst am Ende, sondern bereits in der Entwicklung, beispielsweise mittels Prototypen, auf Gebrauchstauglichkeit analysiert und getestet~\cite{gouldDesigningUsabilityKey1985}.
 
-\subsection*{Spezifikationen}
+\subsection{Spezifikationen}
 
-Das Vivian Framework bildet somit die Brücke zwischen statischem und interaktivem 3D-Objekt (siehe~\ref{sec:statische_interaktive_3d_objekte}).
-Wie bereits gezeigt, besitzen statische 3D-Objekte von sich aus keine Interaktivität, sondern erlangen diese im Vivian Framework über eine Spezifikation.
-Dabei handelt es sich um eine formale, maschinenlesbare Beschreibung des Verhaltens bei Interaktion mit dem virtuellen Prototyp.
+Wie bereits gezeigt, besitzen statische 3D-Objekte von sich aus keine Interaktivität (siehe~\ref{sec:statische_interaktive_3d_objekte}).
+Das Vivian Framework bildet die Brücke zwischen statischem und interaktivem 3D-Objekt über eine maschinenlesbare Beschreibung des Verhaltens bei Interaktion mit dem virtuellen Prototyp.
+Die Verbindung dieser Spezifikation zu einem 3D-Objekt in der Szene wird über Namensreferenzen hergestellt.
+Ein Element in der Spezifikation referenziert demnach ein gleichnamiges 3D-Objekt oder Teilobjekt in der Szene.
+Weiterhin ermöglichen Spezifikationen eine Entkopplung des Verhaltensmodells vom 3D-Objekt, sodass unterschiedliche Spezifikationen verschiedene Verhalten bei demselben 3D-Objekt ermöglichen.
 Sie besteht im Wesentlichen aus 4 Teilen: Interaktionselemente (Interaction Elements), Visualisierungselemente (Visualization Elements), Zustände (States) und Übergänge (Transitions).
 
-\textbf{Interaktionselemente.} Hier befinden sich Elemente, welche Eingaben akzeptieren und somit Interaktion ermöglichen. Das können \ua Buttons, Slider oder Movables sein.
+\paragraph{Interaktionselemente.} Hier befinden sich Elemente, welche Eingaben akzeptieren und somit Interaktion ermöglichen. Das können \ua Buttons, Slider oder Movables sein.
+\paragraph{Visualisierungselemente.} Dabei handelt es sich Elemente, welche eine visuelle Rückmeldung geben. Typisch sind hier Light, Screen oder Sound Source.
+\paragraph{Zustände.} In diesem Teil befinden sich alle möglichen Zustände, die ein Prototyp erreichen kann. Jeder Zustand beschreibt eine bestimmte Situation, indem er Interaktions- und Visualisierungselementen Werte zuweist. Diese Zuweisung kann zudem an Bedingungen geknüpft sein.
+\paragraph{Übergänge.} Übergänge bestimmen, wie sich ein virtueller Prototyp von einem Zustand in einen anderen verändert. Diese Übergänge können durch Zeitüberschreitungen oder Ereignisse (Events) ausgelöst werden. Zusätzlich kann ein Übergang an eine zu erfüllende Bedingung (Guard) geknüpft sein.
 
-\textbf{Visualisierungselemente}: Dabei handelt es sich Elemente, welche eine visuelle Rückmeldung geben. Typisch sind hier Light, Screen oder Sound Source.
 
-\textbf{Zustände}. In diesem Teil befinden sich alle möglichen Zustände, die ein Prototyp erreichen kann. Jeder Zustand beschreibt eine bestimmte Situation, indem er Interaktions- und Visualisierungselementen Werte zuweist. Diese Zuweisung kann zudem an Bedingungen geknüpft sein.
+\section{Large Language Models und Agentische Systeme}\label{sec:llms_and_agents}
 
-\textbf{Übergänge}. Übergänge bestimmen, wie sich ein virtueller Prototyp von einem Zustand in einen anderen verändert. Diese Übergänge können durch Zeitüberschreitungen oder Ereignisse (Events) ausgelöst werden. Zusätzlich kann ein Übergang an eine zu erfüllende Bedingung (Guard) geknüpft sein.
+\subsection{Definition}
 
-Die Verbindung dieser Spezifikation zu einem 3D-Objekt in der Szene wird über Namensreferenzen hergestellt. Ein Element in der Spezifikation referenziert demnach ein gleichnamiges 3D-Objekt oder Teilobjekt in der Szene.
-Weiterhin ermöglichen Spezifikationen eine Entkopplung des Verhaltensmodells vom 3D-Objekt, sodass unterschiedliche Spezifikationen verschiedene Verhalten bei demselben 3D-Objekt ermöglichen.
+Large Language Models (LLMs) sind tiefe neuronale Netzwerke, welche die Verarbeitung von natürlicher Sprache ermöglichen~\cite{lazerSurveyAgenticAI2026}.
+Sie enthalten typischerweise Milliarden von Parametern und sind in der Lage komplexe Aufgaben zu verstehen und zu lösen oder in Teilaufgaben zu zerlegen~\cite{bommasaniOpportunitiesRisksFoundation2022}.
+Ihre Skalierbarkeit ist ein zentrales Merkmal von LLM's, denn sie zeigen mit zunehmender Modellgröße und Datenmenge qualitative Leistungssteigerungen und sogenannte emergente Fähigkeiten, wie \zB \textit{In-Context Learning}.
+Während solche LLMs als Modelle zur passiven Sprachverarbeitung und -generierung verstanden werden können, besitzen sie ohne zusätzliche Werkzeuge keine eigene Handlungsfähigkeit.
+Hier greift das Konzept eines LLM-basierten Agenten weiter.
+Ein Agent ist eine autonome Einheit, welche in einer Umgebung agiert, Entscheidungen trifft und auch mit anderen Agenten interagieren kann\cite{shohamAgentorientedProgramming1993}.
+LLM-basierte Agenten verbinden diese klassische Idee mit den Fähigkeiten von LLMs.
+Ein LLM kann hier als kognitive Kernkomponente verstanden werden und verleiht dem Agent die Fähigkeit eigenständig und unabhängig zu analysieren, zu planen sowie Probleme zu lösen~\cite{xiRisePotentialLarge2023}.
+So entsteht ein System, welches nicht nur natürliche Sprache verarbeiten kann, sondern eine eigene zielgerichtete Handlungsfähigkeit besitzt und in einer Umgebung agieren kann.
+Ebenso kann es zusätzliche Komponenten wie Sensorik, API-Aufrufe oder Werkzeuge nutzen\cite{xiRisePotentialLarge2023}.
+Die universelle Schnittstelle für solche agentischen Systeme, über die formuliert, geplant und koordiniert wird, ist die natürliche Sprache\cite{shenHuggingGPTSolvingAI2023}
+
+\subsection{Multimodale LLMs}
+
+Multimodale Large Language Models (MLLMs) sind Modelle, welche im Gegensatz zu LLMs nicht nur Text, sondern zudem Informationen wie Bild, Audio oder Video empfangen (Input), verarbeiten sowie ausgeben (Output) können.
+Sie basieren auf LLMs und bestehen im Wesentlichen aus 3 Hauptmodulen: einem vortrainierten Encoder (Modality-Encoder), einem LLM sowie einem Adapter (Connector).
+Der Encoder verarbeitet die multimodalen Signale vor und der Adapter bildet die Brücke zum LLM, indem er diese Signale für das LLM verständlich umwandelt.
+Dieser Schritt ist nötig, da LLMs (wie in~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten.
+Im Vergleich zu früheren, ähnlichen Arbeiten basieren MLLMs auf LLMs mit Milliarden Parametern sowie neuen Trainingsparadigmen~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
+Damit sind eine Vielzahl von Möglichkeiten gegeben, welche mit reinen LLMs nicht oder nur eingeschränkt realisierbar wären.
+Solche repräsentativen Fähigkeiten sind \ua das Verständnis von visuell geprägten Witzen/Memes~\cite{yangMMREACTPromptingChatGPT2023,zhuMiniGPT4EnhancingVisionLanguage2023},  räumliches/koordinatenbezogenes Verständnis, das Erstellen von Website-Code basierend auf handgezeichneten Entwürfen oder Kochrezepte anhand von Bildern zubereiteter Gerichte~\cite{zhuMiniGPT4EnhancingVisionLanguage2023}.
+
+\subsection{Verwendung in der vorliegenden Arbeit}
+
+In dieser Arbeit werden LLM-basierte Agenten als Steuerungseinheiten in einer Pipeline zur Spezifikationsgenerierung für das Vivian Framework verwendet.
+Sie übernehmen eine zentrale Rolle in der Übersetzung von natürlicher Sprache in strukturierte, maschinenlesbare Spezifikationen.
+Sie analysieren 3D-Szenen, planen mögliche Interaktionen mit einem 3D-Objekt, Erzeugen Spezifikationen zur Realisierung dieser Interaktionen und validieren semantische Korrektheit der erzeugten Artefakte.
+
+
+
+
 
