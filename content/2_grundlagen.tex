@@ -75,9 +75,9 @@ Die universelle Schnittstelle für solche agentischen Systeme, über die formuli
 
 Multimodale Large Language Models (MLLMs) sind Modelle, welche im Gegensatz zu LLMs nicht nur Text, sondern zudem Informationen wie Bild, Audio oder Video empfangen (Input), verarbeiten sowie ausgeben (Output) können.
 Sie basieren auf LLMs und bestehen im Wesentlichen aus 3 Hauptmodulen: einem vortrainierten Encoder (Modality-Encoder), einem LLM sowie einem Adapter (Connector).
-Der Encoder verarbeitet die multimodalen Signale vor und der Adapter bildet die Brücke zum LLM, indem er diese Signale für das LLM verständlich umwandelt.
-Dieser Schritt ist nötig, da LLMs (wie in~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten.
-Im Vergleich zu früheren, ähnlichen Arbeiten basieren MLLMs auf LLMs mit Milliarden Parametern sowie neuen Trainingsparadigmen~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
+Der Encoder verarbeitet die multimodalen Signale vor und der Adapter bildet die Brücke zum LLM, indem er diese Signale für das LLM verständlich umwandelt
+Dieser Schritt ist nötig, da LLMs (wie in~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
+Im Vergleich zu früheren, ähnlichen Arbeiten basieren MLLMs auf LLMs mit Milliarden Parametern sowie neuen Trainingsparadigmen, wie dem ``Multimodal Instruction Tuning''~\cite{liuVisualInstructionTuning}.
 Damit sind eine Vielzahl von Möglichkeiten gegeben, welche mit reinen LLMs nicht oder nur eingeschränkt realisierbar wären.
 Solche repräsentativen Fähigkeiten sind \ua das Verständnis von visuell geprägten Witzen/Memes~\cite{yangMMREACTPromptingChatGPT2023,zhuMiniGPT4EnhancingVisionLanguage2023},  räumliches/koordinatenbezogenes Verständnis, das Erstellen von Website-Code basierend auf handgezeichneten Entwürfen oder Kochrezepte anhand von Bildern zubereiteter Gerichte~\cite{zhuMiniGPT4EnhancingVisionLanguage2023}.
 
