@@ -28,13 +28,13 @@ Dabei werden rohe Mesh-Geometrien in bedeutungsvolle Teile mit bestimmten Rollen
 
 Im nächsten Schritt erfolgt der Übergang von der Semnatik zum Verhalten mittels Zuweisung spezifischer Interaktionsmerkmale (Interaction Features) zu den im ersten Schritt analysierten semantischen Etiketten. Diese Merkmale beinhalten eine Beschreibung der Funktionalität sowie eine Verknüpfung mit Verhaltensplänen oder Zustandsautomaten. Diese Pläne können Zustände überprüfen oder ändern und legen das erwartete Verhalten von beteiligten Akteuren fest~\cite{kallmannModelingBehaviorsInteractive2002}.
 
-\section{Das Vivian Framework}
+\section{Das Vivian Framework}\label{sec:vivian_framework}
 
 Das Vivian Framework ist ein virtual prototyping framework.
 Es erstellt virtuelle Prototypen, also eine digitale, interaktive Repräsentation physischer Objekte aus der realen Welt.
-Diese Repräsentation kann \zB in der Produktentwicklung verwendet werden, um virtuelle Prototypen von echten Produkten zu erzeugen und deren Verhalten frühzeitig zu testen, ohne dass das physische Produkt vorhanden sein muss.
+Diese Repräsentation kann \zB~in der Produktentwicklung verwendet werden, um virtuelle Prototypen von echten Produkten zu erzeugen und deren Verhalten frühzeitig zu testen, ohne dass das physische Produkt vorhanden sein muss.
 Diese virtuellen Prototypen funktionieren spezifikations-getrieben, sodass Verhalten nicht programmatisch, sondern deklarativ als Spezifikation geschrieben wird.
-Zur Laufzeit wird diese Spezifikation dann mittels einer State-Machine-basierten Umgebung interpretiert um ein Interaktionsverhalten abzubilden.
+Zur Laufzeit wird diese Spezifikation dann mittels einer State-Machine-basierten Umgebung interpretiert um ein Interaktionsverhalten abzubilden~\cite{VivianFrameworkGitLab2021}.
 Ein Vorteil einer solchen spezifikations-getriebenen Vorgehensweise ist, dass beispielsweise Produktentwickler*innen keine Programmierkenntnisse benötigen, um virtuelle Prototypen von Produkten (Digital Twins) zu erstellen.
 So kann das Verhalten eines Produktes bereits frühzeitig und iterativ getestet werden.
 Ein weiteres mögliches Einsatzgebiet ist das Usability Engineering, mit dem interaktive Systeme so gestaltet und geprüft werden, dass sie für die jeweilige Zielgruppe möglichst effektiv, effizient sowie zufriedenstellend nutzbar sind.
@@ -47,7 +47,7 @@ Das Vivian Framework bildet die Brücke zwischen statischem und interaktivem 3D-
 Die Verbindung dieser Spezifikation zu einem 3D-Objekt in der Szene wird über Namensreferenzen hergestellt.
 Ein Element in der Spezifikation referenziert demnach ein gleichnamiges 3D-Objekt oder Teilobjekt in der Szene.
 Weiterhin ermöglichen Spezifikationen eine Entkopplung des Verhaltensmodells vom 3D-Objekt, sodass unterschiedliche Spezifikationen verschiedene Verhalten bei demselben 3D-Objekt ermöglichen.
-Sie besteht im Wesentlichen aus 4 Teilen: Interaktionselemente (Interaction Elements), Visualisierungselemente (Visualization Elements), Zustände (States) und Übergänge (Transitions).
+Sie besteht im Wesentlichen aus 4 Teilen: Interaktionselemente (Interaction Elements), Visualisierungselemente (Visualization Elements), Zustände (States) und Übergänge (Transitions)~\cite{VivianFrameworkGitLab2021}.
 
 \paragraph{Interaktionselemente.} Hier befinden sich Elemente, welche Eingaben akzeptieren und somit Interaktion ermöglichen. Das können \ua Buttons, Slider oder Movables sein.
 \paragraph{Visualisierungselemente.} Dabei handelt es sich Elemente, welche eine visuelle Rückmeldung geben. Typisch sind hier Light, Screen oder Sound Source.
@@ -73,7 +73,8 @@ Die universelle Schnittstelle für solche agentischen Systeme, über die formuli
 
 \subsection{Multimodale LLMs}
 
-Multimodale Large Language Models (MLLMs) sind Modelle, welche im Gegensatz zu LLMs nicht nur Text, sondern zudem Informationen wie Bild, Audio oder Video empfangen (Input), verarbeiten sowie ausgeben (Output) können.
+Multimodale Large Language Models (MLLMs) sind Modelle, welche im Gegensatz zu reinen LLMs nicht nur Text, sondern zudem Informationen wie Bild, Audio oder Video empfangen (Input), verarbeiten sowie ausgeben (Output) können.
+Eine für diese Arbeit wichtige Fähigkeit ist ihr Verstehen von 2D-Bildern und darüber zu schlussfolgern.
 Sie basieren auf LLMs und bestehen im Wesentlichen aus 3 Hauptmodulen: einem vortrainierten Encoder (Modality-Encoder), einem LLM sowie einem Adapter (Connector).
 Der Encoder verarbeitet die multimodalen Signale vor und der Adapter bildet die Brücke zum LLM, indem er diese Signale für das LLM verständlich umwandelt
 Dieser Schritt ist nötig, da LLMs (wie in~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
