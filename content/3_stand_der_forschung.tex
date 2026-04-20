@@ -3,22 +3,26 @@
 Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
 Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
 Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das Grounding, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025, hong3DLLMInjecting3D}.
-Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (Grounding) zentrale Herausforderungen aktueller Systeme~\cite{xuPointLLMEmpoweringLarge2025, pengUnderstandingEvaluatingHallucinations2025}.
+Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (Grounding) zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
 
-\section{Generierung und Bearbeitung interaktiver 3D-Szenen}
+\paragraph{3D-LLMs für 3D-Verstehen.}
 
-In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen.
+In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist.
 Dadurch können diese MLLMs relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D,xuPointLLMEmpoweringLarge2025}.
+
+\paragraph{LLM-gestützte Pipelines zur Szenengenerierung und -bearbeitung.}
 
 Parallel dazu wurden LLM-gestützte Pipelines entwickelt, in denen LLMs nicht direkt 3D-Daten verarbeiten.
 Stattdessen fungieren sie als Planungs- und Steuerungseinheit, die für die Generierung und Bearbeitung ganzer 3D-Szenen genutzt werden.
 Das Framework LLMR nutzt für die Generierung von interaktiven Szenen einen modularen Workflow, darunter die Module Planner, Scene Analyzer, Skill Library, Builder und Inspector. Es kann Szenenkontext analysieren und generiert anschließend Unity-kompatiblen C\#-Code, welcher durch ein Inspektionsmodul iterativ geprüft wird. Als Eingabe arbeitet das System mit einer strukturierten, für das LLM konsumierbaren JSON-Repräsentation des Szenenkontexts~\cite{delatorreLLMRRealtimePrompting2024}.
 HOLODECK verfolgt einen stärker szenenzentrierten Ansatz und zerlegt die Generierung einer Szene in einzelne Schritte für Grundrisse, Materialien, Fenster und Türen, Objektauswahl sowie räumliche Anordnung.
-Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (Embodied-AI) und platziert durch ein regelbasiertes Verfahren Objekte räumlich plausibel im Raum~\cite{yangHolodeckLanguageGuided2024}.
+Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (Embodied-AI) und platziert durch ein Constraint-basiertes Verfahren Objekte räumlich plausibel im Raum~\cite{yangHolodeckLanguageGuided2024}.
+
+\section{Artikulierung von statischen Objekte}
 
 Für die Transformation statischer in interaktive Objekte sind objekt- und szenenzentrierte Ansätze besonders relevant.
 ArtLLM wandelt eine Punktwolke in eine Abfolge von Tokens um, die vom Modell nacheinander generiert werden.
-Darüber hinaus können bestehende Szenen als Bild oder Text eingegeben werden. Wichtig ist dabei, dass diese nicht direkt in das Kernmodell eingehen, sondern vorher mit Hilfe externer Generierungsmodelle in ein initiale Meshes und dann in Punktwolken umgewandelt werden.
+Darüber hinaus können Assets auch als Bild oder Text eingegeben werden. Wichtig ist dabei, dass diese nicht direkt in das Kernmodell eingehen, sondern vorher mit Hilfe externer Generierungsmodelle in initiale Meshes und dann in Punktwolken umgewandelt werden.
 Diese Struktur definiert die Positionen der einzelnen Teile, die mechanischen Gelenke sowie deren Hierarchie.
 Um Positionen und Winkel anzugeben arbeitet es mit festen Rasterstufen statt Gleitkommazahlen.
 Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird diese kinematische Struktur als URDF-Datei (Unified Robotics Description Format) exportiert und kann so in Simulationen und virtuellen Umgebungen verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}.
@@ -26,15 +30,15 @@ Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird 
 ArtiWorld erweitert diesen Ansatz von der Objekt- auf die Szenenebene.
 Das System nimmt eine textuelle Szenenbeschreibung entgegen und identifiziert auf dieser Grundlage artikulierbare Objekte.
 Anschließend erzeugt es strukturelle Beschreibungen der einzelnen Beziehungen und anschließend ebenfalls vollständige URDF-Dateien, welche an die ursprünglichen Koordinaten des starren 3D-Assets angepasst werden~\cite{yangArtiWorldLLMDrivenArticulation2025}.
-Die Geometrie des Originals wird dabei nicht ersetzt, sondern um ein Verhalten erweitert.
+Die Geometrie des Originals wird dabei nicht ersetzt, sondern um Interaktivität erweitert.
 Insbesondere diese Arbeit zeigt, dass strukturelle Zwischenrepräsentationen das Reasoning verbessern.
 
 
 \section{Bildbasierte Eingaben}
 
-Eingaben in Form von Bildern wächst zunehmend an Bedeutung.
+Eingaben basierend auf Bildern gewinnen in artikulationsbezogenen Pipelines an Bedeutung.
 Einzelbilder werden aktuell in mehreren Arbeiten genutzt, um simulierbare Szenen oder artikulierbare Objekte zu generieren, wie etwa in URDFormer oder ArtLLM~\cite{chenURDFormerPipelineConstructing2024,wangArtLLMGeneratingArticulated2026}.
-Dabei werden Bilder jedoch nicht isoliert, sondern als ergänzende Eingabe verwendet, da diese semantische Hinweise und Informationen zu potenziellen Interaktionsmöglichkeiten bieten.
+Dabei können Bilder sowohl isoliert~\cite{chenURDFormerPipelineConstructing2024}, als auch zur ergänzenden Eingabe verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}, da diese semantische Hinweise und Informationen zu potenziellen Interaktionsmöglichkeiten bieten.
 Für die vorliegende Arbeit ist dieser Befund besonders relevant.
 Er zeigt die Kombination aus expliziten Raumdaten in Form von strukturellen Repräsentationen wie Punktwolken oder Szenengraphen mit Transformationen und Hierarchien einerseits sowie Bildern als visuellem Grounding andererseits.
 
