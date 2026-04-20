@@ -1,25 +1,30 @@
 \chapter{Stand der Forschung}\label{ch:stand_der_forschung}
 
-Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLMs zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
+Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
 Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
 Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das Grounding, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025, hong3DLLMInjecting3D}.
 
-In Arbeiten wie 3D-LLM, PointLLM und ShapeLLM können multimodale LLMs Informationen aus der 3D-Welt direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen.
-Dadurch können diese MLLMs relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D}.
+In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen.
+Dadurch können diese MLLMs relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D,xuPointLLMEmpoweringLarge2025}.
 
 Parallel dazu wurden LLM-gestützte Pipelines entwickelt, in denen LLMs nicht direkt 3D-Daten verarbeiten.
 Stattdessen fungieren sie als Planungs- und Steuerungseinheit, die für die Generierung und Bearbeitung ganzer 3D-Szenen genutzt werden.
-Das Framework LLMR nutzt für die Generierung von interaktiven Szenen einen modularen Workflow, kann Szenenkontext analysieren und generiert anschließend Unity-kompatiblen C\#-Code, welcher durch ein Inspektionsmodul iterativ geprüft wird~\cite{delatorreLLMRRealtimePrompting2024}.
+Das Framework LLMR nutzt für die Generierung von interaktiven Szenen einen modularen Workflow, darunter die Module Planner, Scene Analyzer, Skill Library, Builder und Inspector. Es kann Szenenkontext analysieren und generiert anschließend Unity-kompatiblen C\#-Code, welcher durch ein Inspektionsmodul iterativ geprüft wird. Als Eingabe arbeitet das System mit einer strukturierten, für das LLM konsumierbaren JSON-Repräsentation des Szenenkontexts~\cite{delatorreLLMRRealtimePrompting2024}.
 HOLODECK verfolgt einen stärker szenenzentrierten Ansatz und zerlegt die Generierung einer Szene in einzelne Schritte für Grundrisse, Materialien, Fenster und Türen, Objektauswahl sowie räumliche Anordnung.
-Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (Embodied-AI) und platziert durch ein regelbasiertes Verfahren Objekte physikalisch sinnvoll im Raum~\cite{yangHolodeckLanguageGuided2024}.
+Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (Embodied-AI) und platziert durch ein regelbasiertes Verfahren Objekte räumlich plausibel im Raum~\cite{yangHolodeckLanguageGuided2024}.
 
 Für die Transformation statischer in interaktive Objekte sind allerdings objektzentrierte Ansätze besonders relevant.
-ArtLLM wandelt eine Punktwolke in eine Abfolge von Tokens um, die vom Modell nacheinander generiert werden. Diese Struktur definiert die Positionen der einzelnen Teile, die mechanischen Gelenke sowie deren Hierarchie.
+ArtLLM wandelt eine Punktwolke in eine Abfolge von Tokens um, die vom Modell nacheinander generiert werden.
+Darüber hinaus können bestehende Szenen als Bild oder Text  (?)eingegeben werden.
+In diesem Fall wird mit externen Generierungsmodellen ein initiales Mesh erzeugt, aus welchem dann eine Punktwolke gesampelt wird.
+Diese Struktur definiert die Positionen der einzelnen Teile, die mechanischen Gelenke sowie deren Hierarchie.
 Um Positionen und Winkel anzugeben arbeitet es mit festen Rasterstufen statt Gleitkommazahlen. Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird diese kinematische Struktur als URDF-Datei (Unified Robotics Description Format) exportiert und kann so in Simulationen und virtuellen Umgebungen verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}.
+
+ArtiWorld?
+
 Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (3D Grounding) zentrale Herausforderungen aktueller Systeme~\cite{xuPointLLMEmpoweringLarge2025, pengUnderstandingEvaluatingHallucinations2025}.
 
-In diesem Kontext ist die vorliegende Arbeit nicht primär als Verfahren zur Geometrie- oder Szenengenerierung zu verstehen, sondern als Ansatz zur semantisch- verhaltensbezogenen Transformation bestehender 3D-Objekte in maschinenlesbare Spezifikationen zur Interaktion, wie bereits in~\ref{sec:vivian_framework} gezeigt.
-
+In diesem Kontext ist die vorliegende Arbeit nicht primär als Verfahren zur Geometrie- oder Szenengenerierung zu verstehen, sondern als Ansatz zur semantisch-verhaltensbezogenen Transformation bestehender 3D-Objekte in maschinenlesbare Spezifikationen zur Interaktion, wie bereits in~\ref{sec:vivian_framework} gezeigt.
 
 
 \section{LLM-gestützte 3D-Objektmanipulation}
