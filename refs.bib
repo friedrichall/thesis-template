@@ -112,6 +112,24 @@
   file = {C:\Users\Friedrich Allenhof\Zotero\storage\YQ37LZNX\Chen et al. - 2024 - A Survey on the Design of Virtual Reality Interaction Interfaces.pdf}
 }
 
+@misc{chenURDFormerPipelineConstructing2024,
+  title = {{{URDFormer}}: {{A Pipeline}} for {{Constructing Articulated Simulation Environments}} from {{Real-World Images}}},
+  shorttitle = {{{URDFormer}}},
+  author = {Chen, Zoey and Walsman, Aaron and Memmel, Marius and Mo, Kaichun and Fang, Alex and Vemuri, Karthikeya and Wu, Alan and Fox, Dieter and Gupta, Abhishek},
+  year = 2024,
+  month = may,
+  number = {arXiv:2405.11656},
+  eprint = {2405.11656},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2405.11656},
+  urldate = {2026-04-20},
+  abstract = {Constructing simulation scenes that are both visually and physically realistic is a problem of practical interest in domains ranging from robotics to computer vision. This problem has become even more relevant as researchers wielding large data-hungry learning methods seek new sources of training data for physical decision-making systems. However, building simulation models is often still done by hand. A graphic designer and a simulation engineer work with predefined assets to construct rich scenes with realistic dynamic and kinematic properties. While this may scale to small numbers of scenes, to achieve the generalization properties that are required for data-driven robotic control, we require a pipeline that is able to synthesize large numbers of realistic scenes, complete with 'natural' kinematic and dynamic structures. To attack this problem, we develop models for inferring structure and generating simulation scenes from natural images, allowing for scalable scene generation from web-scale datasets. To train these image-to-simulation models, we show how controllable text-to-image generative models can be used in generating paired training data that allows for modeling of the inverse problem, mapping from realistic images back to complete scene models. We show how this paradigm allows us to build large datasets of scenes in simulation with semantic and physical realism. We present an integrated end-to-end pipeline that generates simulation scenes complete with articulated kinematic and dynamic structures from real-world images and use these for training robotic control policies. We then robustly deploy in the real world for tasks like articulated object manipulation. In doing so, our work provides both a pipeline for large-scale generation of simulation environments and an integrated system for training robust robotic control policies in the resulting environments.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Robotics,Stand der Forschung},
+  file = {C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\923M5JQF\\Chen et al. - 2024 - URDFormer A Pipeline for Constructing Articulated Simulation Environments from Real-World Images.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\JHUVB3XT\\2405.html}
+}
+
 @inproceedings{delatorreLLMRRealtimePrompting2024,
   title = {{{LLMR}}: {{Real-time Prompting}} of {{Interactive Worlds}} Using {{Large Language Models}}},
   shorttitle = {{{LLMR}}},
@@ -782,6 +800,24 @@
   isbn = {978-3-031-72697-2 978-3-031-72698-9},
   langid = {english},
   file = {C:\Users\Friedrich Allenhof\Zotero\storage\L39XF7GU\Xu et al. - 2025 - PointLLM Empowering Large Language Models to Understand Point Clouds.pdf}
+}
+
+@misc{yangArtiWorldLLMDrivenArticulation2025,
+  title = {{{ArtiWorld}}: {{LLM-Driven Articulation}} of {{3D Objects}} in {{Scenes}}},
+  shorttitle = {{{ArtiWorld}}},
+  author = {Yang, Yixuan and Xie, Luyang and Luo, Zhen and Zhao, Zixiang and Ding, Tongsheng and Gao, Mingqi and Zheng, Feng},
+  year = 2025,
+  month = nov,
+  number = {arXiv:2511.12977},
+  eprint = {2511.12977},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2511.12977},
+  urldate = {2026-04-20},
+  abstract = {Building interactive simulators and scalable robot-learning environments requires a large number of articulated assets. However, most existing 3D assets in simulation are rigid, and manually converting them into articulated objects is extremely labor- and cost-intensive. This raises a natural question: can we automatically identify articulable objects in a scene and convert them into articulated assets directly? In this paper, we present ArtiWorld, a scene-aware pipeline that localizes candidate articulable objects from textual scene descriptions and reconstructs executable URDF models that preserve the original geometry. At the core of this pipeline is Arti4URDF, which leverages 3D point cloud, prior knowledge of a large language model (LLM), and a URDF-oriented prompt design to rapidly convert rigid objects into interactive URDF-based articulated objects while maintaining their 3D shape. We evaluate ArtiWorld at three levels: 3D simulated objects, full 3D simulated scenes, and real-world scan scenes. Across all three settings, our method consistently outperforms existing approaches and achieves state-of-the-art performance, while preserving object geometry and correctly capturing object interactivity to produce usable URDF-based articulated models. This provides a practical path toward building interactive, robot-ready simulation environments directly from existing 3D assets. Code and data will be released.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Stand der Forschung},
+  file = {C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\C7QZHCRS\\Yang et al. - 2025 - ArtiWorld LLM-Driven Articulation of 3D Objects in Scenes.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\WA9QFI58\\2511.html}
 }
 
 @misc{yangHolodeckLanguageGuided2024,
