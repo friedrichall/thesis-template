@@ -1,13 +1,65 @@
 \chapter{Einführung}\label{ch:einführung}
 
-You may have read about similar things in \cite{chenSurveyDesignVirtual2024} and \cite{maWhenLLMsStep2025}.
-You can also write footnotes.\footnote{Footnotes will be positioned automatically.}
-It is possible to reference glossary entries as \gls{library} as an example.
+\section{Problemstellung}\label{sec:problemstellung}
 
-\blindtext
+% Im Vivian Framework geschieht die Erstellung virtueller Prototypen deklarativ über Konfigurationsdateien für Interaktionselemente (InteractionElements), Visualisierungselemente (VisualizationElements), Zustände (States) und Übergänge (Transitions) in Verbindung mit einem statischen 3D-Modell. Obwohl dieses Vorgehen Interaktivität ohne tiefgreifende Programmierkenntnisse möglich macht, ist die manuelle Erstellung solcher Spezifikationen aufwendig sowie fehleranfällig. Es müssen sowohl die zulässigen Elementtypen, Attribute, Zustände, Events und Guards bekannt sein, als auch Namensreferenzen zwischen 3D-Szene und Spezifikation konsistent bleiben, da das Framework ein Verhalten über diese Referenzen an die Objekte einer 3D-Szene bindet.
 
-\section{Problemstellung}
+% Mit steigender Komplexität eines Prototypen steigt diese Fehleranfälligkeit noch weiter. Dabei können diese syntaktischen, semantischen oder referenziellen Ursprungs sein und werden im Vivian Framework teils erst zur Laufzeit sichtbar.
+% Um Spezifikationen automatisiert zu generieren, sind also formal gültige JSON-Strukturen allein nicht ausreichend. Inhaltlich plausible Interaktionen, korrekte Zustandsmodelle sowie konsistente Referenzen über mehrere Artefakte hinweg sind ebenfalls notwendig.
+% Verwandte Arbeiten beschäftigen sich häufig mit Geometrie- oder Szenengenerierung, während
 
-\section{Forschungsfragen (?) und Zielsetzung}
+In der Regel enthalten statische 3D-Objekte Geometrie, Materialien und Transformationen und kein Wissen darüber, welche expliziten Teile bedienbar sind, welche Funktion sie erfüllen oder wie sie auf Nutzer*innenhandlungen reagieren. Für Interaktivität sind aber genau diese Informationen von fundamentaler Bedeutung, nämlich wenn Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verbunden werden~\cite{kallmannModelingBehaviorsInteractive2002}.
+Somit bestehen virtuelle, interaktive Prototypen nicht nur aus einer 3D-Geometrie, sondern besitzen zusätzlich semantisch-verhaltensbezogene Informationen.
+
+Die Erstellung interaktiver 3D-Szenen oder Transformation dieser in interaktive Prototypen setzt oft ein technisches Verständnis und Wissen voraus, wie etwa in 3D-Modellierung, Szenenaufbau oder Programmierung, was die Einstiegshürde für potenzielle Anwendende wie Produktentwickler*innen, Designer*innen oder Lehrende vergrößert. Diese Gruppe von Anwender*innen wird in dieser Arbeit als nicht-technische Benutzer*innen bezeichnet, also Personen ohne Kenntnisse in der Programmierung oder 3D-Modellierung. Die Fähigkeit fachliche Anforderungen und Funktionalität präzise formulieren zu können, wird dabei zusätzlich vorausgesetzt.
+
+Interaktivität wird meist an konkrete Objekte oder Teilobjekte gebunden. Verfahren wie 3D-Scanning erlauben allerdings häufig nur eine „monolithische“ Erzeugung statischer Abbildungen der Realität. Auch rekonstruierte Szenen aus Punktwolken bieten an sich keine einzeln adressierbaren Teile. Diese Abbilder sind somit überwiegend nicht semantisch segmentiert und Objekte existieren nicht als eigenständige, adressierbare Entitäten. Eine interaktive Anpassung oder Segmentierung im Nachhinein ist dann nur mit massivem manuellem Aufwand möglich.
+
+Interaktionsverhalten muss in eine konsistente, maschinenlesbare Repräsentation überführt werden, da interaktive Prototypen mehr als eine rein textuelle Beschreibung des gewünschten Verhaltens benötigen. Diese Überführung ist in der Regel ebenfalls mit hohem manuellem Aufwand verbunden und dadurch auch fehleranfällig.
+
+Weiterhin fehlen in automatisierten Verfahren zur Erstellung und Bearbeitung von virtuellen Prototypen oft interne Prüf- oder Korrekturmaßnahmen, um Fehler frühzeitig und im Prozess erkennen und beheben zu können. Diese Fehler müssen dann häufig zeitaufwendig und manuell im Nachhinein behoben werden. Auch können Halluzinationen auftreten, wie etwa in 3D-LLMs, wodurch Objekte teils nicht existieren oder falsche Beziehungen zwischen Objekten bestehen~\cite{pengUnderstandingEvaluatingHallucinations2025}.
+
+Daraus lässt sich das zentrale Problem dieser Arbeit ableiten: Es fehlt ein niedrigschwelliger und dennoch kontrollierbarer Ansatz, mit dem bereits vorhandene statische 3D-Objekte in maschinenlesbare, validierbare und zustandsbasierte Prototypen überführt werden können, während die Geometrie beibehalten wird.
+
+
+% Eine adressierte Problemstellung meiner Arbeit ist der manuelle Aufwand der Erstellung einer Vivian Spezifikation. Dies erfordert nicht nur Korrektheit der Werte sondern auch ein striktes Einhalten der benötigten Struktur.
+
+% Eine adressierte Problemstellung meiner Arbeit ist die Planung der Einzelkomponenten, in der entschieden werden muss, welche Artefakte einer Spezifikation benötigt werden. Weiterhin muss das Wissen (Namen der Interaktionselemente, Zustände, etc.) über die einzelnen Teilartefakte zentral gespeichert werden, um darauf von verschiedenen Orten aus zuzugreifen. So kann Konsistenz der Daten über alle Artefakte hinweg gewährleistet werden.
+
+% Da zur Erstellung einer Spezifikation für das Vivian Framework hinreichendes Wissen über dieses vorausgesetzt wird, ist ein weiteres Problem dieses Wissen einem System zu vermitteln. Es muss Kenntnis darüber besitzen, welche verschiedenen gültigen Werte und Bedingungen es für die einzelnen Artefakte zur Auswahl gibt.
+
+% Da Fehler im Vivian Framework nativ erst zur Laufzeit geworfen werden und die Fehleranfälligkeit steigt, je komplexer das 3D-Asset ist, müssen Fehler bereits im Generierungsprozess sowie möglichst frühzeitig erkannt und abgefangen werden. Zudem ist zu berücksichtigen, ob es sich um semantische, syntaktische oder Referenzfehler handelt, damit sowohl fehlerfreie JSON-Strukturen, Gültigkeit der einzelnen Werte als auch Korrektheit der Referenzen sichergestellt werden kann. So kann außerdem ein Abbrechen des Systems verhindert werden, wenn Fehler im Generierungsprozess auftreten.
+
+
+\section{Forschungsfrage und Zielsetzung}
+
+Um den in~\ref{sec:problemstellung} beschriebenen Problemen zu begegnen, untersucht die vorliegende Arbeit die Möglichkeit einen Ansatz zu entwickeln, welcher die automatische Überführung statischer 3D-Objekte in validierte, Zustands-behaftete, interaktive Prototypen ermöglicht, der insbesondere auch nicht-technischen Benutzer*innengruppen eine Nutzung ermöglicht und die Geometrie der Teilobjekte beibehält.
+Im Zentrum steht die folgende Forschungsfrage:
+
+
+
+\begin{quote}
+    \textbf{Lässt sich eine automatisierte Pipeline konzipieren und prototypisch umsetzen, die vorhandene statische 3D-Objekte mittels natürlicher Sprache in interaktive Prototypen überführt und dabei vorhandene Geometrien beibehält?}
+\end{quote}
+
+Zur detaillierten Beantwortung dieser Frage werden die folgenden untergliederten Forschungsfragen definiert:
+
+\begin{itemize}
+    \item \textbf{F1:} Kann ein Co-Creation-Workflow entworfen werden, der es auch nicht-technischen Benutzer*innengruppen ermöglicht, statische 3D-Objekte in interaktive Prototypen zu überführen?
+    \item \textbf{F2:} Lassen sich relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzerbeschreibungen ableiten?
+    \item \textbf{F3:} Können komplexe Interaktionslogiken aus der Kombination von bestehenden 3D-Geometrien und natürlicher Sprache extrahiert und in eine maschinenlesbare Repräsentation überführt werden?
+    \item \textbf{F4:} Inwieweit können Validierungs- und Selbstkorrekturmechanismen bei der automatisierten Erstellung von Prototypen syntaktische, semantische und referenzielle Fehler vor der Laufzeit reduzieren?
+\end{itemize}
+
+Das Ziel dieser Arbeit ist die Konzeption und prototypische Implementierung einer KI-gestützten Pipeline, welche eine Überführung von statischen 3D-Objekten in interaktive Prototypen vornimmt und dabei natürliche Sprache entgegennimmt, um auch nicht-technischen Benutzer*innengruppen einen Zugang zu bieten. Dabei sollen die Fähigkeiten von LLMs genutzt werden und ein Co-Creation-Workflow entstehen, um einen Menschen in den Generierungsprozess einzubeziehen.
+
+\section{Abgrenzung}
+
+Diese Arbeit zielt nicht darauf ab, 3D-Szenendaten oder Geometrie zu generieren. Das beinhaltet komplette 3D-Szenen sowie einzelne 3D-Objekte, wie es in einigen verwandten Arbeiten der Fall ist. Es wird ausschließlich die Spezifikationsableitung bereits vorhandener virtueller Szenen betrachtet, um virtuelle Prototypen durch Verwendung des Vivian Framework zu erschaffen.
+
 
 \section{Aufbau der Arbeit}
+
+Aufbauend auf der in Kapitel 1 genannten Problemstellung werden in Kapitel 2 einige theoretische Grundlagen erläutert, wie statische und interaktive 3D-Objekte, das Vivian-Framework, LLMs sowie agentische Systeme, um ein fachliches Fundament für diese Arbeit zu bilden.
+
+In Kapitel 3 wird der derzeitige Stand der Forschung zur Verwendung von LLMs in virtuellen 3D-Welten eingeordnet sowie Herausforderungen aufgezeigt, welche zur Motivation der Zielsetzung dieser Arbeit dienen. Es wird zudem ein Bezug zur Forschungslücke in dem Gebiet gegeben.
