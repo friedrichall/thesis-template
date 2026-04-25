@@ -31,7 +31,7 @@ Im nächsten Schritt erfolgt der Übergang von der Semantik zum Verhalten mittel
 
 \section{Das Vivian Framework}\label{sec:vivian_framework}
 
-Das Vivian Framework ist ein virtual prototyping framework.
+Das Vivian Framework ist ein Virtual-Prototyping-Framework.
 Es erstellt virtuelle Prototypen, also eine digitale, interaktive Repräsentation physischer Objekte aus der realen Welt.
 Diese Repräsentation kann \zB~in der Produktentwicklung verwendet werden, um virtuelle Prototypen von echten Produkten zu erzeugen und deren Verhalten frühzeitig zu testen, ohne dass das physische Produkt vorhanden sein muss.
 Diese virtuellen Prototypen funktionieren spezifikations-getrieben, sodass Verhalten nicht programmatisch, sondern deklarativ als Spezifikation geschrieben wird.
@@ -50,10 +50,13 @@ Ein Element in der Spezifikation referenziert demnach ein gleichnamiges 3D-Objek
 Weiterhin ermöglichen Spezifikationen eine Entkopplung des Verhaltensmodells vom 3D-Objekt, sodass unterschiedliche Spezifikationen verschiedene Verhalten bei demselben 3D-Objekt ermöglichen.
 Sie besteht im Wesentlichen aus 4 Teilen: Interaktionselemente (Interaction Elements), Visualisierungselemente (Visualization Elements), Zustände (States) und Übergänge (Transitions)~\cite{VivianFrameworkGitLab2021}.
 
-\paragraph{Interaktionselemente.} Hier befinden sich Elemente, welche Eingaben akzeptieren und somit Interaktion ermöglichen. Das können \ua Buttons, Slider oder Movables sein.
-\paragraph{Visualisierungselemente.} Dabei handelt es sich Elemente, welche eine visuelle Rückmeldung geben. Typisch sind hier Light, Screen oder Sound Source.
-\paragraph{Zustände.} In diesem Teil befinden sich alle möglichen Zustände, die ein Prototyp erreichen kann. Jeder Zustand beschreibt eine bestimmte Situation, indem er Interaktions- und Visualisierungselementen Werte zuweist. Diese Zuweisung kann zudem an Bedingungen geknüpft sein.
-\paragraph{Übergänge.} Übergänge bestimmen, wie sich ein virtueller Prototyp von einem Zustand in einen anderen verändert. Diese Übergänge können durch Zeitüberschreitungen oder Ereignisse (Events) ausgelöst werden. Zusätzlich kann ein Übergang an eine zu erfüllende Bedingung (Guard) geknüpft sein.
+\textbf{Interaktionselemente.} Hier befinden sich Elemente, welche Eingaben akzeptieren und somit Interaktion ermöglichen. Das können \ua Buttons, Slider oder Movables sein.
+
+\textbf{Visualisierungselemente.} Dabei handelt es sich Elemente, welche eine visuelle Rückmeldung geben. Typisch sind hier Light, Screen oder Sound Source.
+
+\textbf{Zustände.} In diesem Teil befinden sich alle möglichen Zustände, die ein Prototyp erreichen kann. Jeder Zustand beschreibt eine bestimmte Situation, indem er Interaktions- und Visualisierungselementen Werte zuweist. Diese Zuweisung kann zudem an Bedingungen geknüpft sein.
+
+\textbf{Übergänge.} Übergänge bestimmen, wie sich ein virtueller Prototyp von einem Zustand in einen anderen verändert. Diese Übergänge können durch Zeitüberschreitungen oder Ereignisse (Events) ausgelöst werden. Zusätzlich kann ein Übergang an eine zu erfüllende Bedingung (Guard) geknüpft sein.
 
 
 \section{Large Language Models und Agentische Systeme}\label{sec:llms_and_agents}

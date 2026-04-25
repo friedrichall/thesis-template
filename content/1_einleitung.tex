@@ -8,16 +8,16 @@
 % Um Spezifikationen automatisiert zu generieren, sind also formal gültige JSON-Strukturen allein nicht ausreichend. Inhaltlich plausible Interaktionen, korrekte Zustandsmodelle sowie konsistente Referenzen über mehrere Artefakte hinweg sind ebenfalls notwendig.
 % Verwandte Arbeiten beschäftigen sich häufig mit Geometrie- oder Szenengenerierung, während
 
-In der Regel enthalten statische 3D-Objekte Geometrie, Materialien und Transformationen und kein Wissen darüber, welche expliziten Teile bedienbar sind, welche Funktion sie erfüllen oder wie sie auf Nutzer*innenhandlungen reagieren. Für Interaktivität sind aber genau diese Informationen von fundamentaler Bedeutung, nämlich wenn Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verbunden werden~\cite{kallmannModelingBehaviorsInteractive2002}.
+In der Regel enthalten statische 3D-Objekte Geometrie, Materialien und Transformationen, jedoch kein Wissen darüber, welche expliziten Teile bedienbar sind, welche Funktion sie erfüllen oder wie sie auf Nutzer*innenhandlungen reagieren. Für Interaktivität sind aber genau diese Informationen von fundamentaler Bedeutung, nämlich wenn Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verbunden werden~\cite{kallmannModelingBehaviorsInteractive2002}.
 Somit bestehen virtuelle, interaktive Prototypen nicht nur aus einer 3D-Geometrie, sondern besitzen zusätzlich semantisch-verhaltensbezogene Informationen.
 
-Die Erstellung interaktiver 3D-Szenen oder Transformation dieser in interaktive Prototypen setzt oft ein technisches Verständnis und Wissen voraus, wie etwa in 3D-Modellierung, Szenenaufbau oder Programmierung, was die Einstiegshürde für potenzielle Anwendende wie Produktentwickler*innen, Designer*innen oder Lehrende vergrößert. Diese Gruppe von Anwender*innen wird in dieser Arbeit als nicht-technische Benutzer*innen bezeichnet, also Personen ohne Kenntnisse in der Programmierung oder 3D-Modellierung. Die Fähigkeit fachliche Anforderungen und Funktionalität präzise formulieren zu können, wird dabei zusätzlich vorausgesetzt.
+Die Erstellung interaktiver 3D-Szenen oder die Transformation dieser in interaktive Prototypen setzt oft ein technisches Verständnis und Wissen voraus, wie etwa in 3D-Modellierung, Szenenaufbau oder Programmierung, was die Einstiegshürde für potenzielle Anwendende wie Produktentwickler*innen, Designer*innen oder Lehrende vergrößert. Diese Gruppe von Anwender*innen wird in dieser Arbeit als nicht-technische Benutzer*innen bezeichnet, also Personen ohne Kenntnisse in der Programmierung oder 3D-Modellierung. Die Fähigkeit fachliche Anforderungen und Funktionalität präzise formulieren zu können, wird dabei jedoch vorausgesetzt.
 
-Interaktivität wird meist an konkrete Objekte oder Teilobjekte gebunden. Verfahren wie 3D-Scanning erlauben allerdings häufig nur eine „monolithische“ Erzeugung statischer Abbildungen der Realität. Auch rekonstruierte Szenen aus Punktwolken bieten an sich keine einzeln adressierbaren Teile. Diese Abbilder sind somit überwiegend nicht semantisch segmentiert und Objekte existieren nicht als eigenständige, adressierbare Entitäten. Eine interaktive Anpassung oder Segmentierung im Nachhinein ist dann nur mit massivem manuellem Aufwand möglich.
+Interaktivität wird meist an konkrete Objekte oder Teilobjekte gebunden. Verfahren wie 3D-Scanning erlauben allerdings häufig nur eine monolithische Erzeugung statischer Abbildungen der Realität. Auch rekonstruierte Szenen aus Punktwolken bieten an sich keine einzeln adressierbaren Teile. Diese Abbilder sind somit überwiegend nicht semantisch segmentiert und Objekte existieren nicht als eigenständige, adressierbare Entitäten. Eine interaktive Anpassung oder Segmentierung im Nachhinein ist dann nur mit massivem manuellem Aufwand möglich.
 
-Interaktionsverhalten muss in eine konsistente, maschinenlesbare Repräsentation überführt werden, da interaktive Prototypen mehr als eine rein textuelle Beschreibung des gewünschten Verhaltens benötigen. Diese Überführung ist in der Regel ebenfalls mit hohem manuellem Aufwand verbunden und dadurch auch fehleranfällig.
+Weiterhin muss Interaktionsverhalten in eine konsistente, maschinenlesbare Repräsentation überführt werden, da interaktive Prototypen mehr als eine rein textuelle Beschreibung des gewünschten Verhaltens benötigen. Diese Überführung ist in der Regel ebenfalls mit hohem manuellem Aufwand verbunden und dadurch auch fehleranfällig.
 
-Weiterhin fehlen in automatisierten Verfahren zur Erstellung und Bearbeitung von virtuellen Prototypen oft interne Prüf- oder Korrekturmaßnahmen, um Fehler frühzeitig und im Prozess erkennen und beheben zu können. Diese Fehler müssen dann häufig zeitaufwendig und manuell im Nachhinein behoben werden. Auch können Halluzinationen auftreten, wie etwa in 3D-LLMs, wodurch Objekte teils nicht existieren oder falsche Beziehungen zwischen Objekten bestehen~\cite{pengUnderstandingEvaluatingHallucinations2025}.
+Außerdem fehlen in automatisierten Verfahren zur Erstellung und Bearbeitung von virtuellen Prototypen oft interne Prüf- oder Korrekturmaßnahmen, um Fehler frühzeitig und im Prozess erkennen und beheben zu können. Diese Fehler müssen dann häufig zeitaufwendig und manuell im Nachhinein behoben werden. Auch können Halluzinationen auftreten, wie etwa in 3D-LLMs, wodurch Objekte teils nicht existieren oder falsche Beziehungen zwischen Objekten bestehen~\cite{pengUnderstandingEvaluatingHallucinations2025}.
 
 Daraus lässt sich das zentrale Problem dieser Arbeit ableiten: Es fehlt ein niedrigschwelliger und dennoch kontrollierbarer Ansatz, mit dem bereits vorhandene statische 3D-Objekte in maschinenlesbare, validierbare und zustandsbasierte Prototypen überführt werden können, während die Geometrie beibehalten wird.
 
@@ -33,7 +33,7 @@ Daraus lässt sich das zentrale Problem dieser Arbeit ableiten: Es fehlt ein nie
 
 \section{Forschungsfrage und Zielsetzung}
 
-Um den in~\ref{sec:problemstellung} beschriebenen Problemen zu begegnen, untersucht die vorliegende Arbeit die Möglichkeit einen Ansatz zu entwickeln, welcher die automatische Überführung statischer 3D-Objekte in validierte, Zustands-behaftete, interaktive Prototypen ermöglicht, der insbesondere auch nicht-technischen Benutzer*innengruppen eine Nutzung ermöglicht und die Geometrie der Teilobjekte beibehält.
+Um den in~\ref{sec:problemstellung} beschriebenen Problemen zu begegnen, untersucht die vorliegende Arbeit die Möglichkeit einen Ansatz zu entwickeln, welcher die automatisierte Überführung statischer 3D-Objekte in validierte, Zustands-behaftete, interaktive Prototypen ermöglicht, der insbesondere auch nicht-technischen Benutzer*innengruppen eine Nutzung ermöglicht und die Geometrie der Teilobjekte beibehält.
 Im Zentrum steht die folgende Forschungsfrage:
 
 
@@ -46,7 +46,7 @@ Zur detaillierten Beantwortung dieser Frage werden die folgenden untergliederten
 
 \begin{itemize}
     \item \textbf{F1:} Kann ein Co-Creation-Workflow entworfen werden, der es auch nicht-technischen Benutzer*innengruppen ermöglicht, statische 3D-Objekte in interaktive Prototypen zu überführen?
-    \item \textbf{F2:} Lassen sich relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzerbeschreibungen ableiten?
+    \item \textbf{F2:} Lassen sich relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzer*innenbeschreibungen ableiten?
     \item \textbf{F3:} Können komplexe Interaktionslogiken aus der Kombination von bestehenden 3D-Geometrien und natürlicher Sprache extrahiert und in eine maschinenlesbare Repräsentation überführt werden?
     \item \textbf{F4:} Inwieweit können Validierungs- und Selbstkorrekturmechanismen bei der automatisierten Erstellung von Prototypen syntaktische, semantische und referenzielle Fehler vor der Laufzeit reduzieren?
 \end{itemize}
@@ -60,6 +60,6 @@ Diese Arbeit zielt nicht darauf ab, 3D-Szenendaten oder Geometrie zu generieren.
 
 \section{Aufbau der Arbeit}
 
-Aufbauend auf der in Kapitel 1 genannten Problemstellung werden in Kapitel 2 einige theoretische Grundlagen erläutert, wie statische und interaktive 3D-Objekte, das Vivian-Framework, LLMs sowie agentische Systeme, um ein fachliches Fundament für diese Arbeit zu bilden.
+Aufbauend auf der in Kapitel 1 genannten Problemstellung werden in Kapitel 2 einige theoretische Grundlagen erläutert, wie statische und interaktive 3D-Objekte, das Vivian-Framework sowie LLMs und agentische Systeme, um ein fachliches Fundament für diese Arbeit zu bilden.
 
-In Kapitel 3 wird der derzeitige Stand der Forschung zur Verwendung von LLMs in virtuellen 3D-Welten eingeordnet sowie Herausforderungen aufgezeigt, welche zur Motivation der Zielsetzung dieser Arbeit dienen. Es wird zudem ein Bezug zur Forschungslücke in dem Gebiet gegeben.
+In Kapitel 3 wird der derzeitige Stand der Forschung zur Verwendung von LLMs in virtuellen 3D-Welten eingeordnet und Herausforderungen aufgezeigt, welche zur Motivation der Zielsetzung dieser Arbeit dienen. Zusätzlich wird ein Bezug zur Forschungslücke in dem Gebiet gegeben.

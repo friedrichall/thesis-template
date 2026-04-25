@@ -2,20 +2,62 @@
 
 In diesem Kapitel wird das methodische Vorgehen zur Entwicklung einer LLM-gestützten Pipeline zur Spezifikationsgenerierung für das Vivian Framework beschrieben. Ziel ist es ein System zu entwerfen, welches semantisch sowie strukturell korrekte Spezifikationen automatisiert erzeugt, Benutzer*innen-Feedback entgegennimmt sowie aufkommende Fehler iterativ und eigenständig behebt.
 
+Diese Arbeit ist in Kooperation mit dem Institut für angewandte Informatik (IFAI) der Technischen Hochschule Nürnberg Georg-Simon-Ohm entstanden. Aufgrund dieser Zusammenarbeit sowie der Expertise im \ref{sec:vivian_framework} beschriebenen Vivian Framework, wurde dieses als Grundlage zur Umsetzung einer solchen Pipeline genommen. Da dieses Framework interaktive Prototypen ausschließlich über eine maschinenlesbare Beschreibung des Verhaltens möglich macht, bietet es eine Grundlage, auf der LLM-gestützte Verfahren aufsetzen können.
+
 \section{Forschungs- und Entwicklungsansatz}
 
 
 
 \section{Anforderungsanalyse}
 
-\begin{itemize}
-    \item \textbf{Z1:} Entwicklung einer mehrstufigen Agenten-Architektur zur Zerlegung der Spezifikationsgenerierung in klar abgegrenzte Teilaufgaben.
-    \item \textbf{Z2:} Entwicklung eines Systems zur automatisierten Erzeugung Vivian-kompatibler Spezifikationen aus Szenendaten und Sprache
-    \item \textbf{Z3:} Integration von Validierungs- und Selbstkorrekturmechanismen zur Verbesserung syntaktischer und semantischer Konsistenz.
-    \item \textbf{Z4:} Einbindung eines Human-in-the-Loop-Schritts zur Prüfung und Korrektur unklarer Szeneninterpretationen.
-    \item \textbf{Z5:} Nutzer*innen sollen gewünschte Interaktionen durch Eingabe natürlicher Sprache spezifizieren können.
-\end{itemize}
+Im Folgenden wird die LLM-gestützte Pipeline zur Generierung von Vivian Spezifikationen \textit{Vivian Specification Generator (VSG)} genannt.
+
+\subsection{Funktionale Anforderungen}
+
+\textbf{A1:} Der VSG muss als modulare Verarbeitungsfolge mit klar definierten Ein- und Ausgaben pro Modul umgesetzt sein.
+
+\textbf{A2:} Der VSG erzeugt aus bestehenden Szenendaten und natürlichsprachlichen Beschreibungen Vivian-kompatible Spezifikationsdateien.
+
+\textbf{A3:} Vorhandene Geometrien und Hierarchien werden vom VSG nicht neu generiert, sondern ausschließlich mit Semantik und Verhalten angereichert.
+
+\textbf{A4:} Relevante Objekte, Teilobjekte und Rollen müssen explizit identifiziert und referenzierbar gemacht werden.
+
+\textbf{A5:} Um Fehler frühzeitig abzufangen, führt der VSG syntaktische, semantische und referenzielle Prüfungen durch und korrigiert erkannte Fehler iterativ bis zu einer definierten Grenze.
+
+\textbf{A6:} Um Szeneninterpretationen überprüfen und gegebenenfalls korrigieren zu können, soll ein Human-in-the-Loop-Schritt implementiert werden. Dieser nimmt gewünschte natürlichsprachlich beschriebene Korrekturen entgegen und interpretiert die Szene damit erneut.
+
+\subsection{Nicht-funktionale Anforderungen}
+
+\textbf{N1:} Zwischenartefakte und Entscheidungen des VSG werden protokolliert und abgespeichert.
+
+\textbf{N2:} Der VSG soll modular aufgebaut sein.
+
+\textbf{N3:} Erkannte Fehler aus der Validierung sollen für Korrekturschritte nutzbar sein.
+
+\textbf{N4:} Die Implementierung des VSG soll prototypisch erweiterbar bleiben.
+
+\subsection{Domänenspezifische Anforderungen}
+
+\textbf{D1:} Die Ausgabe der Pipeline muss den von Vivian erwarteten Spezifikationsdateien entsprechen.
+
+\textbf{D2:} Interaktionselemente, Visualisierungselemente, Zustände und Übergänge müssen konsistent benannt sein.
+
+\textbf{D3:} Übergänge müssen auf vorhandene Elemente und Zustände referenzieren.
+
+\textbf{D4:} Die generierte Spezifikation muss in Unity mit Vivian ausführbar sein.
+
+% \begin{itemize}
+% \item \textbf{Z1:} Entwicklung einer mehrstufigen Agenten-Architektur zur Zerlegung der Spezifikationsgenerierung in klar abgegrenzte Teilaufgaben.
+% \item \textbf{Z2:} Entwicklung eines Systems zur automatisierten Erzeugung Vivian-kompatibler Spezifikationen aus Szenendaten und Sprache
+% \item \textbf{Z3:} Integration von Validierungs- und Selbstkorrekturmechanismen zur Verbesserung syntaktischer und semantischer Konsistenz.
+% \item \textbf{Z4:} Einbindung eines Human-in-the-Loop-Schritts zur Prüfung und Korrektur unklarer Szeneninterpretationen.
+% \item \textbf{Z5:} Nutzer*innen sollen gewünschte Interaktionen durch Eingabe natürlicher Sprache spezifizieren können.
+% \end{itemize}
 
 \section{Spezifikationsgenerierung für das Vivian Framework}
-
 \section{Konzeption der Pipeline}
+\subsection{Scene Analyzer}
+\subsection{Interaction Planner}
+\subsection{Specification Generator}
+\subsection{Consistency Reviewer}
+\subsection{Validator}

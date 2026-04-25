@@ -27,3 +27,5 @@
 *.gz
 .SynologyWorkingDirectory
 desktop.ini
+
+claude-assist
