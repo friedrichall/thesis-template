@@ -50,3 +50,16 @@ Der wissenschaftliche Beitrag liegt hier somit in der multimodalen Analyse vorha
 
 \section{Zentrale Problemfelder und Forschungslücke}
 
+Aufbauend auf den in Kapitel~\ref{ch:einführung} aufgeführten Problemstellungen und Forschungsfragen, dem Stand der Forschung sowie den in~\ref{sec:vivian_framework} beschriebenen technischen Randbedingungen des Vivian-Frameworks werden zunächst zentrale Problemfelder identifiziert, die durch das in dieser Arbeit implementierte System adressiert werden sollen. Wie in der Problemstellung gezeigt, besitzen statische 3D-Objekte an sich zwar geometrische und visuelle Informationen, aber keine explizite Interaktionssemantik. Gleichzeitig erschwert manuelles Vorgehen in der Erstellung interaktiver Prototypen nicht-technischen Nutzer*innen den Zugang zu dieser.
+Vivian setzt außerdem voraus, dass Interaktionsverhalten in eine formal korrekte, maschinenlesbare Spezifikation aus Interaktionselementen, Visualisierungselementen, Zuständen und Übergängen überführt wird.
+Da LLM-gestützte Verfahren fehleranfällig sein können~\cite{zhaoSurveyLargeLanguage2026a}, müssen syntaktische, semantische und referenzielle Fehler bereits vor der Laufzeit erkannt und korrigiert werden.
+
+Aus diesen Überlegungen ergeben sich die Problemfelder P1-P4.
+Die Anforderungen an den VSG werden im Folgenden nicht empirisch durch eine Nutzerstudie erhoben, sondern aus diesen Problemfeldern, den Forschungsfragen und den Vivian-spezifischen Rahmenbedingungen abgeleitet.
+
+\textbf{P1: Hohe Einstiegshürde für nicht-technische Nutzer*innen.} Die Erstellung interaktiver Prototypen setzt oft Kenntnisse in der Programmierung oder 3D-Modellierung voraus. LLMR zeigt, dass natürliche Sprache zur Erstellung und Modifikation von interaktiven 3D-Szenen genutzt werden kann, es aber zudem spezialisierter Module wie Scene Analyzer, Planner, Builder und Inspector bedarf, da ein einfaches LLM für die interaktive Szenenerstellung nicht ausreicht.~\cite{delatorreLLMRRealtimePrompting2024}.
+
+\textbf{P2: Artikulation vorhandener 3D-Objekte und Teilobjekte.} Statische 3D-Objekte enthalten meist primär geometrische, visuelle und transformatorische Informationen und keine darüber, welche Bestandteile bedienbar sind oder welche Rolle sie in einer Interaktion besitzen. Ohne diese semantische Adressierbarkeit kann eine spätere Interaktionsbeschreibung nicht mit der vorhandenen Geometrie verknüpft werden.
+Klassische LLMs und Vision Language Models (VLMs) sind nicht ausreichend in der dreidimensionalen Welt verankert, um statische 3D-Objekte in einer virtuellen Welt mit solchen Informationen anzureichern.~\cite{hong3DLLMInjecting3D}.
+
+\textbf{P3: Fehlererkennung und Kontrollierbarkeit LLM-gestützter Spezifikationsgenerierung.}
