@@ -102,8 +102,10 @@ Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als
     \caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
 \end{figure}
 
-Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Insbesondere durch diesen Human-in-the-Loop-Schritt (HITL) wird somit A5 erfüllt. Zusätzlich ist es auch die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet. Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann. Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
-Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem die verschiedenen Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein- und ausgehen. Die Architektur folgt dem Ansatz eines modularen Workflows, gemäß N1, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können.
+Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt (HITL) adressiert A5.
+Zusätzlich ist Unity die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet.
+Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann.
+Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
 
 Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem klar abgegrenzte, spezialisierte Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein und aus gehen.
 Die Architektur folgt dem Ansatz eines modularen Workflows (siehe Abbildung~\ref{fig:containerdiagramm_vsg}), welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können, ohne die Gesamtarchitektur grundlegend zu verändern (siehe N3).
@@ -150,37 +152,27 @@ Sollten Fehler im Unity-Validator aufkommen, gibt dieser eine strukturierte Fehl
 Wird die maximale Anzahl an Versuchen erreicht oder keine Fehler gefunden, terminiert der VSG.
 Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an Unity, sodass Vivian diese zusammen mit dem statischen 3D-Asset ausführen kann.
 
+% Als nächstes:
+% -	Abgrenzung zu anderen systemen
+% -	In-detail: was macht jedes modul und v.a. WIE funktioniert es?
+% -	Architektur text kürzen?
+% -	Fixer Agent nochmal genau überprüfen und ggf. in extra absatz, wenn der tatsächlich ne tragende rolle spielt? Und wird fixer agent auch ausgeführt, wenn Consisttency reviewer fehler erkennt?
 
 
-%UNKLAR ausgabe jedes Moduls
-
-
-% Architekturüberblick - System-Kontetdiagramm & Container-diagramm der module
-%Begründung der modularen Pipeline -> warum nicht einzelner LLM call?
 %A3/A4 Validierung + self-correction funktionieren ohne klare grenzen zwischen modulen nicht sinnvoll
-
 %Nicht erklären WIE jedes modul intern funktioniert, das gehört in modulabschnitte
 
-% Datenfluss eingabe bis ausgabe
 % Ein Absatz Datenfluss von Eingabe bis Ausgabe: was geht rein (Szenenrepräsentation + natürlichsprachliche Beschreibung), was passiert in welcher Reihenfolge, was kommt raus (Vivian-Spec). Hier nennst du die Module beim Namen und sagst in einem Satz, was jedes tut – aber noch keine Details, das kommt in den späteren Modulabschnitten. Lieber drei Sätze pro Modul als zehn.
 
 % Zwischenartefakte und Kontrollfluss: welche Daten zwischen den Modulen wandern (Szenenanalyse-Ergebnis, Interaktionsplan, Spezifikationsentwurf, Validierungsbericht), wo die Validierungs-Gates sitzen (vor und nach Generierung), und wo der HITL-Schritt eingreift (vor Spec-Generierung, gemäß A5). Das ist der Absatz, der dein Diagramm in Worte übersetzt.
 
 % Ein Absatz Abgrenzung: kurzer Vergleich zu LLMR / HOLODECK / ArtiWorld – jeweils zwei Sätze, was übernommen wird (z. B. modulare Inspection von LLMR), was bewusst anders ist (du erzeugst keine Geometrie, du fügst Verhaltens-Spezifikationen zu vorhandenen Szenen hinzu). Damit verteidigst du implizit deinen Beitrag.
 
-% aus anforderungen module entwickelt -> Anforderungen zuordnen.
-
 % REST API -> WIE kommuniziert unity mit ki-pipeline? 
-
-% \begin{figure}[htbp]
-%     \centering
-%     \includegraphics[width=0.8\linewidth]{figures/detem_pipeline_full}
-%     \caption{Beschreibung der Abbildung.}\label{fig:meinbild}
-% \end{figure}
 
 \subsection{Auswahl der Sprachmodelle}
 
-% welches sprachmodell für welches modul?
+% welches sprachmodell für welches modul? klein bis groß
 
 
 
