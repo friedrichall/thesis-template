@@ -94,7 +94,7 @@ Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je S
 \section{Architektur}
 
 %Diagramm von Mensch - Unity UI - LLM Pipeline einfügen like Koller
-Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als Benutzer*innenschnittstelle genutzt. Ein einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 adressiert, da hier natürlichsprachliche Beschreibungen entgegengenommen werden. Abbildung X veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
+Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als Benutzer*innenschnittstelle genutzt. In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 adressiert, da hier natürlichsprachliche Beschreibungen entgegengenommen werden. Abbildung~\ref{fig:systemkontextdiagramm_vsg} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
 
 \begin{figure}[htbp]
     \centering
@@ -102,8 +102,16 @@ Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als
     \caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
 \end{figure}
 
-Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Insbesondere durch diesen Human-in-the-Loop-Schritt (HITL) wird somit A5 erfüllt. Zusätzlich ist es auch die Host-Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet. Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann. Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
+Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Insbesondere durch diesen Human-in-the-Loop-Schritt (HITL) wird somit A5 erfüllt. Zusätzlich ist es auch die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet. Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann. Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
 Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem die verschiedenen Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein- und ausgehen. Die Architektur folgt dem Ansatz eines modularen Workflows, gemäß N1, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können.
+
+Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem klar abgegrenzte, spezialisierte Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein und aus gehen.
+Die Architektur folgt dem Ansatz eines modularen Workflows (siehe Abbildung~\ref{fig:containerdiagramm_vsg}), welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können, ohne die Gesamtarchitektur grundlegend zu verändern (siehe N3).
+Diese modulare Trennung adressiert N1.
+Bei einfachen LLM-Aufrufen sinkt empirisch die Regelbefolgung bei wachsender Länge und Abhängigkeit strukturierter Ausgaben, sodass halluzinierte Referenzen und unzulässige Elementtypen kaum vermeidbar wären~\cite{zhangLostintheMiddleLongTextGeneration2025}.
+Ein einzelner LLM-Aufruf wäre somit nicht ausreichend -- er müsste fünf referenzierende Spezifikationsdateien gleichzeitig konsistent erzeugen und währenddessen sicherstellen, dass jeder Vivian-Elementtyp die in der Szene tatsächlich vorhandenen Unity-Komponenten besitzt.
+Durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung ermöglicht die hier vorgestellte Pipeline die Erzeugung korrekter Spezifikationen nach Vivian.
+Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden.
 
 \begin{figure}[htbp]
     \centering
@@ -111,7 +119,37 @@ Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem die verschie
     \caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
 \end{figure}
 
-Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden. Während ein einzelner LLM-Aufruf, wie in Kapitel~\ref{dawd} aufgezeigt, für diese Ausgabe nicht ausreichend wäre, ermöglicht die hier vorgestellte Pipeline durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung die Erzeugung korrekter Spezifikationen nach Vivian.
+Die Kommunikation der KI-Pipeline mit Unity erfolgt über eine REST-API-Schnittstelle, sodass Funktionalitäten der Pipeline gegebenenfalls durch weitere Endpunkte erweiterbar bleiben.
+Durch diese Entkopplung könnte die KI-Pipeline auch in einen übergeordneten Prozess integriert werden, ohne an die Unity-UI gebunden zu sein.
+Jedes der in Abbildung X aufgeführten Module adressiert eine spezifische Teilaufgabe innerhalb des gesamten Prozesses, wodurch der Informationsfluss gesteuert werden kann und nachvollziehbar bleibt.
+Der VSG besteht im Wesentlichen aus den Modulen Scene Analyzer, Interaction Planner, Specification Generator und Validator.
+Ein*e Benutzer*in kann über die Unity UI mit dem System interagieren und erhält Informationen über den Prozessfortschritt, log-output, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war.
+Anschließend wird das ausgewählte 3D-Asset über ein weiteres Unity-Skript in eine strukturelle Szenenrepräsentation umgewandelt sowie ergänzende 2D-Bildansichten gerendert.
+Diese aufbereitete Szenendarstellung wird im darauffolgenden Schritt zusammen mit einer initialen Benutzer*innenbeschreibung der gewünschten Interaktivität an den Scene Analyzer übermittelt.
+Dieser verknüpft mithilfe eines multimodalen LLMs die visuellen Eindrücke mit den strukturellen Szenendaten sowie der formulierten Beschreibung und überführt die rohe Szenendarstellung so in eine semantisch angereicherte Beschreibung.
+Der Scene Analyzer gibt ein Scene-Understanding-Objekt aus, welches für jedes relevante Objekt dessen Funktion, Rolle und Eignung als potenzielles Interaktions- oder Visualisierungselement enthält.
+Im nächsten Schritt erhält der Interaction Planner das zuvor generierte Scene-Understanding-Objekt zusammen mit der strukturierten Szenenrepräsentation, die zuvor auch der Scene Analyzer erhalten hat, und der natürlichsprachlichen Interaktionsbeschreibung.
+In diesem Schritt wird geplant, welche Interaktions- und Visualisierungselemente es geben wird, welche Zustände der Prototyp einnehmen kann und welche Übergänge zwischen Zuständen vorgesehen sind.
+Dabei ist auch zu berücksichtigen, welche Spezifikationsdateien überhaupt benötigt werden, da sehr simple Prototypen, wenn überhaupt, weniger Zustände als komplexere Prototypen benötigen.
+Für das in diesem Modul eingebundene LLM ist also fundamentales Wissen über das Vivian-Framework von zentraler Bedeutung, da alle weiteren Module nach diesem Plan arbeiten.
+(AUSFORMULIEREN/NEU PLATZIEREN: Durchläufe ohne dieses Modul haben gezeigt, dass unnötige Zustände/Übergange generiert wurden, die nicht nötig gewesen wären, z.B. weil das Asset sehr simpel war. Beleg?).
+Der Interaction Planner gibt einen Interaction-Plan aus, welcher Element-Rollen, geplante Zustände und Übergänge sowie eine Liste der zu generierenden Spezifikationsdateien enthält.
+Dieser Plan wird gemäß A5 der Benutzer*in anschließend zur Bestätigung oder Korrektur vorgelegt.
+Bei einer Korrektur wird der Interaction Planner erneut aufgerufen um diese anzuwenden, bis der Plan bestätigt wird, welcher schließlich den nachgelagerten Modulen als verbindliche Vorgabe dient.
+
+Der Specification-Generator erzeugt die eigentlichen Vivian-Spezifikationsdateien.
+Er ist in vier nacheinander ausgeführte, jeweils auf einen Teil der Spezifikation spezialisierte LLM-Agenten zerlegt: Interaktionselemente, Visualisierungselemente, Zustände und Übergänge. Diese Reihenfolge entspricht den Abhängigkeiten zwischen den Dateien: Jeder Agent erhält neben dem bestätigten Interaktionsplan und der Szenenrepräsentation auch die Ausgaben der vorangegangenen Agenten als Kontext und referenziert deren konkrete Element- sowie Zustandsnamen.
+Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.
+Ausgegeben werden vier strukturierte JSON-Dateien, welche zusammen eine Vivian-Spezifikation bilden. In diesem Schritt wird ebenfalls eine VisualizationArrays.json-Datei ohne Inhalt erzeugt, welche zur Ausführung von Vivian benötigt wird, aber für die in diesem System betrachtete Prototypenerstellung keine weitere Relevanz hat und daher im Folgenden unerwähnt bleibt.
+Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
+Im Validator-Schritt wird die generierte Vivian-Spezifikation auf zwei Ebenen geprüft. Ein Consistency-Reviewer erhält die Spezifikationsdateien sowie den Interaktionsplan, da hier mit Hilfe eines weiteren LLM-Agenten geprüft wird, ob die geplanten Interaktionen tatsächlich umgesetzt sind.
+Zudem werden logische Widersprüche und dateiübergreifende Inkonsistenzen überprüft. Das könnten \zB unerreichbare Zustände oder widersprüchliche Bedingungen sein, welche eine rein strukturelle Validierung nicht erkennen kann.
+Ein Unity-Validator ergänzt dies um eine strukturelle und laufzeitnahe Kontrolle, wodurch tatsächliche Initialisierungsfehler bereits vor der Übermittlung an Unity aufgedeckt werden können.
+Dieser Schritt adressiert A3.
+Sollten Fehler im Unity-Validator aufkommen, gibt dieser eine strukturierte Fehlerliste an einen Reparatur-Agenten (Fixer Agent) weiter, welcher über einen Reparaturplan eine gezielte Wiederausführung der betroffenen Agenten im Specification-Generator einleitet. So kann eine vollständige Neugenerierung der Spezifikation vermieden werden. Dieser Teilschritt adressiert A4.
+Wird die maximale Anzahl an Versuchen erreicht oder keine Fehler gefunden, terminiert der VSG.
+Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an Unity, sodass Vivian diese zusammen mit dem statischen 3D-Asset ausführen kann.
+
 
 
 %UNKLAR ausgabe jedes Moduls
@@ -119,7 +157,7 @@ Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung 
 
 % Architekturüberblick - System-Kontetdiagramm & Container-diagramm der module
 %Begründung der modularen Pipeline -> warum nicht einzelner LLM call?
-%A3/A4 Validierung + self-correction funktionieren ohne klare grenzen zwischen modulen nicht sinnvoll#
+%A3/A4 Validierung + self-correction funktionieren ohne klare grenzen zwischen modulen nicht sinnvoll
 
 %Nicht erklären WIE jedes modul intern funktioniert, das gehört in modulabschnitte
 
