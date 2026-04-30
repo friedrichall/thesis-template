@@ -24,7 +24,7 @@ Zur Nachvollziehbarkeit wurden die Anforderungen in funktionale Anforderungen (A
 \subsection*{Nicht-funktionale Anforderungen}
 
 \begin{itemize}
-    \item \textbf{N1:} Der VSG soll als modulare Pipeline mit definierten Ein- und Ausgabeformaten pro Modul aufgebaut sein, sodass einzelne Verarbeitungsschritte unabhängig beschrieben, validiert und erweitert werden können.
+    \item \textbf{N1:} Der VSG soll als modulare Pipeline mit definierten Ein- und Ausgabeformaten pro Modul aufgebaut sein, sodass einzelne Verarbeitungsschritte unabhängig beschrieben, validiert und erweitert werden können. Dies folgt dem in~\ref{ch:stand_der_forschung} beschriebenen Ansatz von LLMR, welches ebenfalls einen modularen Aufbau verwendet~\cite{delatorreLLMRRealtimePrompting2024}.
     \item \textbf{N2:} Zwischenartefakte und Entscheidungen des VSG sollen protokolliert und abgespeichert werden, um die Nachvollziehbarkeit zu verbessern. Dazu müssen Eingaben, Szenenanalyse, Interaktionsplan, generierte Spezifikation pro Versuch, Validierungsfehler sowie die finale Ausgabe gespeichert werden.
     \item \textbf{N3:} Die Implementierung des VSG soll so gestaltet werden, dass weitere Pipeline-Module und Validierungsregeln hinzugefügt werden können, ohne die Gesamtarchitektur grundlegend zu verändern.
 \end{itemize}
@@ -45,19 +45,16 @@ Zur Nachvollziehbarkeit wurden die Anforderungen in funktionale Anforderungen (A
 
 Die Anforderungen D1-D5 ergeben sich aus der Verwendung des Vivian-Frameworks. So kann sichergestellt werden, dass Spezifikationen ausführbar erstellt werden und die gewünschte Interaktion mit einem Objekt ermöglichen.
 
-
 \section{Vorstellung verschiedener Ansätze}
 
 Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel der Generierung einer vollständigen Spezifikation nach Vivian zu erreichen. Dazu wurden in der ersten Iteration verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (Tools) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (Handoff), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
 
 Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
 Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Weiterhin wurde ein Bestätigungsschritt implementiert, bei dem Benutzer*innen das Ergebnis des Szenenanalyse-Moduls prüfen können.
+% Wie detailliert hier den alten Ansatz erläutern?
 
 % später ausformulieren: was macht diesen entwurf aus? Diagramm hinzufügen 
 % übergang zu eigentlicher Architektur
-
-
-
 
 % \begin{itemize}
 % \item \textbf{Z1:} Entwicklung einer mehrstufigen Agenten-Architektur zur Zerlegung der Spezifikationsgenerierung in klar abgegrenzte Teilaufgaben.
@@ -97,13 +94,31 @@ Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je S
 \section{Architektur}
 
 %Diagramm von Mensch - Unity UI - LLM Pipeline einfügen like Koller
-Meine Pipeline besteht aus zwei Hauptkomponenten: einem Unity-Part und der tatsächlichen LLM-getriebenen Pipeline. In Unity wird eine virtuelle 3D-Szene in eine Szenenrepräsentation überführt, indem JSON und Bilder erstellt werden, und eine Nutzer*innenbeschreibung entgegengenommen wird. Diese Repräsentation aus Text+Bildern wandert nun in den VSG und wird dort als erstes von eineme scene analyzer verarbeitet, welcher das folgende zurückgibt \dots.
+Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als Benutzer*innenschnittstelle genutzt. Ein einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 adressiert, da hier natürlichsprachliche Beschreibungen entgegengenommen werden. Abbildung X veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/20260430_115502}
+    \caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
+\end{figure}
+
+Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Insbesondere durch diesen Human-in-the-Loop-Schritt (HITL) wird somit A5 erfüllt. Zusätzlich ist es auch die Host-Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet. Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann. Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
+Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem die verschiedenen Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein- und ausgehen. Die Architektur folgt dem Ansatz eines modularen Workflows, gemäß N1, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/20260430_120448}
+    \caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
+\end{figure}
+
+Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden. Während ein einzelner LLM-Aufruf, wie in Kapitel~\ref{dawd} aufgezeigt, für diese Ausgabe nicht ausreichend wäre, ermöglicht die hier vorgestellte Pipeline durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung die Erzeugung korrekter Spezifikationen nach Vivian.
+
+
 %UNKLAR ausgabe jedes Moduls
 
 
-% Architekturüberblick - Container-diagramm der module?
+% Architekturüberblick - System-Kontetdiagramm & Container-diagramm der module
 %Begründung der modularen Pipeline -> warum nicht einzelner LLM call?
-%Verweis N1 Modularität -> folgt vorbild LLMR Module
 %A3/A4 Validierung + self-correction funktionieren ohne klare grenzen zwischen modulen nicht sinnvoll#
 
 %Nicht erklären WIE jedes modul intern funktioniert, das gehört in modulabschnitte
@@ -117,12 +132,13 @@ Meine Pipeline besteht aus zwei Hauptkomponenten: einem Unity-Part und der tats�
 
 % aus anforderungen module entwickelt -> Anforderungen zuordnen.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/detem_pipeline_full}
-    \caption{Beschreibung der Abbildung.}
-    \label{fig:meinbild}
-\end{figure}
+% REST API -> WIE kommuniziert unity mit ki-pipeline? 
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{figures/detem_pipeline_full}
+%     \caption{Beschreibung der Abbildung.}\label{fig:meinbild}
+% \end{figure}
 
 \subsection{Auswahl der Sprachmodelle}
 
