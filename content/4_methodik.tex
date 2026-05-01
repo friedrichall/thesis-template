@@ -43,14 +43,9 @@ Zur Nachvollziehbarkeit wurden die Anforderungen in funktionale Anforderungen (A
     \item\textbf{D5:} Die generierte Spezifikation gilt als erfolgreich erzeugt, wenn sie in Unity mit dem Vivian Framework importiert und ohne Validierungsfehler ausgeführt werden kann.
 \end{itemize}
 
-Die Anforderungen D1-D5 ergeben sich aus der Verwendung des Vivian-Frameworks. So kann sichergestellt werden, dass Spezifikationen ausführbar erstellt werden und die gewünschte Interaktion mit einem Objekt ermöglichen.
+Die Anforderungen D1-D5 ergeben sich aus der Verwendung des Vivian-Frameworks. So kann sichergestellt werden, dass Spezifikationen ausführbar erstellt werden und die gewünschte Interaktion mit einem 3D-Objekt ermöglichen.
 
-\section{Vorstellung verschiedener Ansätze}
 
-Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel der Generierung einer vollständigen Spezifikation nach Vivian zu erreichen. Dazu wurden in der ersten Iteration verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (Tools) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (Handoff), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
-
-Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
-Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Weiterhin wurde ein Bestätigungsschritt implementiert, bei dem Benutzer*innen das Ergebnis des Szenenanalyse-Moduls prüfen können.
 % Wie detailliert hier den alten Ansatz erläutern?
 
 % später ausformulieren: was macht diesen entwurf aus? Diagramm hinzufügen 
@@ -92,9 +87,18 @@ Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je S
 % \end{table}
 
 \section{Architektur}
+\subsection{Vorstellung verschiedener Ansätze}
 
+Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel der Generierung einer vollständigen Spezifikation nach Vivian zu erreichen. Dazu wurden in der ersten Iteration verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (Tools) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (Handoff), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
+
+Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
+Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Weiterhin wurde ein Bestätigungsschritt implementiert, bei dem Benutzer*innen das Ergebnis des Szenenanalyse-Moduls prüfen können.
+
+Die mit diesem Ansatz generierten Spezifikationen erwiesen sich als fehleranfällig. TODO AUSFÜHREN
+
+\subsection{Architekturüberblick}
 %Diagramm von Mensch - Unity UI - LLM Pipeline einfügen like Koller
-Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als Benutzer*innenschnittstelle genutzt. In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 adressiert, da hier natürlichsprachliche Beschreibungen entgegengenommen werden. Abbildung~\ref{fig:systemkontextdiagramm_vsg} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
+Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als Benutzer*innenschnittstelle genutzt. In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 behandelt, da hier natürlichsprachliche Beschreibungen entgegengenommen werden. Abbildung~\ref{fig:systemkontextdiagramm_vsg} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
 
 \begin{figure}[htbp]
     \centering
@@ -102,7 +106,7 @@ Wie bereits in Kapitel X beschrieben, wird zur Interaktion mit dem VSG Unity als
     \caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
 \end{figure}
 
-Es übersetzt das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt (HITL) adressiert A5.
+Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt (HITL) adressiert A5.
 Zusätzlich ist Unity die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet.
 Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann.
 Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
@@ -137,7 +141,7 @@ Für das in diesem Modul eingebundene LLM ist also fundamentales Wissen über da
 (AUSFORMULIEREN/NEU PLATZIEREN: Durchläufe ohne dieses Modul haben gezeigt, dass unnötige Zustände/Übergange generiert wurden, die nicht nötig gewesen wären, z.B. weil das Asset sehr simpel war. Beleg?).
 Der Interaction Planner gibt einen Interaction-Plan aus, welcher Element-Rollen, geplante Zustände und Übergänge sowie eine Liste der zu generierenden Spezifikationsdateien enthält.
 Dieser Plan wird gemäß A5 der Benutzer*in anschließend zur Bestätigung oder Korrektur vorgelegt.
-Bei einer Korrektur wird der Interaction Planner erneut aufgerufen um diese anzuwenden, bis der Plan bestätigt wird, welcher schließlich den nachgelagerten Modulen als verbindliche Vorgabe dient.
+Bei einer Korrektur wird der Interaction Planner erneut aufgerufen, um diese anzuwenden, bis der Plan bestätigt wird, welcher schließlich den nachgelagerten Modulen als verbindliche Vorgabe dient.
 
 Der Specification-Generator erzeugt die eigentlichen Vivian-Spezifikationsdateien.
 Er ist in vier nacheinander ausgeführte, jeweils auf einen Teil der Spezifikation spezialisierte LLM-Agenten zerlegt: Interaktionselemente, Visualisierungselemente, Zustände und Übergänge. Diese Reihenfolge entspricht den Abhängigkeiten zwischen den Dateien: Jeder Agent erhält neben dem bestätigten Interaktionsplan und der Szenenrepräsentation auch die Ausgaben der vorangegangenen Agenten als Kontext und referenziert deren konkrete Element- sowie Zustandsnamen.
@@ -157,6 +161,9 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 % -	In-detail: was macht jedes modul und v.a. WIE funktioniert es?
 % -	Architektur text kürzen?
 % -	Fixer Agent nochmal genau überprüfen und ggf. in extra absatz, wenn der tatsächlich ne tragende rolle spielt? Und wird fixer agent auch ausgeführt, wenn Consisttency reviewer fehler erkennt?
+% - unity ui einbinden
+
+% Dann schreib einen einzigen Absatz (ca. 150–200 Wörter) zu einem Modul deiner Wahl – das, das du am besten verstanden hast. Stichpunktartig genügt: Eingabe, Ausgabe, welches Modell/welche Strategie, welche Anforderung das adressiert. Du formulierst's danach aus.
 
 
 %A3/A4 Validierung + self-correction funktionieren ohne klare grenzen zwischen modulen nicht sinnvoll
