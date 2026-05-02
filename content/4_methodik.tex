@@ -195,8 +195,13 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 
 \section{Vorverarbeitung in Unity}
 
+
+%TODO warum überhaupt vorverarbeiten?
 Um ein 3D-Asset in MLLM-verständliche Daten umzuwandeln, müssen eine strukturelle Repräsentation und Ansichten aus verschiedenen Blickwinkeln erstellt werden.
-Im ersten Schritt wird aus dem im Unity-Fenster (Abbildung~\ref{fig:unity_ui_empty}) ausgewählten 3D-Asset ein Prefab-Objekt erzeugt, welches später von Vivian zur Laufzeit instanziiert wird.
+Da der nachgelagerte Scene Analyzer mit Text und Bild als Eingaben arbeitet, benötigt er die erstellten Ansichten als visuelles Grounding für die abstrakten JSON-Daten.
+Die Form des Objekts, das Material oder auch räumliche Anordnung werden somit direkt sichtbar und müssen nicht aus Bounding-Boxen rekonstruiert werden.
+
+Im ersten Schritt wird dazu aus dem im Unity-Fenster (Abbildung~\ref{fig:unity_ui_empty}) ausgewählten 3D-Asset ein \textit{Prefab}-Objekt erzeugt, welches später von Vivian zur Laufzeit instanziiert wird.
 Damit wird gemäß D2 keine neue Geometrie generiert, sondern wiederverwendet.
 
 \begin{figure}[htbp]
@@ -205,19 +210,41 @@ Damit wird gemäß D2 keine neue Geometrie generiert, sondern wiederverwendet.
     \caption{Unity UI des VSG.}\label{fig:unity_ui_empty}
 \end{figure}
 
-Um einem LLM Verständnis über ein 3D-Asset (in Unity GameObject genannt) zu geben wird zunächst eine strukturierte Szenenbeschreibung im JSON-Format mit dem Namen scene.json erzeugt.
-Dazu wird die Hierarchie des Szenengraphen rekursiv traversiert und pro GameObject Informationen wie die ID, der Hierarchiepfad, Transformation, Materialien, Bounding Boxes und Mesh-Statistiken extrahiert.
-Weiterhin werden bereits basierend auf Namen, Tags oder Material-Hinweisen heuristisch Rollen erkannt, welche im späteren Verlauf verwendet werden können um Interaktionselemente und Visualisierungselemente zu klassifizieren.
+Um einem LLM Verständnis über ein 3D-Asset (in Unity\glqq GameObject\grqq{} genannt) zu geben wird zunächst eine strukturierte Szenenbeschreibung im JSON-Format mit dem Namen \textit{scene.json} erzeugt.
+Dazu wird die Hierarchie des Szenengraphen rekursiv traversiert und pro GameObject Informationen wie die ID, der Hierarchiepfad, Transformation, Materialien, Bounding Boxes oder Mesh-Statistiken extrahiert.
+Weiterhin werden bereits basierend auf Namen, Tags oder Material-Hinweisen heuristisch Rollen erkannt, welche im späteren Verlauf verwendet werden können, um Interaktionselemente und Visualisierungselemente zu klassifizieren.
 
-Im Anschluss daran rendert Unity für das übergeordnete GameObject acht Ansichten, davon sechs orthografisch entlang der Hauptachsen sowie zwei isometrisch als 1024x1024-Pixel-PNGs.
-%TODO LITERATUR warum 8?
+Im Anschluss daran rendert Unity für das übergeordnete GameObject verschiedene Ansichten, da die Erkennungsleistung eines MLLM steigt, wenn statt einer Einzelansicht mehrere gerenderte Ansichten eines 3D-Objekts verwendet werden~\cite{suMultiviewConvolutionalNeural2015}.
+Dafür werden sechs orthografische Ansichten entlang der Hauptachsen sowie zwei isometrische (von schräg oben) als 1024x1024-Pixel-PNGs erstellt (siehe Abbildung~\ref{fig:toaster_views}).
+Die gewählte Anzahl der Ansichten ist ein Kompromiss zwischen Erkennungsrobustheit und minimal notwendigem Bildumfang, um Kosten pro Durchlauf zu sparen.
+Die orthografischen Ansichten vermeiden perspektivische Verzerrung und beinhalten saubere Silhouetten, während die isometrischen Ansichten die räumliche Gesamtform und Lesbarkeit verbessern sowie drei Raumdimensionen in einer Darstellung erfassbar machen.
+Zur Laufzeit wird dazu eine Kamera angelegt, anhand der Welt-Bounding-Box des Objekts platziert und auf das Objektzentrum ausgerichtet.
+Alle dafür benötigten Ressourcen werden anschließend wieder freigegeben.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_front}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_back}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_left}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_right}\\[1em]
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_top}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_bottom}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_left}\hfill
+    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_right}
+    \caption{Acht gerenderte Ansichten eines Toaster-3D-Assets.}\label{fig:toaster_views}
+\end{figure}
+
 Eine zugehörige Datei namens \textit{views\_manifest.json} enthält pro Bild Kameramatrizen, Pose, Projektionstyp und einen Vermerk, welches Teilobjekt des Szenengraphen sich an welcher Stelle in der Ansicht befindet.
 Unity kennt die Kameraposition die 3D-Box jedes Objekts in der Szene und kann so ausrechnen, wo sich ein Objekt der Szene im jeweiligen Bild befindet.
-Das ist besonders interessant für nachgelagerte MLLMs, da diese so den Zusammenhang zwischen Objekten in scene.json und denen in den Ansichten herstellen können.
+Nachgelagerte MLLMs können so den Zusammenhang zwischen Objekten in \textit{scene.json} und denen aus den Ansichten (siehe Abbildung~\ref{fig:toaster_views}) herstellen.
 Dafür wird die ID, ein Tiefenhinweis und das Pixelrechteck vermerkt, in dem sich das Objekt im Bild befindet.
 
+Der Vorverarbeitungsschritt in Unity erzeugt also zusammengefasst aus einem vorhandenen, statischen 3D-Asset eine strukturelle Repräsentation als JSON-Struktur, acht gerenderte Ansichten von diesem sowie eine weitere JSON-Struktur mit Informationen zu den Ansichten.
+Diese Daten können nun vom nächsten Modul, dem Scene Analyzer, konsumiert werden.
+In diesem Schritt werden D2, D4 sowie N1 adressiert, da Geometrie erhalten bleibt, die JSON-Struktur eine Basis für spätere Namensreferenzen bietet und definierte Ein- und Ausgabeformate verwendet werden.
 
-% Unity UI Fenster
+%TODO ~100 W – Output-Format und Anforderungs-Bezug: Was rauskommt (JSON-Struktur + N Bilder), wie das vom nächsten Modul (Scene Analyzer) konsumiert wird. Verlinkung von D2 (Geometrie unverändert), D4 (Referenzbasis für spätere Namensreferenzen), N1 (definierte Ein-/Ausgabeformate).
+% ~50 W Puffer für Übergangssatz zum Scene Analyzer.
 
 % \subsection{Modul Beispiel}
 % Das Modul zur Interaktionsableitung übersetzt die semantische Beschreibung eines statischen 3D-Assets in eine strukturierte Beschreibung möglicher Interaktionen. Es adressiert insbesondere die Anforderungen A2, A4 und A6. A2 fordert die Identifikation potenziell interaktiver Teilobjekte, A4 die Ableitung geeigneter Zustände und Transitionen und A6 die Ausgabe in einem maschinenlesbaren Format.
