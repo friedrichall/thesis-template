@@ -114,7 +114,9 @@ Ein einzelner LLM-Aufruf wäre somit nicht ausreichend -- er müsste fünf refer
 Durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung ermöglicht die hier vorgestellte Pipeline die Erzeugung korrekter Spezifikationen nach Vivian.
 Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden.
 
-\subsection{Auswahl der Sprachmodelle}
+\subsection{Verwendete Sprachmodelle und Agenten}
+
+%Technisch kannst du erwähnen, dass output_type=SceneUnderstanding die Ausgabe in eine Pydantic-Struktur zwingt. Die OpenAI-Agents-Dokumentation beschreibt, dass ein Agent über output_type statt Freitext einen bestimmten Ausgabetyp, z. B. ein Pydantic-Objekt, erzeugen kann und dabei Structured Outputs verwendet werden . Die Structured-Outputs-Dokumentation beschreibt außerdem, dass Antworten an ein vorgegebenes JSON-Schema gebunden werden können .
 
 \section{Architekturüberblick}
 %Diagramm von Mensch - Unity UI - LLM Pipeline einfügen like Koller
@@ -193,7 +195,7 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 
 % welches sprachmodell für welches modul? klein bis groß
 
-\section{Vorverarbeitung in Unity}
+\section{Vorverarbeitung in Unity}\label{sec:vorverarbeitung_unity}
 
 
 %TODO warum überhaupt vorverarbeiten?
@@ -243,9 +245,6 @@ Der Vorverarbeitungsschritt in Unity erzeugt also zusammengefasst aus einem vorh
 Diese Daten können nun vom nächsten Modul, dem Scene Analyzer, konsumiert werden.
 In diesem Schritt werden D2, D4 sowie N1 adressiert, da Geometrie erhalten bleibt, die JSON-Struktur eine Basis für spätere Namensreferenzen bietet und definierte Ein- und Ausgabeformate verwendet werden.
 
-%TODO ~100 W – Output-Format und Anforderungs-Bezug: Was rauskommt (JSON-Struktur + N Bilder), wie das vom nächsten Modul (Scene Analyzer) konsumiert wird. Verlinkung von D2 (Geometrie unverändert), D4 (Referenzbasis für spätere Namensreferenzen), N1 (definierte Ein-/Ausgabeformate).
-% ~50 W Puffer für Übergangssatz zum Scene Analyzer.
-
 % \subsection{Modul Beispiel}
 % Das Modul zur Interaktionsableitung übersetzt die semantische Beschreibung eines statischen 3D-Assets in eine strukturierte Beschreibung möglicher Interaktionen. Es adressiert insbesondere die Anforderungen A2, A4 und A6. A2 fordert die Identifikation potenziell interaktiver Teilobjekte, A4 die Ableitung geeigneter Zustände und Transitionen und A6 die Ausgabe in einem maschinenlesbaren Format.
 
@@ -264,7 +263,21 @@ In diesem Schritt werden D2, D4 sowie N1 adressiert, da Geometrie erhalten bleib
 % | Grenzen                     | Was leistet das Modul bewusst nicht?                    |
 
 \section{Scene Analyzer}
-Der Scene Analyzer verknüpft mithilfe eines multimodalen LLMs die visuellen Eindrücke mit den strukturellen Szenendaten sowie der formulierten Beschreibung und überführt die rohe Szenendarstellung so in eine semantisch angereicherte Beschreibung.
+
+Die Kernaufgabe des Scene-Analyzer-Moduls besteht darin, die in der Vorverarbeitung entstandenen visuellen Eindrücke und strukturellen Daten mit der natürlichsprachlichen Nutzer*innenbeschreibung zu verknüpfen und die rohen Daten so in ein semantisch angereichertes Zwischenformat zu überführen. F2 wird hier adressiert, da relevante Objekte und Teilobjekte aus Szeneninformationen und der Beschreibung abgeleitet werden, sodass nachfolgende Schritte auf diese referenzieren können.
+
+Als Eingaben bekommt der Scene Analyzer die in Abschnitt~\ref{sec:vorverarbeitung_unity} beschriebene strukturierte Szenenrepräsentation und die Ansichten des Objekts.
+Die JSON-Struktur stellt Namen, Pfade, IDs und Geometrie bereit, während die Bilder bei der semantischen Einordnung helfen.
+Diese Daten werden von einem internen LLM-basierten Agenten verarbeitet, welcher so beispielsweise einordnen kann, ob ein Teilobjekt eher Griff, Display oder Knopf ist.
+
+Das verwendete LLM leistet in diesem Modul die Hauptarbeit: Es klassifiziert die Szeneninformationen gemäß einem vorgegebenen Schema, dem \textit{SceneUnderstanding}.
+Bei Verwendung von OpenAI-Agenten besteht die Möglichkeit, einen bestimmten Ausgabetypen (\textit{output\_type}) festzulegen anstelle von Freitext.
+In diesem Fall wird ein \glqq Pydantic\grqq{}-Modell als \textit{output\_type} festgelegt, sodass das LLM in genau diesem Schema antwortet.
+
+Dieses \textit{SceneUnderstanding} beinhaltet nun ein aufbereitetes Szenenverständnis mit Informationen zu Objektbezügen, Relationen oder Clustern und bietet die Grundlage dafür, dass darauffolgende Agenten ein Verhalten aus der analysierten Szene ableiten können. Durch dieses Zwischenprodukt muss der Interaction Planner nicht direkt aus einer Unity-Hierarchie schließen, welche Objekte funktional relevant sind, sondern kann mit einer semantisch vorstrukturierten Repräsentation arbeiten.
+
+Diese entstandene kontrollierte Zwischenrepräsentation ist maschinenlesbar und validierbar, bleibt allerdings dennoch von der Qualität der Modellinterpretation abhängig und ist anfällig für semantische Falschannahmen, weshalb spätere Review-Schritte relevant bleiben.
+
 
 \section{Interaction Planner}
 Dabei ist auch zu berücksichtigen, welche Spezifikationsdateien überhaupt benötigt werden, da sehr simple Prototypen, wenn überhaupt, weniger Zustände als komplexere Prototypen benötigen.
