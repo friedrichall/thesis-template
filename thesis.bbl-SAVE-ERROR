@@ -19,197 +19,123 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
-    \entry{chenSurveyDesignVirtual2024}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=4d4866fbce37430ed2f951cb439519fb}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Meng-Xi},
-           giveni={M\bibinithyphendelim X\bibinitperiod}}}%
-        {{hash=ddcb322e513b2a7e443eab1018474b8b}{%
-           family={Hu},
-           familyi={H\bibinitperiod},
-           given={Huicong},
-           giveni={H\bibinitperiod}}}%
-        {{hash=4f853d9384ee07b439b6cf259cecf169}{%
-           family={Yao},
-           familyi={Y\bibinitperiod},
-           given={Ruiqi},
-           giveni={R\bibinitperiod}}}%
-        {{hash=e3c4d6653bd36561ae746f04b84c0fab}{%
-           family={Qiu},
-           familyi={Q\bibinitperiod},
-           given={Longhu},
-           giveni={L\bibinitperiod}}}%
-        {{hash=cfb6f977c40fc5578819476518c7a6b9}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Dongxu},
+    \entry{kallmannModelingBehaviorsInteractive2002}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=562a66b76e9eb3a02cdc6d41d83ec791}{%
+           family={Kallmann},
+           familyi={K\bibinitperiod},
+           given={Marcelo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=24f20de24938c18a3655f419579d0900}{%
+           family={Thalmann},
+           familyi={T\bibinitperiod},
+           given={Daniel},
            giveni={D\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {Multidisciplinary Digital Publishing Institute}%
-      }
-      \strng{namehash}{9d479d13da5c64ea31cc033164f81365}
-      \strng{fullhash}{d83ac00f1e47492afd820574c4ff671b}
-      \strng{fullhashraw}{d83ac00f1e47492afd820574c4ff671b}
-      \strng{bibnamehash}{d83ac00f1e47492afd820574c4ff671b}
-      \strng{authorbibnamehash}{d83ac00f1e47492afd820574c4ff671b}
-      \strng{authornamehash}{9d479d13da5c64ea31cc033164f81365}
-      \strng{authorfullhash}{d83ac00f1e47492afd820574c4ff671b}
-      \strng{authorfullhashraw}{d83ac00f1e47492afd820574c4ff671b}
+      \strng{namehash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{fullhash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{fullhashraw}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{bibnamehash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{authorbibnamehash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{authornamehash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{authorfullhash}{671ffc2f3034b382c916cdd0235b517f}
+      \strng{authorfullhashraw}{671ffc2f3034b382c916cdd0235b517f}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Virtual reality (VR) technology has made remarkable progress in recent years and will be widely used in the future. As a bridge for information exchanges between users and VR systems, the interaction interface is pivotal for providing users with a good experience and has emerged as a key research focus. In this review, we conducted a comprehensive search of the Web of Science and CNKI databases from 2011 to 2023 to identify articles dedicated to VR interaction interface design. Through a meticulous analysis of 438 articles, this paper offers a substantial contribution to the emerging field of VR interactive interface research, providing an in-depth review of the principal research advancements. This review revealed that the majority of studies are centered on practical case analyses within specific application scenarios, employing empirical evaluation methods to assess objective or subjective metrics. We then concentrated on elucidating the foundational principles of interface design and their evaluation methodologies, providing a reference for future research endeavors. Additionally, the limitations, challenges, and future directions in VR interaction interface design research were discussed, highlighting the need for further research in design evaluation to continuously refine the development of standards and guidelines for VR interactive interface design. According to the findings of this review, there is a necessity to enhance research on information design for multi-channel interactive interfaces. Furthermore, it is essential to focus on the diverse characteristics of users to propose more inclusive design solutions. Adopting interdisciplinary approaches could lead to breakthroughs in the creation of personalized and adaptive VR interaction interfaces.}
-      \field{issn}{1424-8220}
-      \field{journaltitle}{Sensors}
+      \field{abstract}{Real-time 3D graphics are being extensively used to build interactive virtual environments for a number of different applications. In many situations, virtual objects are required to exhibit complex behaviors, and the use of a versatile behavioral programming methodology is required.}
+      \field{issn}{1045926X}
+      \field{journaltitle}{Journal of Visual Languages \& Computing}
       \field{langid}{english}
-      \field{month}{1}
-      \field{number}{19}
-      \field{title}{A {{Survey}} on the {{Design}} of {{Virtual Reality Interaction Interfaces}}}
+      \field{month}{4}
+      \field{number}{2}
+      \field{title}{Modeling {{Behaviors}} of {{Interactive Objects}} for {{Real-Time Virtual Environments}}}
       \field{urlday}{4}
       \field{urlmonth}{4}
       \field{urlyear}{2026}
-      \field{volume}{24}
-      \field{year}{2024}
+      \field{volume}{13}
+      \field{year}{2002}
       \field{urldateera}{ce}
-      \field{pages}{6204}
-      \range{pages}{1}
+      \field{pages}{177\bibrangedash 195}
+      \range{pages}{19}
       \verb{doi}
-      \verb 10.3390/s24196204
+      \verb 10.1006/jvlc.2001.0229
       \endverb
       \verb{file}
-      \verb C:\Users\Friedrich Allenhof\Zotero\storage\YQ37LZNX\Chen et al. - 2024 - A Survey on the Design of Virtual Reality Interaction Interfaces.pdf
+      \verb C:\Users\Friedrich Allenhof\Zotero\storage\22PRXVP2\Kallmann und Thalmann - 2002 - Modeling Behaviors of Interactive Objects for Real-Time Virtual Environments.pdf
       \endverb
-      \keyw{design evaluation,Grundlagen,interaction interface,Interaktivitat,user experience,virtual reality}
+      \keyw{Grundlagen,Interaktivitat,Transformation}
     \endentry
-    \entry{maWhenLLMsStep2025}{misc}{}{}
-      \name{author}{17}{}{%
-        {{hash=5c57c6be3b483a361611ec0e8b5bd313}{%
-           family={Ma},
-           familyi={M\bibinitperiod},
-           given={Xianzheng},
-           giveni={X\bibinitperiod}}}%
-        {{hash=5aab616f2d8f31799b61c2d814333225}{%
-           family={Smart},
-           familyi={S\bibinitperiod},
-           given={Brandon},
-           giveni={B\bibinitperiod}}}%
-        {{hash=11f430fc108589c2e0f93a961a3bd410}{%
-           family={Bhalgat},
-           familyi={B\bibinitperiod},
-           given={Yash},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=b03fb8403d741095bd57e157d4d83017}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Shuai},
-           giveni={S\bibinitperiod}}}%
-        {{hash=747bc95e3df3af252b9e677a830299b2}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Xinghui},
-           giveni={X\bibinitperiod}}}%
-        {{hash=0ef29c0cdaa31e1b61d17e5d2445edf1}{%
-           family={Ding},
-           familyi={D\bibinitperiod},
-           given={Jian},
-           giveni={J\bibinitperiod}}}%
-        {{hash=f95f8e52f26228a6cd9bc0aaa6a1a1cc}{%
-           family={Gu},
-           familyi={G\bibinitperiod},
-           given={Jindong},
-           giveni={J\bibinitperiod}}}%
-        {{hash=ee74db8655a57d3ff908603488f41e70}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Dave\bibnamedelima Zhenyu},
-           giveni={D\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
-        {{hash=50cf323c42cc810f490f2ba9cbf452c0}{%
+    \entry{pengUnderstandingEvaluatingHallucinations2025}{misc}{}{}
+      \name{author}{6}{}{%
+        {{hash=cdde7e16b64e5e5aa2d1f3beea6064cc}{%
            family={Peng},
            familyi={P\bibinitperiod},
-           given={Songyou},
-           giveni={S\bibinitperiod}}}%
-        {{hash=f68f5634d788ff2ee49ab87de8b4c63e}{%
-           family={Bian},
-           familyi={B\bibinitperiod},
-           given={Jia-Wang},
-           giveni={J\bibinithyphendelim W\bibinitperiod}}}%
-        {{hash=b0f82d24cd560d679b55a9850df1ffa4}{%
-           family={Torr},
-           familyi={T\bibinitperiod},
-           given={Philip\bibnamedelima H.},
-           giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=501629493a5ead2d23ee597103478ce8}{%
-           family={Pollefeys},
-           familyi={P\bibinitperiod},
-           given={Marc},
-           giveni={M\bibinitperiod}}}%
-        {{hash=3e07f51dbc36ece3b41bb5bcfe5b3b07}{%
-           family={Nie{ß}ner},
-           familyi={N\bibinitperiod},
-           given={Matthias},
-           giveni={M\bibinitperiod}}}%
-        {{hash=ee8d212ba96ab9b80423488534d7574c}{%
-           family={Reid},
-           familyi={R\bibinitperiod},
-           given={Ian\bibnamedelima D.},
-           giveni={I\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=bf99ab76416eda8e5726a0557ac92583}{%
-           family={Chang},
-           familyi={C\bibinitperiod},
-           given={Angel\bibnamedelima X.},
-           giveni={A\bibinitperiod\bibinitdelim X\bibinitperiod}}}%
-        {{hash=0f12ecb2e7318477c4f945ff181c731c}{%
-           family={Laina},
+           given={Ruiying},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d14fb9fc1a879a52c7bd6ee81621347e}{%
+           family={Li},
            familyi={L\bibinitperiod},
-           given={Iro},
-           giveni={I\bibinitperiod}}}%
-        {{hash=df2287db73556489781ffe5f6fedd16d}{%
-           family={Prisacariu},
-           familyi={P\bibinitperiod},
-           given={Victor\bibnamedelima Adrian},
-           giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+           given={Kaiyuan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=706c60378032f3d137ca1e28814b7ffd}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Weichen},
+           giveni={W\bibinitperiod}}}%
+        {{hash=acfd991d98bf8417bf68be693cdfda52}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ce10870c303bf2f78994acd2df305b39}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Xinlei},
+           giveni={X\bibinitperiod}}}%
+        {{hash=78be8ea0cb80e4e1b59bf06100942e90}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yong},
+           giveni={Y\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {arXiv}%
       }
-      \strng{namehash}{cf2ec06dc7e480269ef0fb7221d2042c}
-      \strng{fullhash}{7b774e9d296559fa24566c86cb2f5ff7}
-      \strng{fullhashraw}{7b774e9d296559fa24566c86cb2f5ff7}
-      \strng{bibnamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
-      \strng{authorbibnamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
-      \strng{authornamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
-      \strng{authorfullhash}{7b774e9d296559fa24566c86cb2f5ff7}
-      \strng{authorfullhashraw}{7b774e9d296559fa24566c86cb2f5ff7}
+      \strng{namehash}{f70061de0d868a1990b54d3ffca5b97b}
+      \strng{fullhash}{89a9cbcb4e32d5898c053ab46d91451c}
+      \strng{fullhashraw}{89a9cbcb4e32d5898c053ab46d91451c}
+      \strng{bibnamehash}{89a9cbcb4e32d5898c053ab46d91451c}
+      \strng{authorbibnamehash}{89a9cbcb4e32d5898c053ab46d91451c}
+      \strng{authornamehash}{f70061de0d868a1990b54d3ffca5b97b}
+      \strng{authorfullhash}{89a9cbcb4e32d5898c053ab46d91451c}
+      \strng{authorfullhashraw}{89a9cbcb4e32d5898c053ab46d91451c}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{As large language models (LLMs) evolve, their integration with 3D spatial data (3D-LLMs) has seen rapid progress, offering unprecedented capabilities for understanding and interacting with physical spaces. This survey provides a comprehensive overview of the methodologies enabling LLMs to process, understand, and generate 3D data. Highlighting the unique advantages of LLMs, such as in-context learning, step-by-step reasoning, open-vocabulary capabilities, and extensive world knowledge, we underscore their potential to significantly advance spatial comprehension and interaction within embodied Artificial Intelligence (AI) systems. Our investigation spans various 3D data representations, from point clouds to Neural Radiance Fields (NeRFs). It examines their integration with LLMs for tasks such as 3D scene understanding, captioning, question-answering, and dialogue, as well as LLM-based agents for spatial reasoning, planning, and navigation. The paper also includes a brief review of other methods that integrate 3D and language. The meta-analysis presented in this paper reveals significant progress yet underscores the necessity for novel approaches to harness the full potential of 3D-LLMs. Hence, with this paper, we aim to chart a course for future research that explores and expands the capabilities of 3D-LLMs in understanding and interacting with the complex 3D world. To support this survey, we have established a project page where papers related to our topic are organized and listed: https://github.com/ActiveVisionLab/Awesome-LLM-3D.}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recently, 3D-LLMs, which combine point-cloud encoders with large models, have been proposed to tackle complex tasks in embodied intelligence and scene understanding. In addition to showing promising results on 3D tasks, we found that they are significantly affected by hallucinations. For instance, they may generate objects that do not exist in the scene or produce incorrect relationships between objects. To investigate this issue, this work presents the first systematic study of hallucinations in 3D-LLMs. We begin by quickly evaluating hallucinations in several representative 3D-LLMs and reveal that they are all significantly affected by hallucinations. We then define hallucinations in 3D scenes and, through a detailed analysis of datasets, uncover the underlying causes of these hallucinations. We find three main causes: (1) Uneven frequency distribution of objects in the dataset. (2) Strong correlations between objects. (3) Limited diversity in object attributes. Additionally, we propose new evaluation metrics for hallucinations, including Random Point Cloud Pair and Opposite Question Evaluations, to assess whether the model generates responses based on visual information and aligns it with the text's meaning.}
       \field{eprintclass}{cs}
       \field{eprinttype}{arXiv}
-      \field{month}{10}
-      \field{number}{arXiv:2405.10255}
-      \field{shorttitle}{When {{LLMs}} Step into the {{3D World}}}
-      \field{title}{When {{LLMs}} Step into the {{3D World}}: {{A Survey}} and {{Meta-Analysis}} of {{3D Tasks}} via {{Multi-modal Large Language Models}}}
-      \field{urlday}{3}
+      \field{month}{2}
+      \field{number}{arXiv:2502.15888}
+      \field{title}{Understanding and {{Evaluating Hallucinations}} in {{3D Visual Language Models}}}
+      \field{urlday}{18}
       \field{urlmonth}{4}
       \field{urlyear}{2026}
       \field{year}{2025}
       \field{urldateera}{ce}
       \verb{doi}
-      \verb 10.48550/arXiv.2405.10255
+      \verb 10.48550/arXiv.2502.15888
       \endverb
       \verb{eprint}
-      \verb 2405.10255
+      \verb 2502.15888
       \endverb
       \verb{file}
-      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\6CYK9G29\\Ma et al. - 2025 - When LLMs step into the 3D World A Survey and Meta-Analysis of 3D Tasks via Multi-modal Large Langu.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\JJCUI5G7\\2405.html
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\KH8JW83D\\Peng et al. - 2025 - Understanding and Evaluating Hallucinations in 3D Visual Language Models.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\2CWFBRAG\\2502.html
       \endverb
-      \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Robotics}
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
     \entry{baranAutomaticRiggingAnimation2007a}{article}{}{}
       \name{author}{2}{}{%
@@ -272,54 +198,6 @@
       \verb C:\Users\Friedrich Allenhof\Zotero\storage\ELUE8SF9\diss.html
       \endverb
       \keyw{Interaktivitat}
-    \endentry
-    \entry{kallmannModelingBehaviorsInteractive2002}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=562a66b76e9eb3a02cdc6d41d83ec791}{%
-           family={Kallmann},
-           familyi={K\bibinitperiod},
-           given={Marcelo},
-           giveni={M\bibinitperiod}}}%
-        {{hash=24f20de24938c18a3655f419579d0900}{%
-           family={Thalmann},
-           familyi={T\bibinitperiod},
-           given={Daniel},
-           giveni={D\bibinitperiod}}}%
-      }
-      \strng{namehash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{fullhash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{fullhashraw}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{bibnamehash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{authorbibnamehash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{authornamehash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{authorfullhash}{671ffc2f3034b382c916cdd0235b517f}
-      \strng{authorfullhashraw}{671ffc2f3034b382c916cdd0235b517f}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Real-time 3D graphics are being extensively used to build interactive virtual environments for a number of different applications. In many situations, virtual objects are required to exhibit complex behaviors, and the use of a versatile behavioral programming methodology is required.}
-      \field{issn}{1045926X}
-      \field{journaltitle}{Journal of Visual Languages \& Computing}
-      \field{langid}{english}
-      \field{month}{4}
-      \field{number}{2}
-      \field{title}{Modeling {{Behaviors}} of {{Interactive Objects}} for {{Real-Time Virtual Environments}}}
-      \field{urlday}{4}
-      \field{urlmonth}{4}
-      \field{urlyear}{2026}
-      \field{volume}{13}
-      \field{year}{2002}
-      \field{urldateera}{ce}
-      \field{pages}{177\bibrangedash 195}
-      \range{pages}{19}
-      \verb{doi}
-      \verb 10.1006/jvlc.2001.0229
-      \endverb
-      \verb{file}
-      \verb C:\Users\Friedrich Allenhof\Zotero\storage\22PRXVP2\Kallmann und Thalmann - 2002 - Modeling Behaviors of Interactive Objects for Real-Time Virtual Environments.pdf
-      \endverb
-      \keyw{Grundlagen,Interaktivitat,Transformation}
     \endentry
     \entry{steuerDefiningVirtualReality1992}{article}{}{}
       \name{author}{1}{}{%
@@ -1912,47 +1790,131 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition,Grundlagen,LLM}
     \endentry
-    \entry{hong3DLLMInjecting3D}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=29723243b35664faf149c74721c896b5}{%
-           family={Hong},
-           familyi={H\bibinitperiod},
-           given={Yining},
+    \entry{maWhenLLMsStep2025}{misc}{}{}
+      \name{author}{17}{}{%
+        {{hash=5c57c6be3b483a361611ec0e8b5bd313}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Xianzheng},
+           giveni={X\bibinitperiod}}}%
+        {{hash=5aab616f2d8f31799b61c2d814333225}{%
+           family={Smart},
+           familyi={S\bibinitperiod},
+           given={Brandon},
+           giveni={B\bibinitperiod}}}%
+        {{hash=11f430fc108589c2e0f93a961a3bd410}{%
+           family={Bhalgat},
+           familyi={B\bibinitperiod},
+           given={Yash},
            giveni={Y\bibinitperiod}}}%
-        {{hash=a53cbe9deb3a2cc09b60b3aeaff687fd}{%
-           family={Zhen},
-           familyi={Z\bibinitperiod},
-           given={Haoyu},
-           giveni={H\bibinitperiod}}}%
-        {{hash=5c590b5a00dacf1a9a71830417fc5529}{%
+        {{hash=b03fb8403d741095bd57e157d4d83017}{%
            family={Chen},
            familyi={C\bibinitperiod},
-           given={Peihao},
-           giveni={P\bibinitperiod}}}%
-        {{hash=317bdc1dca96a4e98a989a4d00c85a96}{%
-           family={Zheng},
-           familyi={Z\bibinitperiod},
-           given={Shuhong},
+           given={Shuai},
            giveni={S\bibinitperiod}}}%
+        {{hash=747bc95e3df3af252b9e677a830299b2}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Xinghui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=0ef29c0cdaa31e1b61d17e5d2445edf1}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f95f8e52f26228a6cd9bc0aaa6a1a1cc}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Jindong},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ee74db8655a57d3ff908603488f41e70}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Dave\bibnamedelima Zhenyu},
+           giveni={D\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+        {{hash=50cf323c42cc810f490f2ba9cbf452c0}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Songyou},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f68f5634d788ff2ee49ab87de8b4c63e}{%
+           family={Bian},
+           familyi={B\bibinitperiod},
+           given={Jia-Wang},
+           giveni={J\bibinithyphendelim W\bibinitperiod}}}%
+        {{hash=b0f82d24cd560d679b55a9850df1ffa4}{%
+           family={Torr},
+           familyi={T\bibinitperiod},
+           given={Philip\bibnamedelima H.},
+           giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=501629493a5ead2d23ee597103478ce8}{%
+           family={Pollefeys},
+           familyi={P\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3e07f51dbc36ece3b41bb5bcfe5b3b07}{%
+           family={Nie{ß}ner},
+           familyi={N\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ee8d212ba96ab9b80423488534d7574c}{%
+           family={Reid},
+           familyi={R\bibinitperiod},
+           given={Ian\bibnamedelima D.},
+           giveni={I\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=bf99ab76416eda8e5726a0557ac92583}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Angel\bibnamedelima X.},
+           giveni={A\bibinitperiod\bibinitdelim X\bibinitperiod}}}%
+        {{hash=0f12ecb2e7318477c4f945ff181c731c}{%
+           family={Laina},
+           familyi={L\bibinitperiod},
+           given={Iro},
+           giveni={I\bibinitperiod}}}%
+        {{hash=df2287db73556489781ffe5f6fedd16d}{%
+           family={Prisacariu},
+           familyi={P\bibinitperiod},
+           given={Victor\bibnamedelima Adrian},
+           giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
       }
-      \strng{namehash}{6049304451ef3c411c640dada98a4550}
-      \strng{fullhash}{751f86f85e4711a4b4d43079671a7753}
-      \strng{fullhashraw}{751f86f85e4711a4b4d43079671a7753}
-      \strng{bibnamehash}{751f86f85e4711a4b4d43079671a7753}
-      \strng{authorbibnamehash}{751f86f85e4711a4b4d43079671a7753}
-      \strng{authornamehash}{6049304451ef3c411c640dada98a4550}
-      \strng{authorfullhash}{751f86f85e4711a4b4d43079671a7753}
-      \strng{authorfullhashraw}{751f86f85e4711a4b4d43079671a7753}
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{cf2ec06dc7e480269ef0fb7221d2042c}
+      \strng{fullhash}{7b774e9d296559fa24566c86cb2f5ff7}
+      \strng{fullhashraw}{7b774e9d296559fa24566c86cb2f5ff7}
+      \strng{bibnamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
+      \strng{authorbibnamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
+      \strng{authornamehash}{cf2ec06dc7e480269ef0fb7221d2042c}
+      \strng{authorfullhash}{7b774e9d296559fa24566c86cb2f5ff7}
+      \strng{authorfullhashraw}{7b774e9d296559fa24566c86cb2f5ff7}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Large language models (LLMs) and Vision-Language Models (VLMs) have been proven to excel at multiple tasks, such as commonsense reasoning. Powerful as these models can be, they are not grounded in the 3D physical world, which involves richer concepts such as spatial relationships, affordances, physics, layout, and so on. In this work, we propose to inject the 3D world into large language models and introduce a whole new family of 3D-LLMs. Specifically, 3D-LLMs can take 3D point clouds and their features as input and perform a diverse set of 3D-related tasks, including captioning, dense captioning, 3D question answering, task decomposition, 3D grounding, 3D-assisted dialog, navigation, and so on. Using three types of prompting mechanisms that we design, we are able to collect over 1M 3D-language data covering these tasks. To efficiently train 3D-LLMs, we first utilize a 3D feature extractor that obtains 3D features from rendered multi-view images. Then, we use 2D VLMs as our backbones to train our 3D-LLMs. By introducing a 3D localization mechanism, 3D-LLMs can better capture 3D spatial information. Experiments on held-out evaluation dataset, ScanQA, SQA3D and 3DMV-VQA, outperform state-of-the-art baselines. In particular, experiments on ScanQA show that our model outperforms state-of-the-art baselines by a large margin (e.g., the BLEU-1 score surpasses state-of-the-art score by 9\%). Furthermore, experiments on our held-in datasets for 3D captioning, task composition, and 3D-assisted dialogue show that our model outperforms 2D VLMs. Qualitative examples also show that our model could perform more tasks beyond the scope of existing LLMs and VLMs. Project Page: : https://vis-www.cs.umass.edu/3dllm/.}
-      \field{langid}{english}
-      \field{title}{{{3D-LLM}}: {{Injecting}} the {{3D World}} into {{Large Language Models}}}
-      \verb{file}
-      \verb C:\Users\Friedrich Allenhof\Zotero\storage\CM5Y2EPV\Hong et al. - 3D-LLM Injecting the 3D World into Large Language Models.pdf
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{As large language models (LLMs) evolve, their integration with 3D spatial data (3D-LLMs) has seen rapid progress, offering unprecedented capabilities for understanding and interacting with physical spaces. This survey provides a comprehensive overview of the methodologies enabling LLMs to process, understand, and generate 3D data. Highlighting the unique advantages of LLMs, such as in-context learning, step-by-step reasoning, open-vocabulary capabilities, and extensive world knowledge, we underscore their potential to significantly advance spatial comprehension and interaction within embodied Artificial Intelligence (AI) systems. Our investigation spans various 3D data representations, from point clouds to Neural Radiance Fields (NeRFs). It examines their integration with LLMs for tasks such as 3D scene understanding, captioning, question-answering, and dialogue, as well as LLM-based agents for spatial reasoning, planning, and navigation. The paper also includes a brief review of other methods that integrate 3D and language. The meta-analysis presented in this paper reveals significant progress yet underscores the necessity for novel approaches to harness the full potential of 3D-LLMs. Hence, with this paper, we aim to chart a course for future research that explores and expands the capabilities of 3D-LLMs in understanding and interacting with the complex 3D world. To support this survey, we have established a project page where papers related to our topic are organized and listed: https://github.com/ActiveVisionLab/Awesome-LLM-3D.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{10}
+      \field{number}{arXiv:2405.10255}
+      \field{shorttitle}{When {{LLMs}} Step into the {{3D World}}}
+      \field{title}{When {{LLMs}} Step into the {{3D World}}: {{A Survey}} and {{Meta-Analysis}} of {{3D Tasks}} via {{Multi-modal Large Language Models}}}
+      \field{urlday}{3}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2405.10255
       \endverb
+      \verb{eprint}
+      \verb 2405.10255
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\6CYK9G29\\Ma et al. - 2025 - When LLMs step into the 3D World A Survey and Meta-Analysis of 3D Tasks via Multi-modal Large Langu.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\JJCUI5G7\\2405.html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Robotics}
     \endentry
     \entry{xuPointLLMEmpoweringLarge2025}{incollection}{}{}
       \name{author}{6}{}{%
@@ -2322,77 +2284,520 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition,Stand der Forschung}
     \endentry
-    \entry{pengUnderstandingEvaluatingHallucinations2025}{misc}{}{}
-      \name{author}{6}{}{%
-        {{hash=cdde7e16b64e5e5aa2d1f3beea6064cc}{%
-           family={Peng},
-           familyi={P\bibinitperiod},
-           given={Ruiying},
-           giveni={R\bibinitperiod}}}%
-        {{hash=d14fb9fc1a879a52c7bd6ee81621347e}{%
-           family={Li},
+    \entry{yangArtiWorldLLMDrivenArticulation2025}{misc}{}{}
+      \name{author}{7}{}{%
+        {{hash=5cdeb2a6ce4671d22a38ca4697a9ef7b}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Yixuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=feb06204199154c34f4a2f25ca2dfeb7}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Luyang},
+           giveni={L\bibinitperiod}}}%
+        {{hash=91e9d1ba56caddfa976cb918a516bbec}{%
+           family={Luo},
            familyi={L\bibinitperiod},
-           given={Kaiyuan},
-           giveni={K\bibinitperiod}}}%
-        {{hash=706c60378032f3d137ca1e28814b7ffd}{%
-           family={Zhang},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=10782ab0a174a088d08a1a76f43d5b64}{%
+           family={Zhao},
            familyi={Z\bibinitperiod},
-           given={Weichen},
-           giveni={W\bibinitperiod}}}%
-        {{hash=acfd991d98bf8417bf68be693cdfda52}{%
+           given={Zixiang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=4d40a8a04128d00ce9e8e5018777da32}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Tongsheng},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8f9bf6afb78b60a91741832f2d6bd689}{%
            family={Gao},
            familyi={G\bibinitperiod},
-           given={Chen},
-           giveni={C\bibinitperiod}}}%
-        {{hash=ce10870c303bf2f78994acd2df305b39}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Xinlei},
-           giveni={X\bibinitperiod}}}%
-        {{hash=78be8ea0cb80e4e1b59bf06100942e90}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Yong},
-           giveni={Y\bibinitperiod}}}%
+           given={Mingqi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c841a92ec3bde9f5b89623a93addd8bc}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Feng},
+           giveni={F\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {arXiv}%
       }
-      \strng{namehash}{f70061de0d868a1990b54d3ffca5b97b}
-      \strng{fullhash}{89a9cbcb4e32d5898c053ab46d91451c}
-      \strng{fullhashraw}{89a9cbcb4e32d5898c053ab46d91451c}
-      \strng{bibnamehash}{89a9cbcb4e32d5898c053ab46d91451c}
-      \strng{authorbibnamehash}{89a9cbcb4e32d5898c053ab46d91451c}
-      \strng{authornamehash}{f70061de0d868a1990b54d3ffca5b97b}
-      \strng{authorfullhash}{89a9cbcb4e32d5898c053ab46d91451c}
-      \strng{authorfullhashraw}{89a9cbcb4e32d5898c053ab46d91451c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \strng{namehash}{d731b386124649bfa54de125acb9b0fa}
+      \strng{fullhash}{441682e59501ffe29908fc0a3e6a246f}
+      \strng{fullhashraw}{441682e59501ffe29908fc0a3e6a246f}
+      \strng{bibnamehash}{d731b386124649bfa54de125acb9b0fa}
+      \strng{authorbibnamehash}{d731b386124649bfa54de125acb9b0fa}
+      \strng{authornamehash}{d731b386124649bfa54de125acb9b0fa}
+      \strng{authorfullhash}{441682e59501ffe29908fc0a3e6a246f}
+      \strng{authorfullhashraw}{441682e59501ffe29908fc0a3e6a246f}
+      \field{extraname}{3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Recently, 3D-LLMs, which combine point-cloud encoders with large models, have been proposed to tackle complex tasks in embodied intelligence and scene understanding. In addition to showing promising results on 3D tasks, we found that they are significantly affected by hallucinations. For instance, they may generate objects that do not exist in the scene or produce incorrect relationships between objects. To investigate this issue, this work presents the first systematic study of hallucinations in 3D-LLMs. We begin by quickly evaluating hallucinations in several representative 3D-LLMs and reveal that they are all significantly affected by hallucinations. We then define hallucinations in 3D scenes and, through a detailed analysis of datasets, uncover the underlying causes of these hallucinations. We find three main causes: (1) Uneven frequency distribution of objects in the dataset. (2) Strong correlations between objects. (3) Limited diversity in object attributes. Additionally, we propose new evaluation metrics for hallucinations, including Random Point Cloud Pair and Opposite Question Evaluations, to assess whether the model generates responses based on visual information and aligns it with the text's meaning.}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Building interactive simulators and scalable robot-learning environments requires a large number of articulated assets. However, most existing 3D assets in simulation are rigid, and manually converting them into articulated objects is extremely labor- and cost-intensive. This raises a natural question: can we automatically identify articulable objects in a scene and convert them into articulated assets directly? In this paper, we present ArtiWorld, a scene-aware pipeline that localizes candidate articulable objects from textual scene descriptions and reconstructs executable URDF models that preserve the original geometry. At the core of this pipeline is Arti4URDF, which leverages 3D point cloud, prior knowledge of a large language model (LLM), and a URDF-oriented prompt design to rapidly convert rigid objects into interactive URDF-based articulated objects while maintaining their 3D shape. We evaluate ArtiWorld at three levels: 3D simulated objects, full 3D simulated scenes, and real-world scan scenes. Across all three settings, our method consistently outperforms existing approaches and achieves state-of-the-art performance, while preserving object geometry and correctly capturing object interactivity to produce usable URDF-based articulated models. This provides a practical path toward building interactive, robot-ready simulation environments directly from existing 3D assets. Code and data will be released.}
       \field{eprintclass}{cs}
       \field{eprinttype}{arXiv}
-      \field{month}{2}
-      \field{number}{arXiv:2502.15888}
-      \field{title}{Understanding and {{Evaluating Hallucinations}} in {{3D Visual Language Models}}}
-      \field{urlday}{18}
+      \field{month}{11}
+      \field{number}{arXiv:2511.12977}
+      \field{shorttitle}{{{ArtiWorld}}}
+      \field{title}{{{ArtiWorld}}: {{LLM-Driven Articulation}} of {{3D Objects}} in {{Scenes}}}
+      \field{urlday}{20}
       \field{urlmonth}{4}
       \field{urlyear}{2026}
       \field{year}{2025}
       \field{urldateera}{ce}
       \verb{doi}
-      \verb 10.48550/arXiv.2502.15888
+      \verb 10.48550/arXiv.2511.12977
       \endverb
       \verb{eprint}
-      \verb 2502.15888
+      \verb 2511.12977
       \endverb
       \verb{file}
-      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\KH8JW83D\\Peng et al. - 2025 - Understanding and Evaluating Hallucinations in 3D Visual Language Models.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\2CWFBRAG\\2502.html
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\C7QZHCRS\\Yang et al. - 2025 - ArtiWorld LLM-Driven Articulation of 3D Objects in Scenes.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\WA9QFI58\\2511.html
       \endverb
-      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Stand der Forschung}
+    \endentry
+    \entry{chenURDFormerPipelineConstructing2024}{misc}{}{}
+      \name{author}{9}{}{%
+        {{hash=1fc996d9210c2c51e90f6705fd3e8bbe}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zoey},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=f571e0d4459c5c9eff124e8228ca1f6b}{%
+           family={Walsman},
+           familyi={W\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5a755896f453de164878daeb9ee29b41}{%
+           family={Memmel},
+           familyi={M\bibinitperiod},
+           given={Marius},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ce269ba9b32a7c6dcce7eab2ff5efb52}{%
+           family={Mo},
+           familyi={M\bibinitperiod},
+           given={Kaichun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5ec8a5dce7798a0c0cffd937826f9bde}{%
+           family={Fang},
+           familyi={F\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=035eca9d0a934fecda55c8beac278c2e}{%
+           family={Vemuri},
+           familyi={V\bibinitperiod},
+           given={Karthikeya},
+           giveni={K\bibinitperiod}}}%
+        {{hash=648dae1397b385d5c08a003e50806d36}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=93b0c4a7857a82a8f94e256475887c74}{%
+           family={Fox},
+           familyi={F\bibinitperiod},
+           given={Dieter},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d0792eb04b685020eafedbc871aeb84f}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Abhishek},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{d60a4b82baa05c7aa84436505bf9ed2a}
+      \strng{fullhash}{4068671f488f4a684db3db21407b14c0}
+      \strng{fullhashraw}{4068671f488f4a684db3db21407b14c0}
+      \strng{bibnamehash}{d60a4b82baa05c7aa84436505bf9ed2a}
+      \strng{authorbibnamehash}{d60a4b82baa05c7aa84436505bf9ed2a}
+      \strng{authornamehash}{d60a4b82baa05c7aa84436505bf9ed2a}
+      \strng{authorfullhash}{4068671f488f4a684db3db21407b14c0}
+      \strng{authorfullhashraw}{4068671f488f4a684db3db21407b14c0}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Constructing simulation scenes that are both visually and physically realistic is a problem of practical interest in domains ranging from robotics to computer vision. This problem has become even more relevant as researchers wielding large data-hungry learning methods seek new sources of training data for physical decision-making systems. However, building simulation models is often still done by hand. A graphic designer and a simulation engineer work with predefined assets to construct rich scenes with realistic dynamic and kinematic properties. While this may scale to small numbers of scenes, to achieve the generalization properties that are required for data-driven robotic control, we require a pipeline that is able to synthesize large numbers of realistic scenes, complete with 'natural' kinematic and dynamic structures. To attack this problem, we develop models for inferring structure and generating simulation scenes from natural images, allowing for scalable scene generation from web-scale datasets. To train these image-to-simulation models, we show how controllable text-to-image generative models can be used in generating paired training data that allows for modeling of the inverse problem, mapping from realistic images back to complete scene models. We show how this paradigm allows us to build large datasets of scenes in simulation with semantic and physical realism. We present an integrated end-to-end pipeline that generates simulation scenes complete with articulated kinematic and dynamic structures from real-world images and use these for training robotic control policies. We then robustly deploy in the real world for tasks like articulated object manipulation. In doing so, our work provides both a pipeline for large-scale generation of simulation environments and an integrated system for training robust robotic control policies in the resulting environments.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{5}
+      \field{number}{arXiv:2405.11656}
+      \field{shorttitle}{{{URDFormer}}}
+      \field{title}{{{URDFormer}}: {{A Pipeline}} for {{Constructing Articulated Simulation Environments}} from {{Real-World Images}}}
+      \field{urlday}{20}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2405.11656
+      \endverb
+      \verb{eprint}
+      \verb 2405.11656
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\923M5JQF\\Chen et al. - 2024 - URDFormer A Pipeline for Constructing Articulated Simulation Environments from Real-World Images.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\JHUVB3XT\\2405.html
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Robotics,Stand der Forschung}
+    \endentry
+    \entry{zhaoSurveyLargeLanguage2026a}{misc}{}{}
+      \name{author}{22}{}{%
+        {{hash=64942cca497eff6cd6c5b264afdc5dd6}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Wayne\bibnamedelima Xin},
+           giveni={W\bibinitperiod\bibinitdelim X\bibinitperiod}}}%
+        {{hash=09d5d500b34786c94a128e6f131300c6}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=0da53871c5bda3ae9ea7b5d31b6a8874}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Junyi},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e2be20b0e2f21891a3e428cfe3aa7546}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Tianyi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=66a2746de95223ec2e9e78a901ee1cf8}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaolei},
+           giveni={X\bibinitperiod}}}%
+        {{hash=678f15f5b4dbc1aaed429148209c1670}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Yupeng},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=8562df4cc1bfda084b6452e14b97695f}{%
+           family={Min},
+           familyi={M\bibinitperiod},
+           given={Yingqian},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=66e96b863923db3bc1db16a09cac3390}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Beichen},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c8c6aaec4b7602bed8057718ff85cf50}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Junjie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e9c75837177b3f19580db0d34a05273}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Zican},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=8b52fd6470026437f20bf1d0e1302c61}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7c12c6bb81a430b19d464d25687cbb9c}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e6a4c63d4fa7aa7e88a4945488e9e901}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yushuo},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d7c54e1ab3bee583739e4680a3468f41}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhipeng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=cc99c740260c641786a83c5c0f63f879}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Jinhao},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e264ac8fc96cdfd270409514441211ba}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Ruiyang},
+           giveni={R\bibinitperiod}}}%
+        {{hash=de4f40f58ec11067811bb3cfff116450}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=b26374d4fa3f66d7e5b787db7f8b46fc}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Xinyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=eb761f0ec974830dfebae92d776d3bbe}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zikang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=309831086a45c94ff1c5e5627e77920a}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Peiyu},
+           giveni={P\bibinitperiod}}}%
+        {{hash=249bb150525fcf94fd8a35571a611e24}{%
+           family={Nie},
+           familyi={N\bibinitperiod},
+           given={Jian-Yun},
+           giveni={J\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=5ff29ba5ea8e6fdd73a84f998eec45f2}{%
+           family={Wen},
+           familyi={W\bibinitperiod},
+           given={Ji-Rong},
+           giveni={J\bibinithyphendelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
+      \strng{fullhash}{6e1e8e169a53770141a3c2e593b18acb}
+      \strng{fullhashraw}{6e1e8e169a53770141a3c2e593b18acb}
+      \strng{bibnamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
+      \strng{authorbibnamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
+      \strng{authornamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
+      \strng{authorfullhash}{6e1e8e169a53770141a3c2e593b18acb}
+      \strng{authorfullhashraw}{6e1e8e169a53770141a3c2e593b18acb}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable AI algorithms for comprehending and grasping a language. As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models. Recently, pre-trained language models (PLMs) have been proposed by pre-training Transformer models over large-scale corpora, showing strong capabilities in solving various NLP tasks. Since researchers have found that model scaling can lead to performance improvement, they further study the scaling effect by increasing the model size to an even larger size. Interestingly, when the parameter scale exceeds a certain level, these enlarged language models not only achieve a significant performance improvement but also show some special abilities that are not present in small-scale language models. To discriminate the difference in parameter scale, the research community has coined the term large language models (LLM) for the PLMs of significant size. Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT, which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. In this survey, we review the recent advances of LLMs by introducing the background, key findings, and mainstream techniques. In particular, we focus on four major aspects of LLMs, namely pre-training, adaptation tuning, utilization, and capacity evaluation. Besides, we also summarize the available resources for developing LLMs and discuss the remaining issues for future directions.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{3}
+      \field{number}{arXiv:2303.18223}
+      \field{title}{A {{Survey}} of {{Large Language Models}}}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2303.18223
+      \endverb
+      \verb{eprint}
+      \verb 2303.18223
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\J2BNV6QZ\\Zhao et al. - 2026 - A Survey of Large Language Models.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\8JGSUWWJ\\2303.html
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Grundlagen,LLM}
+    \endentry
+    \entry{hong3DLLMInjecting3D2023}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=29723243b35664faf149c74721c896b5}{%
+           family={Hong},
+           familyi={H\bibinitperiod},
+           given={Yining},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a53cbe9deb3a2cc09b60b3aeaff687fd}{%
+           family={Zhen},
+           familyi={Z\bibinitperiod},
+           given={Haoyu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=5c590b5a00dacf1a9a71830417fc5529}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Peihao},
+           giveni={P\bibinitperiod}}}%
+        {{hash=317bdc1dca96a4e98a989a4d00c85a96}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Shuhong},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0292e43cebfdbcde9e20aa4fdbe17700}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yilun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0c9f3b1eac14549cc1560ec4d510e561}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhenfang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=97044e575d3c0a3dd2551779810add07}{%
+           family={Gan},
+           familyi={G\bibinitperiod},
+           given={Chuang},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6049304451ef3c411c640dada98a4550}
+      \strng{fullhash}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{fullhashraw}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{bibnamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authorbibnamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authornamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authorfullhash}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{authorfullhashraw}{9f1ba25a05246e102485a7262b8f065a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{shorttitle}{{{3D-LLM}}}
+      \field{title}{{{3D-LLM}}: {{Injecting}} the {{3D World}} into {{Large Language Models}}}
+      \field{urlday}{4}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{36}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{20482\bibrangedash 20494}
+      \range{pages}{13}
+      \verb{file}
+      \verb C:\Users\Friedrich Allenhof\Zotero\storage\7AUXBYPD\Hong et al. - 2023 - 3D-LLM Injecting the 3D World into Large Language Models.pdf
+      \endverb
+    \endentry
+    \entry{zhangLostintheMiddleLongTextGeneration2025}{misc}{}{}
+      \name{author}{6}{}{%
+        {{hash=958e61c90ccf350a28455db30258f291}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Junhao},
+           giveni={J\bibinitperiod}}}%
+        {{hash=407991508af70d8d4f43a43402ec4cb1}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Richong},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0fe2d44a2077da47974763751d6eb923}{%
+           family={Kong},
+           familyi={K\bibinitperiod},
+           given={Fanshuang},
+           giveni={F\bibinitperiod}}}%
+        {{hash=2f976a5e9f96b68ee9a0626f6a2492d0}{%
+           family={Miao},
+           familyi={M\bibinitperiod},
+           given={Ziyang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=ca8a89f463911ad330c23f97384d9c53}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Yanhan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d649f27af3e8a35e6534c1d9ef16afe5}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Yaowei},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{9aee918d85b07949dabbcaa907c2ddc7}
+      \strng{fullhash}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \strng{fullhashraw}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \strng{bibnamehash}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \strng{authorbibnamehash}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \strng{authornamehash}{9aee918d85b07949dabbcaa907c2ddc7}
+      \strng{authorfullhash}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \strng{authorfullhashraw}{e56956dc7a8ae7b6092b4768cb6b9492}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Existing long-text generation methods primarily concentrate on producing lengthy texts from short inputs, neglecting the long-input and long-output tasks. Such tasks have numerous practical applications while lacking available benchmarks. Moreover, as the input grows in length, existing methods inevitably encounter the "lost-in-the-middle" phenomenon. In this paper, we first introduce a Long Input and Output Benchmark (LongInOutBench), including a synthetic dataset and a comprehensive evaluation framework, addressing the challenge of the missing benchmark. We then develop the Retrieval-Augmented Long-Text Writer (RAL-Writer), which retrieves and restates important yet overlooked content, mitigating the "lost-in-the-middle" issue by constructing explicit prompts. We finally employ the proposed LongInOutBench to evaluate our RAL-Writer against comparable baselines, and the results demonstrate the effectiveness of our approach. Our code has been released at https://github.com/OnlyAR/RAL-Writer.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{3}
+      \field{number}{arXiv:2503.06868}
+      \field{shorttitle}{Lost-in-the-{{Middle}} in {{Long-Text Generation}}}
+      \field{title}{Lost-in-the-{{Middle}} in {{Long-Text Generation}}: {{Synthetic Dataset}}, {{Evaluation Framework}}, and {{Mitigation}}}
+      \field{urlday}{30}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2503.06868
+      \endverb
+      \verb{eprint}
+      \verb 2503.06868
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\4KJFZVY3\\Zhang et al. - 2025 - Lost-in-the-Middle in Long-Text Generation Synthetic Dataset, Evaluation Framework, and Mitigation.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\ZU6BATLG\\2503.html
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,LLM}
+    \endentry
+    \entry{suMultiviewConvolutionalNeural2015}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=3768537b732a0e6eeac046def7c74b4c}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Hang},
+           giveni={H\bibinitperiod}}}%
+        {{hash=3c6def250ff49e3d8dad17ad51965fdc}{%
+           family={Maji},
+           familyi={M\bibinitperiod},
+           given={Subhransu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b1412d0c805188499cfdc5f303262266}{%
+           family={Kalogerakis},
+           familyi={K\bibinitperiod},
+           given={Evangelos},
+           giveni={E\bibinitperiod}}}%
+        {{hash=de3ad0d5f8e0a8955e452a775a27ed62}{%
+           family={{Learned-Miller}},
+           familyi={L\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Santiago, Chile}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{7cdaa1addb0828472178d44cb7b16a93}
+      \strng{fullhash}{1004248cc768c3da0014a5e6f2f998b3}
+      \strng{fullhashraw}{1004248cc768c3da0014a5e6f2f998b3}
+      \strng{bibnamehash}{1004248cc768c3da0014a5e6f2f998b3}
+      \strng{authorbibnamehash}{1004248cc768c3da0014a5e6f2f998b3}
+      \strng{authornamehash}{7cdaa1addb0828472178d44cb7b16a93}
+      \strng{authorfullhash}{1004248cc768c3da0014a5e6f2f998b3}
+      \strng{authorfullhashraw}{1004248cc768c3da0014a5e6f2f998b3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A longstanding question in computer vision concerns the representation of 3D shapes for recognition: should 3D shapes be represented with descriptors operating on their native 3D formats, such as voxel grid or polygon mesh, or can they be effectively represented with view-based descriptors? We address this question in the context of learning to recognize 3D shapes from a collection of their rendered views on 2D images. We first present a standard CNN architecture trained to recognize the shapes' rendered views independently of each other, and show that a 3D shape can be recognized even from a single view at an accuracy far higher than using state-of-the-art 3D shape descriptors. Recognition rates further increase when multiple views of the shapes are provided. In addition, we present a novel CNN architecture that combines information from multiple views of a 3D shape into a single and compact shape descriptor offering even better recognition performance. The same architecture can be applied to accurately recognize human hand-drawn sketches of shapes. We conclude that a collection of 2D views can be highly informative for 3D shape recognition and is amenable to emerging CNN architectures and their derivatives.}
+      \field{booktitle}{2015 {{IEEE International Conference}} on {{Computer Vision}} ({{ICCV}})}
+      \field{isbn}{978-1-4673-8391-2}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{title}{Multi-View {{Convolutional Neural Networks}} for {{3D Shape Recognition}}}
+      \field{urlday}{2}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{945\bibrangedash 953}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/ICCV.2015.114
+      \endverb
+      \verb{file}
+      \verb C:\Users\Friedrich Allenhof\Zotero\storage\5QWYEQT7\Su et al. - 2015 - Multi-view Convolutional Neural Networks for 3D Shape Recognition.pdf
+      \endverb
     \endentry
   \enddatalist
+  \missing{hong3DLLMInjecting3D}
 \endrefsection
 \endinput
 

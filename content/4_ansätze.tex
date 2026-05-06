@@ -1,0 +1,113 @@
+\chapter{Systemkonzeption und Architekturentscheidungen}\label{ch:systemkonzeption}
+
+Im Folgenden wird der in dieser Arbeit entwickelte Ansatz als~\textit{Vivian Specification Generator} (VSG) bezeichnet.
+
+\section{Anforderungsanalyse}
+
+Im Mittelpunkt steht die Analyse vorhandener Szenendaten, die Wiederverwendung vorhandener Geometrien, die Erzeugung Vivian-kompatibler Spezifikationen, die niedrigschwellige Eingabe gewünschter Interaktionen sowie die frühzeitige Erkennung und Korrektur syntaktischer, semantischer sowie referenzieller Fehler.
+Zur Nachvollziehbarkeit wurden die Anforderungen in funktionale Anforderungen (A), nicht-funktionale Anforderungen (N) sowie domänenspezifische Anforderungen (D) unterteilt.
+
+\subsection{Funktionale Anforderungen}
+
+\begin{itemize}
+    \item \textbf{A1:} Der VSG soll aus bestehenden Szenenrepräsentationen und natürlichsprachlichen Interaktionsbeschreibungen Vivian-Spezifikationsdateien erzeugen, die alle für die beschriebene Interaktion notwendigen Interaktionselemente, Visualisierungselemente, Zustände und Übergänge enthalten.
+    \item \textbf{A2:} Relevante Objekte und Teilobjekte sollen vom VSG explizit identifiziert und Rollen zugeordnet werden, sodass diese eindeutig über Namensreferenzen in den Vivian-Spezifikationen referenziert werden können.
+    \item \textbf{A3:} Der VSG soll erzeugte Spezifikationen syntaktisch, semantisch und referenziell prüfen. A3 operationalisiert P3.
+    \item \textbf{A4:} Der VSG soll im Generierungsprozess erkannte Fehler in einem begrenzten Korrekturprozess erneut an die zuständigen Verarbeitungsschritte zurückführen. A4 adressiert erneut P3.
+    \item \textbf{A5:} Um Szeneninterpretationen überprüfen und gegebenenfalls korrigieren zu können, soll ein Human-in-the-Loop-Schritt implementiert werden, um Nutzer*innen die Möglichkeit zur Prüfung und Korrektur des Interaktionsplans zu geben, bevor aus diesem eine Spezifikation erzeugt wird. Hier wird P3 adressiert und zu Teilen auch P1, da so die Kontrollierbarkeit durch Eingaben auch nicht-technischer Nutzer*innen erhöht wird.
+    \item \textbf{A6:} Der VSG soll es Nutzer*innen ermöglichen, gewünschte Interaktionen natürlichsprachlich zu beschreiben, ohne dass Vivian-Spezifikationen manuell erstellt oder bearbeitet werden müssen. A6 operationalisiert P1 durch Verwendung der natürlichen Sprache.
+\end{itemize}
+
+\subsection{Nicht-funktionale Anforderungen}
+
+\begin{itemize}
+    \item \textbf{N1:} Der VSG soll einzelne Verarbeitungsschritte kapseln, sodass Zwischenartefakte separat validiert und bei Fehlern gezielt erneut erzeugt werden können.
+    \item \textbf{N2:} Zwischenartefakte und Entscheidungen des VSG sollen protokolliert und abgespeichert werden, sodass der Generierungs- und Korrekturprozess nachvollzogen werden kann.
+    \item \textbf{N3:} Die Implementierung des VSG soll so erweiterbar sein, dass zusätzliche Module ergänzt oder bestehende ersetzt werden können, ohne die Gesamtarchitektur grundlegend zu verändern.
+\end{itemize}
+
+
+\subsection{Domänenspezifische Anforderungen}
+\begin{itemize}
+    \item \textbf{D1:} Der VSG erzeugt Vivian-Spezifikationsdateien, welche dem von Vivian erwarteten Dateiaufbau, den erlaubten Elementtypen, den Pflichtfeldern sowie zulässigen Wertebereichen entsprechen müssen.
+
+    \item \textbf{D2:} Der VSG darf vorhandene Geometrien und Szenenhierarchien nicht neu generieren oder ersetzen, sondern ausschließlich durch semantische und verhaltensbezogene Spezifikationen ergänzen.
+
+    \item \textbf{D3:} Die erzeugten Bezeichner für Interaktionselemente, Visualisierungselemente, Zustände, Übergänge und Objekt-Referenzen müssen eindeutig sein.
+
+    \item \textbf{D4:} Jede Referenz in Zuständen, Übergängen, Events, Guards und Elementdefinitionen von Interaktionselementen sowie Visualisierungselementen muss auf ein vorhandenes Szenenobjekt oder ein vorhandenes Element der Spezifikation verweisen.
+
+    \item\textbf{D5:} Die generierte Spezifikation gilt als erfolgreich erzeugt, wenn sie in Unity mit dem Vivian Framework importiert und ohne Validierungsfehler ausgeführt werden kann.
+\end{itemize}
+
+Die Anforderungen D1-D5 ergeben sich aus der Verwendung des Vivian-Frameworks. So kann sichergestellt werden, dass Spezifikationen ausführbar erstellt werden und die gewünschte Interaktion mit einem 3D-Objekt ermöglichen.
+
+
+% Wie detailliert hier den alten Ansatz erläutern?
+
+% später ausformulieren: was macht diesen entwurf aus? Diagramm hinzufügen 
+% übergang zu eigentlicher Architektur
+
+% \begin{itemize}
+% \item \textbf{Z1:} Entwicklung einer mehrstufigen Agenten-Architektur zur Zerlegung der Spezifikationsgenerierung in klar abgegrenzte Teilaufgaben.
+% \item \textbf{Z2:} Entwicklung eines Systems zur automatisierten Erzeugung Vivian-kompatibler Spezifikationen aus Szenendaten und Sprache
+% \item \textbf{Z3:} Integration von Validierungs- und Selbstkorrekturmechanismen zur Verbesserung syntaktischer und semantischer Konsistenz.
+% \item \textbf{Z4:} Einbindung eines Human-in-the-Loop-Schritts zur Prüfung und Korrektur unklarer Szeneninterpretationen.
+% \item \textbf{Z5:} Nutzer*innen sollen gewünschte Interaktionen durch Eingabe natürlicher Sprache spezifizieren können.
+% \end{itemize}
+
+% \begin{table}[h]
+%     \centering
+%     \caption{Übersicht der Anforderungen an den VSG}
+%     \label{tab:anforderungen}
+%     \begin{tabular}{ll}
+%         \toprule
+%         \textbf{\#} & \textbf{Anforderung} \\
+%         \midrule
+%         A1          & XXX                  \\
+%         A2          & XXX                  \\
+%         A3          & XXX                  \\
+%         A4          & XXX                  \\
+%         A5          & XXX                  \\
+%         \midrule
+%         N1          & XXX                  \\
+%         N2          & XXX                  \\
+%         N3          & XXX                  \\
+%         \midrule
+%         D1          & XXX                  \\
+%         D2          & XXX                  \\
+%         D3          & XXX                  \\
+%         D4          & XXX                  \\
+%         D5          & XXX                  \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+\section{Untersuchte Architekturansätze}
+
+Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel der Generierung einer vollständigen Spezifikation nach Vivian zu erreichen.
+%vervollständigen: Diese werden nachfolgend aufgeführt und erklärt. welcher dann genommen wurde und grob warum
+
+\subsection{Manager-gesteuerter Multi-Agenten-Ansatz}
+%Umbenennen in "Vorgängeransatz: Manager-getriebenes Multi-Agenten-System" ?
+
+In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (Tools) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (Handoff), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
+%TODO Quelle hinzufügen
+
+Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
+Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Weiterhin wurde ein Bestätigungsschritt implementiert, bei dem Benutzer*innen das Ergebnis des Szenenanalyse-Moduls prüfen können.
+
+Im ersten Implementierungsdurchlauf zeigte sich, dass der Manager-getriebene Ansatz besonders bei dateiübergreifenden Referenzen und der konsistenten Benennung von Elementen zu Fehlern führte.
+Da der Manager-Agent eigenständig entscheidet, welche untergeordneten Agenten er aufruft, konnten Zwischenergebnisse nicht validiert werden und Fehler sind erst am Ende des Generierungsprozesses aufgefallen.
+Daher wurde dieser Ansatz zugunsten eines deterministischen modularen Workflows verworfen.
+
+\subsection{Begründung des modularen Workflow-Ansatzes}
+
+Die Architektur des zweiten Implementierungsdurchlaufs folgt dem Ansatz eines modularen Workflows, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können, ohne die Gesamtarchitektur grundlegend zu verändern (siehe N3).
+Diese modulare Trennung adressiert N1 und folgt dem in~\ref{ch:stand_der_forschung} beschriebenen Ansatz von LLMR, welches ebenfalls einen modularen Aufbau verwendet~\cite{delatorreLLMRRealtimePrompting2024}.
+Jedes der in Abbildung~\ref{fig:containerdiagramm_vsg} aufgeführten Module adressiert eine spezifische Teilaufgabe innerhalb des gesamten Prozesses, wodurch der Informationsfluss gesteuert werden kann und nachvollziehbar bleibt.
+Der VSG besteht im Wesentlichen aus den Modulen Scene Analyzer, Interaction Planner, Specification Generator, Consistency Reviewer und Validator.
+
+Bei einfachen LLM-Aufrufen sinkt empirisch die Regelbefolgung bei wachsender Länge und Abhängigkeit strukturierter Ausgaben, sodass halluzinierte Referenzen und unzulässige Elementtypen kaum vermeidbar wären~\cite{zhangLostintheMiddleLongTextGeneration2025}.
+Ein einzelner LLM-Aufruf wäre somit nicht ausreichend -- er müsste fünf referenzierende Spezifikationsdateien gleichzeitig konsistent erzeugen und währenddessen sicherstellen, dass jeder Vivian-Elementtyp die in der Szene tatsächlich vorhandenen Unity-Komponenten besitzt.
+Durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung ermöglicht die hier vorgestellte Pipeline die Erzeugung korrekter Spezifikationen nach Vivian.
+Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden.

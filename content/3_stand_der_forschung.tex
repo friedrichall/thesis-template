@@ -2,12 +2,12 @@
 
 Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
 Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
-Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das Grounding, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025, hong3DLLMInjecting3D}.
+Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das Grounding, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
 Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (Grounding) zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
 
 \paragraph{3D-LLMs für 3D-Verstehen.}
 
-In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist. Dadurch können Aufgaben wie 3D-Captioning, 3D-Fragebeantwortung, Grounding, Dialog oder Navigation bearbeitet werden und relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D,xuPointLLMEmpoweringLarge2025}.
+In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist. Dadurch können Aufgaben wie 3D-Captioning, 3D-Fragebeantwortung, Grounding, Dialog oder Navigation bearbeitet werden und relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
 
 \paragraph{LLM-gestützte Pipelines zur Szenengenerierung und -bearbeitung.}
 
@@ -17,7 +17,8 @@ Das Framework LLMR nutzt für die Generierung von interaktiven Szenen einen modu
 HOLODECK verfolgt einen stärker szenenzentrierten Ansatz und zerlegt die Generierung einer Szene in einzelne Schritte für Grundrisse, Materialien, Fenster und Türen, Objektauswahl sowie räumliche Anordnung.
 Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (Embodied-AI) und platziert durch ein Constraint-basiertes Verfahren Objekte räumlich plausibel im Raum~\cite{yangHolodeckLanguageGuided2024}.
 
-\section{Artikulierung von statischen Objekte}
+\section{Artikulierung von statischen Objekten}
+%TODO Artikulation ersetzen
 
 Für die Transformation statischer in interaktive Objekte sind objekt- und szenenzentrierte Ansätze besonders relevant.
 ArtLLM wandelt eine Punktwolke in eine Abfolge von Tokens um, die vom Modell nacheinander generiert werden.
@@ -47,9 +48,11 @@ Er zeigt die Kombination aus expliziten Raumdaten in Form von strukturellen Repr
 In diesem Kontext ist die vorliegende Arbeit nicht primär als Verfahren zur Geometrie- oder Szenengenerierung einzuordnen, sondern als semantisch-verhaltensbezogener Ansatz zur Ableitung möglicher Interaktionen aus vorhandenen 3D-Szenen.
 Der wissenschaftliche Beitrag liegt hier somit in der multimodalen Analyse vorhandener 3D-Szenen und in der Überführung dieser in maschinenlesbare Spezifikationen für das Vivian Framework, mit welchen statische 3D-Objekte automatisiert interaktiv gemacht, und Geometrien wiederverwendet werden können.
 
-\section{Zentrale Problemfelder und Forschungslücke}
+\section{Forschungslücke}
 
-Aufbauend auf den in Kapitel~\ref{ch:einführung} aufgeführten Problemstellungen und Forschungsfragen, dem Stand der Forschung sowie den in~\ref{sec:vivian_framework} beschriebenen technischen Randbedingungen des Vivian-Frameworks werden zunächst zentrale Problemfelder identifiziert, die durch das in dieser Arbeit implementierte System adressiert werden sollen. Wie in der Problemstellung gezeigt, besitzen statische 3D-Objekte an sich zwar geometrische und visuelle Informationen, aber keine explizite Interaktionssemantik. Gleichzeitig erschwert manuelles Vorgehen in der Erstellung interaktiver Prototypen nicht-technischen Nutzer*innen den Zugang zu dieser.
+Aufbauend auf den in Kapitel~\ref{ch:einführung} aufgeführten Problemstellungen und Forschungsfragen, dem Stand der Forschung sowie den in~\ref{sec:vivian_framework} beschriebenen technischen Randbedingungen des Vivian-Frameworks werden zunächst zentrale Problemfelder identifiziert, die durch das in dieser Arbeit implementierte System adressiert werden sollen.
+Wie in der Problemstellung gezeigt, besitzen statische 3D-Objekte an sich zwar geometrische und visuelle Informationen, aber keine explizite Interaktionssemantik.
+Gleichzeitig erschwert manuelles Vorgehen in der Erstellung interaktiver Prototypen nicht-technischen Nutzer*innen den Zugang zu dieser.
 Vivian setzt außerdem voraus, dass Interaktionsverhalten in eine formal korrekte, maschinenlesbare Spezifikation aus Interaktionselementen, Visualisierungselementen, Zuständen und Übergängen überführt wird.
 Da LLM-gestützte Verfahren fehleranfällig sein können~\cite{zhaoSurveyLargeLanguage2026a}, müssen syntaktische, semantische und referenzielle Fehler zudem bereits vor der Laufzeit erkannt und korrigiert werden.
 
@@ -58,8 +61,8 @@ Die Anforderungen an die in dieser Arbeit implementierte Pipeline werden im Folg
 
 \textbf{P1: Hohe Einstiegshürde für nicht-technische Nutzer*innen.} Die Erstellung interaktiver Prototypen setzt oft Kenntnisse in der Programmierung oder 3D-Modellierung voraus. LLMR zeigt, dass natürliche Sprache zur Erstellung und Modifikation von interaktiven 3D-Szenen genutzt werden kann, es aber zudem spezialisierter Module wie Scene Analyzer, Planner, Builder und Inspector bedarf, da ein einfaches LLM für die interaktive Szenenerstellung nicht ausreicht~\cite{delatorreLLMRRealtimePrompting2024}.
 
-\textbf{P2: Artikulation vorhandener 3D-Objekte und Teilobjekte.} Statische 3D-Objekte enthalten meist primär geometrische, visuelle und transformatorische Informationen und keine darüber, welche Bestandteile bedienbar sind oder welche Rolle sie in einer Interaktion besitzen. Ohne diese semantische Adressierbarkeit kann eine spätere Interaktionsbeschreibung nicht mit der vorhandenen Geometrie verknüpft werden.
-Klassische LLMs und Vision Language Models (VLMs) allein sind nicht ausreichend in der dreidimensionalen Welt verankert, um statische 3D-Objekte in einer virtuellen Welt mit solchen Informationen anzureichern~\cite{hong3DLLMInjecting3D}.
+\textbf{P2: Semantische Adressierbarkeit vorhandener 3D-Objekte und Teilobjekte.} Statische 3D-Objekte enthalten meist primär geometrische, visuelle und transformatorische Informationen und keine darüber, welche Bestandteile bedienbar sind oder welche Rolle sie in einer Interaktion besitzen. Ohne diese semantische Adressierbarkeit kann eine spätere Interaktionsbeschreibung nicht mit der vorhandenen Geometrie verknüpft werden.
+Klassische LLMs und Vision Language Models (VLMs) allein sind nicht ausreichend in der dreidimensionalen Welt verankert, um statische 3D-Objekte in einer virtuellen Welt mit solchen Informationen anzureichern~\cite{hong3DLLMInjecting3D2023}.
 
 \textbf{P3: Fehlererkennung und Kontrollierbarkeit LLM-gestützter Generierungsprozesse.}
 LLM-gestützte Generierungsprozesse können fehlerhafte Ausgaben erzeugen, wie nicht existierende Objektverweise oder falsche Beziehungen zwischen Objekten. 3D-LLMs können \zB erheblich von Halluzinationen betroffen sein~\cite{pengUnderstandingEvaluatingHallucinations2025}. LLMR adressiert ähnliche Probleme durch einen modularen Aufbau -- ein Inspector-Modul kontrolliert generierten Code vor der Ausführung auf mögliche Kompilierungs- und Laufzeitfehler~\cite{delatorreLLMRRealtimePrompting2024}. Daher nennt die Problemstellung dieser Arbeit explizit die Notwendigkeit interner Prüf- und Korrekturmaßnahmen, um Fehler frühzeitig sowie bereits im Prozess erkennen und beheben zu können.
