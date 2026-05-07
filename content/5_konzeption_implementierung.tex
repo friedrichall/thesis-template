@@ -14,9 +14,9 @@ In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das 
 Abbildung~\ref{fig:systemkontextdiagramm_vsg} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/20260430_115502}
-    \caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/20260430_115502}
+	\caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
 \end{figure}
 
 Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen LLMs entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt adressiert A5.
@@ -35,9 +35,9 @@ Durch diese Entkopplung könnte die KI-Pipeline auch in einen übergeordneten Pr
 
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/20260430_120448}
-    \caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/20260430_120448}
+	\caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
 \end{figure}
 
 Ein*e Benutzer*in kann über die Unity UI mit dem System interagieren und erhält Informationen über den Prozessfortschritt, Logging-Informationen, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war.
@@ -97,9 +97,9 @@ Im ersten Schritt wird dazu aus dem im Unity-Fenster (Abbildung~\ref{fig:unity_u
 Damit wird gemäß D2 keine neue Geometrie generiert, sondern wiederverwendet.
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/unity-ui}
-    \caption{Unity UI des VSG.}\label{fig:unity_ui_empty}
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/unity-ui}
+	\caption{Unity UI des VSG.}\label{fig:unity_ui_empty}
 \end{figure}
 
 Um einem LLM Verständnis über ein 3D-Asset (in Unity\glqq GameObject\grqq{} genannt) zu geben wird zunächst eine strukturierte Szenenbeschreibung im JSON-Format mit dem Namen \textit{scene.json} erzeugt.
@@ -114,16 +114,16 @@ Zur Laufzeit wird dazu eine Kamera angelegt, anhand der Welt-Bounding-Box des Ob
 Alle dafür benötigten Ressourcen werden anschließend wieder freigegeben.
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_front}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_back}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_left}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_right}\\[1em]
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_top}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_bottom}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_left}\hfill
-    \includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_right}
-    \caption{Acht gerenderte Ansichten eines Toaster-3D-Assets.}\label{fig:toaster_views}
+	\centering
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_front}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_back}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_left}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_right}\\[1em]
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_top}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_bottom}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_left}\hfill
+	\includegraphics[width=0.22\linewidth]{figures/toaster_views/toaster3_iso_top_right}
+	\caption{Acht gerenderte Ansichten eines Toaster-3D-Assets.}\label{fig:toaster_views}
 \end{figure}
 
 Eine zugehörige Datei namens \textit{views\_manifest.json} enthält pro Bild Kameramatrizen, Pose, Projektionstyp und einen Vermerk, welches Teilobjekt des Szenengraphen sich an welcher Stelle in der Ansicht befindet.
@@ -174,28 +174,75 @@ Diese entstandene kontrollierte Zwischenrepräsentation ist maschinenlesbar und 
 
 
 \section{Interaction Planner}
-Dabei ist auch zu berücksichtigen, welche Spezifikationsdateien überhaupt benötigt werden, da sehr simple Prototypen, wenn überhaupt, weniger Zustände als komplexere Prototypen benötigen.
-Für das in diesem Modul eingebundene LLM ist also fundamentales Wissen über das Vivian-Framework von zentraler Bedeutung, da alle weiteren Module nach diesem Plan arbeiten.
-(AUSFORMULIEREN/NEU PLATZIEREN: Durchläufe ohne dieses Modul haben gezeigt, dass unnötige Zustände/Übergange generiert wurden, die nicht nötig gewesen wären, z.B. weil das Asset sehr simpel war. Beleg?).
 
-Listing~\ref{lst:interaction_plan_example} zeigt einen beispielhaften Ausschnitt eines vom Interaction Planner ausgegebenen Interaktionsplans.
+Der Interaction Planner bildet die Brücke zwischen Szenenanalyse und Spezifikationsgenerierung.
+Die semantisch verstandene Szenenrepräsentation wird in einen strukturellen Plan überführt, nach dem der nachgelagerte Generierungsschritt die Spezifikationsdateien erzeugt.
+So wird vermieden, dass einzelne Agenten in der Spezifikationsgenerierung inkonsistente Entscheidungen treffen. Er besitzt ein tiefes Verständnis vom Vivian Framework und kann so einzelnen Teilobjekten bestimmte Rollen zuweisen, Zustände planen und entscheiden, welche Dateien der Spezifikation für die geplante Interaktion benötigt werden.
+Weiterhin wurde ein Human-in-the-Loop-Schritt implementiert, damit Nutzer*innen die Ausgabe des Interaction Planners validieren oder korrigieren können.
 
-\begin{lstlisting}[language=json]
+Die Rollen-Zuweisung ist dabei einer der Hauptaufgaben.
+In diesem Schritt werden den Objekten einer 3D-Szene spezifische Rollen zugewiesen, wie \textit{Button}, \textit{Slider}  oder \textit{Screen}, welche das LLM direkt aus den einzelnen Elementen von SceneUnderstanding ableitet.
+Beispielsweise wird einem \textit{FunctionButton} die Rolle eines \textit{Button} zugewiesen.
+Weiterhin definiert der Interaction Planner Zustände, welche der spätere Prototyp einnehmen kann sowie Übergänge zwischen diesen.
+Das umfasst das Erstellen von Zustandsnamen, Beschreibungen und möglichen Auslösern (\textit{Triggern}), die diese Übergänge initiieren.
+Die Zustände und Übergänge werden hier bereits geordnet beschrieben, allerdings erst im Functional-Specification-Generator-Schritt in Spezifikationsdateien umgewandelt.
+
+\begin{lstlisting}[
+	language=json,
+	caption={Beispielausgabe des Interaction Planners: Elementrollen},
+	label={lst:interaction_plan_transitions}]
+...
+"planned_transitions": [
+	{
+		"source_state": "idle.state",
+		"destination_state": "toasting.state",
+		"trigger_element": "Handle",
+		"trigger_description": "User pushes the handle down to start toasting.",
+		"guard_hints": [
+			"Handle VALUE > 0.8"
+		]
+	},...
+]...
+
+\end{lstlisting}
+
+Die letzte Aufgabe des Interaction Planners umfasst die Bestimmung des Umfangs, also welche konkreten Spezifikationsdateien für die gegebene Szene erforderlich sind, da dies von deren Komplexität des Prototyps abhängt. Einfachere Prototypen mit vergleichsweise wenigen Elementen oder Funktionen benötigen gegebenenfalls nicht alle Dateien einer Spezifikation, während komplexere alle vier Dateien benötigen können.
+
+Das vom Scene Analyzer ausgegebene \textit{SceneUnderstanding}-Objekt im JSON-Format sowie die natürlichsprachliche Interaktionsbeschreibung werden dazu vom Interaction Planner konsumiert und in einen strukturierten Interaktionsplan (\textit{InteractionPlan}) überführt. Dieser enthält ein vordefiniertes Format, welches Informationen über Element-Rollen, geplante Zustände und Übergänge sowie eine Liste der benötigten Spezifikationsdateien enthält. Darüber hinaus liefert das LLM noch eine zusammengefasste Begründung für die getroffenen Entscheidungen mit, welche es Nutzenden erleichtern soll Fehler zu finden und zu beheben. Ein Ausschnitt eines Interaktionsplans ist in Listing~\ref{interaction_planner_roles} zu sehen.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/vsg_modules/interaction_planner_hitl}
+	\caption{Interaction Planner und Human-in-the-Loop.}\label{fig:interaction_planner_hitl}
+\end{figure}
+
+\begin{lstlisting}[
+	language=json,
+	caption={Beispielausgabe des Interaction Planners},
+	label={lst:interaction_plan_example}]
 {
-  "element_roles": [
-    {
-      "object_name": "Handle",
-      "funcspec_type": "Slider",
-      "category": "interaction",
-      "rationale": "User explicitly says pushing the handle down starts toasting, and the scene confirms translational movement on the y axis with a non-zero range."
-    },...
-  ],...
+  "element_roles": [...],
+  "planned_states": [...],
+  "planned_transitions": [...],
+  "files_needed": [...],
+  "reasoning": "The user description was treated as the primary source, so the plan focuses only on the handle-triggered toast cycle and the two requested visual feedback elements. Handle is modeled as a Slider because the scene confirms linear y-axis travel, while the heaters and LED are modeled as Light elements to support on/off glowing behavior during toasting. Other controls such as the rotary knob and buttons were excluded because they were not requested and are not necessary for the described prototype behavior."
 }
 \end{lstlisting}
 
-\section{Specification Generator}
+Der generierte Interaktionsplan wird anschließend zurück an die Unity UI gesendet und den Benutzer*innen zur Prüfung angezeigt. Über die Entscheidungsbegründung kann direkt ein erster Eindruck gewonnen werden, ob Interaktionen wie gefordert geplant worden sind. Bei Bedarf lassen sich zudem einzelne Interaktionselemente, Visualisierungselemente, Zustände und Übergänge anzeigen, um diese bei Fehlern auch einzeln adressieren zu können. Sollte eine Korrektur nötig sein, können Nutzende über ein Freitextfeld in natürlicher Sprache beschreiben, welche Interaktionen oder Elemente geändert werden sollen. Der Agent zur Interaktionsplanung wird daraufhin erneut ausgeführt und nimmt Änderungen am Interaktionsplan vor. Dieser iterative Prozess stellt sicher, dass Benutzer*innenrückmeldungen berücksichtigt werden.
+
+%(AUSFORMULIEREN/NEU PLATZIEREN: Durchläufe ohne dieses Modul haben gezeigt, dass unnötige Zustände/Übergange generiert wurden, die nicht nötig gewesen wären, z.B. weil das Asset sehr simpel war. Beleg?).
+
+
+\section{Functional Specification Generator}
 Er ist in vier nacheinander ausgeführte, jeweils auf einen Teil der Spezifikation spezialisierte LLM-Agenten zerlegt: Interaktionselemente, Visualisierungselemente, Zustände und Übergänge. Diese Reihenfolge entspricht den Abhängigkeiten zwischen den Dateien: Jeder Agent erhält neben dem bestätigten Interaktionsplan und der Szenenrepräsentation auch die Ausgaben der vorangegangenen Agenten als Kontext und referenziert deren konkrete Element- sowie Zustandsnamen.
 Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/vsg_modules/funcspec_gen}
+	\caption{Functional Specification Generator.}\label{fig:funcspec_generator}
+\end{figure}
 
 In diesem Schritt wird ebenfalls eine VisualizationArrays.json-Datei ohne Inhalt erzeugt, welche zur Ausführung von Vivian benötigt wird, aber für die in diesem System betrachtete Prototypenerstellung keine weitere Relevanz hat und daher im Folgenden unerwähnt bleibt.
 Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
