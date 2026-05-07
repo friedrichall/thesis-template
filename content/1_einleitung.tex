@@ -31,7 +31,7 @@ Daraus lässt sich das zentrale Problem dieser Arbeit ableiten: Es fehlt ein nie
 % Da Fehler im Vivian Framework nativ erst zur Laufzeit geworfen werden und die Fehleranfälligkeit steigt, je komplexer das 3D-Asset ist, müssen Fehler bereits im Generierungsprozess sowie möglichst frühzeitig erkannt und abgefangen werden. Zudem ist zu berücksichtigen, ob es sich um semantische, syntaktische oder Referenzfehler handelt, damit sowohl fehlerfreie JSON-Strukturen, Gültigkeit der einzelnen Werte als auch Korrektheit der Referenzen sichergestellt werden kann. So kann außerdem ein Abbrechen des Systems verhindert werden, wenn Fehler im Generierungsprozess auftreten.
 
 
-\section{Forschungsfrage und Zielsetzung}
+\section{Forschungsfragen und Zielsetzung}\label{sec:forschungsfragen_zielsetzung}
 
 Um den in~\ref{sec:problemstellung} beschriebenen Problemen zu begegnen, untersucht die vorliegende Arbeit die Möglichkeit einen Ansatz zu entwickeln, welcher die automatisierte Überführung statischer 3D-Objekte in validierte, Zustands-behaftete, interaktive Prototypen ermöglicht, der insbesondere auch nicht-technischen Benutzer*innengruppen eine Nutzung ermöglicht und die Geometrie der Teilobjekte beibehält.
 Im Zentrum steht die folgende Forschungsfrage:
@@ -53,13 +53,11 @@ Zur detaillierten Beantwortung dieser Frage werden die folgenden untergliederten
 
 Das Ziel dieser Arbeit ist die Konzeption und prototypische Implementierung einer KI-gestützten Pipeline, welche eine Überführung von statischen 3D-Objekten in interaktive Prototypen vornimmt und dabei natürliche Sprache entgegennimmt, um auch nicht-technischen Benutzer*innengruppen einen Zugang zu bieten. Dabei sollen die Fähigkeiten von LLMs genutzt werden und ein Co-Creation-Workflow entstehen, um einen Menschen in den Generierungsprozess einzubeziehen.
 
-\section{Abgrenzung}
+\section{Abgrenzung}\label{sec:abgrenzung}
 
 Diese Arbeit zielt nicht darauf ab, 3D-Szenendaten oder Geometrie zu generieren. Das beinhaltet komplette 3D-Szenen sowie einzelne 3D-Objekte, wie es in einigen verwandten Arbeiten der Fall ist. Es wird ausschließlich die Spezifikationsableitung bereits vorhandener virtueller Szenen betrachtet, um virtuelle Prototypen durch Verwendung des Vivian Framework zu erschaffen.
 
 
 \section{Aufbau der Arbeit}
 
-Aufbauend auf der in Kapitel 1 genannten Problemstellung werden in Kapitel 2 einige theoretische Grundlagen erläutert, wie statische und interaktive 3D-Objekte, das Vivian-Framework sowie LLMs und agentische Systeme, um ein fachliches Fundament für diese Arbeit zu bilden.
-
-In Kapitel 3 wird der derzeitige Stand der Forschung zur Verwendung von LLMs in virtuellen 3D-Welten eingeordnet und Herausforderungen aufgezeigt, welche zur Motivation der Zielsetzung dieser Arbeit dienen. Zusätzlich wird ein Bezug zur Forschungslücke in dem Gebiet gegeben.
+Aufbauend auf den in Kapitel 1 genannten Problemstellungen und Forschungsfragen werden in Kapitel 2 einige theoretische Grundlagen erläutert, wie statische und interaktive 3D-Objekte, das Vivian-Framework sowie LLMs und agentische Systeme, um ein fachliches Fundament für diese Arbeit zu bilden. In Kapitel 3 wird der derzeitige Stand der Forschung zur Verwendung von LLMs in virtuellen 3D-Welten eingeordnet. Darauf aufbauend wird die Forschungslücke herausgearbeitet, aus der sich die Relevanz der in Kapitel 4 entwickelten Pipeline ergibt. Anschließend beschäftigt sich Kapitel 5 mit der Implementierung und technischen Umsetzung dieser.

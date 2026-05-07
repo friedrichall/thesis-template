@@ -42,27 +42,40 @@ Dabei können Bilder sowohl isoliert, wie etwa in URDFormer, als auch zur ergän
 Für die vorliegende Arbeit ist dieser Befund besonders relevant.
 Er zeigt die Kombination aus expliziten Raumdaten in Form von strukturellen Repräsentationen wie Punktwolken oder Szenengraphen mit Transformationen und Hierarchien einerseits sowie Bildern als visuellem Grounding andererseits.
 
-
-\section{Einordnung der vorliegenden Arbeit}
-
-In diesem Kontext ist die vorliegende Arbeit nicht primär als Verfahren zur Geometrie- oder Szenengenerierung einzuordnen, sondern als semantisch-verhaltensbezogener Ansatz zur Ableitung möglicher Interaktionen aus vorhandenen 3D-Szenen.
-Der wissenschaftliche Beitrag liegt hier somit in der multimodalen Analyse vorhandener 3D-Szenen und in der Überführung dieser in maschinenlesbare Spezifikationen für das Vivian Framework, mit welchen statische 3D-Objekte automatisiert interaktiv gemacht, und Geometrien wiederverwendet werden können.
-
 \section{Forschungslücke}
+% und Relevanz der/für die vorliegende/n Arbeit
 
-Aufbauend auf den in Kapitel~\ref{ch:einführung} aufgeführten Problemstellungen und Forschungsfragen, dem Stand der Forschung sowie den in~\ref{sec:vivian_framework} beschriebenen technischen Randbedingungen des Vivian-Frameworks werden zunächst zentrale Problemfelder identifiziert, die durch das in dieser Arbeit implementierte System adressiert werden sollen.
-Wie in der Problemstellung gezeigt, besitzen statische 3D-Objekte an sich zwar geometrische und visuelle Informationen, aber keine explizite Interaktionssemantik.
-Gleichzeitig erschwert manuelles Vorgehen in der Erstellung interaktiver Prototypen nicht-technischen Nutzer*innen den Zugang zu dieser.
-Vivian setzt außerdem voraus, dass Interaktionsverhalten in eine formal korrekte, maschinenlesbare Spezifikation aus Interaktionselementen, Visualisierungselementen, Zuständen und Übergängen überführt wird.
-Da LLM-gestützte Verfahren fehleranfällig sein können~\cite{zhaoSurveyLargeLanguage2026a}, müssen syntaktische, semantische und referenzielle Fehler zudem bereits vor der Laufzeit erkannt und korrigiert werden.
+Die in diesem Kapitel betrachteten Arbeiten zeigen, dass LLMs und MLLMs zunehmend in 3D-bezogenen Aufgabenbereichen eingesetzt werden und viele relevante Teilansätze wie 3D-Szenenverständnis, 3D-Fragebeantwortung, 3D-Grounding, Interaktions- und Aufgabenplanung, textbasierte 3D-Verarbeitung, Szenengenerierung sowie artikulationsbezogene Objektmodellierung existieren.
+So adressiert 3D-LLM \ua~3D-Captioning, 3D-Fragebeantwortung, 3D-Grounding, Dialog und Navigation~\cite{hong3DLLMInjecting3D2023}.
+LLMR nutzt LLMs zur Erstellung und Modifikation interaktiver 3D-Welten zusammen mit Modulen wie Planner, Scene Analyzer, Builder und Inspector~\cite{delatorreLLMRRealtimePrompting2024}.
+Holodeck erzeugt 3D-Umgebungen aus Sprache und nutzt ebenfalls LLMs \ua für Objektwahl und räumliche Layout-Constraints~\cite{yangHolodeckLanguageGuided2024}.
+ArtiWorld und URDFormer adressieren artikulationsbezogene \bzw URDF-basierte Simulation und Kinematik~\cite{yangArtiWorldLLMDrivenArticulation2025,chenURDFormerPipelineConstructing2024}.
+Diese Ansätze adressieren jedoch meist andere Zielartefakte als die vorliegende Arbeit und erzeugen häufig neue 3D-Geometrien, bearbeitete 3D-Assets, vollständige 3D-Szenen, Unity-Code, URDF-Dateien oder robotische Simulationsumgebungen.
+Die vorliegende Arbeit ist im Gegensatz dazu nicht primär als Verfahren zur Geometrie- oder Szenengenerierung einzuordnen, sondern als semantisch-verhaltensbezogener Ansatz zur Ableitung von Interaktionsspezifikationen aus vorhandenen 3D-Szenen.
 
-Aus diesen Überlegungen ergeben sich die Problemfelder P1-P3.
-Die Anforderungen an die in dieser Arbeit implementierte Pipeline werden im Folgenden nicht empirisch durch eine Nutzerstudie erhoben, sondern aus diesen Problemfeldern, den Forschungsfragen und den Vivian-spezifischen Rahmenbedingungen abgeleitet.
+Die Forschungslücke ergibt sich damit aus Verbindung mehrerer Aspekte.
+Es sollen vorhandene statische 3D-Objekte erhalten bleiben, relevante Objekte und Teilobjekte semantisch interpretiert werden und gewünschtes Verhalten soll natürlichsprachlich beschrieben werden können.
+Darüber hinaus ergibt sich aus den Randbedingungen des Vivian Frameworks, dass eine maschinenlesbare Interaktionslogik entstehen soll, welche kompatibel mit dem Vivian-Framework ist.
+Da LLM-gestützte Generierungsprozesse fehlerhafte Objektverweise, inkonsistente Strukturen oder unzulässige Spezifikationselemente erzeugen können, sind zudem Validierungs- und Korrekturmaßnahmen erforderlich.
+Genau diese Kombination wird im derzeitigen Stand der Forschung nicht direkt adressiert.
+Die Problemstellung in Kapitel~\ref{ch:einführung} nennt bereits, dass statische 3D-Objekte zwar Geometrie, Materialien und Transformationen besitzen, es aber an Wissen über bedienbare Elemente, Funktionen und Reaktionen auf Nutzer*innenhandlungen fehlt.
+Dort wird außerdem bereits ein niedrigschwelliger und kontrollierbarer Ansatz gefordert, welcher vorhandene statische 3D-Objekte in maschinenlesbare, validierbare und zustandsbasierte Prototypen überführt, während die Geometrie erhalten bleiben soll.
 
-\textbf{P1: Hohe Einstiegshürde für nicht-technische Nutzer*innen.} Die Erstellung interaktiver Prototypen setzt oft Kenntnisse in der Programmierung oder 3D-Modellierung voraus. LLMR zeigt, dass natürliche Sprache zur Erstellung und Modifikation von interaktiven 3D-Szenen genutzt werden kann, es aber zudem spezialisierter Module wie Scene Analyzer, Planner, Builder und Inspector bedarf, da ein einfaches LLM für die interaktive Szenenerstellung nicht ausreicht~\cite{delatorreLLMRRealtimePrompting2024}.
+Aus dieser Forschungslücke sowie den Forschungsfragen F1 bis F4 (siehe~\ref{sec:forschungsfragen_zielsetzung}) folgt die Notwendigkeit für ein System, welches Szeneninformationen analysiert, Nutzer*innenbeschreibungen von Interaktionen verarbeitet und daraus relevante Objekte, Teilobjekte sowie Rollen ableitet, Vivian-kompatible Interaktionsspezifikationen erzeugt und Fehler prüft sowie gezielt korrigiert.
 
-\textbf{P2: Semantische Adressierbarkeit vorhandener 3D-Objekte und Teilobjekte.} Statische 3D-Objekte enthalten meist primär geometrische, visuelle und transformatorische Informationen und keine darüber, welche Bestandteile bedienbar sind oder welche Rolle sie in einer Interaktion besitzen. Ohne diese semantische Adressierbarkeit kann eine spätere Interaktionsbeschreibung nicht mit der vorhandenen Geometrie verknüpft werden.
-Klassische LLMs und Vision Language Models (VLMs) allein sind nicht ausreichend in der dreidimensionalen Welt verankert, um statische 3D-Objekte in einer virtuellen Welt mit solchen Informationen anzureichern~\cite{hong3DLLMInjecting3D2023}.
+% Aufbauend auf den in Kapitel~\ref{ch:einführung} aufgeführten Problemstellungen und Forschungsfragen, dem Stand der Forschung sowie den in~\ref{sec:vivian_framework} beschriebenen technischen Randbedingungen des Vivian-Frameworks werden zunächst zentrale Problemfelder identifiziert, die durch das in dieser Arbeit implementierte System adressiert werden sollen.
+% Wie in der Problemstellung gezeigt, besitzen statische 3D-Objekte an sich zwar geometrische und visuelle Informationen, aber keine explizite Interaktionssemantik.
+% Gleichzeitig erschwert manuelles Vorgehen in der Erstellung interaktiver Prototypen nicht-technischen Nutzer*innen den Zugang zu dieser.
+% Vivian setzt außerdem voraus, dass Interaktionsverhalten in eine formal korrekte, maschinenlesbare Spezifikation aus Interaktionselementen, Visualisierungselementen, Zuständen und Übergängen überführt wird.
+% Da LLM-gestützte Verfahren fehleranfällig sein können~\cite{zhaoSurveyLargeLanguage2026a}, müssen syntaktische, semantische und referenzielle Fehler zudem bereits vor der Laufzeit erkannt und korrigiert werden.
 
-\textbf{P3: Fehlererkennung und Kontrollierbarkeit LLM-gestützter Generierungsprozesse.}
-LLM-gestützte Generierungsprozesse können fehlerhafte Ausgaben erzeugen, wie nicht existierende Objektverweise oder falsche Beziehungen zwischen Objekten. 3D-LLMs können \zB erheblich von Halluzinationen betroffen sein~\cite{pengUnderstandingEvaluatingHallucinations2025}. LLMR adressiert ähnliche Probleme durch einen modularen Aufbau -- ein Inspector-Modul kontrolliert generierten Code vor der Ausführung auf mögliche Kompilierungs- und Laufzeitfehler~\cite{delatorreLLMRRealtimePrompting2024}. Daher nennt die Problemstellung dieser Arbeit explizit die Notwendigkeit interner Prüf- und Korrekturmaßnahmen, um Fehler frühzeitig sowie bereits im Prozess erkennen und beheben zu können.
+% Aus diesen Überlegungen ergeben sich die Problemfelder P1-P3.
+% Die Anforderungen an die in dieser Arbeit implementierte Pipeline werden im Folgenden nicht empirisch durch eine Nutzerstudie erhoben, sondern aus diesen Problemfeldern, den Forschungsfragen und den Vivian-spezifischen Rahmenbedingungen abgeleitet.
+
+% \textbf{P1: Hohe Einstiegshürde für nicht-technische Nutzer*innen.} Die Erstellung interaktiver Prototypen setzt oft Kenntnisse in der Programmierung oder 3D-Modellierung voraus. LLMR zeigt, dass natürliche Sprache zur Erstellung und Modifikation von interaktiven 3D-Szenen genutzt werden kann, es aber zudem spezialisierter Module wie Scene Analyzer, Planner, Builder und Inspector bedarf, da ein einfaches LLM für die interaktive Szenenerstellung nicht ausreicht~\cite{delatorreLLMRRealtimePrompting2024}.
+
+% \textbf{P2: Semantische Adressierbarkeit vorhandener 3D-Objekte und Teilobjekte.} Statische 3D-Objekte enthalten meist primär geometrische, visuelle und transformatorische Informationen und keine darüber, welche Bestandteile bedienbar sind oder welche Rolle sie in einer Interaktion besitzen. Ohne diese semantische Adressierbarkeit kann eine spätere Interaktionsbeschreibung nicht mit der vorhandenen Geometrie verknüpft werden.
+% Klassische LLMs und Vision Language Models (VLMs) allein sind nicht ausreichend in der dreidimensionalen Welt verankert, um statische 3D-Objekte in einer virtuellen Welt mit solchen Informationen anzureichern~\cite{hong3DLLMInjecting3D2023}.
+
+% \textbf{P3: Fehlererkennung und Kontrollierbarkeit LLM-gestützter Generierungsprozesse.}
+% LLM-gestützte Generierungsprozesse können fehlerhafte Ausgaben erzeugen, wie nicht existierende Objektverweise oder falsche Beziehungen zwischen Objekten. 3D-LLMs können \zB erheblich von Halluzinationen betroffen sein~\cite{pengUnderstandingEvaluatingHallucinations2025}. LLMR adressiert ähnliche Probleme durch einen modularen Aufbau -- ein Inspector-Modul kontrolliert generierten Code vor der Ausführung auf mögliche Kompilierungs- und Laufzeitfehler~\cite{delatorreLLMRRealtimePrompting2024}. Daher nennt die Problemstellung dieser Arbeit explizit die Notwendigkeit interner Prüf- und Korrekturmaßnahmen, um Fehler frühzeitig sowie bereits im Prozess erkennen und beheben zu können.
