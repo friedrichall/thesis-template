@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}states\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}off\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}on\PYGZdq{}}\PYG{p}{],}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}transitions\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[\PYGZob{}}\PYG{+w}{ }\PYG{n+nt}{\PYGZdq{}from\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}off\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nt}{\PYGZdq{}to\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}on\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nt}{\PYGZdq{}trigger\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}btn\PYGZus{}power.press\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}]}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

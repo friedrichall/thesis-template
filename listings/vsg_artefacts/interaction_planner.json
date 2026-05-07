@@ -1,0 +1,129 @@
+{
+  "element_roles": [
+    {
+      "object_name": "Handle",
+      "funcspec_type": "Slider",
+      "category": "interaction",
+      "rationale": "The object translates along the x axis with a non-zero range, which strongly indicates a lever-style slider used to lower and raise the toast carriage."
+    },
+    {
+      "object_name": "RotaryButton",
+      "funcspec_type": "Rotatable",
+      "category": "interaction",
+      "rationale": "The object rotates around the z axis with a 270 degree range, which is clear evidence of a user-adjustable rotary control."
+    },
+    {
+      "object_name": "FunctionButton",
+      "funcspec_type": "Button",
+      "category": "interaction",
+      "rationale": "Its name and front-panel placement indicate a pressable function-selection button."
+    },
+    {
+      "object_name": "StopButton",
+      "funcspec_type": "Button",
+      "category": "interaction",
+      "rationale": "Its name clearly indicates a pressable cancel/stop control on the toaster front panel."
+    },
+    {
+      "object_name": "LED",
+      "funcspec_type": "Light",
+      "category": "visualization",
+      "rationale": "The object is explicitly named LED and is positioned with the front controls, making it an indicator light for machine status."
+    },
+    {
+      "object_name": "Heating_resistors",
+      "funcspec_type": "AppearingObject",
+      "category": "visualization",
+      "rationale": "The internal heating elements should become visibly active during toasting, and show/hide behavior is best modeled as an AppearingObject because no animation component is confirmed."
+    }
+  ],
+  "planned_states": [
+    {
+      "name": "idle.state",
+      "description": "Toaster is idle and ready for use; carriage is up, heating is off, and indicator is off.",
+      "involved_elements": [
+        "Handle",
+        "RotaryButton",
+        "FunctionButton",
+        "StopButton",
+        "LED",
+        "Heating_resistors"
+      ],
+      "screen_files": null
+    },
+    {
+      "name": "toasting.state",
+      "description": "Toasting cycle is active; carriage is lowered, heating elements are active, and status indicator is on.",
+      "involved_elements": [
+        "Handle",
+        "RotaryButton",
+        "FunctionButton",
+        "StopButton",
+        "LED",
+        "Heating_resistors"
+      ],
+      "screen_files": null
+    },
+    {
+      "name": "cancelled.state",
+      "description": "Toasting has been cancelled or finished returning to a non-heating condition; heating is off and indicator is off.",
+      "involved_elements": [
+        "Handle",
+        "StopButton",
+        "LED",
+        "Heating_resistors"
+      ],
+      "screen_files": null
+    }
+  ],
+  "planned_transitions": [
+    {
+      "source_state": "idle.state",
+      "destination_state": "toasting.state",
+      "trigger_element": "Handle",
+      "trigger_description": "User lowers the toaster handle to start a toasting cycle.",
+      "guard_hints": [
+        "Handle VALUE > 0.8 to indicate the lever is fully engaged"
+      ]
+    },
+    {
+      "source_state": "idle.state",
+      "destination_state": "toasting.state",
+      "trigger_element": "FunctionButton",
+      "trigger_description": "User presses the function button to begin a special toasting cycle after setting the controls.",
+      "guard_hints": null
+    },
+    {
+      "source_state": "toasting.state",
+      "destination_state": "cancelled.state",
+      "trigger_element": "StopButton",
+      "trigger_description": "User clicks the stop button to cancel the active toasting cycle.",
+      "guard_hints": null
+    },
+    {
+      "source_state": "toasting.state",
+      "destination_state": "cancelled.state",
+      "trigger_element": null,
+      "trigger_description": "After the toasting duration elapses, the cycle completes and heating stops.",
+      "guard_hints": [
+        "RotaryButton VALUE <= 0.33 → short timeout",
+        "RotaryButton VALUE > 0.33 and RotaryButton VALUE <= 0.66 → medium timeout",
+        "RotaryButton VALUE > 0.66 → long timeout"
+      ]
+    },
+    {
+      "source_state": "cancelled.state",
+      "destination_state": "idle.state",
+      "trigger_element": null,
+      "trigger_description": "After the carriage returns and the toaster settles, the system returns to idle.",
+      "guard_hints": null
+    }
+  ],
+  "files_needed": [
+    "InteractionElements",
+    "VisualizationElements",
+    "States",
+    "Transitions"
+  ],
+  "reasoning": "The scene strongly suggests a toaster with a lever, rotary browning knob, function button, stop button, indicator LED, and internal heating elements. I included only objects with clear behavioral roles and excluded structural parts like Body and columns because they do not meaningfully participate in interaction logic. Since no screen assets or animation/particle components are confirmed, I used Light for the LED and AppearingObject for the heating elements, and planned a simple toaster state model of idle, active toasting, and cancelled/completed behavior."
+}

@@ -178,6 +178,21 @@ Dabei ist auch zu berücksichtigen, welche Spezifikationsdateien überhaupt ben�
 Für das in diesem Modul eingebundene LLM ist also fundamentales Wissen über das Vivian-Framework von zentraler Bedeutung, da alle weiteren Module nach diesem Plan arbeiten.
 (AUSFORMULIEREN/NEU PLATZIEREN: Durchläufe ohne dieses Modul haben gezeigt, dass unnötige Zustände/Übergange generiert wurden, die nicht nötig gewesen wären, z.B. weil das Asset sehr simpel war. Beleg?).
 
+Listing~\ref{lst:interaction_plan_example} zeigt einen beispielhaften Ausschnitt eines vom Interaction Planner ausgegebenen Interaktionsplans.
+
+\begin{lstlisting}[language=json]
+{
+  "element_roles": [
+    {
+      "object_name": "Handle",
+      "funcspec_type": "Slider",
+      "category": "interaction",
+      "rationale": "User explicitly says pushing the handle down starts toasting, and the scene confirms translational movement on the y axis with a non-zero range."
+    },...
+  ],...
+}
+\end{lstlisting}
+
 \section{Specification Generator}
 Er ist in vier nacheinander ausgeführte, jeweils auf einen Teil der Spezifikation spezialisierte LLM-Agenten zerlegt: Interaktionselemente, Visualisierungselemente, Zustände und Übergänge. Diese Reihenfolge entspricht den Abhängigkeiten zwischen den Dateien: Jeder Agent erhält neben dem bestätigten Interaktionsplan und der Szenenrepräsentation auch die Ausgaben der vorangegangenen Agenten als Kontext und referenziert deren konkrete Element- sowie Zustandsnamen.
 Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.

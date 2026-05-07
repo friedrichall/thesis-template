@@ -1916,6 +1916,73 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Robotics}
     \endentry
+    \entry{hong3DLLMInjecting3D2023}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=29723243b35664faf149c74721c896b5}{%
+           family={Hong},
+           familyi={H\bibinitperiod},
+           given={Yining},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a53cbe9deb3a2cc09b60b3aeaff687fd}{%
+           family={Zhen},
+           familyi={Z\bibinitperiod},
+           given={Haoyu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=5c590b5a00dacf1a9a71830417fc5529}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Peihao},
+           giveni={P\bibinitperiod}}}%
+        {{hash=317bdc1dca96a4e98a989a4d00c85a96}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Shuhong},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0292e43cebfdbcde9e20aa4fdbe17700}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yilun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0c9f3b1eac14549cc1560ec4d510e561}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zhenfang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=97044e575d3c0a3dd2551779810add07}{%
+           family={Gan},
+           familyi={G\bibinitperiod},
+           given={Chuang},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6049304451ef3c411c640dada98a4550}
+      \strng{fullhash}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{fullhashraw}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{bibnamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authorbibnamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authornamehash}{6049304451ef3c411c640dada98a4550}
+      \strng{authorfullhash}{9f1ba25a05246e102485a7262b8f065a}
+      \strng{authorfullhashraw}{9f1ba25a05246e102485a7262b8f065a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{shorttitle}{{{3D-LLM}}}
+      \field{title}{{{3D-LLM}}: {{Injecting}} the {{3D World}} into {{Large Language Models}}}
+      \field{urlday}{4}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{36}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{20482\bibrangedash 20494}
+      \range{pages}{13}
+      \verb{file}
+      \verb C:\Users\Friedrich Allenhof\Zotero\storage\7AUXBYPD\Hong et al. - 2023 - 3D-LLM Injecting the 3D World into Large Language Models.pdf
+      \endverb
+    \endentry
     \entry{xuPointLLMEmpoweringLarge2025}{incollection}{}{}
       \name{author}{6}{}{%
         {{hash=1412d7104416254636bde2e149710d70}{%
@@ -2447,223 +2514,6 @@
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Robotics,Stand der Forschung}
     \endentry
-    \entry{zhaoSurveyLargeLanguage2026a}{misc}{}{}
-      \name{author}{22}{}{%
-        {{hash=64942cca497eff6cd6c5b264afdc5dd6}{%
-           family={Zhao},
-           familyi={Z\bibinitperiod},
-           given={Wayne\bibnamedelima Xin},
-           giveni={W\bibinitperiod\bibinitdelim X\bibinitperiod}}}%
-        {{hash=09d5d500b34786c94a128e6f131300c6}{%
-           family={Zhou},
-           familyi={Z\bibinitperiod},
-           given={Kun},
-           giveni={K\bibinitperiod}}}%
-        {{hash=0da53871c5bda3ae9ea7b5d31b6a8874}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Junyi},
-           giveni={J\bibinitperiod}}}%
-        {{hash=e2be20b0e2f21891a3e428cfe3aa7546}{%
-           family={Tang},
-           familyi={T\bibinitperiod},
-           given={Tianyi},
-           giveni={T\bibinitperiod}}}%
-        {{hash=66a2746de95223ec2e9e78a901ee1cf8}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Xiaolei},
-           giveni={X\bibinitperiod}}}%
-        {{hash=678f15f5b4dbc1aaed429148209c1670}{%
-           family={Hou},
-           familyi={H\bibinitperiod},
-           given={Yupeng},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=8562df4cc1bfda084b6452e14b97695f}{%
-           family={Min},
-           familyi={M\bibinitperiod},
-           given={Yingqian},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=66e96b863923db3bc1db16a09cac3390}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Beichen},
-           giveni={B\bibinitperiod}}}%
-        {{hash=c8c6aaec4b7602bed8057718ff85cf50}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Junjie},
-           giveni={J\bibinitperiod}}}%
-        {{hash=3e9c75837177b3f19580db0d34a05273}{%
-           family={Dong},
-           familyi={D\bibinitperiod},
-           given={Zican},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=8b52fd6470026437f20bf1d0e1302c61}{%
-           family={Du},
-           familyi={D\bibinitperiod},
-           given={Yifan},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=7c12c6bb81a430b19d464d25687cbb9c}{%
-           family={Yang},
-           familyi={Y\bibinitperiod},
-           given={Chen},
-           giveni={C\bibinitperiod}}}%
-        {{hash=e6a4c63d4fa7aa7e88a4945488e9e901}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Yushuo},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=d7c54e1ab3bee583739e4680a3468f41}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Zhipeng},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=cc99c740260c641786a83c5c0f63f879}{%
-           family={Jiang},
-           familyi={J\bibinitperiod},
-           given={Jinhao},
-           giveni={J\bibinitperiod}}}%
-        {{hash=e264ac8fc96cdfd270409514441211ba}{%
-           family={Ren},
-           familyi={R\bibinitperiod},
-           given={Ruiyang},
-           giveni={R\bibinitperiod}}}%
-        {{hash=de4f40f58ec11067811bb3cfff116450}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Yifan},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=b26374d4fa3f66d7e5b787db7f8b46fc}{%
-           family={Tang},
-           familyi={T\bibinitperiod},
-           given={Xinyu},
-           giveni={X\bibinitperiod}}}%
-        {{hash=eb761f0ec974830dfebae92d776d3bbe}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Zikang},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=309831086a45c94ff1c5e5627e77920a}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Peiyu},
-           giveni={P\bibinitperiod}}}%
-        {{hash=249bb150525fcf94fd8a35571a611e24}{%
-           family={Nie},
-           familyi={N\bibinitperiod},
-           given={Jian-Yun},
-           giveni={J\bibinithyphendelim Y\bibinitperiod}}}%
-        {{hash=5ff29ba5ea8e6fdd73a84f998eec45f2}{%
-           family={Wen},
-           familyi={W\bibinitperiod},
-           given={Ji-Rong},
-           giveni={J\bibinithyphendelim R\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
-      \strng{fullhash}{6e1e8e169a53770141a3c2e593b18acb}
-      \strng{fullhashraw}{6e1e8e169a53770141a3c2e593b18acb}
-      \strng{bibnamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
-      \strng{authorbibnamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
-      \strng{authornamehash}{95cd3bb658a9c68cd3372dc5bc22e0cf}
-      \strng{authorfullhash}{6e1e8e169a53770141a3c2e593b18acb}
-      \strng{authorfullhashraw}{6e1e8e169a53770141a3c2e593b18acb}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable AI algorithms for comprehending and grasping a language. As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models. Recently, pre-trained language models (PLMs) have been proposed by pre-training Transformer models over large-scale corpora, showing strong capabilities in solving various NLP tasks. Since researchers have found that model scaling can lead to performance improvement, they further study the scaling effect by increasing the model size to an even larger size. Interestingly, when the parameter scale exceeds a certain level, these enlarged language models not only achieve a significant performance improvement but also show some special abilities that are not present in small-scale language models. To discriminate the difference in parameter scale, the research community has coined the term large language models (LLM) for the PLMs of significant size. Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT, which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. In this survey, we review the recent advances of LLMs by introducing the background, key findings, and mainstream techniques. In particular, we focus on four major aspects of LLMs, namely pre-training, adaptation tuning, utilization, and capacity evaluation. Besides, we also summarize the available resources for developing LLMs and discuss the remaining issues for future directions.}
-      \field{eprintclass}{cs}
-      \field{eprinttype}{arXiv}
-      \field{month}{3}
-      \field{number}{arXiv:2303.18223}
-      \field{title}{A {{Survey}} of {{Large Language Models}}}
-      \field{urlday}{9}
-      \field{urlmonth}{4}
-      \field{urlyear}{2026}
-      \field{year}{2026}
-      \field{urldateera}{ce}
-      \verb{doi}
-      \verb 10.48550/arXiv.2303.18223
-      \endverb
-      \verb{eprint}
-      \verb 2303.18223
-      \endverb
-      \verb{file}
-      \verb C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\J2BNV6QZ\\Zhao et al. - 2026 - A Survey of Large Language Models.pdf;C\:\\Users\\Friedrich Allenhof\\Zotero\\storage\\8JGSUWWJ\\2303.html
-      \endverb
-      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Grundlagen,LLM}
-    \endentry
-    \entry{hong3DLLMInjecting3D2023}{article}{}{}
-      \name{author}{7}{}{%
-        {{hash=29723243b35664faf149c74721c896b5}{%
-           family={Hong},
-           familyi={H\bibinitperiod},
-           given={Yining},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=a53cbe9deb3a2cc09b60b3aeaff687fd}{%
-           family={Zhen},
-           familyi={Z\bibinitperiod},
-           given={Haoyu},
-           giveni={H\bibinitperiod}}}%
-        {{hash=5c590b5a00dacf1a9a71830417fc5529}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Peihao},
-           giveni={P\bibinitperiod}}}%
-        {{hash=317bdc1dca96a4e98a989a4d00c85a96}{%
-           family={Zheng},
-           familyi={Z\bibinitperiod},
-           given={Shuhong},
-           giveni={S\bibinitperiod}}}%
-        {{hash=0292e43cebfdbcde9e20aa4fdbe17700}{%
-           family={Du},
-           familyi={D\bibinitperiod},
-           given={Yilun},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=0c9f3b1eac14549cc1560ec4d510e561}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Zhenfang},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=97044e575d3c0a3dd2551779810add07}{%
-           family={Gan},
-           familyi={G\bibinitperiod},
-           given={Chuang},
-           giveni={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{6049304451ef3c411c640dada98a4550}
-      \strng{fullhash}{9f1ba25a05246e102485a7262b8f065a}
-      \strng{fullhashraw}{9f1ba25a05246e102485a7262b8f065a}
-      \strng{bibnamehash}{6049304451ef3c411c640dada98a4550}
-      \strng{authorbibnamehash}{6049304451ef3c411c640dada98a4550}
-      \strng{authornamehash}{6049304451ef3c411c640dada98a4550}
-      \strng{authorfullhash}{9f1ba25a05246e102485a7262b8f065a}
-      \strng{authorfullhashraw}{9f1ba25a05246e102485a7262b8f065a}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{journaltitle}{Advances in Neural Information Processing Systems}
-      \field{langid}{english}
-      \field{month}{12}
-      \field{shorttitle}{{{3D-LLM}}}
-      \field{title}{{{3D-LLM}}: {{Injecting}} the {{3D World}} into {{Large Language Models}}}
-      \field{urlday}{4}
-      \field{urlmonth}{5}
-      \field{urlyear}{2026}
-      \field{volume}{36}
-      \field{year}{2023}
-      \field{urldateera}{ce}
-      \field{pages}{20482\bibrangedash 20494}
-      \range{pages}{13}
-      \verb{file}
-      \verb C:\Users\Friedrich Allenhof\Zotero\storage\7AUXBYPD\Hong et al. - 2023 - 3D-LLM Injecting the 3D World into Large Language Models.pdf
-      \endverb
-    \endentry
     \entry{zhangLostintheMiddleLongTextGeneration2025}{misc}{}{}
       \name{author}{6}{}{%
         {{hash=958e61c90ccf350a28455db30258f291}{%
@@ -2797,7 +2647,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{hong3DLLMInjecting3D}
 \endrefsection
 \endinput
 
