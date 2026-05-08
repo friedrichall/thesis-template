@@ -105,7 +105,7 @@ Im ersten Implementierungsdurchlauf zeigte sich, dass der Manager-getriebene Ans
 Da der Manager-Agent eigenständig entscheidet, welche untergeordneten Agenten er aufruft, konnten Zwischenergebnisse nicht validiert werden und Fehler sind erst am Ende des Generierungsprozesses aufgefallen.
 Daher wurde dieser Ansatz zugunsten eines deterministischen modularen Workflows verworfen.
 
-\subsection{Begründung des modularen Workflow-Ansatzes}
+\subsection{Begründung des modularen Workflow-Ansatzes}\label{sec:begründung_modularer_workflow}
 
 Die Architektur des zweiten Implementierungsdurchlaufs folgt dem Ansatz eines modularen Workflows, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können, ohne die Gesamtarchitektur grundlegend zu verändern (siehe N3).
 Diese modulare Trennung adressiert N1 und folgt dem in~\ref{ch:stand_der_forschung} beschriebenen Ansatz von LLMR, welches ebenfalls einen modularen Aufbau verwendet~\cite{delatorreLLMRRealtimePrompting2024}.
