@@ -1,0 +1,14 @@
+{
+  "issues": [
+    {
+      "severity": "warning",
+      "file": "States.json",
+      "element": "Handle",
+      "description": "Both states set an InteractionElementCondition on the slider \"Handle\" using Attribute=\"FIXED\". A Slider's primary dynamic attribute is typically VALUE; FIXED may be supported as a generic lock flag, but it is not mentioned in the InteractionPlan and may be ignored by the runtime depending on the schema implementation.",
+      "suggested_fix": "If the intent is to keep the slider movable, remove the FIXED conditions entirely. If the intent is to lock/unlock the slider, confirm FIXED is a valid attribute for Slider in your runtime; otherwise replace with a supported attribute/approach."
+    }
+  ],
+  "plan_coverage_ok": true,
+  "cross_file_consistency_ok": true,
+  "summary": "All planned elements, states, and transitions are present and references are consistent (no missing/unknown element or state names). State reachability and observable effects (lights toggling) match the plan; the only concern is use of the non-plan/non-core slider attribute FIXED in state conditions, which may be unnecessary or unsupported."
+}

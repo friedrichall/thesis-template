@@ -101,6 +101,7 @@
 \usepackage{listingsutf8}
 
 \lstset{
+    basicstyle=\normalsize\ttfamily,
 	tabsize=2,
 	extendedchars=true,
 	inputencoding=utf8,
@@ -110,7 +111,11 @@
     numbersep=5pt,
 	numberstyle=\small,
 	breakautoindent=true,
-	captionpos=b
+	captionpos=b,
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=2em,
+    belowskip=1em,
 }
 \lstdefinelanguage{json}{
     basicstyle=\normalsize\ttfamily,
@@ -125,6 +130,21 @@
     xrightmargin=1.5em,
     aboveskip=2em,
     belowskip=1em,
+}
+\lstdefinelanguage{agent-instructions}{
+    basicstyle=\normalsize\ttfamily,
+	breaklines=true,
+	breakatwhitespace=true,
+	columns=fullflexible,
+	frame=single,
+	numbers=none,
+	showstringspaces=false,
+	keepspaces=true,
+	inputencoding=utf8,
+	extendedchars=true,
+    xleftmargin=0em,
+    xrightmargin=0em,
+    literate={≈}{{$\approx$}}1 {→}{{$\rightarrow$}}1 {—}{{---}}1 {–}{{--}}1 {„}{{\quotedblbase}}1 {“}{{\textquotedblleft}}1 {”}{{\textquotedblright}}1 {‚}{{\quotesinglbase}}1 {‘}{{\textquoteleft}}1 {’}{{\textquoteright}}1 {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1
 }
 
 

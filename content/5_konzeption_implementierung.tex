@@ -384,11 +384,59 @@ Sollten in nachgelagerten Prüfschichten außerhalb dieses Moduls, wie dem~\ref{
 Diese Wiederausführung einzelner Schritte im Generierungsprozess der Spezifikation wird durch die Persistenz des \textit{Registry}-Objekts ermöglicht. Da fehlerfreie Spezifikationsteile über mehrere Versuchsdurchläufe hinweg erhalten bleiben, können die zugehörigen Generierungsschritte übersprungen werden. Weiterhin werden entstandene Zwischenartefakte (wie Spezifikationsdateien) je Generierungsversuch in einem Verzeichnis abgelegt. Dazu wird je Durchlauf ein Protokoll mit sämtlichen vorgenommenen Änderungen am \textit{Registry}-Objekt zusammen mit den dazugehörigen Spezifikationsdateien geführt, um die Veränderungen über alle Versuche eines Durchlaufs hinweg festzuhalten. So können Fehlerursachen besser nachvollzogen und einzelne Durchläufe reproduziert werden. Damit wird N2 (Protokollierung der Zwischenartefakte und Entscheidungen) adressiert.
 
 \section{Consistency Reviewer}\label{sec:consistency_reviewer}
-Ein Consistency-Reviewer erhält die Spezifikationsdateien sowie den Interaktionsplan, da hier mithilfe eines weiteren LLM-Agenten geprüft wird, ob die geplanten Interaktionen tatsächlich umgesetzt sind.
 
-Ein Unity-Validator ergänzt dies um eine strukturelle und laufzeitnahe Kontrolle, wodurch tatsächliche Initialisierungsfehler bereits vor der Übermittlung an Unity aufgedeckt werden können. Dieser Schritt adressiert A3.
+Nachdem nun alle Daten einer Vivian-Spezifikation vom Specification Generator inklusive korrekter Abhängigkeiten und Querverweise generiert wurden, muss im nächsten Schritt geprüft werden, ob semantische Inkonsistenzen in diesen existieren. Dieser Schritt ist notwendig und wichtig, da rein strukturelle Validatoren (JSON-Schema, Unity-Validator) nicht jede Art von Fehler erkennen können. Er prüft die inhaltliche Konsistenz der einzelnen Teilspezifikationen miteinander (ob die Registry-Subsets der Zustände und Übergänge semantisch zu denen der Interaktionselemente sowie Visualisierungselemente passen) sowie dem ursprünglichen Interaktionsplan (ob sämtliches im Interaktionsplan geplantes Verhalten tatsächlich so wie dort aufgeführt umgesetzt wurde). Letzteres beinhaltet Vivian-Typzuweisungen einzelner Interaktions- und Visualisierungselemente sowie die Umsetzung geplanter Zustände und Übergänge.
 
+Um diese Aufgaben bewältigen zu können bekommt der Consistency Reviewer einen User-Prompt bestehend aus dem kompletten Registry-Objekt (\textit{REGISTRY\_JSON}) und dem Interaktionsplan (\textit{INTERACTION\_PLAN\_JSON}) sowie einen System-Prompt, in dem Instruktionen mit den zu erfüllenden Aufgaben enthalten sind. Eine volle Version des System-Prompts ist in Anhang~\ref{sec:anhang_consistency_review_agent} zu sehen.
 
+Zu den konkreten Aufgaben des Scene Reviewer Agenten gehört unter anderem das Überprüfen der physikalischen und logischen Sinnhaftigkeit. Diese wäre beispielsweise nicht gegeben sein, wenn ein \textit{Light} als \textit{InteractionElement} typisiert worden wäre. Weiterhin wird überprüft ob alle Zustände durch Übergänge erreichbar sind und ob es Übergänge gibt, die auf nicht-existierende Zustände oder Elemente verweisen. Da Zustandswechsel ohne observierbaren Verhaltenswechsel, also ohne sichtbare Veränderung der Szene, im aktuellen Stand der Arbeit obsolet sind, werden Übergänge auch darauf kontrolliert. Die Elementrollen aus dem Interaktionsplan werden zudem gegen die generierten Interaktions- und Visualisierungselemente abgeglichen sowie ob dabei Halluzinationen entstanden sind, also ob es Interaktions- oder Visualisierungselemente gibt, die nicht im Interaktionsplan vorhanden sind. Damit wird sichergestellt, dass alle geplanten Elemente auch in die vorgesehenen Vivian-Typen übersetzt worden sind. Außerdem wird an dieser Stelle nochmal überprüft, ob alle generierten Bezeichner der Elemente den tatsächlichen Objektnamen aus dem Interaktionsplan, und somit aus der Szene, entsprechen, da Vivian diese sonst nicht zuordnen könnte. Zusätzlich hat der Agent die Anweisung zu erkennen, ob für ein in einem Zustand gesetztes \textit{Light}-Element mit \textit{Condition-Type} „FloatValueVisualization“ mindestens ein Zustand existiert, der dessen Wert setzt. Dies stellt sicher, dass es mindestens einen Zustand gibt, der ein Licht leuchten lassen kann. Diese Aufgaben sind außerdem dem folgenden Listing (\ref{lst:consistency_review_agent_system_prompt}) zu entnehmen.
+
+\begin{lstlisting}[
+	basicstyle=\ttfamily\footnotesize,
+	breaklines=true,
+	breakatwhitespace=true,
+	columns=fullflexible,
+	frame=single,
+	numbers=none,
+	showstringspaces=false,
+	keepspaces=true,
+	inputencoding=utf8,
+	extendedchars=true,
+	caption={System-Prompt-Ausschnitt des Consistency-Review-Agenten.},
+	literate={≈}{{$\approx$}}1 {→}{{$\rightarrow$}}1 {—}{{---}}1 {–}{{--}}1 {„}{{\quotedblbase}}1 {“}{{\textquotedblleft}}1 {”}{{\textquotedblright}}1 {‚}{{\quotesinglbase}}1 {‘}{{\textquoteleft}}1 {’}{{\textquoteright}}1 {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1]
+What to check
+3.1. Physical/logical sense: Do states reference elements in ways that make physical sense? For example, a Light should have visual conditions (FloatValueVisualization), not be treated as an interaction element.
+3.2. Reachability: Are all states reachable via at least one transition? Are there dead-end states with no outgoing transitions (unless they are intentional terminal states)?
+3.3. Dead transitions: Are there transitions that reference states or elements that serve no purpose or create impossible paths?
+3.4. Plan coverage: Does the generated output cover all element\_roles from the InteractionPlan? Are there planned elements missing from the generated files?
+3.5. Plan coverage (reverse): Are there elements in the generated files that were not in the InteractionPlan? This may indicate hallucinated elements.
+3.6. Visualization consistency: If a visualization element has a FloatValueVisualization condition, does at least one state actually set a meaningful value for it? A Light with FloatValueVisualization but no state ever changing its value is suspicious.
+3.7. Interaction-visualization alignment: If an InteractionElement is referenced in transitions, do the resulting states actually change any conditions? Transitions that don't lead to observable changes are pointless.
+3.8. Element name validity: All element names in States and Transitions must match exactly (case-sensitive) with names defined in InteractionElements and VisualizationElements.
+3.9. Guard and condition value normalization: For Rotatable and Slider elements, verify that all VALUE attribute values in States conditions and Transitions guards are normalized strings between "0.0" and "1.0". Any numeric value above 1.0 on a Rotatable or Slider VALUE attribute indicates a degree or unit value was used instead of a normalized fraction - flag as error.
+3.10. Screen file assignments: If the InteractionPlan includes screen_files assignments on planned states, verify that the generated States.json uses those assignments. If a planned state has screen_files assigned but the corresponding generated state has no ScreenContentVisualization condition or uses a different filename, flag as a warning.
+\end{lstlisting}
+\label{lst:consistency_review_agent_system_prompt}
+
+Der Scene-Review-Agent liefert anschließend wiederum ein strukturiertes \textit{Pydantic}-Modell zurück. Die Struktur dieses Modells sowie ein Beispiel für ein solches lässt sich Listing~\ref{lst:consistency_review_example} entnehmen. Dieser Struktur lassen sich Informationen zur Schwere des Problems, der Datei in der das Problem aufgetreten ist, dem betroffenen Element, einer Problembeschreibung und Lösungsvorschlägen entnehmen. Weiterhin ist auch direkt ersichtlich, ob das Problem mit dem Interaktionsplan oder der inhaltlichen Konsistenz zwischen den Teilspezifikationen zusammenhängt. Zudem gibt es noch eine Zusammenfassung der Fehler, damit Übersichtlichkeit auch bei vielen aufkommenden Fehlern gewährleistet werden kann. Auch diese Agentenantwort wird gemäß N2 (Protokollierung der Zwischenartefakte und Entscheidungen) in das Verzeichnis des aktuellen Versuchs geschrieben, um Nachvollziehbarkeit und Reproduzierbarkeit jedes Versuchs zu gewährleisten. Listing XX zeigt ein Beispiel eines Consistency Reviews.
+%TODO klären ob warning UND error einen retry auslösen, oder nur error
+
+\lstinputlisting[
+	language=json,
+	caption={Beispiel eines Consistency Reviews.},
+	label={lst:consistency_review_example}]
+{listings/vsg_artefacts/consistency_review_example.json}
+
+Sollten Probleme in diesem Schritt der Pipeline gefunden werden, wird ein neuer Versuch des Generierungsprozesses gestartet. Dabei wird N1 (modulare Kapselung und gezielte Neugenerierung) berücksichtigt und ähnlich wie im Specification Generator werden auch hier (durch ein Mapping der erkannten Probleme auf betroffene Schritte), gemäß der Abhängigkeiten der einzelnen Dateien (siehe~\ref{fig:dependency_graph_specgen}), nur betroffene Teile der Spezifikation neugeneriert.
+
+Der Consistency-Review-Agent verwendet mit GPT-5.2 das zweitstärkste LLM innerhalb dieser Pipeline. Er bekommt sowohl die Registry als auch den Interaktionsplan als JSON-Eingabe, welche bei komplexeren Szenen sehr umfangreich werden können, und muss daraus Referenzen ziehen und die Inhalte gegeneinander abgleichen. Leistungsschwächere Modelle würden bei diesen Aufgaben mit viel Kontext schneller die Übersicht verlieren, was problematisch wäre, da dies die Kernkompetenzen dieses Agenten ist. Weiterhin ist strukturiertes Reasoning erforderlich, um durch das Traversieren eines gerichteten Graphen von Zuständen und Übergängen die Erreichbarkeit von Zuständen abzuleiten. Auch diese Aufgabe führt zu Problemen bei kleineren Modellen. Eine zuverlässige Fehlererkennung in diesem Schritt ist zudem wichtig, da falscherkannte Fehler zu erneuten Versuchsdurchläufen führen können, was wiederum bei komplexeren Prototyen kostenintensiv sein kann. Auch nicht erkannte Fehler sind problematisch, da der fertige Prototyp gegebenenfalls bestimmte Verhalten nicht abdecken würde. Die durchgeführten Testdurchläufe haben außerdem gezeigt, dass der Agent von einem größeren Modell, wie GPT-5.5, nicht erheblich profitiert. Sollten Prototypen allerdings komplexer als die in dieser Arbeit behandelten werden oder die Anzahl an Zuständen sowie Übergängen erheblich steigen, könnte der Agent vom Wechsel zu einem stärkeren Modell profitieren.
+Wenn der Consistency Reviewer keine Probleme erkennt, kann die Pipleine zum nöchsten Schritt, dem Unity-Validator übergehen und die generierte Vivian-Spezifikation auf Laufzeitfehler überprüfen.
+
+%TODO welche anforderungen adressiert?
+
+%Ein Consistency-Reviewer erhält die Spezifikationsdateien sowie den Interaktionsplan, da hier mithilfe eines weiteren LLM-Agenten geprüft wird, ob die geplanten Interaktionen tatsächlich umgesetzt sind.
+
+%Ein Unity-Validator ergänzt dies um eine strukturelle und laufzeitnahe Kontrolle, wodurch tatsächliche Initialisierungsfehler bereits vor der Übermittlung an Unity aufgedeckt werden können. Dieser Schritt adressiert A3.
 
 \section{Validator}\label{sec:unity_validator}
 
