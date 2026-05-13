@@ -1,0 +1,12 @@
+{
+  "patches": [
+    {
+      "target_file": "States.json",
+      "element_name": "idle.state, toasting.state, cancelled.state",
+      "description": "All three states include a condition of Type 'FileVisualization' that references VisualizationElement 'Heating_resistors' with FileName values ('heating_off' or 'heating_on'). The runtime throws NotSupportedException because the 'AppearingObject' visualization element 'Heating_resistors' cannot visualize FileVisualizationSpec values.",
+      "fix_instruction": "In States.json, for the three states 'idle.state', 'toasting.state', and 'cancelled.state' remove the existing FileVisualization conditions that reference VisualizationElement 'Heating_resistors' (FileName 'heating_off' / 'heating_on') and replace them with boolean visibility visualizations for the AppearingObject. Concretely: - idle.state: remove the FileVisualization condition and add {\"Type\":\"BoolValueVisualization\",\"VisualizationElement\":\"Heating_resistors\",\"Value\":\"false\"}. - toasting.state: remove the FileVisualization condition and add {\"Type\":\"BoolValueVisualization\",\"VisualizationElement\":\"Heating_resistors\",\"Value\":\"true\"}. - cancelled.state: remove the FileVisualization condition and add {\"Type\":\"BoolValueVisualization\",\"VisualizationElement\":\"Heating_resistors\",\"Value\":\"false\"}. Keep the VisualizationElements.json entry for 'Heating_resistors' as Type 'AppearingObject' (no change)."
+    }
+  ],
+  "requires_full_regeneration": [],
+  "reasoning": "The validator error shows the system attempted to apply a FileVisualizationSpec to the 'Heating_resistors' AppearingObject, which that visualization element type does not support. This is a consistent, localized mismatch between the States' visualization condition type and the declared VisualizationElement type. A targeted fix replacing FileVisualization conditions with boolean visibility visualizations (BoolValueVisualization) preserves the AppearingObject semantics (show/hide) and aligns with the InteractionPlan, so full regeneration is not required."
+}

@@ -1,0 +1,12 @@
+{
+  "patches": [
+    {
+      "target_file": "",
+      "element_name": "",
+      "description": "",
+      "fix_instruction": ""
+    }
+  ],
+  "requires_full_regeneration": [],
+  "reasoning": ""
+}
