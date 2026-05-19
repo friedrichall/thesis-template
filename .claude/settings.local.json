@@ -3,7 +3,13 @@
     "allow": [
       "Bash(ls:*)",
       "Bash(make run *)",
-      "PowerShell(make run *)"
+      "PowerShell(make run *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(pdflatex *)",
+      "Bash(make)",
+      "PowerShell(make *)",
+      "Bash(pdflatex -interaction=nonstopmode thesis.tex)",
+      "Bash(awk NR>=28 && NR<=60 *)"
     ]
   }
 }

@@ -1,1 +1,88 @@
 \chapter{Evaluation}\label{ch:evaluation}
+
+\section{Evaluationsziel und Untersuchungsdesign}
+Ziel der Evaluation ist es, die in der vorliegenden Arbeit entwickelte Pipeline zur Generierung interaktiver Vivian-Prototypen systematisch zu untersuchen. Im Mittelpunkt steht dabei nicht die Bewertung der Bedienbarkeit durch externe Benutzer*innen, sondern die technische Funktionsfähigkeit des prototypisch umgesetzten Workflows. Daher wird die Evaluation als technische, szenariobasierte Systemevaluation durchgeführt. Sie prüft, ob aus den definierten Eingaben vollständige Vivian-Spezifikationen generiert werden können und ob das damit ermöglichte Verhalten dem zuvor festgelegten Referenzszenario entspricht.
+
+In der Evaluation werden drei Aspekte betrachtet. Es wird geprüft, ob der VSG grundsätzlich in der Lage ist, aus vorhandenen 3D-Objekten ausführbare Prototypen zu erzeugen. Anschließend wird im zweiten Schritt bewertet, ob relevante Teilobjekte, Rollen, Zustände, und Übergänge wie erwartet aus dem Asset und der Interaktionsbeschreibung abgeleitet werden. Drittens wird schließlich untersucht, welchen Beitrag die Validierungs- und Korrekturmechanismen zur Verringerung von Fehlern leisten. Damit wird die Evaluation der in dieser Arbeit entwickelten Pipeline nicht nur auf einzelne Beispielausgaben reduziert, sondern betrachtet inhaltliche Qualität der erzeugten Vivian-Spezifikationen sowie die Robustheit des Workflows.
+
+Zur Evaluation der in dieser Arbeit entwickelten Pipeline sollen verschiedene Assets systematisch getestet werden.
+Es werden dazu drei Testassets mit unterschiedlicher Komplexität betrachtet: eine Lampe, ein Display und ein Toaster. Für jedes dieser Assets wird ein Szenario definiert, welches die erwarteten Teilobjekte, Rollen, Zustände, Übergänge und visuellen Reaktionen beschreibt. Da verschiedene valide Vivian-Spezifikationen dasselbe Verhalten abbilden können, bildet es einen verhaltensbezogenen Maßstab zur Bewertung, mit welchem schließlich die generierten Ergebnisse eingeordnet werden können.
+
+Das Untersuchungsdesign beinhaltet qualitative sowie quantitative Bestandteile und ist entlang der Forschungsfragen aus~\ref{sec:forschungsfragen_zielsetzung} aufgebaut. Anhand eines Testassets wird zunächst untersucht, wie der VSG von Anfang bis Ende arbeitet und ob ein valider Vivian-Prototyp entsteht. Insbesondere die technische Umsetzbarkeit des Co-Creation-Workflows aus F1 wird damit adressiert. Die Bewertung erkannter Teilobjekte und zugewiesener Rollen bezieht sich auf die Frage, ob sich relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzer*innenbeschreibungen ableiten lassen (F2). Die Untersuchung der abgeleiteten Interaktionslogik aus F3 wird mit der Analyse der erzeugten Zustände, Übergänge und visuellen Verhaltensänderungen adressiert. Es werden weiterhin wiederholte Durchläufe mit identischen Eingaben durchgeführt, um die Stabilität der Pipeline zu bewerten. Außerdem wird die vollständige Generierungspipeline mit einer Erstgenerierung ohne Korrekturschleife verglichen. Damit wird untersucht, ob Consistency Reviewer, Validator und Fixer Agent die Anzahl der Fehler reduzieren und die Erfolgsquote der finalen Vivian-Spezifikation erhöhen.
+
+\section{Testassets und Referenzszenarien}
+
+Zur Evaluation des VSG wurden drei Assets ausgewählt: eine Lampe, ein Display und ein Toaster.
+Dabei steht nicht die Untersuchung einer möglichst großen Menge unterschiedlicher Objekte im Fokus, sondern eine gezielte Auswahl aussagekräftiger Beispiele. Diese ermöglicht es, die Funktionsfähigkeit des VSG über verschiedene Komplexitätsstufen sowie unterschiedliche Anforderungen zu prüfen. Die drei Assets dienen als Grundlage für eine szenariobasierte Evaluation, bei der die erzeugten Spezifikationen mit den zuvor festgelegten Verhaltenserwartungen als Referenz verglichen werden.
+
+Die drei Assets unterscheiden sich hinsichtlich ihrer funktionalen sowie strukturellen Komplexität, wodurch der Workflow nicht nur an einem einfachen Erfolgsbeispiel, sondern anhand verschiedener Testfälle mit steigender Komplexität und Anforderungen gezeigt werden kann. Die Lampe bildet das einfachste Beispiel ab, da hier nur eine Interaktion sowie eine visuelle Reaktion erwartet werden. Einen mittleren Schwierigkeitsgrad stellt das Display dar, da hier verschiedene Bedienelemente und eine Screen-Fläche erkannt sowie in Beziehung zueinander gesetzt werden müssen. Abschließend bietet der Toaster das komplexeste Beispiel, da hier mehrere Teilobjekte, unterschiedliche visuelle Rückmeldungen, verschiedene Zustände sowie ein zeitbasierter Übergang miteinander funktionieren müssen.
+
+Für die Bewertung der Pipeline sind verschiedene Kriterien relevant, anhand derer die Auswahl der Testassets erfolgte. Ein erstes Kriterium ist die Auswahl relevanter Teilobjekte. Je mehr Teilobjekte ein Asset besitzt, desto anspruchsvoller ist für den VSG, jene Bestandteile zu identifizieren, die tatsächlich relevant für die gewünschte Interaktion sind. Bei der Lampe betrifft das den Knopf sowie den Lampenschirm bzw. die Lichtquelle. Beim Display hingegen müssen bereits mehrere Bedienelemente sowie eine Screen-Fläche erkannt und unterschieden werden. Das Toaster-Beispiel enthält zusätzlich einen Hebel, eine Stopp-Taste sowie Heizelemente zur Visualisierung.
+
+Ein zweites Kriterium beschreibt die Anzahl und Art der erwarteten Rollen. Nicht nur muss die Pipeline relevante Objektbestandteile erkennen, sondern diese später auch passenden funktionalen Vivian-Rollen zuordnen. Während die Lampe mit zwei Arten von Interaktions- sowie Visualisierungselementen (\textit{Button} und \textit{Light}) auskommt, benötigt das Display neben mehreren Eingabeelementen (\textit{Buttons}) auch ein Screen-Element, um Inhalte tatsächlich anzuzeigen. Beim Toaster müssen unterschiedliche Rollen erkannt werden, wie Hebel und Stopp-Taste als Bedienelemente (\textit{Slider} und \textit{Button}) sowie visuelle Elemente wie LED und Heizelemente als \textit{Lights}.
+
+Auch die Komplexität der Interaktionslogik stellt ein Auswahlkriterium dar. Weniger komplexe Prototypen kommen mit weniger komplexer Logik aus. Beim Lampen-Beispiel schaltet ein Knopfdruck das Licht an oder aus. Komplexere Prototypen wie das Display benötigen wiederum bereits mehrere voneinander unterscheidbare Aktionen. Ein Knopf schaltet das Display an oder aus und weitere Knöpfe ermöglichen ein Wechseln zwischen verschiedenen Seiten. Der Toaster enthält zudem eine zeitbasierte Komponente, welche es ermöglicht, einen Toastvorgang wahlweise per Tastendruck oder nach einer fest definierten Zeit zu beenden. Dieser Fall umfasst nach direkten Interaktionen somit auch eine automatische Zustandsänderung nach Ablauf einer definierten Zeit.
+Außerdem wurden unterschiedliche visuelle Rückmeldungen berücksichtigt. Für die Evaluation ist dies wichtig, da ein Prototyp intern korrekt umgesetzte Zustände und Zustandsübergänge nachvollziehbar für Nutzer*innen veranschaulichen soll. Die Lampe verwendet dafür das Leuchten des Lampenschirms. Das Display-Beispiel nutzt die Darstellung der Screen-Inhalte und der Toaster simuliert das Glühen der Heizelemente sowie das Leuchten einer LED während des Toastvorgangs.
+
+Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototypen mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. In der nachfolgenden Tabelle sind die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammengefasst.
+
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{ll>{\raggedright\arraybackslash}X}
+    \toprule
+    Asset   & Komplexität & Erwartete Hauptfunktion                                                                                                                                                 \\
+    \midrule
+    Lampe   & leicht      & Der Lampenschirm soll als Lichtquelle leuchten. Ein Knopf soll die Lampe an- \bzw ausschalten.                                                                          \\
+    Display & mittel      & Das Display soll ein- und ausgeschaltet werden können, Screen-Inhalte anzeigen sowie zwischen Seiten wechseln können.                                                   \\
+    Toaster & schwer      & Der Toastvorgang soll durch den Hebel gestartet, mittels LED und Heizelementen visualisiert sowie nach zehn Sekunden oder durch Drücken der Stopp-Taste beendet werden. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Übersicht der ausgewählten Testassets.}\label{tab:übersicht_testassets}
+\end{table}
+
+% \begin{table}[htbp]
+%   \centering
+%   \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+%     \toprule
+%     Aspekt
+%      & Lampe
+%      & Display
+%      & Toaster                                                                                     \\
+%     \midrule
+%     Erwartete Teilobjekte
+%      & Knopf, Lampenschirm
+%      & Bedienknöpfe, Screen-Fläche
+%      & Hebel, Stopp-Taste, Heizelemente, LED                                                       \\
+%     \addlinespace
+%     Erwatete Rollen
+%      & \textit{Button}, \textit{Light}
+%      & \textit{Buttons}, \textit{Screen}
+%      & \textit{Slider} (Hebel), \textit{Button} (Stopp-Taste), \textit{Lights} (LED, Heizelemente) \\
+%     \addlinespace
+%     Erwartete Zustände
+%      & an, aus
+%      & aus, Seite~1, Seite~2
+%      & idle, toasting                                                                              \\
+%     \addlinespace
+%     Erwartete Übergänge
+%      & Knopfdruck schaltet zwischen an und aus um
+%      & Ein-/Aus-Knopf wechselt Zustand, weitere Knöpfe wechseln zwischen den Seiten
+%      & Hebel startet Toastvorgang; Stopp-Taste oder Ablauf von zehn Sekunden beendet ihn           \\
+%     \addlinespace
+%     Erwartete visuelle Reaktionen
+%      & Lampenschirm leuchtet im Zustand \glqq an\grqq
+%      & Screen zeigt im jeweiligen Zustand den passenden Inhalt
+%      & LED leuchtet während des Toastvorgangs, Heizelemente glühen                                 \\
+%     \bottomrule
+%   \end{tabularx}
+%   \caption{Übersicht der Referenzszenarien.}\label{tab:übersicht_referenzszenarien}
+% \end{table}
+
+% punkte 4-8
+
+% 4: Lampe beschreiben
+% 5: Display beschreiben
+% 6: Toaster beschreiben
+
+% morgen: 6.3 „Bewertungsmaßstäbe“ schreiben und mit 5/6/7 fortfahren
