@@ -15,6 +15,14 @@ Das Untersuchungsdesign beinhaltet qualitative sowie quantitative Bestandteile u
 Zur Evaluation des VSG wurden drei Assets ausgewählt: eine Lampe, ein Display und ein Toaster.
 Dabei steht nicht die Untersuchung einer möglichst großen Menge unterschiedlicher Objekte im Fokus, sondern eine gezielte Auswahl aussagekräftiger Beispiele. Diese ermöglicht es, die Funktionsfähigkeit des VSG über verschiedene Komplexitätsstufen sowie unterschiedliche Anforderungen zu prüfen. Die drei Assets dienen als Grundlage für eine szenariobasierte Evaluation, bei der die erzeugten Spezifikationen mit den zuvor festgelegten Verhaltenserwartungen als Referenz verglichen werden.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/Lamp_iso_top_right}\hfill
+  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/Display_iso_top_right}\hfill
+  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/toaster3_iso_top_right}
+  \caption{Die drei Testassets Lampe, Display und Toaster (von links nach rechts).}\label{fig:testasset_examples_iso}
+\end{figure}
+
 Die drei Assets unterscheiden sich hinsichtlich ihrer funktionalen sowie strukturellen Komplexität, wodurch der Workflow nicht nur an einem einfachen Erfolgsbeispiel, sondern anhand verschiedener Testfälle mit steigender Komplexität und Anforderungen gezeigt werden kann. Die Lampe bildet das einfachste Beispiel ab, da hier nur eine Interaktion sowie eine visuelle Reaktion erwartet werden. Einen mittleren Schwierigkeitsgrad stellt das Display dar, da hier verschiedene Bedienelemente und eine Screen-Fläche erkannt sowie in Beziehung zueinander gesetzt werden müssen. Abschließend bietet der Toaster das komplexeste Beispiel, da hier mehrere Teilobjekte, unterschiedliche visuelle Rückmeldungen, verschiedene Zustände sowie ein zeitbasierter Übergang miteinander funktionieren müssen.
 
 Für die Bewertung der Pipeline sind verschiedene Kriterien relevant, anhand derer die Auswahl der Testassets erfolgte. Ein erstes Kriterium ist die Auswahl relevanter Teilobjekte. Je mehr Teilobjekte ein Asset besitzt, desto anspruchsvoller ist für den VSG, jene Bestandteile zu identifizieren, die tatsächlich relevant für die gewünschte Interaktion sind. Bei der Lampe betrifft das den Knopf sowie den Lampenschirm bzw. die Lichtquelle. Beim Display hingegen müssen bereits mehrere Bedienelemente sowie eine Screen-Fläche erkannt und unterschieden werden. Das Toaster-Beispiel enthält zusätzlich einen Hebel, eine Stopp-Taste sowie Heizelemente zur Visualisierung.
@@ -23,9 +31,6 @@ Ein zweites Kriterium beschreibt die Anzahl und Art der erwarteten Rollen. Nicht
 
 Auch die Komplexität der Interaktionslogik stellt ein Auswahlkriterium dar. Weniger komplexe Prototypen kommen mit weniger komplexer Logik aus. Beim Lampen-Beispiel schaltet ein Knopfdruck das Licht an oder aus. Komplexere Prototypen wie das Display benötigen wiederum bereits mehrere voneinander unterscheidbare Aktionen. Ein Knopf schaltet das Display an oder aus und weitere Knöpfe ermöglichen ein Wechseln zwischen verschiedenen Seiten. Der Toaster enthält zudem eine zeitbasierte Komponente, welche es ermöglicht, einen Toastvorgang wahlweise per Tastendruck oder nach einer fest definierten Zeit zu beenden. Dieser Fall umfasst nach direkten Interaktionen somit auch eine automatische Zustandsänderung nach Ablauf einer definierten Zeit.
 Außerdem wurden unterschiedliche visuelle Rückmeldungen berücksichtigt. Für die Evaluation ist dies wichtig, da ein Prototyp intern korrekt umgesetzte Zustände und Zustandsübergänge nachvollziehbar für Nutzer*innen veranschaulichen soll. Die Lampe verwendet dafür das Leuchten des Lampenschirms. Das Display-Beispiel nutzt die Darstellung der Screen-Inhalte und der Toaster simuliert das Glühen der Heizelemente sowie das Leuchten einer LED während des Toastvorgangs.
-
-Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototypen mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. In der nachfolgenden Tabelle sind die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammengefasst.
-
 
 \begin{table}[htbp]
   \centering
@@ -40,6 +45,11 @@ Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit 
   \end{tabularx}
   \caption{Übersicht der ausgewählten Testassets.}\label{tab:übersicht_testassets}
 \end{table}
+
+Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototypen mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. In der nachfolgenden Tabelle sind die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammengefasst.
+
+
+
 
 % \begin{table}[htbp]
 %   \centering
@@ -85,4 +95,68 @@ Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit 
 % 5: Display beschreiben
 % 6: Toaster beschreiben
 
-% morgen: 6.3 „Bewertungsmaßstäbe“ schreiben und mit 5/6/7 fortfahren
+% evtl. 6.3 „Bewertungsmaßstäbe“ schreiben und mit 5/6/7 fortfahren
+\section{Exemplarischer Workflow-Durchlauf}
+
+Zunächst wird ein exemplarischer Einzeldurchlauf beschrieben, um die Funktionsweise des VSG nicht nur abstrakt, sondern anhand eines vollständigen Generierungsprozesses zu zeigen. Ziel ist die Nachvollziehbarkeit eines Durchlaufs von Eingabe bis validierter Spezifikation. Dafür wurde das Display-Asset ausgewählt, da es einen mittleren Schwierigkeitsgrad darstellt, mehrere Bedienelemente (\textit{Buttons}), eine Screen-Fläche als Visualisierungsobjekt und mehrere Zustände besitzt, aber noch übersichtlicher als das Toaster-Beispiel ist. Die Hierarchie des Display-Assets ist in Abbildung~\ref{fig:display_asset_treeview} abgebildet und zeigt die verschiedenen Bedienelemente sowie die Screen-Fläche. Die natürlichsprachliche Eingabe in der Vorverarbeitung sowie die Prüfung des Interaktionsplans durch Benutzende zeigt den Co-Creation-Workflow. Weiterhin wird gezeigt, dass Teilobjekte und Elementrollen von der Pipeline erkannt werden. Indem Zustände, Übergänge sowie sichtbare Screen-Wechsel vom VSG geplant und schließlich umgesetzt werden, wird gezeigt, dass Interaktionslogiken aus der natürlichsprachlichen Interaktionsbeschreibung und bestehenden 3D-Geometrien extrahiert und in eine maschinenlesbare Repräsentation überführt werden können. Der hier betrachtete Fall stellt eine positive Referenz dar, da der Durchlauf im ersten Versuch zu einer validierten Vivian-Spezifikation gelangte. In diesem Unterkapitel wird zunächst die grundlegende Machbarkeit des Workflows gezeigt. Es wird daraus jedoch noch keine allgemeine Aussage über die Robustheit oder Wiederholbarkeit abgeleitet, dazu werden anschließend mehrere Durchläufe betrachtet.
+
+\input{figures/display/display-asset-unity-treeview.tex}
+
+Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschreiben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Aus dieser Beschreibung ergab sich vorab ein Referenzszenario mit vier Teilobjekten. Diese sowie deren erwartete Kategorie und Vivian-Rollen sind der folgenden Tabelle zu entnehmen.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+    \toprule
+    Teilobjekt     & Kategorie      & Vivian-Rolle \\
+    \midrule
+    ButtonBack     & Interaktion    & Button       \\
+    ButtonPower    & Interaktion    & ToggleButton \\
+    ButtonForward  & Interaktion    & Button       \\
+    DispalyContent & Visualisierung & Screen       \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Erwartete Teilobjekte, Kategorien und Vivian-Rollen des Display-Assets.}\label{tab:display_teilobjekte}
+\end{table}
+
+Weiterhin wurden vier erwartete Zustände definiert: ein Zustand, in dem der Bildschirm ausgeschaltet ist und kein Bild angezeigt wird sowie ein Zustand je anzuzeigendem Bild. Aus diesen Zuständen ergaben sich weiterhin zehn erwartete Übergänge. Der Power-Button sollte aus dem ausgeschalteten Zustand in einen den ersten Bildzustand wechseln sowie aus jedem Bildzustand zurück in den ausgeschalteten Zustand. Der Button zur Vorwärtsnavigation sollte von Bild eins zu Bild zwei, von Bild zwei zu Bild drei, und schließlich wieder von Bild 3 zu Bild eins wechseln, um ein zyklisches Wechseln zwischen den Bildern zu ermöglichen. Der Button zur Rückwärtsnavigation sollte dieselbe Bildmenge in umgekehrter Richtung durchlaufen. Die erwarteten Zustände und Übergänge sind außerdem in der folgenden Tabelle zusammengefasst.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X}
+    \toprule
+    Name       & Beschreibung                                             \\
+    \midrule
+    powerOff   & Bildschirm ausgeschaltet, kein Bildinhalt                \\
+    imageOne   & Bildschirm angeschaltet, Anzeige des ersten Bildinhalts  \\
+    imageTwo   & Bildschirm angeschaltet, Anzeige des zweiten Bildinhalts \\
+    imageThree & Bildschirm angeschaltet, Anzeige des dritten Bildinhalts \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Erwartete Zustände des Display-Assets.}\label{tab:display_zustaende}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Ausgangszustand & Zielzustand & Auslöser      \\
+    \midrule
+    powerOff        & imageOne    & ButtonPower   \\
+    imageOne        & powerOff    & ButtonPower   \\
+    imageTwo        & powerOff    & ButtonPower   \\
+    imageThree      & powerOff    & ButtonPower   \\
+    imageOne        & imageTwo    & ButtonForward \\
+    imageTwo        & imageThree  & ButtonForward \\
+    imageThree      & imageOne    & ButtonForward \\
+    imageOne        & imageThree  & ButtonBack    \\
+    imageTwo        & imageOne    & ButtonBack    \\
+    imageThree      & imageTwo    & ButtonBack    \\
+    \bottomrule
+  \end{tabular}
+  \caption{Erwartete Übergänge des Display-Assets.}\label{tab:display_uebergaenge}
+\end{table}
+
+
+
+
