@@ -1,4 +1,4 @@
-\chapter{Evaluation}\label{ch:evaluation}
+﻿\chapter{Evaluation}\label{ch:evaluation}
 
 \section{Evaluationsziel und Untersuchungsdesign}
 Ziel der Evaluation ist es, die in der vorliegenden Arbeit entwickelte Pipeline zur Generierung interaktiver Vivian-Prototypen systematisch zu untersuchen. Im Mittelpunkt steht dabei nicht die Bewertung der Bedienbarkeit durch externe Benutzer*innen, sondern die technische Funktionsfähigkeit des prototypisch umgesetzten Workflows. Daher wird die Evaluation als technische, szenariobasierte Systemevaluation durchgeführt. Sie prüft, ob aus den definierten Eingaben vollständige Vivian-Spezifikationen generiert werden können und ob das damit ermöglichte Verhalten dem zuvor festgelegten Referenzszenario entspricht.
@@ -30,7 +30,10 @@ Für die Bewertung der Pipeline sind verschiedene Kriterien relevant, anhand der
 Ein zweites Kriterium beschreibt die Anzahl und Art der erwarteten Rollen. Nicht nur muss die Pipeline relevante Objektbestandteile erkennen, sondern diese später auch passenden funktionalen Vivian-Rollen zuordnen. Während die Lampe mit zwei Arten von Interaktions- sowie Visualisierungselementen (\textit{Button} und \textit{Light}) auskommt, benötigt das Display neben mehreren Eingabeelementen (\textit{Buttons}) auch ein Screen-Element, um Inhalte tatsächlich anzuzeigen. Beim Toaster müssen unterschiedliche Rollen erkannt werden, wie Hebel und Stopp-Taste als Bedienelemente (\textit{Slider} und \textit{Button}) sowie visuelle Elemente wie LED und Heizelemente als \textit{Lights}.
 
 Auch die Komplexität der Interaktionslogik stellt ein Auswahlkriterium dar. Weniger komplexe Prototypen kommen mit weniger komplexer Logik aus. Beim Lampen-Beispiel schaltet ein Knopfdruck das Licht an oder aus. Komplexere Prototypen wie das Display benötigen wiederum bereits mehrere voneinander unterscheidbare Aktionen. Ein Knopf schaltet das Display an oder aus und weitere Knöpfe ermöglichen ein Wechseln zwischen verschiedenen Seiten. Der Toaster enthält zudem eine zeitbasierte Komponente, welche es ermöglicht, einen Toastvorgang wahlweise per Tastendruck oder nach einer fest definierten Zeit zu beenden. Dieser Fall umfasst nach direkten Interaktionen somit auch eine automatische Zustandsänderung nach Ablauf einer definierten Zeit.
+
 Außerdem wurden unterschiedliche visuelle Rückmeldungen berücksichtigt. Für die Evaluation ist dies wichtig, da ein Prototyp intern korrekt umgesetzte Zustände und Zustandsübergänge nachvollziehbar für Nutzer*innen veranschaulichen soll. Die Lampe verwendet dafür das Leuchten des Lampenschirms. Das Display-Beispiel nutzt die Darstellung der Screen-Inhalte und der Toaster simuliert das Glühen der Heizelemente sowie das Leuchten einer LED während des Toastvorgangs.
+
+Um eine endlose Wiederholungsschleife im Korrekturprozess zu vermeiden, wurde zudem eine maximale Versuchsanzahl von fünf Versuchen gewählt.
 
 \begin{table}[htbp]
   \centering
@@ -46,61 +49,56 @@ Außerdem wurden unterschiedliche visuelle Rückmeldungen berücksichtigt. Für 
   \caption{Übersicht der ausgewählten Testassets.}\label{tab:übersicht_testassets}
 \end{table}
 
-Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototypen mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. In der nachfolgenden Tabelle sind die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammengefasst.
+Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototyp mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. Tabelle~\ref{tab:übersicht_testassets} fasst die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammen.
 
+Die folgenden Tabellen~\ref{tab:szenario_lampe}, \ref{tab:szenario_display} und~\ref{tab:szenario_toaster} fassen je Testasset die erwarteten Teilobjekte mit Kategorie und Vivian-Rolle, die erwarteten Zustände sowie die erwarteten Übergänge zusammen. Diese Referenzszenarien dienen in den nachfolgenden Abschnitten als verhaltensbezogener Maßstab, an dem die generierten Vivian-Spezifikationen und das beobachtete Prototypverhalten gemessen werden.
 
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{XXXX}
+    \toprule
+     &  &  & \\
+     &  &  & \\
+     &  &  & \\
+     &  &  & \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Referenzszenario Lampe.}\label{tab:szenario_lampe}
+\end{table}
 
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{XX}
+    \toprule
+     & \\
+     & \\
+     & \\
+     & \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Referenzszenario Display.}\label{tab:szenario_display}
+\end{table}
 
-% \begin{table}[htbp]
-%   \centering
-%   \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
-%     \toprule
-%     Aspekt
-%      & Lampe
-%      & Display
-%      & Toaster                                                                                     \\
-%     \midrule
-%     Erwartete Teilobjekte
-%      & Knopf, Lampenschirm
-%      & Bedienknöpfe, Screen-Fläche
-%      & Hebel, Stopp-Taste, Heizelemente, LED                                                       \\
-%     \addlinespace
-%     Erwatete Rollen
-%      & \textit{Button}, \textit{Light}
-%      & \textit{Buttons}, \textit{Screen}
-%      & \textit{Slider} (Hebel), \textit{Button} (Stopp-Taste), \textit{Lights} (LED, Heizelemente) \\
-%     \addlinespace
-%     Erwartete Zustände
-%      & an, aus
-%      & aus, Seite~1, Seite~2
-%      & idle, toasting                                                                              \\
-%     \addlinespace
-%     Erwartete Übergänge
-%      & Knopfdruck schaltet zwischen an und aus um
-%      & Ein-/Aus-Knopf wechselt Zustand, weitere Knöpfe wechseln zwischen den Seiten
-%      & Hebel startet Toastvorgang; Stopp-Taste oder Ablauf von zehn Sekunden beendet ihn           \\
-%     \addlinespace
-%     Erwartete visuelle Reaktionen
-%      & Lampenschirm leuchtet im Zustand \glqq an\grqq
-%      & Screen zeigt im jeweiligen Zustand den passenden Inhalt
-%      & LED leuchtet während des Toastvorgangs, Heizelemente glühen                                 \\
-%     \bottomrule
-%   \end{tabularx}
-%   \caption{Übersicht der Referenzszenarien.}\label{tab:übersicht_referenzszenarien}
-% \end{table}
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{XXXX}
+    \toprule
+     &  &  & \\
+     &  &  & \\
+     &  &  & \\
+     &  &  & \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Referenzszenario Toaster.}\label{tab:szenario_toaster}
+\end{table}
 
-% punkte 4-8
-
-% 4: Lampe beschreiben
-% 5: Display beschreiben
-% 6: Toaster beschreiben
-
-% evtl. 6.3 „Bewertungsmaßstäbe“ schreiben und mit 5/6/7 fortfahren
 \section{Exemplarischer Workflow-Durchlauf}
 
 Zunächst wird ein exemplarischer Einzeldurchlauf beschrieben, um die Funktionsweise des VSG nicht nur abstrakt, sondern anhand eines vollständigen Generierungsprozesses zu zeigen. Ziel ist die Nachvollziehbarkeit eines Durchlaufs von Eingabe bis validierter Spezifikation. Dafür wurde das Display-Asset ausgewählt, da es einen mittleren Schwierigkeitsgrad darstellt, mehrere Bedienelemente (\textit{Buttons}), eine Screen-Fläche als Visualisierungsobjekt und mehrere Zustände besitzt, aber noch übersichtlicher als das Toaster-Beispiel ist. Die Hierarchie des Display-Assets ist in Abbildung~\ref{fig:display_asset_treeview} abgebildet und zeigt die verschiedenen Bedienelemente sowie die Screen-Fläche. Die natürlichsprachliche Eingabe in der Vorverarbeitung sowie die Prüfung des Interaktionsplans durch Benutzende zeigt den Co-Creation-Workflow. Weiterhin wird gezeigt, dass Teilobjekte und Elementrollen von der Pipeline erkannt werden. Indem Zustände, Übergänge sowie sichtbare Screen-Wechsel vom VSG geplant und schließlich umgesetzt werden, wird gezeigt, dass Interaktionslogiken aus der natürlichsprachlichen Interaktionsbeschreibung und bestehenden 3D-Geometrien extrahiert und in eine maschinenlesbare Repräsentation überführt werden können. Der hier betrachtete Fall stellt eine positive Referenz dar, da der Durchlauf im ersten Versuch zu einer validierten Vivian-Spezifikation gelangte. In diesem Unterkapitel wird zunächst die grundlegende Machbarkeit des Workflows gezeigt. Es wird daraus jedoch noch keine allgemeine Aussage über die Robustheit oder Wiederholbarkeit abgeleitet, dazu werden anschließend mehrere Durchläufe betrachtet.
 
 \input{figures/display/display-asset-unity-treeview.tex}
+
+\subsection{Eingabe und Referenzszenario}
 
 Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschreiben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Aus dieser Beschreibung ergab sich vorab ein Referenzszenario mit vier Teilobjekten. Diese sowie deren erwartete Kategorie und Vivian-Rollen sind der folgenden Tabelle zu entnehmen.
 
@@ -157,6 +155,55 @@ Weiterhin wurden vier erwartete Zustände definiert: ein Zustand, in dem der Bil
   \caption{Erwartete Übergänge des Display-Assets.}\label{tab:display_uebergaenge}
 \end{table}
 
+Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschrieben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Daraus ergab sich ein Referenzszenario mit vier Teilobjekten, vier Zuständen und zehn Übergängen, welches in Tabelle~\ref{tab:szenario_display} dokumentiert ist.
+
+\subsection{Szenenanalyse und Interaktionsplanung}
+
+Im ersten LLM-gestützten Schritt der Pipeline, dem Scene Analyzer, wurden aus der Szene neun Objekte, zwölf Relationen, vier Cluster und drei verfügbare Bilddateien extrahiert. Besonders relevant waren hier die Objekte DisplayContent, ButtonBack, ButtonPower und ButtonForward, damit somit alle für das Referenzszenario notwendigen Teilobjekte identifiziert wurden. Alle übrigen erkannten Objekte wie etwa Display, DisplayHousing, DisplayPlane, Frame und Controls, beschreiben die hierarchische und räumliche Struktur des Assets und wurden demnach nicht als eigenständige Interaktions- oder Visualisierungselemente benötigt.
+
+Auf Grundlage dieser Szenenanalyse erzeugte der Interaction Planner einen Interaktionsplan mit vier Elementrollen, vier Zuständen, sowie zehn Übergängen, welche genau den erwarteten Elementrollen, Zuständen und Übergängen entsprachen. Dabei wurden ButtonBack und ButtonForward als Button, ButtonPower als ToggleButton und DisplayContent als Screen geplant.  Außerdem wurden alle vier Spezifikationsdateien als benötigt markiert. Der Interaktionsplan entsprach somit genau dem zuvor definierten Referenzszenario, weshalb der Plan im Human-in-the-Loop-Schritt direkt akzeptiert wurde, ohne dass eine Neugenerierung stattfand.
+
+\subsection{Spezifikationsgenerierung und Validierung}
+
+Auf Basis dieses bestätigten Interaktionsplans generierte der Specification Generator im darauffolgenden Schritt alle für die Ausführung in Vivian benötigten Spezifikationsdateien. Dafür wurden in InteractionElements.json die drei im Plan vorgesehen Interaktionselemente angelegt. Für ButtonPower (ToggleButton) wurde zusätzlich ein Initialwert gesetzt, um den ausgeschalteten Anfangszustand des Bildschirms abzubilden. In VisualizationElements.json wurde als einziges Element DisplayContent als Screen angelegt, ebenfalls wie im Plan vorgesehen. Zudem entstanden vier Zustände in States.json. Ein initialer Zustand  displayOff.state setzt die Sichtbarkeit von DisplayContent auf 0,0 und verknüpft ButtonPower mit dem Wert false. Die drei Bildzustände setzen DisplayContent wiederum auf jeweils auf 1,0 und ButtonPower mit dem Wert true. Außerdem referenzieren sie jeweils eine der drei zur Verfügung gestellten Bilddateien, um diese auf dem Bildschirm anzuzeigen. In Transitions.json wurden alle zehn geplanten Übergänge umgesetzt und jeweils BUTTON\_PRESS als auslösendes Ereignis festgelegt. Weiterhin wurden je Übergang die geplanten Buttons als Interaktionselemente modelliert, um einen Übergang durchzuführen, wenn das Ereignis BUTTON\_PRESS auftritt.
+
+Der Consistency Reviewer bewertete die dateiübergreifende Konsistenz, Erreichbarkeit aller Zustände sowie die Abdeckung des Interaktionsplans als korrekt. Er erkannte zudem ein Mehrdeutigkeitsrisiko in der Modellierung des Power-Buttons. Diese Warnung bezog sich darauf, dass ButtoPower als ToggleButton verwendet wird und explizite Zustandsbedingungen verwendet. Die Übergänge, welche diesen Button verwenden, besitzen jedoch selbst keine Guards. Diese Warnung wurde jedoch nicht als Fehler gewertet, sodass anschließend die Unity-Validierung durchgeführt werden konnte. Diese wurde ebenfalls im ersten Versuch erfolgreich abgeschlossen und bestätigte die generierten Spezifikationsdateien, da keine Schema-, Referenz-, oder Initialisierungsfehler auftraten. Der Fixer-Agent wurde demzufolge nicht aufgerufen. Insgesamt benötigte der Generierungsdurchlauf einen Versuch um zu einem validen Endergebnis zu gelangen.
+
+\subsection{Resultierender Prototyp und Einordnung}
+
+Das Verhalten des finalen Unity-Prototyps entsprach dem zuvor definierten Referenzszenario. Im Initialzustand ist der Bildschirm ausgeschaltet und zeigt keinen Bildinhalt an. Durch Drücken des Power-Buttons wird der erste Bildzustand erreicht und Bild eins angezeigt. Von diesem Zustand ausgehend kann durch die Betätigung von ButtonForward von Bild eins zu Bild zwei, von Bild zwei zu Bild drei und von Bild drei zu Bild eins gewechselt werden. Die Rückwärtsnavigation funktioniert nach dem gleichen Prinzip in umgekehrter Richtung. Die erwartete endlose zyklische Navigation durch alle Bilddateien wurde somit durch die Zustands- und Übergangsstruktur abgebildet. Der Power-Button führt von jedem Bildzustand zurück in den ausgeschalteten Zustand.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.23\linewidth]{figures/display/display_off}\hfill
+  \includegraphics[width=0.23\linewidth]{figures/display/display_pageOne}\hfill
+  \includegraphics[width=0.23\linewidth]{figures/display/display_pageTwo}\hfill
+  \includegraphics[width=0.23\linewidth]{figures/display/display_pageThree}
+  \caption{Zustände des Display-Prototyps.}\label{fig:display_states}
+\end{figure}
+
+Dieser Durchlauf zeigt somit, dass der VSG in diesem Display-Beispiel relevante Teilobjekte und Elementrollen korrekt ableiten, eine Interaktionslogik mit verschiedenen Elementen, Zuständen und Übergängen planen, darauf basierend Vivian-kompatible Spezifikationsdateien erzeugen und diese anschließend validieren kann. Außerdem zeigt die vom Consistency Reviewer erzeugte Warnung, dass auch bei einer validen Generierung im ersten Versuch semantische Risiken auftreten können, welche nicht zwingend zu Validierungsfehlern führen. Der Durchlauf bildet demnach ein positives Referenzbeispiel für die grundsätzliche Funktionsfähigkeit des Workflows ab, ersetzt allerdings nicht die spätere Bewertung der Robustheit durch wiederholte Durchläufe und den Vergleich mit Versuchen ohne Korrekturmechanismen.
+
+\section{Wiederholte Durchläufe zur Robustheitsanalyse}
+
+Zur Robustheitsbewertung wurde der VSG für jedes der drei Testassets jeweils 20-mal mit identischer Eingabe (je Asset) ausgeführt. Insgesamt wurden somit 60 Durchläufe betrachtet. Ziel dieser Auswertung ist nicht einen einzelnen Durchlauf, wie in XX, im Detail nachzuvollziehen, sondern herauszufinden, ob die Pipeline bei gleicher Aufgabenstellung und Eingabe wiederholt stabile Ergebnisse generiert. Daher wurden die finale Erfolgsquote der Generierung, die bestandene Unity-Validierung, welcher Art auftretende Fehler waren und wie häufig diese auftraten, die Anzahl benötigter Korrekturschleifen sowie abgeleitete Elementrollen, Zustände und Übergänge bewertet. Außerdem wurde zur Beurteilung des finalen Prototyps zusätzlich geprüft, ob das beobachtbare Verhalten dem vorab definierten Referenzszenario entspricht.
+
+Ein Durchlauf wird als erfolgreich gewertet, wenn die Vivian-Spezifikation final erzeugt, in das angegebene Verzeichnis exportiert sowie vom Unity-Validierung bestätigt wurde. Weiterhin wurde zwischen technischer und funktionaler Korrektheit unterschieden. Eine technisch korrekt umgesetzte und valide Spezifikation ist von Vivian ausführbar. Sie besteht die Validierung und ist somit im Zielsystem lauffähig, kann aber dennoch teilweise vom erwarteten Verhalten abweichen. Auch eine funktional korrekte Spezifikation ist technisch korrekt. Darüber hinaus entspricht jedoch das beobachtete Verhalten des Prototyps genau dem zuvor definierten Referenzszenario. Daher wurden Fehler nach ihrer Quelle und Wirkung eingeordnet, wie etwa Validierungs- oder Registry-Fehler oder eine funktionale Abweichung des Verhaltens im finalen Unity-Prototyp. Die Stabilität der erzeugten Struktur wurde daran bemessen, ob diese mit dem Referenzszenario übereinstimmt. Dabei wurde bewertet, ob relevante Elementrollen, erwartete Zustände, erwartete Übergänge sowie korrekte Auslöser wiederholt vorhanden waren.
 
 
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X}
+    \toprule
+    Metrik                     & Beschreibung                                                                          \\
+    \midrule
+    Technische Erfolgsquote    & Anteil der Durchläufe mit final erzeugter, validierter und exportierter Spezifikation \\
+    Funktionale Erfolgsquote   & Anteil der Durchläufe, deren Unity-Prototyp das Referenzszenario komplett erfüllt     \\
+    Durchschnittliche Versuche & Mittlere Anzahl benötigter Genererungsversuche bis zum Erfolg oder Abbruch            \\
+    Fehler nach Stufe          & Zuordnung auftretender Fehler nach Pipeline-Schritt                                   \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Bewertungskriterien der Robustheitsanalyse.}\label{tab:robustheitsanalyse_kriterien}
+\end{table}
 
+\subsection{Ergebnisse}

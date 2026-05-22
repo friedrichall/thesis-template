@@ -1,0 +1,20 @@
+{
+  "States": [
+    {
+      "Name": "displayOff.state",
+      "Conditions": [
+        {
+          "Type": "FloatValueVisualization",
+          "VisualizationElement": "DisplayContent",
+          "Value": "0.0"
+        },
+        {
+          "Type": "InteractionElementCondition",
+          "InteractionElement": "ButtonPower",
+          "Attribute": "VALUE",
+          "Value": "false"
+        }
+      ]
+    }
+  ]
+}

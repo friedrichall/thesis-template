@@ -9,7 +9,11 @@
       "Bash(make)",
       "PowerShell(make *)",
       "Bash(pdflatex -interaction=nonstopmode thesis.tex)",
-      "Bash(awk NR>=28 && NR<=60 *)"
+      "Bash(awk NR>=28 && NR<=60 *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Friedrich Allenhof\\\\BA\\\\vivian-llm-specgen\" -Recurse -Depth 2)",
+      "Bash(Select-Object FullName)",
+      "Bash(pdflatex -interaction=nonstopmode -draftmode -halt-on-error thesis.tex)",
+      "Bash(make clean *)"
     ]
   }
 }
