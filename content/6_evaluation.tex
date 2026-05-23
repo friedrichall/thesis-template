@@ -10,7 +10,7 @@ Es werden dazu drei Testassets mit unterschiedlicher Komplexität betrachtet: ei
 
 Das Untersuchungsdesign beinhaltet qualitative sowie quantitative Bestandteile und ist entlang der Forschungsfragen aus~\ref{sec:forschungsfragen_zielsetzung} aufgebaut. Anhand eines Testassets wird zunächst untersucht, wie der VSG von Anfang bis Ende arbeitet und ob ein valider Vivian-Prototyp entsteht. Insbesondere die technische Umsetzbarkeit des Co-Creation-Workflows aus F1 wird damit adressiert. Die Bewertung erkannter Teilobjekte und zugewiesener Rollen bezieht sich auf die Frage, ob sich relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzer*innenbeschreibungen ableiten lassen (F2). Die Untersuchung der abgeleiteten Interaktionslogik aus F3 wird mit der Analyse der erzeugten Zustände, Übergänge und visuellen Verhaltensänderungen adressiert. Es werden weiterhin wiederholte Durchläufe mit identischen Eingaben durchgeführt, um die Stabilität der Pipeline zu bewerten. Außerdem wird die vollständige Generierungspipeline mit einer Erstgenerierung ohne Korrekturschleife verglichen. Damit wird untersucht, ob Consistency Reviewer, Validator und Fixer Agent die Anzahl der Fehler reduzieren und die Erfolgsquote der finalen Vivian-Spezifikation erhöhen.
 
-\section{Testassets und Referenzszenarien}
+\section{Testassets und Referenzszenarien}\label{sec:testassets_referenzszenarien}
 
 Zur Evaluation des VSG wurden drei Assets ausgewählt: eine Lampe, ein Display und ein Toaster.
 Dabei steht nicht die Untersuchung einer möglichst großen Menge unterschiedlicher Objekte im Fokus, sondern eine gezielte Auswahl aussagekräftiger Beispiele. Diese ermöglicht es, die Funktionsfähigkeit des VSG über verschiedene Komplexitätsstufen sowie unterschiedliche Anforderungen zu prüfen. Die drei Assets dienen als Grundlage für eine szenariobasierte Evaluation, bei der die erzeugten Spezifikationen mit den zuvor festgelegten Verhaltenserwartungen als Referenz verglichen werden.
@@ -42,7 +42,9 @@ Um eine endlose Wiederholungsschleife im Korrekturprozess zu vermeiden, wurde zu
     Asset   & Komplexität & Erwartete Hauptfunktion                                                                                                                                                 \\
     \midrule
     Lampe   & leicht      & Der Lampenschirm soll als Lichtquelle leuchten. Ein Knopf soll die Lampe an- \bzw ausschalten.                                                                          \\
+    \midrule
     Display & mittel      & Das Display soll ein- und ausgeschaltet werden können, Screen-Inhalte anzeigen sowie zwischen Seiten wechseln können.                                                   \\
+    \midrule
     Toaster & schwer      & Der Toastvorgang soll durch den Hebel gestartet, mittels LED und Heizelementen visualisiert sowie nach zehn Sekunden oder durch Drücken der Stopp-Taste beendet werden. \\
     \bottomrule
   \end{tabularx}
@@ -51,111 +53,86 @@ Um eine endlose Wiederholungsschleife im Korrekturprozess zu vermeiden, wurde zu
 
 Die Assets wurden demnach so gewählt, dass sie eine aufsteigende Schwierigkeit abbilden. Sie reichen von einer einfachen Interaktion mit direkter visueller Rückmeldung über einen Prototyp mit mehreren Bedienelementen hin zu einem Objekt mit mehreren Funktionen, Zuständen und Übergängen. Tabelle~\ref{tab:übersicht_testassets} fasst die ausgewählten Assets, ihre Komplexität sowie die jeweils erwartete Hauptfunktion zusammen.
 
-Die folgenden Tabellen~\ref{tab:szenario_lampe}, \ref{tab:szenario_display} und~\ref{tab:szenario_toaster} fassen je Testasset die erwarteten Teilobjekte mit Kategorie und Vivian-Rolle, die erwarteten Zustände sowie die erwarteten Übergänge zusammen. Diese Referenzszenarien dienen in den nachfolgenden Abschnitten als verhaltensbezogener Maßstab, an dem die generierten Vivian-Spezifikationen und das beobachtete Prototypverhalten gemessen werden.
+Tabellen~\ref{tab:testassets_teilobjekte_kategorie_rollen} listet je Asset die erwarteten Teilobjekte mit Kategorie und Vivian-Rolle auf, Tabelle~\ref{tab:testassets_zustände} die erwarteten Zustände und Tabelle~\ref{tab:testassets_übergänge} fässt die erwarteten Übergänge zusammen. Diese Referenzszenarien dienen in den nachfolgenden Abschnitten als verhaltensbezogener Maßstab, an dem die generierten Vivian-Spezifikationen und das beobachtete Prototypverhalten gemessen werden.
 
 \begin{table}[htbp]
   \centering
-  \begin{tabularx}{\linewidth}{XXXX}
+  \begin{tabularx}{\linewidth}{llll}
     \toprule
-     &  &  & \\
-     &  &  & \\
-     &  &  & \\
-     &  &  & \\
+    Asset                    & Relevante Teilobjekte                       & Kategorie      & Erwartete Vivian-Rollen \\
+    \midrule
+    \multirow{2}{*}{Lampe}   & \texttt{Cube1}                              & Interaktion    & \texttt{Button}         \\
+                             & \texttt{Cylinder1}                          & Visualisierung & \texttt{Light}          \\
+    \midrule
+    \multirow{3}{*}{Display} & \texttt{ButtonPower}                        & Interaktion    & \texttt{ToggleButton}   \\
+                             & \texttt{ButtonBack}, \texttt{ButtonForward} & Interaktion    & \texttt{Button}         \\
+                             & \texttt{DisplayContent}                     & Visualisierung & \texttt{Screen}         \\
+    \midrule
+    \multirow{3}{*}{Toaster} & \texttt{Handle}                             & Interaktion    & \texttt{Slider}         \\
+                             & \texttt{StopButton}                         & Interaktion    & \texttt{Button}         \\
+                             & \texttt{Heating\_resistors}, \texttt{LED}   & Visualisierung & \texttt{Light}          \\
     \bottomrule
   \end{tabularx}
-  \caption{Referenzszenario Lampe.}\label{tab:szenario_lampe}
+  \caption{Relevante Teilobjekte, Kategorien und erwartete Vivian-Rollen der Testassets.}\label{tab:testassets_teilobjekte_kategorie_rollen}
 \end{table}
 
 \begin{table}[htbp]
   \centering
-  \begin{tabularx}{\linewidth}{XX}
+  \begin{tabularx}{\linewidth}{llX}
     \toprule
-     & \\
-     & \\
-     & \\
-     & \\
+    Asset                    & Erwartete Zustände  & Beschreibung                                          \\
+    \midrule
+    \multirow{2}{*}{Lampe}   & \texttt{lightOn}    & Lampe ist angeschaltet.                               \\
+                             & \texttt{lightOff}   & Lampe ist ausgeschaltet.                              \\
+    \midrule
+    \multirow{4}{*}{Display} & \texttt{powerOff}   & Display aus, kein Bildinhalt.                         \\
+                             & \texttt{imageOne}   & Display an, erstes Bild.                              \\
+                             & \texttt{imageTwo}   & Display an, zweites Bild.                             \\
+                             & \texttt{imageThree} & Display an, drittes Bild.                             \\
+    \midrule
+    \multirow{2}{*}{Toaster} & \texttt{idle}       & Toaster inaktiv, Heizstäbe aus, LED aus.              \\
+                             & \texttt{toasting}   & Hebel gedrückt, Heizstäbe leuchten rot, LED leuchtet. \\
     \bottomrule
   \end{tabularx}
-  \caption{Referenzszenario Display.}\label{tab:szenario_display}
+  \caption{Erwartete Zustände der Testassets.}\label{tab:testassets_zustände}
 \end{table}
 
 \begin{table}[htbp]
   \centering
-  \begin{tabularx}{\linewidth}{XXXX}
+  \begin{tabularx}{\linewidth}{lXl}
     \toprule
-     &  &  & \\
-     &  &  & \\
-     &  &  & \\
-     &  &  & \\
+    Asset                    & Erwartete Übergänge                                                                     & Trigger                            \\
+    \midrule
+    \multirow{2}{*}{Lampe}   & \texttt{lightOff} $\rightarrow$ \texttt{lightOn}                                        & \texttt{Cube1}                     \\
+                             & \texttt{lightOn} $\rightarrow$ \texttt{lightOff}                                        & \texttt{Cube1}                     \\
+    \midrule
+    \multirow{4}{*}{Display} & \texttt{powerOff} $\rightarrow$ \texttt{imageOne}                                       & \texttt{ButtonPower}               \\
+                             & \texttt{imageOne}/\texttt{imageTwo}/\texttt{imageThree} $\rightarrow$ \texttt{powerOff} & \texttt{ButtonPower}               \\
+                             & \texttt{imageN} $\rightarrow$ \texttt{imageN+1} (3$\rightarrow$1)                       & \texttt{ButtonForward}             \\
+                             & \texttt{imageN} $\rightarrow$ \texttt{imageN-1} (1$\rightarrow$3)                       & \texttt{ButtonBack}                \\
+    \midrule
+    \multirow{2}{*}{Toaster} & \texttt{idle} $\rightarrow$ \texttt{toasting}                                           & \texttt{Handle}                    \\
+                             & \texttt{toasting} $\rightarrow$ \texttt{idle}                                           & \texttt{StopButton}, Timeout (10s) \\
     \bottomrule
   \end{tabularx}
-  \caption{Referenzszenario Toaster.}\label{tab:szenario_toaster}
+  \caption{Erwartete Übergänge der Testassets.}\label{tab:testassets_übergänge}
 \end{table}
 
 \section{Exemplarischer Workflow-Durchlauf}
 
-Zunächst wird ein exemplarischer Einzeldurchlauf beschrieben, um die Funktionsweise des VSG nicht nur abstrakt, sondern anhand eines vollständigen Generierungsprozesses zu zeigen. Ziel ist die Nachvollziehbarkeit eines Durchlaufs von Eingabe bis validierter Spezifikation. Dafür wurde das Display-Asset ausgewählt, da es einen mittleren Schwierigkeitsgrad darstellt, mehrere Bedienelemente (\textit{Buttons}), eine Screen-Fläche als Visualisierungsobjekt und mehrere Zustände besitzt, aber noch übersichtlicher als das Toaster-Beispiel ist. Die Hierarchie des Display-Assets ist in Abbildung~\ref{fig:display_asset_treeview} abgebildet und zeigt die verschiedenen Bedienelemente sowie die Screen-Fläche. Die natürlichsprachliche Eingabe in der Vorverarbeitung sowie die Prüfung des Interaktionsplans durch Benutzende zeigt den Co-Creation-Workflow. Weiterhin wird gezeigt, dass Teilobjekte und Elementrollen von der Pipeline erkannt werden. Indem Zustände, Übergänge sowie sichtbare Screen-Wechsel vom VSG geplant und schließlich umgesetzt werden, wird gezeigt, dass Interaktionslogiken aus der natürlichsprachlichen Interaktionsbeschreibung und bestehenden 3D-Geometrien extrahiert und in eine maschinenlesbare Repräsentation überführt werden können. Der hier betrachtete Fall stellt eine positive Referenz dar, da der Durchlauf im ersten Versuch zu einer validierten Vivian-Spezifikation gelangte. In diesem Unterkapitel wird zunächst die grundlegende Machbarkeit des Workflows gezeigt. Es wird daraus jedoch noch keine allgemeine Aussage über die Robustheit oder Wiederholbarkeit abgeleitet, dazu werden anschließend mehrere Durchläufe betrachtet.
+Zunächst wird ein exemplarischer Einzeldurchlauf beschrieben, um die Funktionsweise des VSG nicht nur abstrakt, sondern anhand eines vollständigen Generierungsprozesses zu zeigen. Ziel ist die Nachvollziehbarkeit eines Durchlaufs von Eingabe bis validierter Spezifikation. Dafür wurde das Display-Asset ausgewählt, da es einen mittleren Schwierigkeitsgrad darstellt, mehrere Bedienelemente (\textit{Buttons}), eine Screen-Fläche als Visualisierungsobjekt und mehrere Zustände besitzt, aber noch übersichtlicher als das Toaster-Beispiel ist. Die Hierarchie des Display-Assets ist in Abbildung~\ref{fig:display_asset_treeview} abgebildet und zeigt die verschiedenen Bedienelemente sowie die Screen-Fläche.
 
 \input{figures/display/display-asset-unity-treeview.tex}
 
+Die natürlichsprachliche Eingabe in der Vorverarbeitung sowie die Prüfung des Interaktionsplans durch Benutzende zeigt den Co-Creation-Workflow. Weiterhin wird gezeigt, dass Teilobjekte und Elementrollen von der Pipeline erkannt werden. Indem Zustände, Übergänge sowie sichtbare Screen-Wechsel vom VSG geplant und schließlich umgesetzt werden, wird gezeigt, dass Interaktionslogiken aus der natürlichsprachlichen Interaktionsbeschreibung und bestehenden 3D-Geometrien extrahiert und in eine maschinenlesbare Repräsentation überführt werden können. Der hier betrachtete Fall stellt eine positive Referenz dar, da der Durchlauf im ersten Versuch zu einer validierten Vivian-Spezifikation gelangte. In diesem Unterkapitel wird zunächst die grundlegende Machbarkeit des Workflows gezeigt. Es wird daraus jedoch noch keine allgemeine Aussage über die Robustheit oder Wiederholbarkeit abgeleitet, dazu werden anschließend mehrere Durchläufe betrachtet.
+
 \subsection{Eingabe und Referenzszenario}
 
-Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschreiben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Aus dieser Beschreibung ergab sich vorab ein Referenzszenario mit vier Teilobjekten. Diese sowie deren erwartete Kategorie und Vivian-Rollen sind der folgenden Tabelle zu entnehmen.
+Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschreiben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Aus dieser Beschreibung ergab sich vorab ein Referenzszenario mit vier Teilobjekten. Diese sowie deren erwartete Kategorie und Vivian-Rollen sind in Tabelle~\ref{tab:testassets_teilobjekte_kategorie_rollen} zusammengefasst.
 
-\begin{table}[htbp]
-  \centering
-  \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
-    \toprule
-    Teilobjekt     & Kategorie      & Vivian-Rolle \\
-    \midrule
-    ButtonBack     & Interaktion    & Button       \\
-    ButtonPower    & Interaktion    & ToggleButton \\
-    ButtonForward  & Interaktion    & Button       \\
-    DispalyContent & Visualisierung & Screen       \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Erwartete Teilobjekte, Kategorien und Vivian-Rollen des Display-Assets.}\label{tab:display_teilobjekte}
-\end{table}
+Weiterhin wurden vier erwartete Zustände definiert: ein Zustand, in dem der Bildschirm ausgeschaltet ist und kein Bild angezeigt wird sowie ein Zustand je anzuzeigendem Bild. Aus diesen Zuständen ergaben sich weiterhin zehn erwartete Übergänge. Der Power-Button sollte aus dem ausgeschalteten Zustand in einen den ersten Bildzustand wechseln sowie aus jedem Bildzustand zurück in den ausgeschalteten Zustand. Der Button zur Vorwärtsnavigation sollte von Bild eins zu Bild zwei, von Bild zwei zu Bild drei, und schließlich wieder von Bild 3 zu Bild eins wechseln, um ein zyklisches Wechseln zwischen den Bildern zu ermöglichen. Der Button zur Rückwärtsnavigation sollte dieselbe Bildmenge in umgekehrter Richtung durchlaufen. Die erwarteten Zustände und Übergänge sind außerdem in den Tabellen~\ref{tab:testassets_zustände} und~\ref{tab:testassets_übergänge} zusammengefasst.
 
-Weiterhin wurden vier erwartete Zustände definiert: ein Zustand, in dem der Bildschirm ausgeschaltet ist und kein Bild angezeigt wird sowie ein Zustand je anzuzeigendem Bild. Aus diesen Zuständen ergaben sich weiterhin zehn erwartete Übergänge. Der Power-Button sollte aus dem ausgeschalteten Zustand in einen den ersten Bildzustand wechseln sowie aus jedem Bildzustand zurück in den ausgeschalteten Zustand. Der Button zur Vorwärtsnavigation sollte von Bild eins zu Bild zwei, von Bild zwei zu Bild drei, und schließlich wieder von Bild 3 zu Bild eins wechseln, um ein zyklisches Wechseln zwischen den Bildern zu ermöglichen. Der Button zur Rückwärtsnavigation sollte dieselbe Bildmenge in umgekehrter Richtung durchlaufen. Die erwarteten Zustände und Übergänge sind außerdem in der folgenden Tabelle zusammengefasst.
-
-\begin{table}[htbp]
-  \centering
-  \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X}
-    \toprule
-    Name       & Beschreibung                                             \\
-    \midrule
-    powerOff   & Bildschirm ausgeschaltet, kein Bildinhalt                \\
-    imageOne   & Bildschirm angeschaltet, Anzeige des ersten Bildinhalts  \\
-    imageTwo   & Bildschirm angeschaltet, Anzeige des zweiten Bildinhalts \\
-    imageThree & Bildschirm angeschaltet, Anzeige des dritten Bildinhalts \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Erwartete Zustände des Display-Assets.}\label{tab:display_zustaende}
-\end{table}
-
-\begin{table}[htbp]
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    Ausgangszustand & Zielzustand & Auslöser      \\
-    \midrule
-    powerOff        & imageOne    & ButtonPower   \\
-    imageOne        & powerOff    & ButtonPower   \\
-    imageTwo        & powerOff    & ButtonPower   \\
-    imageThree      & powerOff    & ButtonPower   \\
-    imageOne        & imageTwo    & ButtonForward \\
-    imageTwo        & imageThree  & ButtonForward \\
-    imageThree      & imageOne    & ButtonForward \\
-    imageOne        & imageThree  & ButtonBack    \\
-    imageTwo        & imageOne    & ButtonBack    \\
-    imageThree      & imageTwo    & ButtonBack    \\
-    \bottomrule
-  \end{tabular}
-  \caption{Erwartete Übergänge des Display-Assets.}\label{tab:display_uebergaenge}
-\end{table}
-
-Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschrieben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Daraus ergab sich ein Referenzszenario mit vier Teilobjekten, vier Zuständen und zehn Übergängen, welches in Tabelle~\ref{tab:szenario_display} dokumentiert ist.
+Die KI-gestützte Pipeline erhielt die vorverarbeitete Szene, bestehend aus JSON- und Bilddateien, drei Bilddateien, um diese auf dem Bildschirm anzuzeigen, sowie eine natürlichsprachliche Beschreibung des gewünschten Verhaltens. Darin wurde das Asset als Display mit drei Knöpfen zur Steuerung und einem Bildschirm beschrieben. Die Knöpfe sollten dazu dienen, das Display ein- und auszuschalten sowie zum vorherigen beziehungsweise zum nächsten Bild zu wechseln. Zusätzlich wurde festgelegt, dass die Navigation durch die Bilddateien endlos stattfinden soll, sodass Bild drei beispielsweise über eine Vorwärtsnavigation wieder zu Bild eins wechselt. Daraus ergab sich ein Referenzszenario mit vier Teilobjekten, vier Zuständen und zehn Übergängen, welches in den Tabellen~\ref{tab:testassets_teilobjekte_kategorie_rollen},~\ref{tab:testassets_zustände} und~\ref{tab:testassets_übergänge} dokumentiert ist.
 
 \subsection{Szenenanalyse und Interaktionsplanung}
 
@@ -186,24 +163,25 @@ Dieser Durchlauf zeigt somit, dass der VSG in diesem Display-Beispiel relevante 
 
 \section{Wiederholte Durchläufe zur Robustheitsanalyse}
 
-Zur Robustheitsbewertung wurde der VSG für jedes der drei Testassets jeweils 20-mal mit identischer Eingabe (je Asset) ausgeführt. Insgesamt wurden somit 60 Durchläufe betrachtet. Ziel dieser Auswertung ist nicht einen einzelnen Durchlauf, wie in XX, im Detail nachzuvollziehen, sondern herauszufinden, ob die Pipeline bei gleicher Aufgabenstellung und Eingabe wiederholt stabile Ergebnisse generiert. Daher wurden die finale Erfolgsquote der Generierung, die bestandene Unity-Validierung, welcher Art auftretende Fehler waren und wie häufig diese auftraten, die Anzahl benötigter Korrekturschleifen sowie abgeleitete Elementrollen, Zustände und Übergänge bewertet. Außerdem wurde zur Beurteilung des finalen Prototyps zusätzlich geprüft, ob das beobachtbare Verhalten dem vorab definierten Referenzszenario entspricht.
+Zur Robustheitsbewertung wurde der VSG für jedes der drei Testassets jeweils 20-mal mit identischer Eingabe (je Asset) ausgeführt. Insgesamt wurden somit 60 Durchläufe betrachtet. Ziel dieser Auswertung ist nicht einen einzelnen Durchlauf, wie in XX, im Detail nachzuvollziehen, sondern herauszufinden, ob die Pipeline bei gleicher Aufgabenstellung und Eingabe wiederholt stabile Ergebnisse generiert. Daher wurden die finale Erfolgsquote der Generierung, die bestandene Unity-Validierung, welcher Art auftretende Fehler waren und wie häufig diese auftraten, die Anzahl benötigter Korrekturschleifen sowie abgeleitete Elementrollen, Zustände und Übergänge bewertet. Pro Durchlauf wurde zudem die in Abschnitt~\ref{sec:testassets_referenzszenarien} eingeführte Obergrenze von fünf Versuchen angewandt, nach deren Überschreitung ein Versuch als gescheitert abgebrochen wurde.
 
-Ein Durchlauf wird als erfolgreich gewertet, wenn die Vivian-Spezifikation final erzeugt, in das angegebene Verzeichnis exportiert sowie vom Unity-Validierung bestätigt wurde. Weiterhin wurde zwischen technischer und funktionaler Korrektheit unterschieden. Eine technisch korrekt umgesetzte und valide Spezifikation ist von Vivian ausführbar. Sie besteht die Validierung und ist somit im Zielsystem lauffähig, kann aber dennoch teilweise vom erwarteten Verhalten abweichen. Auch eine funktional korrekte Spezifikation ist technisch korrekt. Darüber hinaus entspricht jedoch das beobachtete Verhalten des Prototyps genau dem zuvor definierten Referenzszenario. Daher wurden Fehler nach ihrer Quelle und Wirkung eingeordnet, wie etwa Validierungs- oder Registry-Fehler oder eine funktionale Abweichung des Verhaltens im finalen Unity-Prototyp. Die Stabilität der erzeugten Struktur wurde daran bemessen, ob diese mit dem Referenzszenario übereinstimmt. Dabei wurde bewertet, ob relevante Elementrollen, erwartete Zustände, erwartete Übergänge sowie korrekte Auslöser wiederholt vorhanden waren.
+Zur Auswertung der Durchläufe wurden drei Metriken definiert. Die \textit{technische Erfolgsquote} beschreibt die Anzahl der Durchläufe, in denen eine Vivian-Spezifikation final erzeugt, in das angegebene Verzeichnis exportiert sowie vom Unity-Validierung bestätigt wurde. Sie besteht die Validierung und ist somit im Zielsystem lauffähig, kann aber dennoch teilweise vom erwarteten Verhalten abweichen. Die \textit{funktionale Erfolgsquote} hingegen beschreibt den Anteil der Durchläufe, deren resultierender Unity-Prototyp zusätzlich das vorab definierte Referenzszenario vollständig erfüllt. Eine funktional erfolgreiche Spezifikation ist dabei auch technisch erfolgreich, der umgekehrte Schluss gilt jedoch nicht, da eine valide Spezifikation im Zielsystem ausgeführt werden kann, ohne das erwartete Verhalten exakt abzubilden. Die \textit{durchschnittliche Versuchsanzahl} beschreibt die mittlere Anzahl benötigter Generierungsversuche bis zur erfolgreichen Generierung oder bis zum Abbruch nach fünf Versuchen. Tabelle~\ref{tab:robustheitsanalyse_kriterien} fasst die drei Metriken zusammen.
 
 
 \begin{table}[htbp]
   \centering
   \begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X}
     \toprule
-    Metrik                     & Beschreibung                                                                          \\
+    Metrik                           & Beschreibung                                                                                 \\
     \midrule
-    Technische Erfolgsquote    & Anteil der Durchläufe mit final erzeugter, validierter und exportierter Spezifikation \\
-    Funktionale Erfolgsquote   & Anteil der Durchläufe, deren Unity-Prototyp das Referenzszenario komplett erfüllt     \\
-    Durchschnittliche Versuche & Mittlere Anzahl benötigter Genererungsversuche bis zum Erfolg oder Abbruch            \\
-    Fehler nach Stufe          & Zuordnung auftretender Fehler nach Pipeline-Schritt                                   \\
+    Technische Erfolgsquote          & Anteil der Durchläufe mit final erzeugter, validierter und exportierter Spezifikation        \\
+    Funktionale Erfolgsquote         & Anteil der Durchläufe, deren Unity-Prototyp das Referenzszenario vollständig erfüllt         \\
+    Durchschnittliche Versuchsanzahl & Mittlere Anzahl benötigter Generierungsversuche bis zum Erfolg oder Abbruch nach 5 Versuchen \\
     \bottomrule
   \end{tabularx}
-  \caption{Bewertungskriterien der Robustheitsanalyse.}\label{tab:robustheitsanalyse_kriterien}
+  \caption{Metriken der Robustheitsanalyse.}\label{tab:robustheitsanalyse_kriterien}
 \end{table}
 
 \subsection{Ergebnisse}
+
+
