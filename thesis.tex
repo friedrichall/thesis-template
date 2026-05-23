@@ -206,6 +206,20 @@
 \include{content/0_abstract}\cleardoublepage
 
 \tableofcontents
+\cleardoublepage
+
+\KOMAoptions{open=any}
+\pagenumbering{Roman}
+\listoffigures
+\clearpage
+
+\listoftables
+\clearpage
+
+\renewcommand{\lstlistlistingname}{Listingverzeichnis}
+\lstlistoflistings
+\clearpage
+\KOMAoptions{open=right}
 
 \mainmatter
 \include{content/1_einleitung}
@@ -222,16 +236,6 @@
 \include{content/a1_supplemental}
 
 \backmatter
-\listoffigures
-\cleardoublepage
-
-\listoftables
-\cleardoublepage
-
-\renewcommand{\lstlistlistingname}{Listingverzeichnis}
-\lstlistoflistings
-\cleardoublepage
-
 \printbibliography
 
 % \printnoidxglossaries
