@@ -118,7 +118,7 @@ Tabellen~\ref{tab:testassets_teilobjekte_kategorie_rollen} listet je Asset die e
   \caption{Erwartete Übergänge der Testassets.}\label{tab:testassets_übergänge}
 \end{table}
 
-\section{Exemplarischer Workflow-Durchlauf}
+\section{Exemplarischer Workflow-Durchlauf}\label{sec:exemplarischer_workflow_durchlauf}
 
 Zunächst wird ein exemplarischer Einzeldurchlauf beschrieben, um die Funktionsweise des VSG nicht nur abstrakt, sondern anhand eines vollständigen Generierungsprozesses zu zeigen. Ziel ist die Nachvollziehbarkeit eines Durchlaufs von Eingabe bis validierter Spezifikation. Dafür wurde das Display-Asset ausgewählt, da es einen mittleren Schwierigkeitsgrad darstellt, mehrere Bedienelemente (\textit{Buttons}), eine Screen-Fläche als Visualisierungsobjekt und mehrere Zustände besitzt, aber noch übersichtlicher als das Toaster-Beispiel ist. Die Hierarchie des Display-Assets ist in Abbildung~\ref{fig:display_asset_treeview} abgebildet und zeigt die verschiedenen Bedienelemente sowie die Screen-Fläche.
 
@@ -163,7 +163,7 @@ Dieser Durchlauf zeigt somit, dass der VSG in diesem Display-Beispiel relevante 
 
 \section{Wiederholte Durchläufe zur Robustheitsanalyse}
 
-Zur Robustheitsbewertung wurde der VSG für jedes der drei Testassets jeweils 20-mal mit identischer Eingabe (je Asset) ausgeführt. Insgesamt wurden somit 60 Durchläufe betrachtet. Ziel dieser Auswertung ist nicht einen einzelnen Durchlauf, wie in XX, im Detail nachzuvollziehen, sondern herauszufinden, ob die Pipeline bei gleicher Aufgabenstellung und Eingabe wiederholt stabile Ergebnisse generiert. Daher wurden die finale Erfolgsquote der Generierung, die bestandene Unity-Validierung, welcher Art auftretende Fehler waren und wie häufig diese auftraten, die Anzahl benötigter Korrekturschleifen sowie abgeleitete Elementrollen, Zustände und Übergänge bewertet. Pro Durchlauf wurde zudem die in Abschnitt~\ref{sec:testassets_referenzszenarien} eingeführte Obergrenze von fünf Versuchen angewandt, nach deren Überschreitung ein Versuch als gescheitert abgebrochen wurde.
+Zur Robustheitsbewertung wurde der VSG für jedes der drei Testassets jeweils 20-mal mit identischer Eingabe (je Asset) ausgeführt. Insgesamt wurden somit 60 Durchläufe betrachtet. Ziel dieser Auswertung ist nicht einen einzelnen Durchlauf, wie in Abschnitt~\ref{sec:exemplarischer_workflow_durchlauf}, im Detail nachzuvollziehen. Stattdessen soll herausgefunden werden, ob die Pipeline bei gleicher Aufgabenstellung und Eingabe wiederholt stabile Ergebnisse generiert. Daher wurden die finale Erfolgsquote der Generierung, die bestandene Unity-Validierung, welcher Art auftretende Fehler waren und wie häufig diese auftraten, die Anzahl benötigter Korrekturschleifen sowie abgeleitete Elementrollen, Zustände und Übergänge bewertet. Pro Durchlauf wurde zudem die in Abschnitt~\ref{sec:testassets_referenzszenarien} eingeführte Obergrenze von fünf Versuchen angewandt, nach deren Überschreitung ein Versuch als gescheitert abgebrochen wurde.
 
 Zur Auswertung der Durchläufe wurden drei Metriken definiert. Die \textit{technische Erfolgsquote} beschreibt die Anzahl der Durchläufe, in denen eine Vivian-Spezifikation final erzeugt, in das angegebene Verzeichnis exportiert sowie vom Unity-Validierung bestätigt wurde. Sie besteht die Validierung und ist somit im Zielsystem lauffähig, kann aber dennoch teilweise vom erwarteten Verhalten abweichen. Die \textit{funktionale Erfolgsquote} hingegen beschreibt den Anteil der Durchläufe, deren resultierender Unity-Prototyp zusätzlich das vorab definierte Referenzszenario vollständig erfüllt. Eine funktional erfolgreiche Spezifikation ist dabei auch technisch erfolgreich, der umgekehrte Schluss gilt jedoch nicht, da eine valide Spezifikation im Zielsystem ausgeführt werden kann, ohne das erwartete Verhalten exakt abzubilden. Die \textit{durchschnittliche Versuchsanzahl} beschreibt die mittlere Anzahl benötigter Generierungsversuche bis zur erfolgreichen Generierung oder bis zum Abbruch nach fünf Versuchen. Tabelle~\ref{tab:robustheitsanalyse_kriterien} fasst die drei Metriken zusammen.
 
@@ -184,4 +184,59 @@ Zur Auswertung der Durchläufe wurden drei Metriken definiert. Die \textit{techn
 
 \subsection{Ergebnisse}
 
+Im Folgenden werden die Ergebnisse der 20 Durchläufe je Testasset zusammengefasst. Für jedes Asset werden die \textit{technische Erfolgsquote}, die \textit{funktionale Erfolgsquote} sowie die \textit{durchschnittliche Versuchsanzahl} betrachtet. Dadurch lässt sich erkennen, ob die Pipeline bei identischer Eingabe stabile Ergebnisse liefert und ob die technische Erfolgsquote mit der funktionalen Erfolgsquote übereinstimmt.
+
+\subsection*{Testasset Lampe}
+
+Das Testasset der Lampe wurde in 18 von 20 Durchläufen innerhalb der maximalen Versuchsanzahl erfolgreich generiert. Die beiden fehlgeschlagenen Durchläufe wurden jeweils nach fünf Versuchen aus demselben Grund abgebrochen. Der Consistency Reviewer erkannte jeweils fehlerhafte Guards in den Übergängen, welche zu einem Blockieren der Übergänge geführt hätten. Diese Durchläufe verwendeten zudem ein ToggleButton Element und nicht Button, wie erwartet. Obwohl der Prototyp im Zielsystem ausführbar gewesen wäre, hätte der Initialzustand hier niemals verlassen werden können. Die Wiederausführung der betroffenen Schritte konnte die Spezifikation jedoch nicht innerhalb der maximalen Versuchsanzahl reparieren. In weiteren 4 Fällen wurde ebenfalls ToggleButton, anstelle des erwarteten Button, verwendet. Bei diesen Durchläufen wurden hingegen erfolgreiche Spezifikationen erzeugt, teilweise unter der Verwendung mehrerer Korrekturschleifen. Der resultierende Prototyp verhält sich unter der Verwendung von Button sowie ToggleButton gleich, sodass hier nur ein Unterschied in der Zusammensetzung der Spezifikationen besteht, nicht aber den funktionalen Erfolg beeinträchtigt. In allen anderen Durchläufen wurden alle relevanten Teilobjekte korrekt erkannt und Zustände sowie Übergänge entsprachen dem Referenzszenario. Auch das Verhalten des resultierenden Prototyps in Unity war bei diesen Durchläufen wie erwartet. Die folgende Tabelle fasst die Metriken zur Bewertung zusammen.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+    \toprule
+    Asset & \shortstack[l]{Technische\\Erfolgsquote} & \shortstack[l]{Funktionale\\Erfolgsquote} & \shortstack[l]{Durchschnittliche\\Versuchsanzahl} \\
+    \midrule
+    Lampe & 90\%                                     & 90\%                                      & 1,65                                              \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Ergebnisse der Robustheitsanalyse: Testasset Lampe.}\label{tab:robustheitsanalyse_ergebnisse}
+\end{table}
+
+In diesem Beispiel ist jeder technisch erfolgreiche Prototyp auch funktional erfolgreich und verhält sich demnach entsprechend dem Referenzszenario. Im Mittel waren 1,65 Versuche nötig, um die Pipeline mit Erfolgsstatus zu beenden. In jedem Durchlauf mit mehr als einem Versuch bis zur erfolgreichen Generierung entspricht die Fehlerursache dem zuvor beschriebenen Szenario mit Verwendung von ToggleButton als Interaktionselement. Dieses Beispiel zeigt, dass auch vermeintlich unkomplizierte Prototypen zu spezifischen Generierungsfehlern führen können.
+
+\subsection*{Testasset Display}
+
+In allen für das Display-Testasset durchgeführten Durchläufen wurde im ersten Versuch eine technisch erfolgreiche Spezifikation generiert und durch den Unity-Validator bestätigt. Auch die vier relevanten Teilobjekte ButtonBack, ButtonPower, ButtonForward und DisplayContent wurden vollständig erkannt sowie mit den erwarteten Vivian-Rollen abgebildet. Auch die zehn erwarteten Übergänge (siehe Tabelle~\ref{tab:testassets_übergänge}) wurden in allen Durchläufen vollständig erzeugt. Die Bildinhalte wurden den entsprechenden Zuständen weiterhin korrekt zugeordnet. Die funktionale Erfolgsquote fällt jedoch schwächer aus, da nur 4 von 20 erzeugten Prototypen das Referenzszenario vollständig erfüllten. 16 Durchläufe waren nur teilweise korrekt und zwar technisch lauffähig im Zielsystem, jedoch im Verhalten anders als im Referenzszenario.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+    \toprule
+    Asset   & \shortstack[l]{Technische\\Erfolgsquote} & \shortstack[l]{Funktionale\\Erfolgsquote} & \shortstack[l]{Durchschnittliche\\Versuchsanzahl} \\
+    \midrule
+    Display & 100\%                                    & 20\%                                      & 1,00                                              \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Ergebnisse der Robustheitsanalyse: Testasset Display.}\label{tab:robustheitsanalyse_ergebnisse_display}
+\end{table}
+
+Die Abweichungen lagen nicht in der Erkennung von Teilobjekten oder Übergangsstrukturen, sondern in der semantischen Umsetzung der Zustände. Insbesondere der ausgeschaltete Zustand wurde teilweise unvollständig oder fehlerhaft modelliert. In 8 von 20 Durchläufen enthielt der ausgeschaltete Zustand weiterhin einen sichtbaren Bildinhalt. In weiteren 6 Durchläufen wurde der ausgeschaltete Zustand zwar angelegt, jedoch nicht durch eine Bedingung abgesichert, in der ButtonPower ausgeschaltet ist. Außerdem fehlte in 13 von Durchläufen bei den Bildzuständen eine eindeutige Bedingung, dass ButtonPower eingeschaltet ist, weshalb die Anzeige von Bildern nicht an den eingeschalteten Zustand des Bildschirms gekoppelt war. In diesen Fällen war visuell nicht erkennbar, wann sich das Display tatsächlich im ausgeschalteten Zustand befand, da weiterhin Bildinhalte angezeigt wurden oder der Power-Zustand nicht eindeutig gesetzt wurde. Dem hätte in einem Einzeldurchlauf entgegengewirkt werden können, indem im Human-in-the-Loop-Schritt gezielt Anpassungen am Interaktionsplan vorgenommen worden wären. Das Display-Beispiel zeigt damit deutlich, dass eine technisch valide und strukturell vollständige Spezifikation nicht immer auch ein vollständig korrektes Prototypenverhalten garantiert.
+
+\subsection*{Testasset Toaster}
+
+Der Toaster bildet unter den betrachteten Beispielen den komplexesten Fall, da mehrere Teilobjekte, Interaktionstypen und visuelle Rückmeldungen in einem zeitabhängigen Ablauf kombiniert werden. In den durchgeführten 20 Durchläufen wurden die Zustands- und Übergangslogik grundlegend stabil erzeugt, da die zwei erwarteten Zustände Idle und Toasting sowie alle drei erwarteten Übergänge in allen Durchläufen vorhanden waren. Dadurch wurde das Starten, Abbrechen über den Stopp-Knopf sowie das zeitbedingte Beenden des Toastvorgangs ermöglicht. Technisch erfolgreich wurden 19 von 20 Durchläufen abgeschlossen und vom Unity-Validator akzeptiert. Als funktional erfolgreich wurden hingegen nur 15 von 20 Durchläufen bewertet, in denen das finale Prototypverhalten vollständig der Referenz entspricht. Demgegenüber stehen vier Durchläufe, welche nur teilweise korrekt waren. Abweichungen wurden vor allem in der Typisierung der visuellen Elemente festgestellt, da Heizstäbe oder LED teilweise als \textit{AppearingObject} statt als \textit{Light} modelliert wurden. Nur ein Durchlauf führte nicht zu einem final lauffähigen Prototyp. In diesem Fall markierte der Consistency Reviewer den Übergang von Idle zu Toasting wiederholt als fehlerhaft, da dieser über das Ereignis SLIDER\_DRAG\_END einen unzureichenden Value-Guard auf die Slider-Position enthielt. Somit hätte ein Toastvorgang unabhängig von der tatsächlichen Hebelposition ausgelöst werden können, obwohl das vollständige Herunterdrücken des Hebels erwartet wurde. Die Metriken zur Bewertung des Toaster-Testassets sind Tabelle~\ref{tab:robustheitsanalyse_ergebnisse_toaster} zu entnehmen.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+    \toprule
+    Asset   & \shortstack[l]{Technische\\Erfolgsquote} & \shortstack[l]{Funktionale\\Erfolgsquote} & \shortstack[l]{Durchschnittliche\\Versuchsanzahl} \\
+    \midrule
+    Toaster & 95\%                                     & 75\%                                      & 1,20                                              \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Ergebnisse der Robustheitsanalyse: Testasset Toaster.}\label{tab:robustheitsanalyse_ergebnisse_toaster}
+\end{table}
+
+Das Toaster-Testasset zeigt damit eine hohe technische Robustheit des VSG und zugleich verbleibende Grenzen bei der semantischen Präzision. Es wurde gezeigt, dass die Pipeline auch in der Lage ist, ein kombiniertes Verhalten aus Slider-Interaktion, Abbruch-Knopf, visueller Rückmeldung und automatischer Abbruchbedingung nach Zeitablauf weitgehend stabil zu erzeugen. Besonders die genaue Typisierung visueller Elemente sowie die korrekte Absicherung von Slider-gesteuerten Übergängen bleiben relevante Fehlerquellen. Der Toaster zeigt damit, dass die Pipeline komplexere Interaktionslogiken grundsätzlich robust verarbeiten kann, aber auch, dass für funktionale korrekt erzeugte Prototypverhalten weiterhin semantische Prüfmechanismen erforderlich sind.
 
