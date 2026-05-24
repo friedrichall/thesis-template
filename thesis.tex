@@ -116,6 +116,8 @@
     numbersep=5pt,
 	numberstyle=\small,
 	breakautoindent=true,
+	breaklines=true,
+	columns=fullflexible,
 	captionpos=b,
     xleftmargin=1.5em,
     xrightmargin=1.5em,
@@ -135,6 +137,21 @@
     xrightmargin=1.5em,
     aboveskip=2em,
     belowskip=1em,
+}
+\lstdefinestyle{prompt}{
+    basicstyle=\small\ttfamily,
+	breaklines=true,
+	breakatwhitespace=true,
+	columns=fullflexible,
+	frame=single,
+	numbers=none,
+	showstringspaces=false,
+    xleftmargin=0em,
+    xrightmargin=0em,
+    aboveskip=2em,
+    belowskip=1em,
+    captionpos=b,
+    float=htbp,
 }
 \lstdefinelanguage{agent-instructions}{
     basicstyle=\normalsize\ttfamily,
@@ -161,6 +178,7 @@
 % \usemintedstyle{friendly}
 
 \usepackage{float}
+\usepackage{needspace}
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
