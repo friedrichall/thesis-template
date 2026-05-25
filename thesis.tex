@@ -228,7 +228,6 @@
 \cleardoublepage
 
 \KOMAoptions{open=any}
-\pagenumbering{Roman}
 \listoffigures
 \clearpage
 
@@ -250,9 +249,15 @@
 \include{content/7_ausblick}
 \include{content/8_fazit}
 
-% remove if not needed
 \appendix
-\include{content/a1_supplemental}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Anhang}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\input{content/anhang_a}
+\input{content/anhang_b}
+\input{content/anhang_c}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 
 \backmatter
 \printbibliography
