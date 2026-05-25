@@ -12,3 +12,4 @@ Consistency
 AppearingObject
 Value-Guard
 Toaster-Testasset
+Prototypverhalten

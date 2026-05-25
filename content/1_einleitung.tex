@@ -1,5 +1,35 @@
 \chapter{Einführung}\label{ch:einführung}
 
+Bei der Betrachtung dreidimensionaler Objekte in einem virtuellen Raum lässt sich deren Funktion häufig sofort erkennen. Ein Knopf soll gedrückt werden, ein Hebel soll sich bewegen, ein Display soll Informationen anzeigen und eine Lampe soll leuchten. Diese Funktionen sind von uns Menschen oft intuitiv aus Form, Position, Material und Kontext ableitbar. In virtuellen Umgebungen gilt dies jedoch nicht automatisch, da ein 3D-Modell zwar meist eine sichtbare Form, Materialien und räumliche Eigenschaften besitzt, aber in der Regel kein Verständnis über seine mögliche Nutzung. Auch Online-Bibliotheken, mittels 3D-Scanning erfasste Modelle realer Objekte sowie generativ erzeugte Inhalte liefern in der Regel kein Wissen darüber, welche Teile bedienbar sind oder wie diese auf Nutzer*innenhandlungen reagieren sollen. Zwischen dem visuellen Erscheinungsbild eines 3D-Objekts und seinem tatsächlichen Verhalten in einer virtuellen Welt liegt damit eine Lücke (siehe Abbildung~\ref{fig:intro_asset_examples}).
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/asset-examples-iso/Lamp_iso_top_right}
+        \caption{Lampe}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/asset-examples-iso/Display_iso_top_right}
+        \caption{Display}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster3_iso_top_right}
+        \caption{Toaster}
+    \end{subfigure}
+    \caption{Beispiele virtueller 3D-Objekte.}\label{fig:intro_asset_examples}
+\end{figure}
+
+Diese Lücke wird dann besonders deutlich, wenn 3D-Objekte nicht nur betrachtet, sondern als funktionale Prototypen mit bestimmten Verhalten verwendet werden sollen. In Bereichen wie der Produktentwicklung, Lehre, Virtual Reality oder Usability Engineering reicht eine statische Darstellung häufig nicht aus, da Objekte ausprobiert, verändert und in ihrem Verhalten getestet werden sollen. Ein virtueller Prototyp muss damit weitaus mehr leisten als eine realistische Abbildung. Es muss Wissen darüber bestehen, welche Bestandteile relevant sind, welche davon bedienbar sind, welche Rückmeldungen gegeben werden und wie sich der Zustand des Objekts durch Interaktionen verändert.
+
+Gleichzeitig ändert sich die Art und Weise, wie solche interaktiven Systeme entworfen werden können. Anstelle der rein manuellen Umsetzung durch Skripte oder systemspezifische Konfigurationen rückt mit der hohen Verfügbarkeit von KI-Systemen zunehmend natürliche Sprache in den Mittelpunkt. Diese wird somit zu einer Schnittstelle zwischen fachlicher Vorstellung und technischer Umsetzung. Der Fokus verschiebt sich von direkter Programmierung hin zur Beschreibung von Verhalten, Funktionen und Beziehungen.
+
+Leistungsfähige Large Language Models haben in den vergangenen Jahren eine rasante Entwicklung erfahren und können natürliche Eingaben interpretieren, semantische Zusammenhänge ableiten sowie strukturierte Ausgaben erzeugen~\cite{caffagniRevolutionMultimodalLarge2024,yinSurveyMultimodalLarge2024}. Dies eröffnet neue Möglichkeiten, die Lücke zwischen statischen 3D-Objekten und interaktiven Prototypen zu schließen, indem natürlichsprachliche Beschreibungen als Eingabe genutzt und mittels KI-gestützter Verfahren in eine maschinenlesbare Interaktionslogik übersetzt werden.
+
+An dieser Stelle setzt die vorliegende Arbeit an. Sie untersucht, inwieweit sich bereits vorhandene statische 3D-Objekte in virtuellen Welten mithilfe eines KI-gestützten Workflows und natürlicher Sprache in interaktive virtuelle Prototypen überführen lassen. Als Grundlage dient das Vivian-Framework, welches Interaktion deklarativ über maschinenlesbare Spezifikationsdateien beschreibt. Damit bietet es eine geeignete Zielrepräsentation für eine automatisierte, durch Sprachmodelle gestützte Generierung.
+
 \section{Problemstellung}\label{sec:problemstellung}
 
 % Im Vivian Framework geschieht die Erstellung virtueller Prototypen deklarativ über Konfigurationsdateien für Interaktionselemente (InteractionElements), Visualisierungselemente (VisualizationElements), Zustände (States) und Übergänge (Transitions) in Verbindung mit einem statischen 3D-Modell. Obwohl dieses Vorgehen Interaktivität ohne tiefgreifende Programmierkenntnisse möglich macht, ist die manuelle Erstellung solcher Spezifikationen aufwendig sowie fehleranfällig. Es müssen sowohl die zulässigen Elementtypen, Attribute, Zustände, Events und Guards bekannt sein, als auch Namensreferenzen zwischen 3D-Szene und Spezifikation konsistent bleiben, da das Framework ein Verhalten über diese Referenzen an die Objekte einer 3D-Szene bindet.
