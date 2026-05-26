@@ -17,12 +17,12 @@ Zur Nachvollziehbarkeit wurden die Anforderungen in funktionale Anforderungen (A
 	      %A3 operationalisiert P3.
 	\item \textbf{A4:} Der VSG soll im Generierungsprozess erkannte Fehler in einem begrenzten Korrekturprozess erneut an die zuständigen Verarbeitungsschritte zurückführen.
 	      %A4 adressiert erneut P3.
-	\item \textbf{A5:} Der VSG soll einen Human-in-the-Loop-Schritt bereitstellen, in dem Nutzer*innen die Szeneninterpretation überprüfen und gegebenenfalls korrigieren können, bevor daraus Vivian-Spezifikationen erzeugt werden. %Hier wird P3 adressiert und zu Teilen auch P1, da so die Kontrollierbarkeit durch Eingaben auch nicht-technischer Nutzer*innen erhöht wird.
+	\item \textbf{A5:} Der VSG soll einen \textit{Human-in-the-Loop}-Schritt bereitstellen, in dem Nutzer*innen die Szeneninterpretation überprüfen und gegebenenfalls korrigieren können, bevor daraus Vivian-Spezifikationen erzeugt werden. %Hier wird P3 adressiert und zu Teilen auch P1, da so die Kontrollierbarkeit durch Eingaben auch nicht-technischer Nutzer*innen erhöht wird.
 	\item \textbf{A6:} Der VSG soll es Nutzer*innen ermöglichen, gewünschte Interaktionen natürlichsprachlich zu beschreiben, ohne dass Vivian-Spezifikationen manuell erstellt oder bearbeitet werden müssen. %A6 operationalisiert P1 durch Verwendung der natürlichen Sprache.
 \end{itemize}
 
 \subsection{Nicht-funktionale Anforderungen}
-Diese Anforderungen ergeben sich aus F4 (Fehlerreduktion durch Validierungs- und Sebstkorrekturmechanismen), der Fehleranfälligkeit generativer KI, dem prototypischen Systementwurf sowie der Notwendigkeit, Module und Validierungsregeln später erweitern zu können.
+Diese Anforderungen ergeben sich aus F4 (Fehlerreduktion durch Validierungs- und Selbstkorrekturmechanismen), der Fehleranfälligkeit generativer KI, dem prototypischen Systementwurf sowie der Notwendigkeit, Module und Validierungsregeln später erweitern zu können.
 
 \begin{itemize}
 	\item \textbf{N1:} Der VSG soll einzelne Verarbeitungsschritte so kapseln, dass Zwischenartefakte separat validiert und bei erkannten Fehlern gezielt neu erzeugt werden können.
@@ -65,6 +65,7 @@ Die beschriebenen Anforderungen sind zudem kompakt in der nachfolgenden Tabelle 
 		A3          & Validierung der Spezifikation                                                                       \\
 		A4          & begrenzter Korrekturprozess im Generierungsprozess                                                  \\
 		A5          & Human-in-the-Loop                                                                                   \\
+		A6          & XX                                                                                                  \\
 		\midrule
 		N1          & modulare Kapselung und gezielte Neugenerierung                                                      \\
 		N2          & Protokollierung der Zwischenartefakte und Entscheidungen                                            \\
@@ -87,7 +88,7 @@ Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel d
 \subsection{Manager-gesteuerter Multi-Agenten-Ansatz}
 %Umbenennen in "Vorgängeransatz: Manager-getriebenes Multi-Agenten-System" ?
 
-In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (Tools) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (Handoff), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
+In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (\textit{Tools}) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (\textit{Handoff}), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
 %TODO Quelle hinzufügen
 
 Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
@@ -102,9 +103,9 @@ Daher wurde dieser Ansatz zugunsten eines deterministischen modularen Workflows 
 Die Architektur des zweiten Implementierungsdurchlaufs folgt dem Ansatz eines modularen Workflows, welcher ermöglicht, dass Module unabhängig beschrieben, validiert und erweitert werden können, ohne die Gesamtarchitektur grundlegend zu verändern (siehe N3).
 Diese modulare Trennung adressiert N1 und folgt dem in~\ref{ch:stand_der_forschung} beschriebenen Ansatz von LLMR, welches ebenfalls einen modularen Aufbau verwendet~\cite{delatorreLLMRRealtimePrompting2024}.
 Jedes der in Abbildung~\ref{fig:containerdiagramm_vsg} aufgeführten Module adressiert eine spezifische Teilaufgabe innerhalb des gesamten Prozesses, wodurch der Informationsfluss gesteuert werden kann und nachvollziehbar bleibt.
-Der VSG besteht im Wesentlichen aus den Modulen Scene Analyzer, Interaction Planner, Specification Generator, Consistency Reviewer und Unity-Validator.
+Der VSG besteht im Wesentlichen aus den Modulen \textit{Scene Analyzer}, \textit{Interaction Planner}, \textit{Specification Generator}, \textit{Consistency Reviewer} und \textit{Unity-Validator}.
 
 Bei einfachen LLM-Aufrufen sinkt empirisch die Regelbefolgung bei wachsender Länge und Abhängigkeit strukturierter Ausgaben, sodass halluzinierte Referenzen und unzulässige Elementtypen kaum vermeidbar wären~\cite{zhangLostintheMiddleLongTextGeneration2025}.
-Ein einzelner LLM-Aufruf wäre somit nicht ausreichend -- er müsste fünf referenzierende Spezifikationsdateien gleichzeitig konsistent erzeugen und währenddessen sicherstellen, dass jeder Vivian-Elementtyp die in der Szene tatsächlich vorhandenen Unity-Komponenten besitzt.
+Ein einzelner LLM-Aufruf wäre somit nicht ausreichend. Er müsste fünf referenzierende Spezifikationsdateien gleichzeitig konsistent erzeugen und währenddessen sicherstellen, dass jeder Vivian-Elementtyp die in der Szene tatsächlich vorhandenen Unity-Komponenten besitzt.
 Durch die Zerlegung in einzelne Schritte sowie den Einsatz von Zwischenvalidierungen und iterativer Fehlerbehebung ermöglicht die hier vorgestellte Pipeline die Erzeugung korrekter Spezifikationen nach Vivian.
 Eine Skalierung ist durch dieses Vorgehen ebenfalls möglich: Durch Erweiterung bestehender oder Hinzufügen neuer Module könnten noch komplexere 3D-Objekte verarbeitet werden, als in dieser Arbeit betrachtet werden.

@@ -2,12 +2,12 @@
 
 Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
 Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
-Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das Grounding, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
+Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das \textit{Grounding}, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
 Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (Grounding) zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
 
 \paragraph{3D-LLMs für 3D-Verstehen.}
 
-In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist. Dadurch können Aufgaben wie 3D-Captioning, 3D-Fragebeantwortung, Grounding, Dialog oder Navigation bearbeitet werden und relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (Affordances) verstehen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
+In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist. Dadurch können Aufgaben wie \textit{3D-Captioning}, 3D-Fragebeantwortung, Grounding, Dialog oder Navigation bearbeitet werden und relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (\textit{Affordances}) verstehen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
 
 \paragraph{LLM-gestützte Pipelines zur Szenengenerierung und -bearbeitung.}
 
@@ -21,11 +21,11 @@ Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich 
 %TODO Artikulierung ersetzen
 
 Für die Transformation statischer in interaktive Objekte sind objekt- und szenenzentrierte Ansätze besonders relevant.
-ArtLLM wandelt eine Punktwolke in eine Abfolge von Tokens um, die vom Modell nacheinander generiert werden.
+ArtLLM wandelt eine Punktwolke in eine Abfolge von \textit{Tokens} um, die vom Modell nacheinander generiert werden.
 Darüber hinaus können Assets auch als Bild oder Text eingegeben werden. Wichtig ist dabei, dass diese nicht direkt in das Kernmodell eingehen, sondern vorher mit Hilfe externer Generierungsmodelle in initiale Meshes und dann in Punktwolken umgewandelt werden.
 Diese Struktur definiert die Positionen der einzelnen Teile, die mechanischen Gelenke sowie deren Hierarchie.
-Um Positionen und Winkel anzugeben arbeitet es mit festen Rasterstufen statt Gleitkommazahlen.
-Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird diese kinematische Struktur als URDF-Datei (Unified Robotics Description Format) exportiert und kann so in Simulationen und virtuellen Umgebungen verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}.
+Um Positionen und Winkel anzugeben, arbeitet es mit festen Rasterstufen statt Gleitkommazahlen.
+Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird diese kinematische Struktur als URDF-Datei (\textit{Unified Robotics Description Format}) exportiert und kann so in Simulationen und virtuellen Umgebungen verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}.
 
 ArtiWorld erweitert diesen Ansatz von der Objekt- auf die Szenenebene.
 Das System nimmt eine textuelle Szenenbeschreibung entgegen und identifiziert auf dieser Grundlage artikulierbare Objekte.
@@ -53,7 +53,7 @@ ArtiWorld und URDFormer adressieren artikulationsbezogene \bzw URDF-basierte Sim
 Diese Ansätze adressieren jedoch meist andere Zielartefakte als die vorliegende Arbeit und erzeugen häufig neue 3D-Geometrien, bearbeitete 3D-Assets, vollständige 3D-Szenen, Unity-Code, URDF-Dateien oder robotische Simulationsumgebungen.
 Die vorliegende Arbeit ist im Gegensatz dazu nicht primär als Verfahren zur Geometrie- oder Szenengenerierung einzuordnen, sondern als semantisch-verhaltensbezogener Ansatz zur Ableitung von Interaktionsspezifikationen aus vorhandenen 3D-Szenen.
 
-Die Forschungslücke ergibt sich damit aus Verbindung mehrerer Aspekte.
+Die Forschungslücke ergibt sich damit aus der Verbindung mehrerer Aspekte.
 Es sollen vorhandene statische 3D-Objekte erhalten bleiben, relevante Objekte und Teilobjekte semantisch interpretiert werden und gewünschtes Verhalten soll natürlichsprachlich beschrieben werden können.
 Darüber hinaus ergibt sich aus den Randbedingungen des Vivian Frameworks, dass eine maschinenlesbare Interaktionslogik entstehen soll, welche kompatibel mit dem Vivian-Framework ist.
 Da LLM-gestützte Generierungsprozesse fehlerhafte Objektverweise, inkonsistente Strukturen oder unzulässige Spezifikationselemente erzeugen können, sind zudem Validierungs- und Korrekturmaßnahmen erforderlich.
