@@ -1,0 +1,47 @@
+\begin{figure}[htbp]
+	\centering
+	\resizebox{\linewidth}{!}{%
+		\begin{tikzpicture}[
+				font=\scriptsize,
+				decision/.style={diamond, draw, line width=0.5pt, aspect=1.8,
+						align=center, inner sep=1pt, text width=2.25cm,
+						minimum width=\nodew, minimum height=1.35cm},
+				agent/.style={rectangle, draw, rounded corners=2pt, line width=0.5pt,
+						align=center, text width=2.65cm,
+						minimum width=\nodew, minimum height=1.05cm},
+				proc/.style={rectangle, draw, rounded corners=2pt, line width=0.5pt,
+						align=center, text width=2.65cm,
+						minimum width=\nodew, minimum height=1.05cm},
+				flow/.style={-{Stealth[length=4pt]}, line width=0.5pt},
+				lbl/.style={font=\tiny},
+			]
+			\def\nodew{3.05cm}
+			\def\colsep{4.55}
+			\def\rowsep{2.55}
+			\foreach \i/\name/\agent/\val in {
+					0/{Interaction-\\Elements}/{Interaction-\\Elements\\Agent}/{Pydantic parse,\\validate names,\\save to Registry},
+					1/{Visualization-\\Elements}/{Visualization-\\Elements\\Agent}/{Pydantic parse,\\validate names,\\save to Registry},
+					2/{States}/{States Agent}/{Pydantic parse,\\cross-ref,\\save to Registry},
+					3/{Transitions}/{Transitions Agent}/{Pydantic parse,\\cross-ref,\\save to Registry}%
+				}{
+					\node[decision] (d\i) at (\i*\colsep, 0) {\name\\dirty\&active?};
+					\node[agent] (a\i) at (\i*\colsep, -\rowsep) {\agent};
+					\node[proc] (v\i) at (\i*\colsep, -2*\rowsep) {\val};
+					\draw[flow] (d\i) -- node[right, lbl] {ja} (a\i);
+					\draw[flow] (a\i) -- (v\i);
+				}
+			\draw[dashed, line width=0.5pt] ($(d0.west)+(-0.75,-0.85)$) -- ($(d0.west)+(-0.75,0.85)$);
+			\draw[flow] ($(d0.west)+(-1.45,0)$) -- (d0.west);
+			\draw[flow] (d0.east) -- ++(0.45,0) |- node[pos=0.75, above, lbl] {nein} ($(d1.north)+(0,0.55)$) -- (d1.north);
+			\draw[flow] (d1.east) -- ++(0.45,0) |- node[pos=0.75, above, lbl] {nein} ($(d2.north)+(0,0.55)$) -- (d2.north);
+			\draw[flow] (d2.east) -- ++(0.45,0) |- node[pos=0.75, above, lbl] {nein} ($(d3.north)+(0,0.55)$) -- (d3.north);
+			\draw[flow] (v0.east) -| ([yshift=-3pt]d1.west);
+			\draw[flow] (v1.east) -| ([yshift=-3pt]d2.west);
+			\draw[flow] (v2.east) -| ([yshift=-3pt]d3.west);
+			\coordinate (exit) at ($(d3.east)+(1.4,0)$);
+			\draw[flow] (d3.east) -- node[above, lbl] {nein} ([yshift=2pt]exit);
+			\draw[flow] (v3.east) -| ([yshift=-2pt]exit);
+		\end{tikzpicture}%
+	}
+	\caption{Specification Generator.}\label{fig:funcspec_generator}
+\end{figure}

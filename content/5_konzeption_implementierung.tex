@@ -16,7 +16,11 @@ Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Sch
 %caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg}
 %\end{figure}
 
-\input{figures/tikz/systemkontextdiagramm_vsg_tikz}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{figures/vsg_modules/unity-ai.png}
+	\caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg_tikz}
+\end{figure}
 
 Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen KI-Agenten entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt adressiert A5.
 Zusätzlich ist Unity die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet.
@@ -48,11 +52,11 @@ Die nachfolgenden Abschnitte beschreiben die einzelnen Module und ihre Aufgaben 
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/20260430_120448}
+	\includegraphics[width=\linewidth]{figures/vsg_modules/vsg_komplett.png}
 	\caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
 \end{figure}
 
-Ein*e Benutzer*in kann über die Unity UI mit dem System interagieren und erhält Informationen über den Prozessfortschritt, Logging-Informationen, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war.
+Benutzer*innen können über die Unity UI mit dem System interagieren und erhält Informationen über den Prozessfortschritt, Logging-Informationen, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war.
 Anschließend wird das ausgewählte 3D-Asset über ein weiteres Unity-Skript in eine strukturelle Szenenrepräsentation umgewandelt sowie ergänzende 2D-Bildansichten gerendert.
 
 Diese aufbereitete Szenendarstellung wird im darauffolgenden Schritt zusammen mit einer initialen Benutzer*innenbeschreibung der gewünschten Interaktivität an den Scene Analyzer übermittelt.
@@ -255,8 +259,8 @@ Bei Bedarf lassen sich zudem einzelne Interaktionselemente, Visualisierungseleme
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/vsg_modules/interaction_planner_hitl}
-	\caption{Interaction Planner und Human-in-the-Loop.}\label{fig:interaction_planner_hitl}
+	\includegraphics[width=\linewidth]{figures/vsg_modules/interaction-planner.png}
+	\caption{Interaction Planner mit menschlicher Feedbackschleife.}\label{fig:interaction_planner_hitl}
 \end{figure}
 
 Sollte eine Korrektur nötig sein, können Nutzende über ein Freitextfeld in natürlicher Sprache beschreiben, welche Interaktionen oder Elemente geändert werden sollen.
@@ -283,8 +287,8 @@ Die jeweils generierten Daten werden noch nicht in finalen JSON-Dateien, sondern
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/vsg_modules/funcspec_gen}
-	\caption{Functional Specification Generator.}\label{fig:funcspec_generator}
+	\includegraphics[width=\linewidth]{figures/vsg_modules/spec-gen.png}
+	\caption{Specification Generator.}\label{fig:funcspec_generator}
 \end{figure}
 
 \subsection*{Modellwahl und Spezialisierung der Agenten}
@@ -293,7 +297,7 @@ Wie bereits in~\ref{sec:llms_and_agents} erläutert, wurden auch in diesem Schri
 
 \begin{table}[htbp]
 	\centering
-	\begin{tabularx}{\linewidth}{lX}
+	\begin{tabular}{ll}
 		\toprule
 		Agent                 & Sprachmodell       \\
 		\midrule
@@ -302,7 +306,7 @@ Wie bereits in~\ref{sec:llms_and_agents} erläutert, wurden auch in diesem Schri
 		States                & gpt-5.5-2026-04-23 \\
 		Transitions           & gpt-5.1-2025-11-13 \\
 		\bottomrule
-	\end{tabularx}
+	\end{tabular}
 	\caption{Übersicht der im Specification Generator verwendeten Sprachmodelle.}\label{tab:specagents_llms}
 \end{table}
 

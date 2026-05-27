@@ -92,7 +92,13 @@ In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im
 %TODO Quelle hinzufügen
 
 Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
-Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Weiterhin wurde ein Bestätigungsschritt implementiert, bei dem Benutzer*innen das Ergebnis des Szenenanalyse-Moduls prüfen können.
+Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Die Architektur dieses Ansatzes ist in Abbildung~\ref{fig:manager_approach} dargestellt.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{figures/vsg_modules/manager-approach.png}
+	\caption{Manager-gesteuerter Multi-Agenten-Ansatz.}\label{fig:manager_approach}
+\end{figure}
 
 Im ersten Implementierungsdurchlauf zeigte sich, dass der Manager-getriebene Ansatz besonders bei dateiübergreifenden Referenzen und der konsistenten Benennung von Elementen zu Fehlern führte.
 Da der Manager-Agent eigenständig entscheidet, welche untergeordneten Agenten er aufruft, konnten Zwischenergebnisse nicht validiert werden und Fehler sind erst am Ende des Generierungsprozesses aufgefallen.
