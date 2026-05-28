@@ -14,9 +14,12 @@
     captions=tablesignature,  % caption below table
     chapterprefix,
     listof=flat,
+    numbers=noenddot,
     final
 ]{scrbook}
 
+%TODO seitenzahl entweder oben oder unten
+%TODO nummerierung punkt am ende weg
 
 % details about your thesis
 \newcommand{\titel}{KI-gestützte Transformation statischer in interaktive 3D-Objekte durch Benutzerinteraktion}
@@ -36,9 +39,12 @@
 \pagestyle{scrheadings}
 \ihead{\headmark}
 \chead{}
-\ohead{\pagemark}
-\renewcommand*\chaptermarkformat{\chapappifchapterprefix{\ }% 
-  \thechapter.\enskip}
+\ohead{}
+\ifoot*{}
+\cfoot*{}
+\ofoot*{\pagemark}
+\renewcommand*\chaptermarkformat{\chapappifchapterprefix{\ }%
+  \thechapter\enskip}
 
 \RedeclareSectionCommand[tocindent=0pt]{section}
 \RedeclareSectionCommand[tocindent=0pt]{subsection}
@@ -93,12 +99,12 @@
     bookmarksnumbered=true,
     bookmarksopenlevel=1,
     colorlinks=true,
-    linkcolor=red,
-    urlcolor=magenta,
+    linkcolor=black,
+    urlcolor=black,
     anchorcolor=black,
-    citecolor=cyan,
-    filecolor=magenta,
-    menucolor=red,
+    citecolor=black,
+    filecolor=black,
+    menucolor=black,
     plainpages=false,
     hypertexnames=true,
     linktocpage=true
@@ -255,6 +261,7 @@
 \input{content/anhang_a}
 \input{content/anhang_b}
 \input{content/anhang_c}
+\input{content/anhang_d}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 
 \backmatter

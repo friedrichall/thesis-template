@@ -8,7 +8,7 @@ Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem klar abgegre
 
 Zur Interaktion mit dem VSG wird Unity als Benutzer*innenschnittstelle genutzt.
 In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 behandelt, da hier natürlichsprachliche Beschreibungen entgegengenommen werden.
-Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*in und KI-Pipeline.
+Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*innen und KI-Pipeline.
 
 %\begin{figure}[htbp]
 %\centering
@@ -22,7 +22,7 @@ Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Sch
 	\caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg_tikz}
 \end{figure}
 
-Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen KI-Agenten entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt adressiert A5.
+Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen KI-Agenten entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt adressiert A5 (XX).
 Zusätzlich ist Unity die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet.
 Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann.
 Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
@@ -38,7 +38,7 @@ Die im Rahmen dieser Arbeit entwickelte Pipeline wird nicht von einem einzigen, 
 
 Die Pipeline des VSG arbeitet mit mehreren Agenten, welche unterschiedliche, teils multimodale Aufgaben zu bewältigen haben. Ein Scene-Analyzer-Agent wird zur semantischen Interpretation einer vorverarbeiteten Szene verwendet und muss dazu sowohl strukturelle JSON-Daten als auch gerenderte Bildansichten eines 3D-Assets verarbeiten. Dieser Agent ist der einzige innerhalb des VSG, welcher mit multimodalen Eingaben arbeitet. Ein Interaction-Planner-Agent überführt dieses Szenenverständnis und die Nutzer*innenbeschreibung der Interaktion in einen strukturierten Interaktionsplan. Das Specification-Generator-Modul überführt mithilfe von vier verschiedenen Agenten den Interaktionsplan in die verschiedenen Teile einer Vivian-Spezifikation. Ein Consistency-Review-Agent überprüft diese generierten Einzelartefakte auf dateiübergreifende sowie semantische Konsistenz. Sollten Fehler im Generierungsprozess entstanden sein, leitet ein Fixer-Agent Korrekturmaßnahmen aus diesen ab. Die verwendeten Agenten arbeiten somit als spezialisierte Einheiten innerhalb eines kontrollierten Gesamtsystems.
 
-Anstelle von Freitext generieren die Agenten strukturierte Ausgaben. Im Rahmen dieser Arbeit wurden überwiegend \texttt{Pydantic}-Modelle als Ausgabetypen (\texttt{output\_type}) festgelegt, sodass das verwendete Sprachmodell in genau diesem Schema antwortet. Dadurch sind Ergebnisse direkt maschinenlesbar und können gegebenenfalls weiterverarbeitet, validiert, gespeichert oder an nachfolgende Module überreicht werden. Diese Einschränkung der Antwortvariabilität verbessert die Kontrollierbarkeit des gesamten Systems. Freitext wird dennoch dort zugelassen, wo Begründungen, Korrekturhinweise oder Zusammenfassungen angegeben werden sollen.
+Anstelle von natürlicher Sprache generieren die Agenten strukturierte Ausgaben. Im Rahmen dieser Arbeit wurden überwiegend \texttt{Pydantic}-Modelle als Ausgabetypen (\texttt{output\_type}) festgelegt, sodass das verwendete Sprachmodell in genau diesem Schema antwortet. Dadurch sind Ergebnisse direkt maschinenlesbar und können gegebenenfalls weiterverarbeitet, validiert, gespeichert oder an nachfolgende Module überreicht werden. Diese Einschränkung der Antwortvariabilität verbessert die Kontrollierbarkeit des gesamten Systems. Freitext wird dennoch dort zugelassen, wo Begründungen, Korrekturhinweise oder Zusammenfassungen angegeben werden sollen.
 
 Die Wahl der verwendeten LLMs erfolgt je nach Aufgabe und orientiert sich an Reasoning-Bedarf, Kontextumfang sowie Kosten. Stärkere Modelle werden dort eingesetzt, wo hohe Interpretations- und Planungsleistung benötigt wird, während schemagebundenere Aufgaben mit klaren Anweisungen und kleineren Modellen umgesetzt werden können. Der VSG nutzt bewusst nicht für jeden Agenten dasselbe Sprachmodell, sondern passt die Auswahl an die jeweilige Aufgabe des Agenten an. Trotz dieser Spezialisierungen bleiben bekannte Grenzen LLM-basierter Verfahren, wie Halluzinationen, semantische Fehlannahmen und fehlerhafte Referenzen, bestehen, weshalb der Einsatz von Agenten in der vorliegenden Arbeit durch Human-in-the-Loop, Validierungsmechanismen und iterative Korrekturschritte abgesichert wird. Diese Absicherung adressiert A3 (Validierung der Spezifikation), A5 (Human-in-the-Loop) sowie F4 (Fehlerreduktion durch Validierungs- und Selbstkorrekturmechanismen).
 
@@ -56,8 +56,8 @@ Die nachfolgenden Abschnitte beschreiben die einzelnen Module und ihre Aufgaben 
 	\caption{Container-Diagramm des VSG.}\label{fig:containerdiagramm_vsg}
 \end{figure}
 
-Benutzer*innen können über die Unity UI mit dem System interagieren und erhält Informationen über den Prozessfortschritt, Logging-Informationen, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war.
-Anschließend wird das ausgewählte 3D-Asset über ein weiteres Unity-Skript in eine strukturelle Szenenrepräsentation umgewandelt sowie ergänzende 2D-Bildansichten gerendert.
+Benutzer*innen können über die Unity UI mit dem System interagieren und erhalten Informationen über den Prozessfortschritt, Logging-Informationen, Rückmeldung des Interaktionsplaners und ob ein Durchlauf erfolgreich war (siehe Anhang~\ref{ch:anhang_ui_workflow}).
+Anschließend wird das ausgewählte 3D-Asset über ein weiteres Unity-Skript in eine strukturelle Szenenrepräsentation umgewandelt sowie ergänzende 2D-Bildansichten gerendert (siehe Abbildung~\ref{fig:toaster_views}).
 
 Diese aufbereitete Szenendarstellung wird im darauffolgenden Schritt zusammen mit einer initialen Benutzer*innenbeschreibung der gewünschten Interaktivität an den Scene Analyzer übermittelt.
 Dieser gibt ein Scene-Understanding-Objekt aus, welches für jedes relevante Objekt dessen Funktion, Rolle und Eignung als potenzielles Interaktions- oder Visualisierungselement enthält.
@@ -65,7 +65,7 @@ Dieser gibt ein Scene-Understanding-Objekt aus, welches für jedes relevante Obj
 Anschließend erhält der Interaction Planner das zuvor generierte Scene-Understanding-Objekt zusammen mit der strukturierten Szenenrepräsentation, die zuvor auch der Scene Analyzer erhalten hat, und der natürlichsprachlichen Interaktionsbeschreibung.
 In diesem Schritt wird geplant, welche Interaktions- und Visualisierungselemente es geben wird, welche Zustände der Prototyp einnehmen kann und welche Übergänge zwischen Zuständen vorgesehen sind.
 Der Interaction Planner gibt einen Interaction-Plan aus, welcher Elementrollen, geplante Zustände und Übergänge sowie eine Liste der zu generierenden Spezifikationsdateien enthält.
-Dieser Plan wird gemäß A5 der Benutzer*in anschließend zur Bestätigung oder Korrektur vorgelegt.
+Dieser Plan wird gemäß A5 Benutzer*innen anschließend zur Bestätigung oder Korrektur vorgelegt.
 Bei einer Korrektur wird der Interaction Planner erneut aufgerufen, um diese anzuwenden, bis der Plan bestätigt wird, welcher schließlich den nachgelagerten Modulen als verbindliche Vorgabe dient.
 
 Der Specification Generator erzeugt auf Grundlage dieses Interaktionsplans die eigentlichen Vivian-Spezifikationsdateien in der notwendigen Reihenfolge.
@@ -114,7 +114,7 @@ Damit wird gemäß D2 keine neue Geometrie generiert, sondern wiederverwendet.
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/unity-ui}
+	\includegraphics[width=0.8\linewidth]{figures/ui/unity_ui_init}
 	\caption{Unity UI des VSG.}\label{fig:unity_ui_empty}
 \end{figure}
 
@@ -179,11 +179,11 @@ Als Eingaben bekommt der Scene Analyzer die in Abschnitt~\ref{sec:vorverarbeitun
 Die JSON-Struktur stellt Namen, Pfade, IDs und Geometrie bereit, während die Bilder bei der semantischen Einordnung helfen.
 Diese Daten werden von einem internen LLM-basierten Agenten verarbeitet, welcher so einordnen kann, ob ein Teilobjekt beispielsweise eher Griff, Display oder Knopf ist.
 
-Das verwendete LLM leistet in diesem Modul die Hauptarbeit: Es klassifiziert die Szeneninformationen gemäß einem vorgegebenen Schema, dem \texttt{SceneUnderstanding}.
+Das verwendete LLM leistet in diesem Modul die Hauptarbeit: Es klassifiziert die Szeneninformationen gemäß einem vorgegebenen Schema.
 In Anhang~\ref{ch:anhang_scene_analysis} ist dargestellt, wie der verwendete Agent mithilfe eines strukturierten Prompts angesteuert wird.
 %TODO anhang prompt hinzufügenssd
 
-Dieses \texttt{SceneUnderstanding} beinhaltet nun ein aufbereitetes Szenenverständnis mit Informationen zu Objektbezügen, Relationen oder Clustern und bietet die Grundlage dafür, dass darauffolgende Agenten ein Verhalten aus der analysierten Szene ableiten können. Durch dieses Zwischenprodukt muss der Interaction Planner nicht direkt aus einer Unity-Hierarchie schließen, welche Objekte funktional relevant sind, sondern kann mit einer semantisch vorstrukturierten Repräsentation arbeiten.
+Dieses \texttt{SceneUnderstanding}-Objekt beinhaltet nun ein aufbereitetes Szenenverständnis mit Informationen zu Objektbezügen, Relationen oder Clustern und bietet die Grundlage dafür, dass darauffolgende Agenten ein Verhalten aus der analysierten Szene ableiten können. Durch dieses Zwischenprodukt muss der Interaction Planner nicht direkt aus einer Unity-Hierarchie schließen, welche Objekte funktional relevant sind, sondern kann mit einer semantisch vorstrukturierten Repräsentation arbeiten.
 
 Diese entstandene kontrollierte Zwischenrepräsentation ist maschinenlesbar und validierbar, bleibt allerdings dennoch von der Qualität der Modellinterpretation abhängig und ist anfällig für semantische Falschannahmen, weshalb spätere Review-Schritte relevant bleiben.
 
@@ -200,8 +200,8 @@ Weiterhin wurde ein Human-in-the-Loop-Schritt implementiert, damit Nutzer*innen 
 Dafür wird erneut ein LLM-Agent verwendet, welcher bestimmte Instruktionen und somit Informationen über das Vivian Framework erhält (siehe Anhang~\ref{ch:anhang_interaction_planning}).
 Mit diesem Wissen kann er die beschriebenen Aufgaben zuverlässig bewältigen.
 Als LLM wird hier das aktuell leistungsstärkste Modell von OpenAI, GPT-5.5, verwendet, da der Agent aus den Rohdaten der Szene ein Interaktionsverhalten nach Vivian herleiten muss.
-Dabei können schwerwiegende Fehler entstehen wie falsche Objekttypen oder Halluzinationen.
-Solche Fehler sind schwerwiegend, da der Interaction Planner eine zentrale Planungseinheit für den späteren Prototypen darstellt und sie in nachfolgende Schritte weitergereicht werden.
+Dabei können Fehler entstehen wie falsche Objekttypen oder Halluzinationen.
+Solche Fehler sind schwerwiegend, da der Interaction Planner eine zentrale Planungseinheit für den späteren Prototyp darstellt und sie in nachfolgende Schritte weitergereicht werden.
 Somit würden auch alle nachgelagerten Schritte fehlerhafte Ausgaben produzieren.
 
 Das vom Scene Analyzer ausgegebene \texttt{SceneUnderstanding}-Objekt (siehe~\ref{sec:scene_analyzer}) im JSON-Format sowie die vom Unity UI weitergereichte natürlichsprachliche Interaktionsbeschreibung werden dazu vom Interaction Planner konsumiert und in einen strukturierten Interaktionsplan (\texttt{InteractionPlan}) überführt.
@@ -253,7 +253,7 @@ Eine weitere Aufgabe des Interaction Planners umfasst die Bestimmung des Umfangs
 Einfachere Prototypen mit vergleichsweise wenigen Elementen oder Funktionen benötigen gegebenenfalls nicht alle Dateien einer Spezifikation, während komplexere alle vier Dateien benötigen können.
 Durch modulare Kapselung der nachfolgenden Schritte (N1) können gegebenenfalls einzelne Generierungsagenten in~\ref{sec:funcspec_generator} übersprungen werden, sodass nicht benötigte Spezifikationsdateien nicht erzeugt werden.
 
-Der generierte Interaktionsplan wird anschließend zurück an die Unity UI gesendet und den Benutzer*innen zur Prüfung angezeigt.
+Der generierte Interaktionsplan wird anschließend zurück an die Unity UI gesendet und den Benutzer*innen zur Prüfung angezeigt (siehe Anhang~\ref{ch:anhang_ui_workflow}).
 Über die Entscheidungsbegründung kann direkt ein erster Eindruck gewonnen werden, ob Interaktionen wie gefordert geplant worden sind.
 Bei Bedarf lassen sich zudem einzelne Interaktionselemente, Visualisierungselemente, Zustände und Übergänge anzeigen, um diese bei Fehlern auch einzeln adressieren zu können.
 

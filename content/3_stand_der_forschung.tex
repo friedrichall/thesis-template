@@ -2,27 +2,37 @@
 
 Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
 Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
-Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie das \textit{Grounding}, Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
-Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und räumliches Verständnis (Grounding) zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
+Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie räumliches Verständnis (\textit{Grounding}), Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
+Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und Grounding zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
 
-\paragraph{3D-LLMs für 3D-Verstehen.}
+\section{3D-fähige multimodale LLMs}
 
-In Arbeiten wie 3D-LLM und PointLLM können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen, wobei PointLLM eher objektzentriert ist. Dadurch können Aufgaben wie \textit{3D-Captioning}, 3D-Fragebeantwortung, Grounding, Dialog oder Navigation bearbeitet werden und relevante komplexere Konzepte wie räumliche Beziehungen zwischen Objekten, physikalische Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (\textit{Affordances}) verstehen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
+In Arbeiten wie 3D-LLM~\cite{hong3DLLMInjecting3D2023} und PointLLM~\cite{xuPointLLMEmpoweringLarge2025} können multimodale LLMs 3D-Daten direkt verarbeiten und nehmen dafür beispielsweise Punktwolken als Eingabe entgegen.
+Eine Punktwolke ist eine diskrete Menge von Punkten im dreidimensionalen Raum, welche die Oberfläche eines Objekts durch ihre 3D-Koordinaten und optional weitere Attribute wie Normalen beschreibt.
+Da Punktwolken explizite geometrische Informationen enthalten, vermeiden sie Mehrdeutigkeiten bezüglich Blickwinkel, Tiefe oder Verdeckung, wie sie bei bildbasierten Verfahren auftreten können~\cite{xuPointLLMEmpoweringLarge2025}.
+Beide Ansätze unterscheiden sich im Geltungsbereich. 3D-LLM arbeitet szenenzentriert, da es vollständige 3D-Szenen entgegennimmt, während PointLLM auf einzelne 3D-Objekte ausgelegt ist und farbige Punktwolken interpretiert.
+Auf dieser Grundlage können Aufgaben wie \textit{3D-Captioning}, also die natürlichsprachliche Beschreibung von 3D-Szenen oder 3D-Objekten, \textit{3D-Grounding}, das Auffinden konkreter Objekte anhand einer textuellen Referenz, sowie 3D-Fragebeantwortung, Dialog und Navigation bearbeitet werden.
+Darüber hinaus bieten sie Zugang zu komplexeren Konzepten wie räumlichen Beziehungen zwischen Objekten, physikalischen Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (\textit{Affordances}), also die Nutzer*innen durch ein Objekt angebotenen Handlungsoptionen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
+Für die vorliegende Arbeit sind diese Ansätze allerdings nur eingeschränkt geeignet, da sie natürlichsprachliche Ausgaben erzeugen und keine maschinenlesbare Interaktionslogik, wie sie vom Vivian-Framework gefordert wird.
+Weiterhin besitzt die monolithische Punktwolkenrepräsentation nicht die im Vivian Framework benötigte Adressierbarkeit einzelner Teilobjekte über Namensreferenzen.
 
-\paragraph{LLM-gestützte Pipelines zur Szenengenerierung und -bearbeitung.}
+\section{LLM-gestützte 3D-Szenengenerierung und -bearbeitung.}
 
-Parallel dazu wurden LLM-gestützte Pipelines entwickelt, in denen LLMs nicht direkt 3D-Daten verarbeiten.
+Parallel dazu wurden LLM-gestützte Pipelines entwickelt, in denen LLMs nicht direkt 3D-Daten verarbeiten. Unter einer Pipeline wird dabei eine sequenzielle Verarbeitungskette verstanden, in der spezialisierte Module nacheinander aufgerufen werden und die Ausgabe eines Moduls als Eingabe des nächsten dient.
 Stattdessen fungieren sie als Planungs- und Steuerungseinheit, die für die Generierung und Bearbeitung ganzer 3D-Szenen genutzt werden.
-Das Framework LLMR nutzt für die Generierung von interaktiven Szenen einen modularen Workflow, darunter die Module Planner, Scene Analyzer, Skill Library, Builder und Inspector. Es kann Szenenkontext analysieren und generiert anschließend Unity-kompatiblen C\#-Code, welcher durch ein Inspektionsmodul iterativ geprüft wird. Als Eingabe arbeitet das System mit einer strukturierten, für das LLM konsumierbaren JSON-Repräsentation des Szenenkontexts~\cite{delatorreLLMRRealtimePrompting2024}.
+
+Das Framework LLMR nutzt für die Generierung von interaktiven Szenen eine modulare Pipeline, mit den Modulen \textit{Module Planner}, \textit{Scene Analyzer}, \textit{Skill Library}, \textit{Builder} und \textit{Inspector}. Es kann Szenenkontext analysieren und generiert anschließend Unity-kompatiblen C\#-Code, welcher durch ein Inspektionsmodul iterativ geprüft wird. Als Eingabe arbeitet das System mit einer strukturierten, für das LLM konsumierbaren JSON-Repräsentation des Szenenkontexts~\cite{delatorreLLMRRealtimePrompting2024}.
+
 HOLODECK verfolgt einen stärker szenenzentrierten Ansatz und zerlegt die Generierung einer Szene in einzelne Schritte für Grundrisse, Materialien, Fenster und Türen, Objektauswahl sowie räumliche Anordnung.
-Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (\textit{Embodied-AI}) und platziert durch ein Constraint-basiertes Verfahren Objekte räumlich plausibel im Raum~\cite{yangHolodeckLanguageGuided2024}.
+Es dient der automatisierten Erstellung von 3D-Simulationsumgebungen im Bereich der verkörperten KI (\textit{Embodied-AI}). Objekte werden räumlich plausibel angeordnet, indem ein LLM Beziehungen zwischen ihnen vorgibt und ein Optimierungsverfahren eine Anordnung sucht, die diese Beziehungen erfüllt~\cite{yangHolodeckLanguageGuided2024}.
 
 \section{Artikulation statischer 3D-Objekte}
 %TODO Artikulierung ersetzen
+Unter Artikulation wird in diesem Kontext die Ausstattung statischer 3D-Objekte mit beweglichen, durch Gelenke verbundenen Teilen verstanden. Dadurch können Bewegungsfreiheitsgrade in Simulationen abgebildet werden.
 
 Für die Transformation statischer in interaktive Objekte sind objekt- und szenenzentrierte Ansätze besonders relevant.
 ArtLLM wandelt eine Punktwolke in eine Abfolge von \textit{Tokens} um, die vom Modell nacheinander generiert werden.
-Darüber hinaus können Assets auch als Bild oder Text eingegeben werden. Wichtig ist dabei, dass diese nicht direkt in das Kernmodell eingehen, sondern vorher mit Hilfe externer Generierungsmodelle in initiale Meshes und dann in Punktwolken umgewandelt werden.
+Darüber hinaus können Assets auch als Bild oder Text eingegeben werden. Wichtig ist dabei, dass diese nicht direkt in das Kernmodell eingehen, sondern vorher mithilfe externer Generierungsmodelle in initiale \textit{Meshes} und dann in Punktwolken umgewandelt werden.
 Diese Struktur definiert die Positionen der einzelnen Teile, die mechanischen Gelenke sowie deren Hierarchie.
 Um Positionen und Winkel anzugeben, arbeitet es mit festen Rasterstufen statt Gleitkommazahlen.
 Nachdem detailliertere Geometrie über ein Zusatzmodul hinzugefügt wurde, wird diese kinematische Struktur als URDF-Datei (\textit{Unified Robotics Description Format}) exportiert und kann so in Simulationen und virtuellen Umgebungen verwendet werden~\cite{wangArtLLMGeneratingArticulated2026}.
@@ -34,18 +44,19 @@ Die Geometrie des Originals wird dabei nicht ersetzt, sondern um Interaktivität
 Insbesondere diese Arbeit zeigt, dass strukturelle Zwischenrepräsentationen das Reasoning verbessern.
 
 
-\section{Bildbasierte Eingaben}
+\subsection*{Bildbasierte Eingaben}
 
 Eingaben basierend auf Bildern gewinnen in artikulationsbezogenen Pipelines an Bedeutung.
 Einzelbilder werden aktuell in mehreren Arbeiten genutzt, um simulierbare Szenen oder artikulierbare Objekte zu generieren, wie etwa in URDFormer oder ArtLLM~\cite{chenURDFormerPipelineConstructing2024,wangArtLLMGeneratingArticulated2026}.
-Dabei können Bilder sowohl isoliert, wie etwa in URDFormer, als auch zur ergänzenden Eingabe, wie in ArtLLM, verwendet werden, da diese semantische Hinweise und Informationen zu potenziellen Interaktionsmöglichkeiten bieten.
-Für die vorliegende Arbeit ist dieser Befund besonders relevant.
-Er zeigt die Kombination aus expliziten Raumdaten in Form von strukturellen Repräsentationen wie Punktwolken oder Szenengraphen mit Transformationen und Hierarchien einerseits sowie Bildern als visuellem Grounding andererseits.
+Dabei können Bilder sowohl als alleinige Eingabe, wie etwa in URDFormer, als auch ergänzend, wie in ArtLLM, verwendet werden.
+Diese Bilder bieten semantische Hinweise sowie Informationen zu potenziellen Interaktionsmöglichkeiten, was für die vorliegende Arbeit besonders relevant ist.
+Dieser Befund zeigt die Kombination aus expliziten Raumdaten in Form von strukturellen Repräsentationen wie Punktwolken oder Szenengraphen mit Transformationen und Hierarchien einerseits sowie Bildern als visuelles Grounding andererseits.
 
 \section{Forschungslücke}\label{sec:forschungslücke}
 % und Relevanz der/für die vorliegende/n Arbeit
 
-Die in diesem Kapitel betrachteten Arbeiten zeigen, dass LLMs und MLLMs zunehmend in 3D-bezogenen Aufgabenbereichen eingesetzt werden und viele relevante Teilansätze wie 3D-Szenenverständnis, 3D-Fragebeantwortung, 3D-Grounding, Interaktions- und Aufgabenplanung, textbasierte 3D-Verarbeitung, Szenengenerierung sowie artikulationsbezogene Objektmodellierung existieren.
+Die in diesem Kapitel betrachteten Arbeiten zeigen, dass LLMs und MLLMs zunehmend in 3D-bezogenen Aufgabenbereichen eingesetzt werden, etwa für 3D-Szenenverständnis, 3D-Fragebeantwortung, 3D-Grounding, Interaktions- und Aufgabenplanung, textbasierte 3D-Verarbeitung, Szenengenerierung sowie artikulationsbezogene Objektmodellierung.
+---abhierweiter
 So adressiert 3D-LLM \ua~3D-Captioning, 3D-Fragebeantwortung, 3D-Grounding, Dialog und Navigation~\cite{hong3DLLMInjecting3D2023}.
 LLMR nutzt LLMs zur Erstellung und Modifikation interaktiver 3D-Welten zusammen mit Modulen wie Planner, Scene Analyzer, Builder und Inspector~\cite{delatorreLLMRRealtimePrompting2024}.
 Holodeck erzeugt 3D-Umgebungen aus Sprache und nutzt ebenfalls LLMs \ua für Objektwahl und räumliche Layout-Constraints~\cite{yangHolodeckLanguageGuided2024}.

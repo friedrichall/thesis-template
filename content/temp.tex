@@ -1,0 +1,33 @@
+Die in diesem Kapitel betrachteten Arbeiten zeigen, dass LLMs und MLLMs
+zunehmend in 3D-bezogenen Aufgaben eingesetzt werden, etwa für
+Szenenverständnis, 3D-Grounding, Fragebeantwortung, Interaktions- und
+Aufgabenplanung, Szenengenerierung sowie artikulationsbezogene
+Objektmodellierung. Ihre Ausgaben lassen sich dabei zwei Gruppen zuordnen:
+natürlichsprachliche Beschreibungen, wie bei 3D-LLM und PointLLM, sowie neu
+erzeugte oder veränderte Inhalte wie vollständige Szenen, Unity-Code oder
+URDF-Dateien, wie bei LLMR, Holodeck, ArtLLM, ArtiWorld und URDFormer.
+
+Trotz dieser Fortschritte bleibt ein Aspekt bislang unzureichend adressiert:
+die Ableitung einer maschinenlesbaren, zustandsbasierten
+Interaktionsspezifikation aus bereits vorhandenen, geometrisch unveränderten
+3D-Objekten. Die vorliegende Arbeit ist somit nicht als Verfahren zur
+Geometrie- oder Szenengenerierung einzuordnen, sondern als
+semantisch-verhaltensbezogener Ansatz, der vorhandene Geometrie erhält und
+ausschließlich um Interaktionslogik ergänzt.
+
+Die Forschungslücke ergibt sich dabei aus der Kombination mehrerer
+Anforderungen, die einzeln in verwandten Arbeiten auftreten, in dieser
+Verbindung jedoch nicht adressiert werden. Vorhandene statische 3D-Objekte
+sollen erhalten bleiben, relevante Objekte und Teilobjekte semantisch
+interpretiert und gewünschtes Verhalten natürlichsprachlich beschrieben
+werden. Zugleich soll daraus eine maschinenlesbare, Vivian-kompatible
+Interaktionslogik entstehen. Da LLM-gestützte Generierungsprozesse
+fehlerhafte Objektverweise, inkonsistente Strukturen oder unzulässige
+Spezifikationselemente erzeugen können, sind außerdem Validierungs- und
+Korrekturmaßnahmen erforderlich.
+
+Aus dieser Forschungslücke sowie den Forschungsfragen F1 bis F4 (siehe 1.2)
+folgt die Notwendigkeit eines Systems, das Szeneninformationen analysiert,
+natürlichsprachliche Interaktionsbeschreibungen verarbeitet, daraus relevante
+Objekte, Teilobjekte und Rollen ableitet, Vivian-kompatible Spezifikationen
+erzeugt und Fehler prüft sowie gezielt korrigiert.

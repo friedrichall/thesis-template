@@ -9,14 +9,14 @@ Die Begriffe 3D-Objekt und 3D-Asset werden in dieser Arbeit simultan verwendet. 
 In dieser Arbeit werden statische 3D-Objekte als Basisform digitaler Modelle betrachtet.
 Sie sind die fundamentale Basis, auf denen komplexere Verhaltensweisen aufbauen können, jedoch wohnt ihnen mit diesen Informationen noch kein Eigenleben inne.
 Statische 3D-Objekte lassen sich meist rein geometrisch beschreiben.
-Die Mesh-Geometrie besteht aus Dreiecksnetzen oder Polyeder-Darstellungen, welche die Oberfläche durch Eckpunkte (Vertices) und deren Verbindungen definieren~\cite{baranAutomaticRiggingAnimation2007a}.
+Die Mesh-Geometrie besteht aus Dreiecksnetzen oder Polyeder-Darstellungen, welche die Oberfläche durch polygonale Flächen, in der Regel Dreiecksnetze, deren Eckpunkte (\textit{Vertices}) und Verbindungen (\textit{Edges/Faces}) definieren~\cite{botschPolygonMeshProcessing2010}.
 Weiterhin besitzen sie grafische Attribute wie Materialeigenschaften, Texturen, Transparenz und Sichtbarkeit sowie eine hierarchische Anordnung im Szenengraph, welcher ihre Position, Rotation und Skalierung organisiert~\cite{GabrielZachmannsDissertation}.
 
 \subsection*{Interaktive 3D-Objekte}
 
 Während statische 3D-Objekte als unbelebte geometrische Körper betrachtet werden können, zeichnen sich interaktive 3D-Objekte durch Wissen über ihre Funktionalität und die Möglichkeit zur Interaktion mit ihnen aus~\cite{kallmannModelingBehaviorsInteractive2002}.
 Auf diese 3D-Objekte kann durch Eingaben (\textit{Input}) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen~\cite{steuerDefiningVirtualReality1992}.
-Diese Reaktion verleiht der unbelebten Hülle ein \enquote{Leben}.
+Durch diese Reaktion wird aus dem statischen 3D-Objekt ein interaktionsfähiges Element.
 Es ist somit in der Lage, auf durch Benutzereingaben ausgelöste Ereignisse (\textit{Events}) zu reagieren und wird zu einem handlungsoffenen Teil der virtuellen Welt. Interaktive 3D-Objekte werden in dieser Arbeit auch als interaktive Prototypen bezeichnet.
 
 \section{Transformation statischer in interaktive 3D-Objekte}
@@ -33,8 +33,8 @@ Im nächsten Schritt erfolgt der Übergang von der Semantik zum Verhalten mittel
 \section{Das Vivian Framework}\label{sec:vivian_framework}
 
 Das Vivian Framework ist ein \textit{Virtual-Prototyping-Framework}.
-Es erstellt virtuelle Prototypen, also eine digitale, interaktive Repräsentation physischer Objekte aus der realen Welt.
-Diese Repräsentation kann \zB~in der Produktentwicklung verwendet werden, um virtuelle Prototypen von echten Produkten zu erzeugen und deren Verhalten frühzeitig zu testen, ohne dass das physische Produkt vorhanden sein muss.
+Es erstellt virtuelle Prototypen, also digitale, interaktive Repräsentationen physischer Objekte aus der realen Welt.
+Diese Repräsentation kann \zB~in der Produktentwicklung verwendet werden, um virtuelle Prototypen von echten Produkten zu erzeugen und deren Verhalten frühzeitig zu testen, ohne dass das physische Produkt tatsächlich vorhanden sein muss.
 Diese virtuellen Prototypen funktionieren spezifikationsgetrieben, sodass Verhalten nicht programmatisch, sondern deklarativ als Spezifikation geschrieben wird.
 Zur Laufzeit wird diese Spezifikation dann mittels einer \textit{State-Machine}-basierten Umgebung interpretiert, um ein Interaktionsverhalten abzubilden~\cite{VivianFrameworkGitLab2021}.
 Ein Vorteil einer solchen spezifikationsgetriebenen Vorgehensweise ist, dass beispielsweise Produktentwickler*innen keine Programmierkenntnisse benötigen, um virtuelle Prototypen von Produkten (\textit{Digital Twins}) zu erstellen.
