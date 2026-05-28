@@ -5,23 +5,23 @@ Bei der Betrachtung dreidimensionaler Objekte in einem virtuellen Raum lässt si
 intuitiv aus Form, Position, Material und Kontext ableitbar. In virtuellen Umgebungen gilt dies jedoch nicht automatisch, da ein 3D-Modell zwar meist eine sichtbare Form, Materialien und räumliche Eigenschaften, aber in der Regel kein Verständnis über seine mögliche Nutzung besitzt. Auch Online-Bibliotheken, mittels 3D-Scanning erfasste Modelle realer Objekte sowie generativ erzeugte Inhalte liefern in der Regel kein Wissen darüber, welche Teile bedienbar sind oder wie diese auf Nutzer*innenhandlungen reagieren sollen. Zwischen dem visuellen Erscheinungsbild eines 3D-Objekts und seinem tatsächlichen Verhalten in einer virtuellen Welt liegt damit eine Lücke (siehe Abbildung~\ref{fig:intro_asset_examples}). %TODO liegt??
 
 \begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.3\linewidth}
     \centering
-    \begin{subfigure}[b]{0.3\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/lamp/lamp_off}
-        \caption{Lampe}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/display/display_off}
-        \caption{Display}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster_off_iso}
-        \caption{Toaster}
-    \end{subfigure}
-    \caption{Beispiele virtueller 3D-Objekte.}\label{fig:intro_asset_examples}
+    \includegraphics[width=\linewidth]{figures/lamp/lamp_off}
+    \caption{Lampe}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/display/display_off}
+    \caption{Display}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster_off_iso}
+    \caption{Toaster}
+  \end{subfigure}
+  \caption{Beispiele virtueller 3D-Objekte.}\label{fig:intro_asset_examples}
 \end{figure}
 
 %TODO Lücke wiederholung
@@ -41,14 +41,14 @@ An dieser Stelle setzt die vorliegende Arbeit an. Sie untersucht, inwieweit sich
 % Um Spezifikationen automatisiert zu generieren, sind also formal gültige JSON-Strukturen allein nicht ausreichend. Inhaltlich plausible Interaktionen, korrekte Zustandsmodelle sowie konsistente Referenzen über mehrere Artefakte hinweg sind ebenfalls notwendig.
 % Verwandte Arbeiten beschäftigen sich häufig mit Geometrie- oder Szenengenerierung, während
 
-Statischen 3D-Objekten fehlen Angaben darüber, welche Teile bedienbar sind, welche Funktion sie erfüllen, oder wie sie auf Nutzer*innenhandlungen reagieren. Genau diese Informationen sind für Interaktivität jedoch fundamental, da Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verknüpft werden~\cite{kallmannModelingBehaviorsInteractive2002}.
+Statischen 3D-Objekten fehlen Angaben darüber, welche Teile bedienbar sind, welche Funktion sie erfüllen oder wie sie auf Nutzer*innenhandlungen reagieren. Genau diese Informationen sind für Interaktivität jedoch fundamental, da Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verknüpft werden~\cite{kallmannModelingBehaviorsInteractive2002}.
 Somit bestehen virtuelle, interaktive Prototypen nicht nur aus einer 3D-Geometrie, sondern besitzen zusätzlich semantisch-verhaltensbezogene Informationen.
-Abbildung~\ref{fig:problemstellung-toaster} zeigt dies anhand eines Toasters-Assets. Aus einem statischen 3D-Objekt und einer natürlichsprachlichen Beschreibung des gewünschten Verhaltens soll ein interaktiver Prototyp entstehen. Dieser soll etwa das Herunterdrücken des Hebels ermöglichen und Heizstäbe rot aufleuchten lassen. Wie sich diese Transformation kontrolliert und nachvollziehbar realisieren lässt, ist offen.
+Abbildung~\ref{fig:problemstellung-toaster} zeigt dies anhand eines Toasters-Assets. Aus einem statischen 3D-Objekt und einer natürlichsprachlichen Beschreibung des gewünschten Verhaltens soll ein interaktiver Prototyp entstehen. Dieser soll etwa das Herunterdrücken des Hebels ermöglichen und Heizstäbe rot aufleuchten lassen. Wie sich diese Transformation kontrolliert und nachvollziehbar realisieren lässt ist offen. %TODO hier Komma nach lässt?
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figures/vsg_modules/general_problem_toaster.png}
-    \caption{Problemstellung am Beispiel eines Toaster-Assets.}\label{fig:problemstellung-toaster}
+  \centering
+  \includegraphics[width=\linewidth]{figures/vsg_modules/general_problem_toaster.png}
+  \caption{Problemstellung am Beispiel eines Toaster-Assets.}\label{fig:problemstellung-toaster}
 \end{figure}
 
 Sowohl die Erstellung neuer interaktiver 3D-Inhalte als auch die Transformation vorhandener 3D-Objekte in interaktive Prototypen setzt oft ein technisches Verständnis und Wissen voraus, etwa in 3D-Modellierung, Szenenaufbau oder Programmierung. Dies vergrößert die Einstiegshürde für potenzielle Nutzer*innen wie Produktentwickler*innen, Designer*innen oder Lehrende. Diese Gruppe von Anwender*innen wird in dieser Arbeit als nicht-technische Benutzer*innen bezeichnet, also Personen ohne Kenntnisse in der Programmierung oder 3D-Modellierung. Die Fähigkeit, fachliche Anforderungen und Funktionalität präzise formulieren zu können, wird dabei jedoch vorausgesetzt.
@@ -79,19 +79,19 @@ Im Zentrum steht die folgende Forschungsfrage:
 
 
 \begin{quote}
-    \textbf{Lässt sich eine automatisierte Pipeline konzipieren und prototypisch umsetzen, die vorhandene statische 3D-Objekte mittels natürlicher Sprache in interaktive Prototypen überführt und dabei vorhandene Geometrien beibehält?}
+  \textbf{Lässt sich eine automatisierte Pipeline konzipieren und prototypisch umsetzen, die vorhandene statische 3D-Objekte mittels natürlicher Sprache in interaktive Prototypen überführt und dabei vorhandene Geometrien beibehält?}
 \end{quote}
 
 Zur detaillierten Beantwortung dieser Frage werden die folgenden untergliederten Forschungsfragen definiert:
 
 \begin{itemize}
-    \item \textbf{F1:} Lässt sich ein \textit{Co-Creation-Workflow} umsetzen, in dem Nutzer*innen die Überführung durch natürlichsprachliche Beschreibung und iterative Korrekturschleifen mitgestalten?
-          %Kann ein Co-Creation-Workflow entworfen werden, der es auch nicht-technischen Benutzer*innengruppen ermöglicht, statische 3D-Objekte in interaktive Prototypen zu überführen?
-    \item \textbf{F2:} Lassen sich für Interaktivität relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzer*innenbeschreibungen ableiten?
-    \item \textbf{F3:} Können komplexe Interaktionslogiken aus der Kombination von bestehenden 3D-Geometrien und natürlicher Sprache extrahiert und in eine maschinenlesbare Repräsentation überführt werden?
-    \item \textbf{F4:} In welchem Umfang tragen implementierte Validierungs- und Korrekturmechanismen dazu bei, aus fehlerhaften oder unvollständigen Erstgenerierungen valide Vivian-Spezifikationen zu erzeugen?
-          % In welchem Ausmaß reduzieren Validierungs- und Selbstkorrekturmaßnahmen syntaktische, semantische und referenzielle Fehler sowie fehlgeschlagene Unity-Validierungen im Vergleich zu einem Erstgenerierungsdurchlauf ohne Korrekturschleife?
-          %Inwieweit können Validierungs- und Selbstkorrekturmechanismen bei der automatisierten Erstellung von Prototypen syntaktische, semantische und referenzielle Fehler vor der Laufzeit reduzieren?
+  \item \textbf{F1:} Lässt sich ein \textit{Co-Creation-Workflow} umsetzen, in dem Nutzer*innen die Überführung durch natürlichsprachliche Beschreibung und iterative Korrekturschleifen mitgestalten?
+        %Kann ein Co-Creation-Workflow entworfen werden, der es auch nicht-technischen Benutzer*innengruppen ermöglicht, statische 3D-Objekte in interaktive Prototypen zu überführen?
+  \item \textbf{F2:} Lassen sich für Interaktivität relevante Objekte, Teilobjekte und semantische Rollen aus vorhandenen Szeneninformationen und Nutzer*innenbeschreibungen ableiten?
+  \item \textbf{F3:} Können komplexe Interaktionslogiken aus der Kombination von bestehenden 3D-Geometrien und natürlicher Sprache extrahiert und in eine maschinenlesbare Repräsentation überführt werden?
+  \item \textbf{F4:} In welchem Umfang tragen implementierte Validierungs- und Korrekturmechanismen dazu bei, aus fehlerhaften oder unvollständigen Erstgenerierungen valide Vivian-Spezifikationen zu erzeugen?
+        % In welchem Ausmaß reduzieren Validierungs- und Selbstkorrekturmaßnahmen syntaktische, semantische und referenzielle Fehler sowie fehlgeschlagene Unity-Validierungen im Vergleich zu einem Erstgenerierungsdurchlauf ohne Korrekturschleife?
+        %Inwieweit können Validierungs- und Selbstkorrekturmechanismen bei der automatisierten Erstellung von Prototypen syntaktische, semantische und referenzielle Fehler vor der Laufzeit reduzieren?
 \end{itemize}
 
 Das Ziel dieser Arbeit ist die Konzeption und prototypische Implementierung einer KI-gestützten Pipeline, welche statische 3D-Objekte mittels natürlicher Sprache in interaktive Prototypen überführt und diesen Prozess auch nicht-technischen Nutzer*innen zugänglich macht. Dabei sollen die Fähigkeiten von LLMs genutzt werden und ein Co-Creation-Workflow entstehen, in dem Mensch und System gemeinsam am Generierungsprozess beteiligt sind. Nutzer*innen beschreiben das gewünschte Verhalten natürlichsprachlich und können erzeugte Zwischenergebnisse iterativ prüfen und korrigieren. Das System erzeugt die eigentliche Spezifikation.

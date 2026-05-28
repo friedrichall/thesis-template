@@ -62,7 +62,7 @@ Anschließend wird das ausgewählte 3D-Asset über ein weiteres Unity-Skript in 
 Diese aufbereitete Szenendarstellung wird im darauffolgenden Schritt zusammen mit einer initialen Benutzer*innenbeschreibung der gewünschten Interaktivität an den Scene Analyzer übermittelt.
 Dieser gibt ein Scene-Understanding-Objekt aus, welches für jedes relevante Objekt dessen Funktion, Rolle und Eignung als potenzielles Interaktions- oder Visualisierungselement enthält.
 
-Anschließend erhält der Interaction Planner das zuvor generierte Scene-Understanding-Objekt zusammen mit der strukturierten Szenenrepräsentation, die zuvor auch der Scene Analyzer erhalten hat, und der natürlichsprachlichen Interaktionsbeschreibung.
+Anschließend erhält der Interaction Planner das zuvor generierte Scene-Understanding-Objekt zusammen mit der strukturierten Szenenrepräsentation, die zuvor auch der Scene Analyzer erhalten hat und der natürlichsprachlichen Interaktionsbeschreibung.
 In diesem Schritt wird geplant, welche Interaktions- und Visualisierungselemente es geben wird, welche Zustände der Prototyp einnehmen kann und welche Übergänge zwischen Zuständen vorgesehen sind.
 Der Interaction Planner gibt einen Interaction-Plan aus, welcher Elementrollen, geplante Zustände und Übergänge sowie eine Liste der zu generierenden Spezifikationsdateien enthält.
 Dieser Plan wird gemäß A5 Benutzer*innen anschließend zur Bestätigung oder Korrektur vorgelegt.
@@ -72,7 +72,7 @@ Der Specification Generator erzeugt auf Grundlage dieses Interaktionsplans die e
 Ausgegeben werden vier strukturierte JSON-Dateien, welche zusammen eine Vivian-Spezifikation bilden.
 
 Der Consistency Reviewer prüft nun mithilfe des Interaktionsplans, ob der Plan korrekt vom Specification Generator umgesetzt wurde und ob logische Widersprüche oder dateiübergreifende Inkonsistenzen existieren.
-Das könnten \zB~unerreichbare Zustände oder widersprüchliche Bedingungen sein, welche eine rein strukturelle Validierung nicht erkennen kann
+Das könnten \zB~unerreichbare Zustände oder widersprüchliche Bedingungen sein, welche eine rein strukturelle Validierung nicht erkennen kann.
 
 Ein Validator ergänzt dies um eine strukturelle und laufzeitnahe Kontrolle.
 Wird die maximale Anzahl an Versuchen erreicht oder keine Fehler gefunden, terminiert der VSG.
@@ -94,7 +94,7 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 
 % Zwischenartefakte und Kontrollfluss: welche Daten zwischen den Modulen wandern (Szenenanalyse-Ergebnis, Interaktionsplan, Spezifikationsentwurf, Validierungsbericht), wo die Validierungs-Gates sitzen (vor und nach Generierung), und wo der HITL-Schritt eingreift (vor Spec-Generierung, gemäß A5). Das ist der Absatz, der dein Diagramm in Worte übersetzt.
 
-% Ein Absatz Abgrenzung: kurzer Vergleich zu LLMR / HOLODECK / ArtiWorld – jeweils zwei Sätze, was übernommen wird (z. B. modulare Inspection von LLMR), was bewusst anders ist (du erzeugst keine Geometrie, du fügst Verhaltens-Spezifikationen zu vorhandenen Szenen hinzu). Damit verteidigst du implizit deinen Beitrag.
+% Ein Absatz Abgrenzung: kurzer Vergleich zu LLMR / Holodeck / ArtiWorld – jeweils zwei Sätze, was übernommen wird (z. B. modulare Inspection von LLMR), was bewusst anders ist (du erzeugst keine Geometrie, du fügst Verhaltens-Spezifikationen zu vorhandenen Szenen hinzu). Damit verteidigst du implizit deinen Beitrag.
 
 % REST API -> WIE kommuniziert unity mit ki-pipeline? 
 
@@ -105,7 +105,7 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 
 
 %TODO warum überhaupt vorverarbeiten?
-Um ein 3D-Asset in MLLM-verständliche Daten umzuwandeln, müssen eine strukturelle Repräsentation und Ansichten aus verschiedenen Blickwinkeln erstellt werden.
+Um ein 3D-Asset in LLM-verständliche Daten umzuwandeln, müssen eine strukturelle Repräsentation und Ansichten aus verschiedenen Blickwinkeln erstellt werden.
 Da der nachgelagerte Scene Analyzer mit Text und Bild als Eingaben arbeitet, benötigt er die erstellten Ansichten als visuelles Grounding für die abstrakten JSON-Daten.
 Die Form des Objekts, das Material oder auch räumliche Anordnung werden somit direkt sichtbar und müssen nicht aus Bounding-Boxen rekonstruiert werden.
 
@@ -277,7 +277,7 @@ Da Fehler an die gesamte Spezifikationsgenerierung weitergereicht werden, wirkt 
 Der Specification Generator übersetzt die im vorherigen Schritt geplante Interaktionslogik aus einem deklarativen und zum Teil noch natürlichsprachlich beschriebenen Plan in die vier JSON-Dateien einer Vivian-Spezifikation. Während andere Module für das Planen (siehe ~\ref{sec:interaction_planner}) sowie die Validierung der erzeugten Dateien (siehe~\ref{sec:unity_validator}) zuständig sind, ist dies der einzige Schritt, in dem tatsächliche, von Vivian konsumierbare JSON-Spezifikationsdateien erzeugt werden. Dieses Modul adressiert damit primär A1 (Erzeugung von Vivian-Spezifikationsdateien) sowie D1 (Erzeugte Dateien müssen den Anforderungen von Vivian entsprechen).
 
 \subsection*{Eingaben, Ausgaben und Verarbeitungsreihenfolge}
-Als Eingabe nimmt der Specification Generator einen bestätigten Interaktionsplan entgegen, und gibt die Spezifikationsdateien \texttt{InteractionElements.json}, \texttt{VisualizationElements.json}, \texttt{States.json} und \texttt{Transitions.json} aus. Da Vivian außerdem eine fünfte Datei (\texttt{VisualizationArrays.json}) zur Ausführung benötigt, wird diese ebenfalls erstellt und ist standardmäßig ungefüllt. Da diese fünfte Datei im Kontext dieser Arbeit keine weitere Relevanz hat bleibt sie im Rest der Arbeit unerwähnt. Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
+Als Eingabe nimmt der Specification Generator einen bestätigten Interaktionsplan entgegen und gibt die Spezifikationsdateien \texttt{InteractionElements.json}, \texttt{VisualizationElements.json}, \texttt{States.json} und \texttt{Transitions.json} aus. Da Vivian außerdem eine fünfte Datei (\texttt{VisualizationArrays.json}) zur Ausführung benötigt, wird diese ebenfalls erstellt und ist standardmäßig ungefüllt. Da diese fünfte Datei im Kontext dieser Arbeit keine weitere Relevanz hat bleibt sie im Rest der Arbeit unerwähnt. Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
 
 Für die Umsetzung dieses Moduls wurden vier spezialisierte LLM-Agenten implementiert, welche nacheinander aufgerufen werden, um je eine der vier Spezifikationsdateien zu generieren.
 Zuerst werden Interaktionselemente, danach Visualisierungselemente, anschließend Zustände und im letzten Schritt Übergänge erstellt (siehe~\ref{fig:dependency_graph_specgen}).
