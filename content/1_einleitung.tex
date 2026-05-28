@@ -6,17 +6,17 @@ Bei der Betrachtung dreidimensionaler Objekte in einem virtuellen Raum lässt si
     \centering
     \begin{subfigure}[b]{0.3\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/asset-examples-iso/Lamp_iso_top_right}
+        \includegraphics[width=\linewidth]{figures/lamp/lamp_off}
         \caption{Lampe}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/asset-examples-iso/Display_iso_top_right}
+        \includegraphics[width=\linewidth]{figures/display/display_off}
         \caption{Display}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster3_iso_top_right}
+        \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster_off_iso}
         \caption{Toaster}
     \end{subfigure}
     \caption{Beispiele virtueller 3D-Objekte.}\label{fig:intro_asset_examples}
@@ -26,7 +26,7 @@ Diese Lücke wird dann besonders deutlich, wenn 3D-Objekte nicht nur betrachtet,
 
 Gleichzeitig ändert sich die Art und Weise, wie solche interaktiven Systeme entworfen werden können. Anstelle der rein manuellen Umsetzung durch Skripte oder systemspezifische Konfigurationen rückt mit der hohen Verfügbarkeit von KI-Systemen zunehmend natürliche Sprache in den Mittelpunkt. Diese wird somit zu einer Schnittstelle zwischen fachlicher Vorstellung und technischer Umsetzung. Der Fokus verschiebt sich von direkter Programmierung hin zur Beschreibung von Verhalten, Funktionen und Beziehungen.
 
-Leistungsfähige \textit{Large Language Models} (LLMs) haben in den vergangenen Jahren eine rasante Entwicklung erfahren und können natürliche Eingaben interpretieren, semantische Zusammenhänge ableiten sowie strukturierte Ausgaben erzeugen~\cite{caffagniRevolutionMultimodalLarge2024,yinSurveyMultimodalLarge2024}. Dies eröffnet neue Möglichkeiten, die Lücke zwischen statischen 3D-Objekten und interaktiven Prototypen zu schließen, indem natürlichsprachliche Beschreibungen als Eingabe genutzt und mittels KI-gestützter Verfahren in eine maschinenlesbare Interaktionslogik übersetzt werden.
+Leistungsfähige \textit{Large Language Models} (LLMs) haben in den vergangenen Jahren eine rasante Entwicklung erfahren und können natürliche Eingaben interpretieren, semantische Zusammenhänge ableiten sowie strukturierte Ausgaben erzeugen~\cite{caffagniRevolutionMultimodalLarge2024,yinSurveyMultimodalLarge2024}. Dies eröffnet neue Möglichkeiten,der die Lücke zwischen statischen 3D-Objekten und interaktiven Prototypen zu schließen, indem natürlichsprachliche Beschreibungen als Eingabe genutzt und mittels KI-gestützter Verfahren in eine maschinenlesbare Interaktionslogik übersetzt werden.
 
 An dieser Stelle setzt die vorliegende Arbeit an. Sie untersucht, inwieweit sich bereits vorhandene statische 3D-Objekte in virtuellen Welten mithilfe eines KI-gestützten Workflows und natürlicher Sprache in interaktive virtuelle Prototypen überführen lassen. Als Grundlage dient das Vivian-Framework, welches Interaktion deklarativ über maschinenlesbare Spezifikationsdateien beschreibt. Damit bietet es eine geeignete Zielrepräsentation für eine automatisierte, durch Sprachmodelle gestützte Generierung.
 
@@ -38,8 +38,15 @@ An dieser Stelle setzt die vorliegende Arbeit an. Sie untersucht, inwieweit sich
 % Um Spezifikationen automatisiert zu generieren, sind also formal gültige JSON-Strukturen allein nicht ausreichend. Inhaltlich plausible Interaktionen, korrekte Zustandsmodelle sowie konsistente Referenzen über mehrere Artefakte hinweg sind ebenfalls notwendig.
 % Verwandte Arbeiten beschäftigen sich häufig mit Geometrie- oder Szenengenerierung, während
 
-In der Regel enthalten statische 3D-Objekte Geometrie, Materialien und Transformationen, jedoch keine Angaben darüber, welche expliziten Teile bedienbar sind, welche Funktion sie erfüllen oder wie sie auf Nutzer*innenhandlungen reagieren. Für Interaktivität sind aber genau diese Informationen von fundamentaler Bedeutung, nämlich wenn Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verbunden werden~\cite{kallmannModelingBehaviorsInteractive2002}.
+Statischen 3D-Objekten fehlen Angaben darüber, welche Teile bedienbar sind, welche Funktion sie erfüllen, oder wie sie auf Nutzer*innenhandlungen reagieren. Genau diese Informationen sind für Interaktivität jedoch fundamental, da Objekte oder Teilobjekte mit Bedeutung, möglichen Handlungen und Verhalten verknüpft werden~\cite{kallmannModelingBehaviorsInteractive2002}.
 Somit bestehen virtuelle, interaktive Prototypen nicht nur aus einer 3D-Geometrie, sondern besitzen zusätzlich semantisch-verhaltensbezogene Informationen.
+Abbildung~\ref{fig:problemstellung-toaster} zeigt dies anhand eines Toasters-Assets. Aus einem statischen 3D-Objekt und einer natürlichsprachlichen Beschreibung des gewünschten Verhaltens soll ein interaktiver Prototyp entstehen. Dieser soll etwa das Herunterdrücken des Hebels ermöglichen und Heizstäbe rot aufleuchten lassen. Wie sich diese Transformation kontrolliert und nachvollziehbar realisieren lässt, ist offen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/vsg_modules/general_problem_toaster.png}
+    \caption{Problemstellung am Beispiel eines Toaster-Assets.}\label{fig:problemstellung-toaster}
+\end{figure}
 
 Die Erstellung interaktiver 3D-Szenen oder die Transformation dieser in interaktive Prototypen setzt oft ein technisches Verständnis und Wissen voraus, wie etwa in 3D-Modellierung, Szenenaufbau oder Programmierung, was die Einstiegshürde für potenzielle Nutzer*innen wie Produktentwickler*innen, Designer*innen oder Lehrende vergrößert. Diese Gruppe von Anwender*innen wird in dieser Arbeit als nicht-technische Benutzer*innen bezeichnet, also Personen ohne Kenntnisse in der Programmierung oder 3D-Modellierung. Die Fähigkeit, fachliche Anforderungen und Funktionalität präzise formulieren zu können, wird dabei jedoch vorausgesetzt.
 

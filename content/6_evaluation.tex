@@ -17,10 +17,22 @@ Dabei steht nicht die Untersuchung einer möglichst großen Menge unterschiedlic
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/Lamp_iso_top_right}\hfill
-  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/Display_iso_top_right}\hfill
-  \includegraphics[width=0.3\linewidth]{figures/asset-examples-iso/toaster3_iso_top_right}
-  \caption{Die drei Testassets Lampe, Display und Toaster (von links nach rechts).}\label{fig:testasset_examples_iso}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/lamp/lamp_off}
+    \caption{Lampe}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/display/display_off}
+    \caption{Display}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/asset-examples-iso/toaster_off_iso}
+    \caption{Toaster}
+  \end{subfigure}
+  \caption{Beispiele virtueller 3D-Objekte.}\label{fig:testasset_examples_iso}
 \end{figure}
 
 Die drei Assets unterscheiden sich hinsichtlich ihrer funktionalen sowie strukturellen Komplexität, wodurch der Workflow nicht nur an einem einfachen Erfolgsbeispiel, sondern anhand verschiedener Testfälle mit steigender Komplexität und Anforderungen gezeigt werden kann. Die Lampe bildet das einfachste Beispiel ab, da hier nur eine Interaktion sowie eine visuelle Reaktion erwartet werden. Einen mittleren Schwierigkeitsgrad stellt das Display dar, da hier verschiedene Bedienelemente und eine Screen-Fläche erkannt sowie in Beziehung zueinander gesetzt werden müssen. Abschließend bietet der Toaster das komplexeste Beispiel, da hier mehrere Teilobjekte, unterschiedliche visuelle Rückmeldungen, verschiedene Zustände sowie ein zeitbasierter Übergang miteinander funktionieren müssen.
