@@ -117,7 +117,7 @@ Damit wird gemäß D2 (Geometrieerhalt) keine neue Geometrie generiert, sondern 
 	\caption{Unity UI des VSG.}\label{fig:unity_ui_empty}
 \end{figure}
 
-Um einem LLM Verständnis über ein 3D-Asset (in Unity GameObject genannt) zu geben, wird zunächst eine strukturierte Szenenbeschreibung im JSON-Format mit dem Namen \texttt{scene.json} erzeugt.
+Um einem LLM Verständnis über ein 3D-Asset (in Unity \textit{GameObject} genannt) zu geben, wird zunächst eine strukturierte Szenenbeschreibung im JSON-Format mit dem Namen \texttt{scene.json} erzeugt.
 Dazu wird die Hierarchie des Szenengraphen rekursiv traversiert und pro GameObject Informationen wie die ID, der Hierarchiepfad, Transformation, Materialien, Bounding Boxes oder Mesh-Statistiken extrahiert.
 Weiterhin werden bereits basierend auf Namen, Tags oder Material-Hinweisen heuristisch Rollen erkannt, welche im späteren Verlauf verwendet werden können, um Interaktionselemente und Visualisierungselemente zu klassifizieren.
 
@@ -224,7 +224,7 @@ Darüber hinaus liefert das LLM noch eine zusammengefasste Begründung für die 
 \end{lstlisting}
 
 Eine der Hauptaufgaben des Interaction Planners ist die Rollenzuweisung.
-Dafür werden den relevanten Objekten einer 3D-Szene basierend auf Namen, Materialien und Geometrie spezifische Vivian-Typen zugewiesen, wie Button, Slider, \textit{Rotatable}, Light oder Screen, welche das LLM direkt aus den einzelnen Elementen von SceneUnderstanding ableitet.
+Dafür werden den relevanten Objekten einer 3D-Szene basierend auf Namen, Materialien und Geometrie spezifische Vivian-Typen zugewiesen, wie Button, Slider, Light oder Screen, welche das LLM direkt aus den einzelnen Elementen von SceneUnderstanding ableitet.
 Beispielsweise sollte einem \texttt{Handle} die Rolle eines Slider zugewiesen werden.
 Diese Aufgabe adressiert A2 (Identifikation und Rollenzuweisung).
 
