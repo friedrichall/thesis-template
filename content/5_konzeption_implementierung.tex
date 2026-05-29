@@ -1,6 +1,6 @@
 \chapter{Implementierung der Systemarchitektur}\label{ch:konzeption_und_implementierung}
 %Oder: Prototypische Implementierung des Vivian Specification Generators
-In diesem Kapitel wird die Konzeption und prototypische Implementierung des Vivian Specification Generators als gewählte Systemarchitektur zur Spezifikationsgenerierung für das Vivian Framework beschrieben. Ziel war es ein System zu entwerfen, welches die in den vergangenen Kapiteln erarbeiteten theoretischen Grundlagen und Anforderungen in ein lauffähiges und den Anforderungen entsprechendes System umsetzt. Konkret soll dieses semantisch und strukturell korrekte Vivian-Spezifikationen automatisiert erzeugen, natürlichsprachliche Interaktionsbeschreibungen und Benutzer*innen-Feedback entgegennehmen sowie aufkommende Fehler iterativ und eigenständig beheben können.
+In diesem Kapitel wird die Konzeption und prototypische Implementierung des Vivian Specification Generators als gewählte Systemarchitektur zur Spezifikationsgenerierung für das Vivian-Framework beschrieben. Ziel war es ein System zu entwerfen, welches die in den vergangenen Kapiteln erarbeiteten theoretischen Grundlagen und Anforderungen in ein lauffähiges und den Anforderungen entsprechendes System umsetzt. Konkret soll dieses semantisch und strukturell korrekte Vivian-Spezifikationen automatisiert erzeugen, natürlichsprachliche Interaktionsbeschreibungen und Benutzer*innen-Feedback entgegennehmen sowie aufkommende Fehler iterativ und eigenständig beheben können.
 
 \section{Systemkontext und Schnittstellen}
 
@@ -194,7 +194,7 @@ So wird außerdem vermieden, dass einzelne Agenten in der Spezifikationsgenerier
 Er ist auf die Strukturen und Regeln des Vivian Frameworks ausgerichtet und kann so einzelnen Teilobjekten bestimmte Rollen zuweisen, Zustände und Übergänge planen sowie entscheiden, welche Dateien der Spezifikation für die geplante Interaktion benötigt werden.
 Weiterhin wurde ein Human-in-the-Loop-Schritt implementiert, damit Nutzer*innen die Ausgabe des Interaction Planners validieren oder korrigieren können.
 
-Dafür wird erneut ein LLM-Agent verwendet, welcher bestimmte Instruktionen und somit Informationen über das Vivian Framework erhält (siehe Anhang~\ref{ch:anhang_interaction_planning}).
+Dafür wird erneut ein LLM-Agent verwendet, welcher bestimmte Instruktionen und somit Informationen über das Vivian-Framework erhält (siehe Anhang~\ref{ch:anhang_interaction_planning}).
 Mit diesem Wissen kann er die beschriebenen Aufgaben zuverlässig bewältigen.
 Als LLM wird hier das aktuell leistungsstärkste Modell von OpenAI, GPT-5.5, verwendet, da der Agent aus den Rohdaten der Szene ein Interaktionsverhalten nach Vivian herleiten muss.
 Dabei können Fehler entstehen wie falsche Objekttypen oder Halluzinationen.
@@ -349,7 +349,7 @@ Der States-Agent verwendet mit GPT-5.5 das leistungsstärkste Modell der hier ve
 
 Der Transitions-Agent verwendet wie die InteractionElements- und VisualizationElements-Agenten das Modell GPT-5.1, da die zu verwendenden Zustände bereits im States-Agenten generiert wurden und hier verwendet werden. Diese Aufgabe benötigt somit verhältnismäßig weniger Reasoning-Aufwand. Grundsätzlich würde dieser Agent zwar aufgrund bestimmter Aufgaben (wie Exklusiv-Oder-Gatter) von einem leistungsstärkeren Modell profitieren, allerdings reicht GPT-5.1 hier erfahrungsgemäß aus. Sollten deutlich komplexere Prototypen als im Rahmen dieser Arbeit betrachtet werden, würde der VSG in diesem Schritt unmittelbar von der Verwendung eines leistungsstärkeren Modells, wie GPT-5.2 oder GPT-5.5, profitieren.
 
-% Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.
+% Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian-Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.
 
 \subsection*{Datenfluss zwischen den Agenten}
 
