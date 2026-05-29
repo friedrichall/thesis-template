@@ -1,7 +1,7 @@
 \chapter{Forschungsstand}\label{ch:stand_der_forschung}
 
 Die aktuelle Forschung in diesem Gebiet verbindet Sprachmodelle mit 3D-Repräsentationen und zeigt, dass LLM-basierte Systeme zunehmend in der Lage sind, 3D-Szenen nicht nur mit Sprache zu beschreiben, sondern semantisch sowie räumlich zu interpretieren.
-Mit der Weiterentwicklung von LLMs konnte deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten, wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
+Mit der Weiterentwicklung von LLMs kann deren Integration mit räumlichen Daten große Fortschritte erzielen und bietet so neue Möglichkeiten, wie Szenenverständnis, Planung und Generierung von 3D-Welten oder Navigation in diesen.
 Spätestens seit 2023 hat sich die Verbindung zwischen LLMs und 3D-Repräsentationen zu einer eigenständigen Forschungslinie entwickelt, welche 3D-Szenen nicht nur beschreiben, sondern auch für neue Methoden wie, räumliches Verständnis (\textit{Grounding}), Fragebeantwortung und Planungsaufgaben nutzen können~\cite{maWhenLLMsStep2025,hong3DLLMInjecting3D2023}.
 Trotz dieser schnellen Entwicklung bleiben Datenknappheit, Halluzinationsrobustheit und Grounding zentrale Herausforderungen aktueller Systeme~\cite{pengUnderstandingEvaluatingHallucinations2025, maWhenLLMsStep2025}.
 
@@ -12,7 +12,7 @@ Eine Punktwolke ist eine diskrete Menge von Punkten im dreidimensionalen Raum, w
 Da Punktwolken explizite geometrische Informationen enthalten, vermeiden sie Mehrdeutigkeiten bezüglich Blickwinkel, Tiefe oder Verdeckung wie sie bei bildbasierten Verfahren auftreten können~\cite{xuPointLLMEmpoweringLarge2025}.
 Beide Ansätze unterscheiden sich im Geltungsbereich. 3D-LLM arbeitet szenenzentriert, da es vollständige 3D-Szenen entgegennimmt, während PointLLM auf einzelne 3D-Objekte ausgelegt ist und farbige Punktwolken interpretiert.
 Auf dieser Grundlage können Aufgaben wie \textit{3D-Captioning}, also die natürlichsprachliche Beschreibung von 3D-Szenen oder 3D-Objekten, \textit{3D-Grounding}, das Auffinden konkreter Objekte anhand einer textuellen Referenz sowie 3D-Fragebeantwortung, Dialog und Navigation bearbeitet werden.
-Darüber hinaus bieten sie Zugang zu komplexeren Konzepten wie räumlichen Beziehungen zwischen Objekten, physikalischen Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (\textit{Affordances}), also die durch ein Objekt angebotenen Handlungsoptionen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}. %TODO letzten teilsatz verbessern oder umschreiben oder weg
+Darüber hinaus bieten sie Zugang zu komplexeren Konzepten wie räumlichen Beziehungen zwischen Objekten, physikalischen Eigenschaften, Raumlayouts oder Interaktionsmöglichkeiten (\textit{Affordances}), also die durch ein Objekt angebotenen Handlungsoptionen~\cite{hong3DLLMInjecting3D2023,xuPointLLMEmpoweringLarge2025}.
 Für die vorliegende Arbeit sind diese Ansätze allerdings nur eingeschränkt geeignet, da sie natürlichsprachliche Ausgaben erzeugen und keine maschinenlesbare Interaktionslogik, wie sie vom Vivian-Framework gefordert wird.
 Weiterhin besitzt die monolithische Punktwolkenrepräsentation nicht die im Vivian Framework benötigte Adressierbarkeit einzelner Teilobjekte über Namensreferenzen.
 

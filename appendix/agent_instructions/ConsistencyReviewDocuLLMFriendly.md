@@ -18,19 +18,32 @@ What to check
 3.7. Interaction-visualization alignment: If an InteractionElement is referenced in transitions, do the resulting states actually change any conditions? Transitions that don't lead to observable changes are pointless.
 3.8. Element name validity: All element names in States and Transitions must match exactly (case-sensitive) with names defined in InteractionElements and VisualizationElements.
 3.9. Guard and condition value normalization: For Rotatable and Slider elements, verify that all
-     VALUE attribute values in States conditions and Transitions guards are normalized strings
-     between "0.0" and "1.0". Any numeric value above 1.0 on a Rotatable or Slider VALUE attribute
-     indicates a degree or unit value was used instead of a normalized fraction — flag as error.
+VALUE attribute values in States conditions and Transitions guards are normalized strings
+between "0.0" and "1.0". Any numeric value above 1.0 on a Rotatable or Slider VALUE attribute
+indicates a degree or unit value was used instead of a normalized fraction — flag as error.
 3.10. Screen file assignments: If the InteractionPlan includes screen_files assignments on planned
-     states, verify that the generated States.json uses those assignments. If a planned state has
-     screen_files assigned but the corresponding generated state has no ScreenContentVisualization
-     condition or uses a different filename, flag as a warning.
+states, verify that the generated States.json uses those assignments. If a planned state has
+screen_files assigned but the corresponding generated state has no ScreenContentVisualization
+condition or uses a different filename, flag as a warning.
+3.11. Slider drag-end without position guard: If a transition is triggered by SLIDER_DRAG_END and
+has no guard on the slider's VALUE attribute, flag as an error. A SLIDER_DRAG_END transition
+without a VALUE guard fires regardless of where the user stopped dragging, making the trigger
+condition physically meaningless.
+3.12. Visualization condition carry-over: The Vivian runtime only applies conditions explicitly
+listed in a state; any visualization element not mentioned retains its value from the
+previous state (carry-over). If a visualization element has conditions in multiple states
+with different values, verify that all other reachable states also set an explicit condition
+for that element. A state that omits a condition for a visualization element whose value
+varies across other states will produce path-dependent visual behavior, which is almost
+always unintended. Flag as error.
 
 Severity levels
 4.1. Use severity "error" for issues that will cause the FunctionalSpecification to malfunction or fail validation:
 4.1.1. References to non-existent elements or states.
 4.1.2. Unreachable states that should be reachable.
 4.1.3. Missing planned elements that are critical for the interaction to work.
+4.1.4. SLIDER_DRAG_END transitions without a VALUE guard (rule 3.11).
+4.1.5. Missing visualization conditions due to carry-over (rule 3.12).
 4.2. Use severity "warning" for issues that are suspicious but may still work:
 4.2.1. Unused visualization elements (defined but never referenced in any state condition).
 4.2.2. States with no conditions (empty states).

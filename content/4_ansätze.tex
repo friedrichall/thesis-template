@@ -1,6 +1,6 @@
 \chapter{Systemkonzeption und Architekturentscheidungen}\label{ch:systemkonzeption}
 
-Im Folgenden wird der in dieser Arbeit entwickelte Ansatz als~\textit{Vivian Specification Generator} (VSG) bezeichnet.
+Aufbauend auf der in Kapitel~\ref{ch:stand_der_forschung} identifizierten Forschungslücke beschreibt dieses Kapitel die konzeptionelle Grundlage des in dieser Arbeit entwickelten Ansatzes, der im Folgenden als~\textit{Vivian Specification Generator} (VSG) bezeichnet wird. Darüber hinaus werden die zugrundeliegenden Architekturentscheidungen begründet.
 
 \section{Anforderungsanalyse}
 
@@ -88,8 +88,7 @@ Im Laufe dieser Arbeit wurden verschiedene Ansätze implementiert, um das Ziel d
 \subsection{Manager-gesteuerter Multi-Agenten-Ansatz}
 %Umbenennen in "Vorgängeransatz: Manager-getriebenes Multi-Agenten-System" ?
 
-In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (\textit{Tools}) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (\textit{Handoff}), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern.
-%TODO Quelle hinzufügen
+In der ersten Iteration wurden verschiedene Multi-Agenten-Systeme angeschaut. Im Manager-Agent-getriebenen System kann ein LLM-Agent beliebig viele weitere (spezialisierte) LLM-Agenten als Werkzeuge (\textit{Tools}) aufrufen, um Aufgaben von spezialisierten Agenten lösen zu lassen, welche dann ein Ergebnis zurück an den Manager liefern. Wichtig zu erwähnen bei diesem Ansatz ist, dass ein Manager Agent spezialisierte Agenten aufrufen kann, aber selbst entscheidet, ob er dies tut. Eine ähnliche Vorgehensweise ist die des dezentralisierten Systems, bei dem es allerdings keine Orchestrierungseinheit wie einen Manager gibt, sondern Agenten die Aufgabe komplett an andere Agenten abgeben können (\textit{Handoff}), ohne dass diese ein Ergebnis zurück an einen Manager-Agenten liefern~\cite{AgentsOpenAIAgents}.
 
 Um eine übergeordnete Instanz im Prozess zu integrieren, welche sicherstellt, dass Referenzen zwischen den einzelnen Spezifikationsdateien korrekt sind und entstandene Fehler durch gezieltes Aufrufen der zuständigen spezialisierten Agenten korrigieren kann, wurde für die erste Iteration der Manager-getriebene Ansatz gewählt.
 Als spezialisierte Einheiten wurden ein Szenenanalyse-Agent sowie ein Agent je Spezifikationsdatei gewählt. Die Architektur dieses Ansatzes ist in Abbildung~\ref{fig:manager_approach} dargestellt.

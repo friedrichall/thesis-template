@@ -1,6 +1,6 @@
 \chapter{Grundlagen}\label{ch:grundlagen}
 
-%TODO text einführung
+Um die in dieser Arbeit untersuchte Transformation einordnen zu können, werden die dafür relevanten konzeptionellen und technischen Grundlagen im Folgenden erläutert. Dazu zählen die Abgrenzung statischer und interaktiver 3D-Objekte, das Verständnis ihrer Transformation sowie die zugrunde liegenden Technologien wie das Vivian-Framework und Large Language Models.
 
 \section{Statische und interaktive 3D-Objekte}\label{sec:statische_interaktive_3d_objekte}
 
@@ -8,6 +8,7 @@ Im Folgenden werden statische sowie interaktive 3D-Objekte definiert und erklär
 Die Begriffe 3D-Objekt und 3D-Asset werden in dieser Arbeit simultan verwendet. Beide beschreiben ein Element einer virtuellen Szene und können als alleinige Geometrie existieren oder Unterkomponenten bzw. Teilobjekte besitzen.
 
 \subsection*{Statische 3D-Objekte}
+
 In dieser Arbeit werden statische 3D-Objekte als Basisform digitaler Modelle betrachtet.
 Sie sind die fundamentale Basis, auf denen komplexere Verhaltensweisen aufbauen können, jedoch wohnt ihnen mit diesen Informationen noch kein Eigenleben inne.
 Statische 3D-Objekte lassen sich meist rein geometrisch beschreiben.
@@ -19,7 +20,7 @@ Weiterhin besitzen sie grafische Attribute wie Materialeigenschaften, Texturen, 
 Während statische 3D-Objekte als unbelebte geometrische Körper betrachtet werden können, zeichnen sich interaktive 3D-Objekte durch Wissen über ihre Funktionalität und die Möglichkeit zur Interaktion mit ihnen aus~\cite{kallmannModelingBehaviorsInteractive2002}.
 Auf diese 3D-Objekte kann durch Eingaben (\textit{Input}) eingewirkt werden und das Objekt reagiert zustands- oder verhaltensbezogen~\cite{steuerDefiningVirtualReality1992}.
 Durch diese Reaktion wird aus dem statischen 3D-Objekt ein interaktionsfähiges Element.
-Es ist somit in der Lage, auf durch Benutzereingaben ausgelöste Ereignisse (\textit{Events}) zu reagieren und wird zu einem handlungsoffenen Teil der virtuellen Welt. Interaktive 3D-Objekte werden in dieser Arbeit auch als interaktive Prototypen bezeichnet. %TODO auf duch Benutzer*innen
+Es ist somit in der Lage, auf von Benutzer*innen ausgelöste Ereignisse (\textit{Events}) zu reagieren und wird zu einem handlungsoffenen Teil der virtuellen Welt. Interaktive 3D-Objekte werden in dieser Arbeit auch als interaktive Prototypen bezeichnet.
 
 \section{Transformation statischer in interaktive 3D-Objekte}
 
@@ -32,6 +33,7 @@ Dabei werden rohe Mesh-Geometrien in bedeutungsvolle Teile mit bestimmten Rollen
 
 Im nächsten Schritt erfolgt der Übergang von der Semantik zum Verhalten mittels Zuweisung spezifischer Interaktionsmerkmale (\textit{Interaction Features}) zu den im ersten Schritt analysierten semantischen Etiketten. Diese Merkmale beinhalten eine Beschreibung der Funktionalität sowie eine Verknüpfung mit Verhaltensplänen oder Zustandsautomaten. Diese Pläne können Zustände überprüfen oder ändern und legen das erwartete Verhalten von beteiligten Akteuren fest~\cite{kallmannModelingBehaviorsInteractive2002}.
 
+\pagebreak
 \section{Das Vivian Framework}\label{sec:vivian_framework}
 
 Das Vivian Framework ist ein \textit{Virtual-Prototyping-Framework}.
@@ -71,7 +73,7 @@ Während solche LLMs als Modelle zur passiven Sprachverarbeitung und -generierun
 Hier greift das Konzept eines LLM-basierten Agenten weiter.
 Ein Agent ist eine autonome Einheit, welche in einer Umgebung agiert, Entscheidungen trifft und auch mit anderen Agenten interagieren kann~\cite{shohamAgentorientedProgramming1993}.
 LLM-basierte Agenten verbinden diese klassische Idee mit den Fähigkeiten von LLMs.
-Ein LLM kann hier als kognitive Kernkomponente verstanden werden und verleiht dem Agenten die Fähigkeit eigenständig und unabhängig zu analysieren, zu planen sowie Probleme zu lösen~\cite{xiRisePotentialLarge2023}.
+Ein LLM kann hier als kognitive Kernkomponente verstanden werden und verleiht dem Agenten die Fähigkeit, eigenständig und unabhängig zu analysieren, zu planen sowie Probleme zu lösen~\cite{xiRisePotentialLarge2023}.
 So entsteht ein System, welches nicht nur natürliche Sprache verarbeiten kann, sondern eine eigene zielgerichtete Handlungsfähigkeit besitzt und in einer Umgebung agieren kann.
 Ebenso kann es zusätzliche Komponenten wie Sensorik, API-Aufrufe oder Werkzeuge nutzen~\cite{xiRisePotentialLarge2023}.
 Die universelle Schnittstelle für solche agentischen Systeme, über die formuliert, geplant und koordiniert wird, ist die natürliche Sprache~\cite{shenHuggingGPTSolvingAI2023}.
