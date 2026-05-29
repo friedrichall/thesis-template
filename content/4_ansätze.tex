@@ -42,7 +42,7 @@ Die domänenspezifischen Anforderungen ergeben sich unmittelbar aus der Verwendu
 
 	\item \textbf{D3:} Die erzeugten Bezeichner für Interaktionselemente, Visualisierungselemente, Zustände, Übergänge und Objekt-Referenzen müssen eindeutig sein.
 
-	\item \textbf{D4:} Jede Referenz in Zuständen, Übergängen, Events, Guards und Elementdefinitionen von Interaktionselementen sowie Visualisierungselementen muss auf ein vorhandenes Szenenobjekt oder ein vorhandenes Element der Spezifikation verweisen.
+	\item \textbf{D4:} Jede Referenz von Interaktionselementen und Visualisierungselementen in Zuständen, Übergängen, Events, Guards und Elementdefinitionen muss auf ein vorhandenes Szenenobjekt oder ein vorhandenes Element der Spezifikation verweisen.
 
 	      % \item\textbf{D5:} Die generierte Spezifikation gilt als erfolgreich erzeugt, wenn sie in Unity mit dem Vivian Framework importiert und ohne Validierungsfehler ausgeführt werden kann.
 \end{itemize}
@@ -58,23 +58,23 @@ Die beschriebenen Anforderungen sind zudem kompakt in der nachfolgenden Tabelle 
 	\centering
 	\begin{tabularx}{\linewidth}{lX}
 		\toprule
-		\textbf{\#} & \textbf{Anforderung}                                                                                \\
+		\textbf{\#} & \textbf{Anforderung}                                                                         \\
 		\midrule
-		A1          & Erzeugung von Vivian-Spezifikationsdateien aus bestehenden Repräsentationen und natürlicher Sprache \\
-		A2          & Identifikation und Rollenzuweisung relevanter Objekte und Teilobjekte                               \\
-		A3          & Validierung der Spezifikation                                                                       \\
-		A4          & begrenzter Korrekturprozess im Generierungsprozess                                                  \\
-		A5          & Human-in-the-Loop                                                                                   \\
-		A6          & XX                                                                                                  \\
+		A1          & Erzeugung vollständiger Vivian-Spezifikationsdateien aus Szenendaten und natürlicher Sprache \\
+		A2          & Identifikation relevanter (Teil-)Objekte und Zuweisung von Vivian-Rollen                     \\
+		A3          & Syntaktische, semantische und referenzielle Validierung der Spezifikation                    \\
+		A4          & Iterative Fehlerkorrektur durch gezielte Neuausführung betroffener Schritte                  \\
+		A5          & Human-in-the-Loop-Schritt zur Prüfung und Korrektur durch Nutzer*innen                       \\
+		A6          & Natürlichsprachliche Interaktionsbeschreibung                                                \\
 		\midrule
-		N1          & modulare Kapselung und gezielte Neugenerierung                                                      \\
-		N2          & Protokollierung der Zwischenartefakte und Entscheidungen                                            \\
-		N3          & Erweiterbarkeit durch Ersetzen oder Hinzufügen von Modulen                                          \\
+		N1          & Modulare Kapselung mit separater Validierung und gezielter Neugenerierung                    \\
+		N2          & Protokollierung von Zwischenartefakten und Entscheidungen                                    \\
+		N3          & Erweiterbarkeit durch Hinzufügen oder Austausch einzelner Module                             \\
 		\midrule
-		D1          & korrekte Vivian-Spezifikationsdateien                                                               \\
-		D2          & Keine Neugenerierung vorhandener Geometrien                                                         \\
-		D3          & eindeutige Bezeichner                                                                               \\
-		D4          & Vivian-Bezeichner verweisen auf vorhandene Szenenobjekte                                            \\
+		D1          & Vivian-kompatible Dateistruktur, Elementtypen, Pflichtfelder und Wertebereiche               \\
+		D2          & Erhalt vorhandener Geometrien und Szenenhierarchien                                          \\
+		D3          & Eindeutige Bezeichner für alle Elemente und Referenzen                                       \\
+		D4          & Gültige Referenzen auf Szenenobjekte                                                         \\
 		\bottomrule
 	\end{tabularx}
 	\caption{Übersicht der Anforderungen an den VSG}
