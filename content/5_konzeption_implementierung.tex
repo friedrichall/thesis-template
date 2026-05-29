@@ -7,7 +7,7 @@ In diesem Kapitel wird die Konzeption und prototypische Implementierung des Vivi
 Im Folgenden wird ein Architekturüberblick des VSG gegeben, in dem klar abgegrenzte, spezialisierte Module mit ihrer Funktion im Prozess kurz aufgeführt werden, in welcher Reihenfolge sie aufgerufen werden und welche Informationen jeweils ein- und ausgehen.
 
 Zur Interaktion mit dem VSG wird Unity als Benutzer*innenschnittstelle genutzt.
-In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2. Außerdem wird A6 behandelt, da hier natürlichsprachliche Beschreibungen entgegengenommen werden.
+In einem Fenster kann eine initiale Interaktionsbeschreibung eingegeben und das zu transformierende statische 3D-Asset ausgewählt werden. Durch die Verwendung vorhandener Geometrie adressiert dieser Schritt D2 (Geometrieerhalt). Außerdem wird A6 (natürlichsprachliche Eingabe) behandelt, da hier natürlichsprachliche Beschreibungen entgegengenommen werden.
 Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Schnittstelle in der Gesamtarchitektur zwischen Benutzer*innen und KI-Pipeline.
 
 %\begin{figure}[htbp]
@@ -22,10 +22,10 @@ Abbildung~\ref{fig:systemkontextdiagramm_vsg_tikz} veranschaulicht Unity als Sch
 	\caption{Systemkontextdiagramm des VSG.}\label{fig:systemkontextdiagramm_vsg_tikz}
 \end{figure}
 
-Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen KI-Agenten entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Dieser Human-in-the-Loop-Schritt adressiert A5 (Human-in-the-Loop).
+Unity-Prozesse übersetzen das ausgewählte 3D-Objekt zudem in Formate, die von nachgelagerten Modulen und insbesondere den darin enthaltenen KI-Agenten entgegengenommen werden können und zeigt die geplanten Interaktionen an, damit diese von Benutzer*innen bestätigt oder in einer Iterationsschleife korrigiert werden können. Damit wird A5 (Human-in-the-Loop) adressiert.
 Zusätzlich ist Unity die Umgebung, in der Vivian die Anreicherung eines statischen 3D-Assets mit Interaktionslogik über Spezifikationsdateien zur Laufzeit leistet.
-Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit statischem 3D-Asset und dieser Spezifikation ausgeführt werden kann.
-Diese Gesamtarchitektur adressiert A1, da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
+Nach erfolgreicher Generierung der Vivian-Spezifikation liefert die KI-Pipeline diese zurück an Unity, damit dort Vivian zusammen mit dem statischen 3D-Asset und der Spezifikation ausgeführt werden kann.
+Diese Gesamtarchitektur adressiert A1 (Erzeugung von Vivian-Spezifikationsdateien), da aus natürlichsprachlichen Eingaben und bestehenden Szenenrepräsentationen vollständige Vivian-Spezifikationen erzeugt werden.
 
 Weiterhin erfolgt die Kommunikation der KI-Pipeline mit Unity über eine REST-API-Schnittstelle, sodass Funktionalitäten der Pipeline gegebenenfalls durch weitere Endpunkte erweiterbar bleiben.
 Durch diese Entkopplung könnte die KI-Pipeline auch in einen übergeordneten Prozess integriert werden, ohne an die Unity-UI gebunden zu sein.
@@ -63,7 +63,7 @@ Dieser gibt ein Scene-Understanding-Objekt aus, welches für jedes relevante Obj
 Anschließend erhält der Interaction Planner das zuvor generierte Scene-Understanding-Objekt zusammen mit der strukturierten Szenenrepräsentation, die zuvor auch der Scene Analyzer erhalten hat und der natürlichsprachlichen Interaktionsbeschreibung.
 In diesem Schritt wird geplant, welche Interaktions- und Visualisierungselemente es geben wird, welche Zustände der Prototyp einnehmen kann und welche Übergänge zwischen Zuständen vorgesehen sind.
 Der Interaction Planner gibt einen Interaction-Plan aus, welcher Elementrollen, geplante Zustände und Übergänge sowie eine Liste der zu generierenden Spezifikationsdateien enthält.
-Dieser Plan wird gemäß A5 Benutzer*innen anschließend zur Bestätigung oder Korrektur vorgelegt.
+Dieser Plan wird gemäß A5 (Human-in-the-Loop) Benutzer*innen anschließend zur Bestätigung oder Korrektur vorgelegt.
 Bei einer Korrektur wird der Interaction Planner erneut aufgerufen, um diese anzuwenden, bis der Plan bestätigt wird, welcher schließlich den nachgelagerten Modulen als verbindliche Vorgabe dient.
 
 Der Specification Generator erzeugt auf Grundlage dieses Interaktionsplans die eigentlichen Vivian-Spezifikationsdateien in der notwendigen Reihenfolge.
@@ -75,6 +75,8 @@ Das könnten \zB~unerreichbare Zustände oder widersprüchliche Bedingungen sein
 Ein Validator ergänzt dies um eine strukturelle und laufzeitnahe Kontrolle.
 Wird die maximale Anzahl an Versuchen erreicht oder keine Fehler gefunden, terminiert der VSG.
 Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an Unity, sodass Vivian diese zusammen mit dem statischen 3D-Asset ausführen kann.
+
+Die Pipeline ist dabei so aufgebaut, dass einzelne Module unabhängig angepasst, ersetzt oder durch weitere Verarbeitungsschritte ergänzt werden können, ohne die Gesamtarchitektur zu verändern. Der Aufbau adressiert damit N3 (Erweiterbarkeit).
 
 % Als nächstes:
 % -	Abgrenzung zu anderen systemen
@@ -94,7 +96,6 @@ Letzteres sorgt für ein Zurückliefern der generierten Vivian-Spezifikation an 
 
 % Ein Absatz Abgrenzung: kurzer Vergleich zu LLMR / Holodeck / ArtiWorld – jeweils zwei Sätze, was übernommen wird (z. B. modulare Inspection von LLMR), was bewusst anders ist (du erzeugst keine Geometrie, du fügst Verhaltens-Spezifikationen zu vorhandenen Szenen hinzu). Damit verteidigst du implizit deinen Beitrag.
 
-% REST API -> WIE kommuniziert unity mit ki-pipeline? 
 
 
 % welches sprachmodell für welches modul? klein bis groß
@@ -108,7 +109,7 @@ Da der nachgelagerte Scene Analyzer mit Text und Bild als Eingaben arbeitet, ben
 Die Form des Objekts, das Material oder auch räumliche Anordnung werden somit direkt sichtbar und müssen nicht aus Bounding-Boxen rekonstruiert werden.
 
 Im ersten Schritt wird dazu aus dem im Unity-Fenster (Abbildung~\ref{fig:unity_ui_empty}) ausgewählten 3D-Asset ein \texttt{Prefab}-Objekt erzeugt, welches später von Vivian zur Laufzeit instanziiert wird.
-Damit wird gemäß D2 keine neue Geometrie generiert, sondern wiederverwendet.
+Damit wird gemäß D2 (Geometrieerhalt) keine neue Geometrie generiert, sondern wiederverwendet.
 
 \begin{figure}[htbp]
 	\centering
@@ -147,7 +148,7 @@ Dafür wird die ID, ein Tiefenhinweis und das Pixelrechteck vermerkt, in dem sic
 
 Der Vorverarbeitungsschritt in Unity erzeugt also zusammengefasst aus einem vorhandenen, statischen 3D-Asset eine strukturelle Repräsentation als JSON-Struktur, acht gerenderte Ansichten von diesem sowie eine weitere JSON-Struktur mit Informationen zu den Ansichten.
 Diese Daten können nun vom nächsten Modul, dem Scene Analyzer, konsumiert werden.
-In diesem Schritt werden D2, D4 sowie N1 adressiert, da Geometrie erhalten bleibt, die JSON-Struktur eine Basis für spätere Namensreferenzen bietet und definierte Ein- und Ausgabeformate verwendet werden.
+In diesem Schritt werden D2 (Geometrieerhalt), D4 (gültige Referenzen) sowie N1 (modulare Kapselung) adressiert, da Geometrie erhalten bleibt, die JSON-Struktur eine Basis für spätere Namensreferenzen bietet und definierte Ein- und Ausgabeformate verwendet werden.
 
 % \subsection{Modul Beispiel}
 % Das Modul zur Interaktionsableitung übersetzt die semantische Beschreibung eines statischen 3D-Assets in eine strukturierte Beschreibung möglicher Interaktionen. Es adressiert insbesondere die Anforderungen A2, A4 und A6. A2 fordert die Identifikation potenziell interaktiver Teilobjekte, A4 die Ableitung geeigneter Zustände und Transitionen und A6 die Ausgabe in einem maschinenlesbaren Format.
@@ -171,7 +172,8 @@ In diesem Schritt werden D2, D4 sowie N1 adressiert, da Geometrie erhalten bleib
 
 %noch genauer auf LLM prompt eingehen
 
-Die Kernaufgabe des Scene-Analyzer-Moduls besteht darin, die in der Vorverarbeitung entstandenen visuellen Eindrücke und strukturellen Daten mit der natürlichsprachlichen Nutzer*innenbeschreibung zu verknüpfen und die rohen Daten so in ein semantisch angereichertes Zwischenformat zu überführen. F2 wird hier adressiert, da relevante Objekte und Teilobjekte aus Szeneninformationen und der Beschreibung abgeleitet werden, sodass nachfolgende Schritte auf diese referenzieren können.
+Die Kernaufgabe des Scene-Analyzer-Moduls besteht darin, die in der Vorverarbeitung entstandenen visuellen Eindrücke und strukturellen Daten mit der natürlichsprachlichen Nutzer*innenbeschreibung zu verknüpfen und die rohen Daten so in ein semantisch angereichertes Zwischenformat zu überführen. F2 sowie A2 (Identifikation und Rollenzuweisung) werden hier adressiert, da relevante Objekte und Teilobjekte aus Szeneninformationen und der Beschreibung abgeleitet werden, sodass nachfolgende Schritte auf diese referenzieren können.
+%TODO F1-4 auch mit tags in klammern erklären (überall)
 
 Als Eingaben bekommt der Scene Analyzer die in Abschnitt~\ref{sec:vorverarbeitung_unity} beschriebene strukturierte Szenenrepräsentation und die Ansichten des Objekts.
 Die JSON-Struktur stellt Namen, Pfade, IDs und Geometrie bereit, während die Bilder bei der semantischen Einordnung helfen.
@@ -224,7 +226,7 @@ Darüber hinaus liefert das LLM noch eine zusammengefasste Begründung für die 
 Eine der Hauptaufgaben des Interaction Planners ist die Rollenzuweisung.
 Dafür werden den relevanten Objekten einer 3D-Szene basierend auf Namen, Materialien und Geometrie spezifische Vivian-Typen zugewiesen, wie \texttt{Button}, \texttt{Slider}, \texttt{Rotatable}, \texttt{Light} oder \texttt{Screen}, welche das LLM direkt aus den einzelnen Elementen von SceneUnderstanding ableitet.
 Beispielsweise sollte einem \texttt{Handle} die Rolle eines \texttt{Slider} zugewiesen werden.
-Diese Aufgabe adressiert A2 (Identifikation und Rollenzuweisung relevanter Objekte und Teilobjekte).
+Diese Aufgabe adressiert A2 (Identifikation und Rollenzuweisung).
 
 Weiterhin definiert der Interaction Planner Zustände, welche der spätere Prototyp einnehmen kann sowie Übergänge zwischen diesen.
 Das umfasst das Erstellen von Zustandsnamen, Beschreibungen, Übergangsnamen und möglichen Auslösern (\textit{Triggern}), die diese Übergänge initiieren.
@@ -249,7 +251,7 @@ Außerdem kann das LLM festlegen, an welche Bedingungen (\textit{Guard Hints}) e
 
 Eine weitere Aufgabe des Interaction Planners umfasst die Bestimmung des Umfangs, also welche konkreten Spezifikationsdateien (\texttt{InteractionElements.json}, \texttt{VisualizationElements.json}, \texttt{States.json} und \texttt{Transitions.json}) für die gegebene Szene erforderlich sind, da dies von der Komplexität des Prototyps abhängt.
 Einfachere Prototypen mit vergleichsweise wenigen Elementen oder Funktionen benötigen gegebenenfalls nicht alle Dateien einer Spezifikation, während komplexere alle vier Dateien benötigen können.
-Durch modulare Kapselung der nachfolgenden Schritte (N1) können gegebenenfalls einzelne Generierungsagenten in~\ref{sec:funcspec_generator} übersprungen werden, sodass nicht benötigte Spezifikationsdateien nicht erzeugt werden.
+Durch modulare Kapselung der nachfolgenden Schritte können gegebenenfalls einzelne Generierungsagenten in~\ref{sec:funcspec_generator} übersprungen werden, sodass nicht benötigte Spezifikationsdateien nicht erzeugt werden. Damit wird N1 (modulare Kapselung) adressiert.
 
 Der generierte Interaktionsplan wird anschließend zurück an die Unity UI gesendet und den Benutzer*innen zur Prüfung angezeigt (siehe Anhang~\ref{ch:anhang_ui_workflow}).
 Über die Entscheidungsbegründung kann direkt ein erster Eindruck gewonnen werden, ob Interaktionen wie gefordert geplant worden sind.
@@ -272,7 +274,8 @@ Da Fehler an die gesamte Spezifikationsgenerierung weitergereicht werden, wirkt 
 %5.7
 \section{Specification Generator}\label{sec:funcspec_generator}
 
-Der Specification Generator übersetzt die im vorherigen Schritt geplante Interaktionslogik aus einem deklarativen und zum Teil noch natürlichsprachlich beschriebenen Plan in die vier JSON-Dateien einer Vivian-Spezifikation. Während andere Module für das Planen (siehe ~\ref{sec:interaction_planner}) sowie die Validierung der erzeugten Dateien (siehe~\ref{sec:unity_validator}) zuständig sind, ist dies der einzige Schritt, in dem tatsächliche, von Vivian konsumierbare JSON-Spezifikationsdateien erzeugt werden. Dieses Modul adressiert damit primär A1 (Erzeugung von Vivian-Spezifikationsdateien) sowie D1 (Erzeugte Dateien müssen den Anforderungen von Vivian entsprechen).
+Der Specification Generator übersetzt die im vorherigen Schritt geplante Interaktionslogik aus einem deklarativen und zum Teil noch natürlichsprachlich beschriebenen Plan in die vier JSON-Dateien einer Vivian-Spezifikation. Während andere Module für das Planen (siehe ~\ref{sec:interaction_planner}) sowie die Validierung der erzeugten Dateien (siehe~\ref{sec:unity_validator}) zuständig sind, ist dies der einzige Schritt, in dem tatsächliche, von Vivian konsumierbare JSON-Spezifikationsdateien erzeugt werden.
+Dieses Modul adressiert damit primär A1 (Erzeugung von Vivian-Spezifikationsdateien) sowie D1 (Vivian-Kompatibilität).
 
 \subsection*{Eingaben, Ausgaben und Verarbeitungsreihenfolge}
 Als Eingabe nimmt der Specification Generator einen bestätigten Interaktionsplan entgegen und gibt die Spezifikationsdateien \texttt{InteractionElements.json}, \texttt{VisualizationElements.json}, \texttt{States.json} und \texttt{Transitions.json} aus. Da Vivian außerdem eine fünfte Datei (\texttt{VisualizationArrays.json}) zur Ausführung benötigt, wird diese ebenfalls erstellt und ist standardmäßig ungefüllt. Da diese fünfte Datei im Kontext dieser Arbeit keine weitere Relevanz hat bleibt sie im Rest der Arbeit unerwähnt. Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
@@ -281,7 +284,7 @@ Für die Umsetzung dieses Moduls wurden vier spezialisierte LLM-Agenten implemen
 Zuerst werden Interaktionselemente, danach Visualisierungselemente, anschließend Zustände und im letzten Schritt Übergänge erstellt (siehe~\ref{fig:dependency_graph_specgen}).
 Die Reihenfolge der Generierung ergibt sich aus den Datenabhängigkeiten: Zustände referenzieren die Namen der Interaktions- und Visualisierungselemente, Übergänge wiederum sowohl Namen der Interaktions- und Visualisierungselemente als auch der Zustände.
 Eine parallele Verarbeitung würde zwangsläufig zu Inkonsistenzen in den Bezeichnern und somit später zu Fehlern in der Ausführung führen. %TODO Eine kleine Tabelle einfügen, die je Datei welche Referenzen sie auf andere Dateien hat zeigt. Das untermauert die Reihenfolge auf einen Blick.
-Die jeweils generierten Daten werden noch nicht in finalen JSON-Dateien, sondern in einem \texttt{Registry}-Objekt gespeichert, welches als \textit{Single Source of Truth} agiert. Dies ermöglicht Datenkonsistenz und verhindert Redundanz. Die verwendeten Agenten sind gegenüber einem einzigen Sprachmodell bei vielen Referenzen zwischen generierten Daten und strukturierten Ausgaben empirisch weniger fehleranfällig, wie bereits in~\ref{sec:begründung_modularer_workflow} erwähnt. Diese Aufteilung adressiert zudem N1 (modulare Kapselung und gezielte Neugenerierung) und ermöglicht zudem eine gezielte Wiederausführung einzelner Schritte, ohne sämtliche Spezifikationsdaten neu zu generieren. Abbildung~\ref{fig:funcspec_generator} zeigt diesen sequenziellen Ablauf inklusive zwischengeschalteter Validierungsstufen.
+Die jeweils generierten Daten werden noch nicht in finalen JSON-Dateien, sondern in einem \texttt{Registry}-Objekt gespeichert, welches als \textit{Single Source of Truth} agiert. Dies ermöglicht Datenkonsistenz und verhindert Redundanz. Die verwendeten Agenten sind gegenüber einem einzigen Sprachmodell bei vielen Referenzen zwischen generierten Daten und strukturierten Ausgaben empirisch weniger fehleranfällig, wie bereits in~\ref{sec:begründung_modularer_workflow} erwähnt. Diese Aufteilung adressiert zudem N1 (modulare Kapselung) und ermöglicht zudem eine gezielte Wiederausführung einzelner Schritte, ohne sämtliche Spezifikationsdaten neu zu generieren. Abbildung~\ref{fig:funcspec_generator} zeigt diesen sequenziellen Ablauf inklusive zwischengeschalteter Validierungsstufen.
 
 \begin{figure}[htbp]
 	\centering
@@ -372,11 +375,11 @@ Als Eingabe erhalten die vier Spezifikationsagenten den Interaktionsplan, sowie 
 \subsection*{Validierung und Registry}
 
 Jeder der Agenten liefert ein \texttt{Pydantic}-typisiertes Objekt zurück. Wie bereits in \ref{sec:scene_analyzer}, wird hierfür das Argument \texttt{output\_type} der OpenAI-Agenten verwendet. Die Agenten produzieren somit direkt Objekte im jeweils benötigten Schema. Anschließend durchläuft die generierte Ausgabe zwei Validierungsstufen. Zunächst prüft eine \texttt{Pydantic}-Schemavalidierung Pflichtfelder, Wertebereiche und erlaubte Elementtypen. Anschließend werden Querverweise gegen den Interaktionsplan und das bisher gefüllte \texttt{Registry}-Objekt überprüft und somit sichergestellt, dass alle generierten Bezeichner auf existierende Szenenobjekte \bzw bereits erstellte Spezifikationselemente verweisen.
-Nach erfolgreicher Validierung wird das Ergebnis eines Agenten in die \texttt{Registry} übernommen und damit für nachfolgende Spezifikationsagenten und Validierungen innerhalb dieses Moduls als \textit{Single Source of Truth} zur Verfügung gestellt. Schlägt eine dieser Prüfungen fehl, startet ein neuer Generierungsversuch. Diese Validierungsschichten adressieren zusammen mit den Agenteninstruktionen D1 (korrekte Vivian-Spezifikationsdateien), D3 (eindeutige Bezeichner) sowie D4 (Vivian-Bezeichner verweisen auf vorhandene Szenenobjekte).
+Nach erfolgreicher Validierung wird das Ergebnis eines Agenten in die \texttt{Registry} übernommen und damit für nachfolgende Spezifikationsagenten und Validierungen innerhalb dieses Moduls als \textit{Single Source of Truth} zur Verfügung gestellt. Schlägt eine dieser Prüfungen fehl, startet ein neuer Generierungsversuch. Diese Validierungsschichten adressieren zusammen mit den Agenteninstruktionen D1 (Vivian-Kompatibilität), D3 (eindeutige Bezeichner) sowie D4 (gültige Referenzen).
 
 \subsection*{Korrekturprozess}
 
-Sollten in nachgelagerten Prüfschichten außerhalb dieses Moduls, wie dem~\ref{sec:consistency_reviewer} oder~\ref{sec:unity_validator}, Inkonsistenzen oder Fehler aufkommen, wird ein erneuter Versuch gestartet, die Spezifikation zu erzeugen. Dabei wird nicht zwangsläufig die gesamte Spezifikation, sondern gezielt nur die Teile neu generiert, welche betroffen sind. Dazu werden betroffene Schritte innerhalb des Specification Generators sowie alle davon abhängigen als \enquote{dirty} markiert und ausschließlich diese Teilmenge in einem neuen Versuch durchlaufen. Sollte beispielsweise die \texttt{Transitions.json}-Datei Fehler enthalten, wird ausschließlich der \texttt{Transitions}-Agent erneut aufgerufen. Wenn hingegen die \texttt{InteractionElements}-Datei fehlerhaft ist, müssen alle vier Agenten erneut ausgeführt werden. Dieses Verhalten adressiert A4 (begrenzter Korrekturprozess im Generierungsprozess). Die Abhängigkeiten der Spezifikationsdateien sind~\ref{fig:dependency_graph_specgen} zu entnehmen.
+Sollten in nachgelagerten Prüfschichten außerhalb dieses Moduls, wie dem~\ref{sec:consistency_reviewer} oder~\ref{sec:unity_validator}, Inkonsistenzen oder Fehler aufkommen, wird ein erneuter Versuch gestartet, die Spezifikation zu erzeugen. Dabei wird nicht zwangsläufig die gesamte Spezifikation, sondern gezielt nur die Teile neu generiert, welche betroffen sind. Dazu werden betroffene Schritte innerhalb des Specification Generators sowie alle davon abhängigen als \enquote{dirty} markiert und ausschließlich diese Teilmenge in einem neuen Versuch durchlaufen. Sollte beispielsweise die \texttt{Transitions.json}-Datei Fehler enthalten, wird ausschließlich der \texttt{Transitions}-Agent erneut aufgerufen. Wenn hingegen die \texttt{InteractionElements}-Datei fehlerhaft ist, müssen alle vier Agenten erneut ausgeführt werden. Dieses Verhalten adressiert A4 (iterative Fehlerkorrektur). Die Abhängigkeiten der Spezifikationsdateien sind~\ref{fig:dependency_graph_specgen} zu entnehmen.
 
 \begin{figure}[htbp]
 	\centering
@@ -395,7 +398,7 @@ Sollten in nachgelagerten Prüfschichten außerhalb dieses Moduls, wie dem~\ref{
 	\caption{Abhängigkeitsgraph der generierten Spezifikationsdateien.}\label{fig:dependency_graph_specgen}
 \end{figure}
 
-Diese Wiederausführung einzelner Schritte im Generierungsprozess der Spezifikation wird durch die Persistenz des \texttt{Registry}-Objekts ermöglicht. Da fehlerfreie Spezifikationsteile über mehrere Versuchsdurchläufe hinweg erhalten bleiben, können die zugehörigen Generierungsschritte übersprungen werden. Weiterhin werden entstandene Zwischenartefakte (wie Spezifikationsdateien) je Generierungsversuch in einem Verzeichnis abgelegt. Dazu wird je Durchlauf ein Protokoll mit sämtlichen vorgenommenen Änderungen am \texttt{Registry}-Objekt zusammen mit den dazugehörigen Spezifikationsdateien geführt, um die Veränderungen über alle Versuche eines Durchlaufs hinweg festzuhalten. So können Fehlerursachen besser nachvollzogen und einzelne Durchläufe reproduziert werden. Damit wird N2 (Protokollierung der Zwischenartefakte und Entscheidungen) adressiert.
+Diese Wiederausführung einzelner Schritte im Generierungsprozess der Spezifikation wird durch die Persistenz des \texttt{Registry}-Objekts ermöglicht. Da fehlerfreie Spezifikationsteile über mehrere Versuchsdurchläufe hinweg erhalten bleiben, können die zugehörigen Generierungsschritte übersprungen werden. Weiterhin werden entstandene Zwischenartefakte (wie Spezifikationsdateien) je Generierungsversuch in einem Verzeichnis abgelegt. Dazu wird je Durchlauf ein Protokoll mit sämtlichen vorgenommenen Änderungen am \texttt{Registry}-Objekt zusammen mit den dazugehörigen Spezifikationsdateien geführt, um die Veränderungen über alle Versuche eines Durchlaufs hinweg festzuhalten. So können Fehlerursachen besser nachvollzogen und einzelne Durchläufe reproduziert werden. Damit wird N2 (Protokollierung) adressiert.
 
 %5.8
 \section{Consistency Reviewer}\label{sec:consistency_reviewer}
@@ -433,7 +436,7 @@ What to check
 3.10. Screen file assignments: If the InteractionPlan includes screen_files assignments on planned states, verify that the generated States.json uses those assignments. If a planned state has screen_files assigned but the corresponding generated state has no ScreenContentVisualization condition or uses a different filename, flag as a warning.
 \end{lstlisting}
 
-Der Scene-Review-Agent liefert anschließend wiederum ein strukturiertes \texttt{Pydantic}-Modell zurück. Die Struktur dieses Modells sowie ein Beispiel für ein solches lässt sich Listing~\ref{lst:consistency_review_example} entnehmen. Dieser Struktur lassen sich Informationen zur Schwere des Problems, der Datei in der das Problem aufgetreten ist, dem betroffenen Element, einer Problembeschreibung und Lösungsvorschlägen entnehmen. Weiterhin ist auch direkt ersichtlich, ob das Problem mit dem Interaktionsplan oder der inhaltlichen Konsistenz zwischen den Teilspezifikationen zusammenhängt. Zudem gibt es noch eine Zusammenfassung der Fehler, damit Übersichtlichkeit auch bei vielen aufkommenden Fehlern gewährleistet werden kann. Auch diese Agentenantwort wird gemäß N2 (Protokollierung der Zwischenartefakte und Entscheidungen) in das Verzeichnis des aktuellen Versuchs geschrieben, um Nachvollziehbarkeit und Reproduzierbarkeit jedes Versuchs zu gewährleisten. Listing~\ref{lst:consistency_review_example} zeigt ein Beispiel eines Consistency Reviews.
+Der Scene-Review-Agent liefert anschließend wiederum ein strukturiertes \texttt{Pydantic}-Modell zurück. Die Struktur dieses Modells sowie ein Beispiel für ein solches lässt sich Listing~\ref{lst:consistency_review_example} entnehmen. Dieser Struktur lassen sich Informationen zur Schwere des Problems, der Datei in der das Problem aufgetreten ist, dem betroffenen Element, einer Problembeschreibung und Lösungsvorschlägen entnehmen. Weiterhin ist auch direkt ersichtlich, ob das Problem mit dem Interaktionsplan oder der inhaltlichen Konsistenz zwischen den Teilspezifikationen zusammenhängt. Zudem gibt es noch eine Zusammenfassung der Fehler, damit Übersichtlichkeit auch bei vielen aufkommenden Fehlern gewährleistet werden kann. Auch diese Agentenantwort wird gemäß N2 (Protokollierung) in das Verzeichnis des aktuellen Versuchs geschrieben, um Nachvollziehbarkeit und Reproduzierbarkeit jedes Versuchs zu gewährleisten. Listing~\ref{lst:consistency_review_example} zeigt ein Beispiel eines Consistency Reviews.
 %TODO klären ob warning UND error einen retry auslösen, oder nur error
 
 \lstinputlisting[
@@ -442,7 +445,7 @@ Der Scene-Review-Agent liefert anschließend wiederum ein strukturiertes \texttt
 	label={lst:consistency_review_example}]
 {listings/vsg_artefacts/consistency_review_example.json}
 
-Sollten Probleme in diesem Schritt der Pipeline gefunden werden, wird ein neuer Versuch des Generierungsprozesses gestartet. Dabei wird N1 (modulare Kapselung und gezielte Neugenerierung) berücksichtigt und ähnlich wie im Specification Generator werden auch hier (durch ein Mapping der erkannten Probleme auf betroffene Schritte), gemäß der Abhängigkeiten der einzelnen Dateien (siehe~\ref{fig:dependency_graph_specgen}), nur betroffene Teile der Spezifikation neugeneriert.
+Sollten Probleme in diesem Schritt der Pipeline gefunden werden, wird ein neuer Versuch des Generierungsprozesses gestartet. Dabei wird N1 (modulare Kapselung) berücksichtigt und ähnlich wie im Specification Generator werden auch hier (durch ein Mapping der erkannten Probleme auf betroffene Schritte), gemäß der Abhängigkeiten der einzelnen Dateien (siehe~\ref{fig:dependency_graph_specgen}), nur betroffene Teile der Spezifikation neugeneriert.
 
 Der Consistency-Review-Agent verwendet mit GPT-5.2 das zweitstärkste LLM innerhalb dieser Pipeline. Er bekommt sowohl die Registry als auch den Interaktionsplan als JSON-Eingabe, welche bei komplexeren Szenen sehr umfangreich werden können, und muss daraus Referenzen ziehen und die Inhalte gegeneinander abgleichen. Leistungsschwächere Modelle würden bei diesen Aufgaben mit viel Kontext schneller die Übersicht verlieren, was problematisch wäre, da dies die Kernkompetenzen dieses Agenten ist. Weiterhin ist strukturiertes Reasoning erforderlich, um durch das Traversieren eines gerichteten Graphen von Zuständen und Übergängen die Erreichbarkeit von Zuständen abzuleiten. Auch diese Aufgabe führt zu Problemen bei kleineren Modellen. Eine zuverlässige Fehlererkennung in diesem Schritt ist zudem wichtig, da falscherkannte Fehler zu erneuten Versuchsdurchläufen führen können, was wiederum bei komplexeren Prototyen kostenintensiv sein kann. Auch nicht erkannte Fehler sind problematisch, da der fertige Prototyp gegebenenfalls bestimmte Verhalten nicht abdecken würde. Die durchgeführten Testdurchläufe haben außerdem gezeigt, dass der Agent von einem größeren Modell, wie GPT-5.5, nicht erheblich profitiert. Sollten Prototypen allerdings komplexer als die in dieser Arbeit behandelten werden oder die Anzahl an Zuständen sowie Übergängen erheblich steigen, könnte der Agent vom Wechsel zu einem stärkeren Modell profitieren.
 Wenn der Consistency Reviewer keine Probleme erkennt, kann die Pipeline zum nächsten Schritt, dem Unity-Validator übergehen und die generierte Vivian-Spezifikation auf Laufzeitfehler überprüfen.
@@ -455,7 +458,7 @@ Wenn der Consistency Reviewer keine Probleme erkennt, kann die Pipeline zum näc
 
 \section{Unity-Validator}\label{sec:unity_validator}
 
-Nach der erfolgreichen Generierung der vier Vivian-Spezifikationsdateien sowie deren semantischer Validierung wird nun die strukturelle und laufzeitnahe Korrektheit im Unity-Validator kontrolliert. Dafür prüft er, ob die erzeugte Spezifikation in Unity deserialisiert und initialisiert werden kann. Dieser Schritt bezieht sich auf die funktionale Anforderung A3 (Validierung der Spezifikation). Das Modul erfüllt dafür zwei Kernaufgaben: Es führt eine JSON-Schema-Validierung durch, um zu prüfen, ob die Spezifikationsdateien strukturell korrekt aufgebaut sind, sowie eine Unity-Batchmode-Validierung, in der es versucht den Prototypen in der Zielumgebung Unity zusammen mit Vivian zu starten. So können bereits innerhalb eines Versuchsdurchlaufs reproduzierbare Fehler gefunden werden, welche ohne Korrektur auch zur tatsächlichen Laufzeit aufgetreten wären. Sollten Fehler im Unity-Validator aufkommen, gibt dieser eine strukturierte Fehlerliste an einen Reparatur-Agenten (Fixer-Agent) weiter, welcher über einen Reparaturplan eine gezielte Wiederausführung der betroffenen Agenten im Specification-Generator einleitet. So kann, falls möglich, eine vollständige Neugenerierung der Spezifikation vermieden werden. Dieser Teilschritt adressiert A4 (begrenzter Korrekturprozess im Generierungsprozess).
+Nach der erfolgreichen Generierung der vier Vivian-Spezifikationsdateien sowie deren semantischer Validierung wird nun die strukturelle und laufzeitnahe Korrektheit im Unity-Validator kontrolliert. Dafür prüft er, ob die erzeugte Spezifikation in Unity deserialisiert und initialisiert werden kann. Dieser Schritt bezieht sich auf die funktionale Anforderung A3 (Validierung der Spezifikation). Das Modul erfüllt dafür zwei Kernaufgaben: Es führt eine JSON-Schema-Validierung durch, um zu prüfen, ob die Spezifikationsdateien strukturell korrekt aufgebaut sind, sowie eine Unity-Batchmode-Validierung, in der es versucht den Prototypen in der Zielumgebung Unity zusammen mit Vivian zu starten. So können bereits innerhalb eines Versuchsdurchlaufs reproduzierbare Fehler gefunden werden, welche ohne Korrektur auch zur tatsächlichen Laufzeit aufgetreten wären. Sollten Fehler im Unity-Validator aufkommen, gibt dieser eine strukturierte Fehlerliste an einen Reparatur-Agenten (Fixer-Agent) weiter, welcher über einen Reparaturplan eine gezielte Wiederausführung der betroffenen Agenten im Specification-Generator einleitet. So kann, falls möglich, eine vollständige Neugenerierung der Spezifikation vermieden werden. Dieser Teilschritt adressiert A4 (iterative Fehlerkorrektur).
 
 \subsection*{Eingaben und Verarbeitungsschritte}
 
@@ -471,5 +474,5 @@ Das Ergebnis des Unity-Validators wird in eine Datei mit Dateinamen \texttt{erro
 
 Zur Weiterverarbeitung des Reparaturplans bekommen nicht alle Generierungsagenten den gesamten Plan, sondern nur für den Teil einer Spezifikation, den ein Agent selbst generiert. Wenn also Fehler in \textit{states.json} und \textit{transitions.json}  aufgetreten sind, bekommt der States-Agent nur die Informationen, die \textit{states.json} betreffen. So wird Verwirrung durch irrelevante Fehler vermieden. Sollte der Fixer-Agent selbst fehlschlagen oder während des Prozesses abbrechen, bekommen die Generierungsagenten die rohen Validator-Fehler als Kontext. In der Entwicklung dieser Arbeit ist dies allerdings nicht vorgekommen.
 
-Nachdem der Fixer-Agent ein Fehlerpaket mit Dateinamen \texttt{fix\_plan.json} und Korrekturmaßnahmen erfolgreich generiert hat, werden programmatisch genau die Schritte als „dirty“ markiert, welche neu ausgeführt werden müssen sowie die davon abhängigen. Wenn \zB also Fehler in den Zuständen erkannt wurden, müssen die Dateien \texttt{states.json} sowie \texttt{transitions.json} erneut generiert werden. Auch hier wird ein neuer Versuch nur dann tatsächlich gestartet, wenn die Maximalanzahl der Versuche noch nicht erreicht ist.
+Nachdem der Fixer-Agent ein Fehlerpaket mit Dateinamen \texttt{fix\_plan.json} und Korrekturmaßnahmen erfolgreich generiert hat, werden programmatisch genau die Schritte als \enquote{dirty} markiert, welche neu ausgeführt werden müssen sowie die davon abhängigen. Wenn \zB also Fehler in den Zuständen erkannt wurden, müssen die Dateien \texttt{states.json} sowie \texttt{transitions.json} erneut generiert werden. Auch hier wird ein neuer Versuch nur dann tatsächlich gestartet, wenn die Maximalanzahl der Versuche noch nicht erreicht ist.
 Sollten im Unity-Validator-Schritt keine Fehler erkannt worden sein, geht die Pipeline in den letzten Schritt über: die \textit{Publishing-Phase}. In dieser werden die nun auf semantische, syntaktische sowie referenzielle Fehler überprüften Spezifikationsdateien an den lokalen Ort exportiert, der anfangs in der Unity UI angegeben wurde. Dieser Schritt markiert den Abschluss eines Durchlaufs und damit eines erfolgreichen Generierungsprozesses. Da das statische \texttt{GameObject} nun mit einer vollständigen Vivian-Spezifikation angereichert wurde, ist die Transformation zu einem interaktiven Prototypen abgeschlossen.
