@@ -271,7 +271,7 @@ Da Fehler an die gesamte Spezifikationsgenerierung weitergereicht werden, wirkt 
 \section{Specification Generator}\label{sec:funcspec_generator}
 
 Der Specification Generator übersetzt die im vorherigen Schritt geplante Interaktionslogik aus einem deklarativen und zum Teil noch natürlichsprachlich beschriebenen Plan in die vier JSON-Dateien einer Vivian-Spezifikation. Während andere Module für das Planen (siehe ~\ref{sec:interaction_planner}) sowie die Validierung der erzeugten Dateien (siehe~\ref{sec:unity_validator}) zuständig sind, ist dies der einzige Schritt, in dem tatsächliche, von Vivian konsumierbare JSON-Spezifikationsdateien erzeugt werden.
-Dieses Modul adressiert damit primär A1 (Erzeugung von Vivian-Spezifikationsdateien) sowie D1 (Vivian-Kompatibilität).
+Dieses Modul adressiert damit primär A1 (Erzeugung von Vivian-Spezifi-\linebreak{}kationsdateien) sowie D1 (Vivian-Kompatibilität).
 
 \subsection*{Eingaben, Ausgaben und Verarbeitungsreihenfolge}
 Als Eingabe nimmt der Specification Generator einen bestätigten Interaktionsplan entgegen und gibt die Spezifikationsdateien \texttt{InteractionElements.json}, \texttt{VisualizationElements.json}, \texttt{States.json} und \texttt{Transitions.json} aus. Da Vivian außerdem eine fünfte Datei (\texttt{VisualizationArrays.json}) zur Ausführung benötigt, wird diese ebenfalls erstellt und ist standardmäßig ungefüllt. Da diese fünfte Datei im Kontext dieser Arbeit keine weitere Relevanz hat, bleibt sie im Rest der Arbeit unerwähnt. Eine Vivian-Spezifikation gilt somit in dieser Arbeit als vollständig, wenn sie InteractionElements.json, VisualizationElements.json, States.json und Transitions.json enthält.
@@ -347,6 +347,7 @@ Der States-Agent verwendet mit GPT-5.5 das leistungsstärkste Modell der hier ve
 				}...]}...]}
 \end{lstlisting}
 
+\pagebreak
 Der Transitions-Agent verwendet wie die InteractionElements- und VisualizationElements-Agenten das Modell GPT-5.1, da die zu verwendenden Zustände bereits im States-Agenten generiert wurden und hier verwendet werden. Diese Aufgabe benötigt somit verhältnismäßig weniger Reasoning-Aufwand. Grundsätzlich würde dieser Agent zwar aufgrund bestimmter Aufgaben (wie Exklusiv-Oder-Gatter) von einem leistungsstärkeren Modell profitieren, allerdings reicht GPT-5.1 hier erfahrungsgemäß aus. Sollten deutlich komplexere Prototypen als im Rahmen dieser Arbeit betrachtet werden, würde der VSG in diesem Schritt unmittelbar von der Verwendung eines leistungsstärkeren Modells, wie GPT-5.2 oder GPT-5.5, profitieren.
 
 % Nach der Generierung jeder Teilspezifikation wird diese bereits auf referenzielle Fehler kontrolliert (siehe A3). Auch diese Agenten benötigen fundiertes Wissen über das Vivian-Framework und klare Regeln, nach denen sie Entscheidungen treffen. Dieser Schritt adressiert die Anforderungen A1, D1, D3 sowie D4 und bietet die Grundlage für A4, da einzelne Teilschritte des Specification-Generators durch diesen Aufbau gezielt erneut ausgeführt werden können.
