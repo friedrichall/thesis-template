@@ -48,7 +48,7 @@ Dafür werden Systeme nicht erst am Ende, sondern bereits in der Entwicklung, be
 
 \subsection*{Vivian-Spezifikationen}
 
-Wie bereits gezeigt, besitzen statische 3D-Objekte von sich aus keine Interaktivität (siehe~\ref{sec:statische_interaktive_3d_objekte}).
+Wie bereits gezeigt, besitzen statische 3D-Objekte von sich aus keine Interaktivität (siehe Abschnitt~\ref{sec:statische_interaktive_3d_objekte}).
 Das Vivian-Framework bildet die Brücke zwischen statischem und interaktivem 3D-Objekt über eine maschinenlesbare Beschreibung des Verhaltens bei Interaktion mit dem virtuellen Prototyp.
 Die Verbindung dieser Spezifikation zu einem 3D-Objekt in der Szene wird über Namensreferenzen hergestellt. %TODO vivian framework gleiche schreibweise überall?
 Ein Element in der Spezifikation referenziert demnach ein gleichnamiges 3D-Objekt oder Teilobjekt in der Szene.
@@ -84,7 +84,7 @@ Multimodale Large Language Models (MLLMs) sind Modelle, welche im Gegensatz zu r
 Eine für diese Arbeit wichtige Fähigkeit ist ihr Verstehen von 2D-Bildern und daraus Schlussfolgerungen zu ziehen.
 Sie basieren auf LLMs und bestehen im Wesentlichen aus drei Hauptmodulen: einem vortrainierten Encoder (\textit{Modality-Encoder}), einem LLM sowie einem Adapter (\textit{Connector}).
 Der Encoder verarbeitet die multimodalen Signale vor und der Adapter bildet die Brücke zum LLM, indem er diese Signale für das LLM verständlich umwandelt.
-Dieser Schritt ist nötig, da LLMs (wie in~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
+Dieser Schritt ist nötig, da LLMs (wie in Abschnitt~\ref{sec:llms_and_agents} gezeigt) ausschließlich Text verarbeiten können. Somit sind MLLMs in der Lage, Text sowie weitere multimodale Inhalte gemeinsam zu verstehen und darauf zu antworten~\cite{yinSurveyMultimodalLarge2024, caffagniRevolutionMultimodalLarge2024}.
 Im Vergleich zu früheren, ähnlichen Arbeiten basieren MLLMs auf LLMs mit Milliarden Parametern sowie neuen Trainingsparadigmen, wie dem \enquote{Multimodal Instruction Tuning}~\cite{liuVisualInstructionTuning}.
 Damit sind eine Vielzahl von Möglichkeiten gegeben, welche mit reinen LLMs nicht oder nur eingeschränkt realisierbar wären.
 Solche repräsentativen Fähigkeiten sind u.a. das Verständnis von visuell geprägten Witzen oder Memes~\cite{yangMMREACTPromptingChatGPT2023,zhuMiniGPT4EnhancingVisionLanguage2023}, räumliches bzw. koordinatenbezogenes Verständnis, das Erstellen von Website-Code basierend auf handgezeichneten Entwürfen oder Kochrezepten anhand von Bildern zubereiteter Gerichte~\cite{zhuMiniGPT4EnhancingVisionLanguage2023}.
