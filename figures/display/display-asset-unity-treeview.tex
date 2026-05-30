@@ -2,25 +2,25 @@
   \centering
   \begin{forest}
     for tree={
-      font=\ttfamily,
-      grow'=0,
-      folder,
-      fit=band,
-      s sep=2pt,
-    }
-    [Display
-      [DisplayHousing
-        [DisplayPlane
-          [DisplayContent]
-        ]
-        [Frame]
+        font=\ttfamily,
+        grow'=0,
+        folder,
+        fit=band,
+        s sep=2pt,
+      }
+      [Display
+          [DisplayHousing
+              [DisplayPlane
+                  [DisplayContent]
+              ]
+              [Frame]
+          ]
+          [Controls
+              [ButtonBack]
+              [ButtonPower]
+              [ButtonForward]
+          ]
       ]
-      [Controls
-        [ButtonBack]
-        [ButtonPower]
-        [ButtonForward]
-      ]
-    ]
   \end{forest}
-  \caption{Hierarchie des Display-Assets in der Unity-Szene.}\label{fig:display_asset_treeview}
+  \caption{Hierarchie des Display-Assets in der Unity-Szene}\label{fig:display_asset_treeview}
 \end{figure}
